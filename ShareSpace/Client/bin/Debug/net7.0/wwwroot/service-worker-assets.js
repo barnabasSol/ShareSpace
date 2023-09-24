@@ -141,12 +141,20 @@
       "url": "ShareSpace.Client.styles.css"
     },
     {
+      "hash": "sha256-5V8ovY1srbIIz7lzzMhLd3nNJ9LJ6bHoBOnLJahv8Go=",
+      "url": "_framework\/Blazored.LocalStorage.dll"
+    },
+    {
       "hash": "sha256-+79HPC+snrhJjzOJbwBnWtkWOY6jdopnEnle7ZiRr7Y=",
       "url": "_framework\/Microsoft.AspNetCore.Authorization.dll"
     },
     {
       "hash": "sha256-Ai5PTdfbdzeheOh7Ly3Uoqa3f175oOxvfu2QfxDZGso=",
       "url": "_framework\/Microsoft.AspNetCore.Components.dll"
+    },
+    {
+      "hash": "sha256-OWafokWFpTwEIei1TKAH8t\/oRr6Sj73KUKWSwCnkXVY=",
+      "url": "_framework\/Microsoft.AspNetCore.Components.Authorization.dll"
     },
     {
       "hash": "sha256-IcQfwp7uOUAjEcK6s\/W097tVi886KFG0KQicOqtu2SU=",
@@ -945,19 +953,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-maFtRPjKF9DJNZLxjA8arVtFFaQ6OVFWrOngvm+nUNA=",
+      "hash": "sha256-pPq4Aqf1Wn2IhgfZ\/S5LBuCwq+y7PqjEftyUIhszuF8=",
       "url": "_framework\/ShareSpace.Shared.dll"
     },
     {
-      "hash": "sha256-fj8kJiSD13zUxIFCWnpH8UD\/iBmwJCIvhq6lLNeem\/k=",
+      "hash": "sha256-gJAjtlmhianlRbLESfhTquhTBYvQXhkTyWaaTc8Akhw=",
       "url": "_framework\/ShareSpace.Shared.pdb"
     },
     {
-      "hash": "sha256-xRMzaAtKWipadQrRMccq1m8pRO1Sd3\/\/JqjtzwOze0s=",
+      "hash": "sha256-sbsHAG2Iq5Qn\/vO0p4yzgv06\/jxHbFGA7um5LQ4fcwk=",
       "url": "_framework\/ShareSpace.Client.dll"
     },
     {
-      "hash": "sha256-XIp3GSOiXUZeNji4wHVRzgbwrkv5lEZ8SqZltCmURCM=",
+      "hash": "sha256-0LJQkfRliN3fi5c1c2We7uqUAhxZM6c8wDDpQCzIPN4=",
       "url": "_framework\/ShareSpace.Client.pdb"
     },
     {
@@ -965,7 +973,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-oI6jU49AkpDwQp48yLkn+WJGnY8u9n2Vz5lplhs\/I6w=",
+      "hash": "sha256-tZhLQ26lHXp8ivqYmu8kUpPbzMVZNQ+90oaoK7l7PZA=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -977,5 +985,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "y0gw1sAf"
+  "version": "6B7hKyCx"
 };

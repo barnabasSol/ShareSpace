@@ -12,7 +12,7 @@ namespace ShareSpace.Client.Pages.LandingPages
         private readonly Login LoginModel = new();
 
 
-        private async void OnValidSubmit(EditContext context)
+        private async void OnValidSubmit()
         {
             StateHasChanged();
             await LoginUser();

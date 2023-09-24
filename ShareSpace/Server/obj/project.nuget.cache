@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "e8b7XayFvBfgjoC4oU0iMh0TCb2tqwJ1zO7AcSWQd4QlIJ/ZEdK4Bo1TmgNnD9U6hv55fYlXSVD5stqY5M41SA==",
+  "dgSpecHash": "8wTMXizbbA3tU4H1e15LrrfsAm0ceAvXScH0DW3qLnU8whBXpSF366RQondEn95QFoQbBQge9hOCj+CcyerOBQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\ShareSpace.Server.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.11\\microsoft.aspnetcore.authorization.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.11\\microsoft.aspnetcore.components.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\7.0.11\\microsoft.aspnetcore.components.analyzers.7.0.11.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components.authorization\\7.0.11\\microsoft.aspnetcore.components.authorization.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\7.0.11\\microsoft.aspnetcore.components.forms.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components.web\\7.0.11\\microsoft.aspnetcore.components.web.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\7.0.11\\microsoft.aspnetcore.components.webassembly.7.0.11.nupkg.sha512",

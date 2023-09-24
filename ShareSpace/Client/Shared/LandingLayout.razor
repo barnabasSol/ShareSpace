@@ -5,7 +5,7 @@
     }
 
     .footer {
-        height: 35px;
+        height: 40px;
         background-color: #f8f9fa;
     }
 </style>
@@ -25,7 +25,17 @@
         @Body
             </MudMainContent>
             <footer style="background-color: rgb(26, 24, 24);" class="footer d-flex justify-content-start align-items-center">
-                <h6 class="text-muted mb-0 ml-5">barnabas solomon 2023</h6>
+        <h6 class="text-muted mb-0 ml-5">
+            <MudButton Href="https://github.com/barnabasSol/ShareSpace"
+                       Target="_blank"
+                       Variant="Variant.Text"
+                       EndIcon="@Icons.Custom.Brands.GitHub"
+                       Color="Color.Secondary"
+                       Style="text-transform:none"
+                       >
+                GitHub
+            </MudButton>
+        </h6>
             </footer>
         </MudLayout>
 
@@ -42,6 +52,7 @@
             PaletteDark = new PaletteDark()
             {
                 Primary = Colors.Yellow.Accent3,
+                Secondary = Colors.Shades.White,
                 Tertiary = Colors.Grey.Darken4,
                 
             },

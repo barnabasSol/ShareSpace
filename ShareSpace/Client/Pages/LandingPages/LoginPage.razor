@@ -13,9 +13,9 @@
             <MudItem xs="12" sm="12">
                 <MudCard Style="background-color: rgb(23, 24, 24); border-radius: 20px;">
                     <MudCardContent>
-                        <MudTextField AutoFocus="true" OnlyValidateIfDirty="true" Label="Username"
+                        <MudTextField id="username" AutoFocus="true" OnlyValidateIfDirty="true" Label="Username"
                         @bind-Value="LoginModel.Username" For="@(() => LoginModel.Username)" />
-                        <MudTextField OnlyValidateIfDirty="true" Label="Password" Class="mt-3"
+                        <MudTextField id="password" OnlyValidateIfDirty="true" Label="Password" Class="mt-3"
                         @bind-Value="LoginModel.Password" For="@(() => LoginModel.Password)" InputType="InputType.Password" />
                     </MudCardContent>
                     <MudCardActions>

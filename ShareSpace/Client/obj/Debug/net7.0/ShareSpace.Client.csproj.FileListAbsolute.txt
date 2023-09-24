@@ -851,3 +851,11 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Pages\LandingPages\LandingPage.razor.rz.scp.css
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Pages\LandingPages\LoginPage.razor.rz.scp.css
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Shared\UserLayout.razor.rz.scp.css
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\Blazored.LocalStorage.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\Blazored.LocalStorage.dll.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\Blazored.LocalStorage.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\Microsoft.AspNetCore.Components.Authorization.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\bcEc7eId.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\vGOua+h5.gz

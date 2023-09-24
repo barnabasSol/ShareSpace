@@ -71,3 +71,5 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.Extensions.Localization.dll
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.Extensions.Localization.Abstractions.dll
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\MudBlazor.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Blazored.LocalStorage.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.AspNetCore.Components.Authorization.dll

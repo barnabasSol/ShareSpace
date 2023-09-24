@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShareSpace.Server.Entities
 {
+    [Table("users")]
     public class User
     {
         [Key]
@@ -31,6 +32,11 @@ namespace ShareSpace.Server.Entities
         public string? ProfilePicUrl { get; set; }
 
         [Column("created_at")]
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; }
+
+        public virtual ICollection<LikedPost>? LikedPosts { get; set; }
+        public virtual ICollection<Post>? Posts { get; set; }
+        public virtual ICollection<Comment>? Comments { get; set; }
+        public virtual ICollection<Message>? Messages { get; set; }
     }
 }

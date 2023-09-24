@@ -9,13 +9,13 @@
             <MudItem xs="12" sm="12">
                 <MudCard Style="background-color: rgb(23, 24, 24); border-radius: 20px;">
                     <MudCardContent>
-                        <MudTextField OnlyValidateIfDirty="true" Label="Username" HelperText="Max. 8 characters"
+                        <MudTextField id="username" OnlyValidateIfDirty="true" Label="Username" HelperText="Max. 8 characters"
                         @bind-Value="ReigisterModel.Username" For="@(() => ReigisterModel.Username)" />
-                        <MudTextField OnlyValidateIfDirty="true" Label="Email" Class="mt-3"
+                        <MudTextField id="email" OnlyValidateIfDirty="true" Label="Email" Class="mt-3"
                         @bind-Value="ReigisterModel.Email" For="@(() => ReigisterModel.Email)" />
-                        <MudTextField OnlyValidateIfDirty="true" Label="Password" HelperText="Choose a strong password" Class="mt-3"
+                        <MudTextField id="password" OnlyValidateIfDirty="true" Label="Password" HelperText="Choose a strong password" Class="mt-3"
                         @bind-Value="ReigisterModel.Password" For="@(() => ReigisterModel.Password)" InputType="InputType.Password" />
-                        <MudTextField OnlyValidateIfDirty="true" Label="Password" HelperText="Repeat the password" Class="mt-3"
+                        <MudTextField id="confpassword" OnlyValidateIfDirty="true" Label="Password" HelperText="Repeat the password" Class="mt-3"
                         @bind-Value="ReigisterModel.Password2" For="@(() => ReigisterModel.Password2)" InputType="InputType.Password" />
                     </MudCardContent>
                     <MudCardActions>
@@ -25,7 +25,7 @@
             </MudItem>
             <MudItem xs="12">
                 <MudText Typo="Typo.body2" Align="Align.Center">
-                    Enter The Required Fields Carefully. <span style="color: transparent;">fffffffffffffffffffffff</span>
+                    Enter The Required Fields Properly . <span style="color: transparent;">fffffffffffffffffffffff</span>
                 </MudText>
             </MudItem>
         </MudGrid>
