@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ck/V9lzTv61UaA9S5gzwixprl/76B/qsCDplQF/alumA7m9N2hWeuqlE7OivjSo0EMIqOSaOMNwCymvv979yYg==",
+  "dgSpecHash": "e8b7XayFvBfgjoC4oU0iMh0TCb2tqwJ1zO7AcSWQd4QlIJ/ZEdK4Bo1TmgNnD9U6hv55fYlXSVD5stqY5M41SA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\ShareSpace.Server.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,8 @@
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\7.0.0\\microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\7.0.0\\microsoft.extensions.fileproviders.physical.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\7.0.0\\microsoft.extensions.filesystemglobbing.7.0.0.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.localization\\7.0.5\\microsoft.extensions.localization.7.0.5.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\7.0.5\\microsoft.extensions.localization.abstractions.7.0.5.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
@@ -41,6 +43,7 @@
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.jsinterop.webassembly\\7.0.11\\microsoft.jsinterop.webassembly.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.10.0\\mudblazor.6.10.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.11\\npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",

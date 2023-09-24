@@ -8,6 +8,7 @@ namespace ShareSpace.Server.Entities
         [Key]
         [Column("id")]
         public int Id { get; set; }
+
         [Column("name")]
         public required string Name { get; set; }
     }

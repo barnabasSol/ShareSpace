@@ -1,0 +1,55 @@
+﻿@inherits LayoutComponentBase
+<style>
+    .full-height {
+        min-height: calc(100vh - 50px);
+    }
+
+    .footer {
+        height: 35px;
+        background-color: #f8f9fa;
+    }
+</style>
+
+<MudThemeProvider IsDarkMode="true" Theme="MyCustomTheme"/>
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+        <MudLayout Class="full-height">
+            <nav style="background-color: rgb(23, 24, 24);" class="sticky-top navbar d-flex justify-content-start">
+                <h2 style="color: white;" class="mb-0 ml-2">ShareSpace</h2>
+                <MudSpacer/>
+        <MudButton Href="/sign-in/required-user-data" Class="mr-2" Variant="Variant.Text" Color="Color.Primary">Sign-Up</MudButton>
+
+            </nav>
+            <MudMainContent Class="p-0 m-0">
+        @Body
+            </MudMainContent>
+            <footer style="background-color: rgb(26, 24, 24);" class="footer d-flex justify-content-start align-items-center">
+                <h6 class="text-muted mb-0 ml-5">barnabas solomon 2023</h6>
+            </footer>
+        </MudLayout>
+
+
+@code {
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new PaletteLight()
+            {
+                Primary = Colors.Blue.Default,
+                Secondary = Colors.Green.Accent4,
+                AppbarBackground = Colors.Red.Default,
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Yellow.Accent3,
+                Tertiary = Colors.Grey.Darken4,
+                
+            },
+
+            // LayoutProperties = new LayoutProperties()
+            // {
+            //     DrawerWidthLeft = "260px",
+            //     DrawerWidthRight = "300px"
+            // }
+        };
+}

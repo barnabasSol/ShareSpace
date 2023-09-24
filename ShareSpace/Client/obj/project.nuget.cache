@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LMz0AW/3agEBMNtDypHXWaMYwIVkV7sF5C/cV8seIRhlyNMkSVyizsE03xEgqNS4OF7/BSnKbWQiUaCO8euYUg==",
+  "dgSpecHash": "0GH1huyd2wrMHhAAKhm+rofO8a7PbGxdmNRxoKtKCtoEefUvh2Xfz2QdsqCL8LJu4qSl9gD+/aybp7oK/fp3DQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\ShareSpace.Client.csproj",
   "expectedPackageFiles": [
@@ -22,12 +22,15 @@
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\7.0.0\\microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\7.0.0\\microsoft.extensions.fileproviders.physical.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\7.0.0\\microsoft.extensions.filesystemglobbing.7.0.0.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.localization\\7.0.5\\microsoft.extensions.localization.7.0.5.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\7.0.5\\microsoft.extensions.localization.abstractions.7.0.5.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.jsinterop\\7.0.11\\microsoft.jsinterop.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.jsinterop.webassembly\\7.0.11\\microsoft.jsinterop.webassembly.7.0.11.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.10.0\\mudblazor.6.10.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",

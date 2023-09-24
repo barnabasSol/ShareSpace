@@ -1,0 +1,11 @@
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\bin\Debug\net7.0\ShareSpace.Shared.deps.json
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\bin\Debug\net7.0\ShareSpace.Shared.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\bin\Debug\net7.0\ShareSpace.Shared.pdb
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\obj\Debug\net7.0\ShareSpace.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\obj\Debug\net7.0\ShareSpace.Shared.AssemblyInfoInputs.cache
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\obj\Debug\net7.0\ShareSpace.Shared.AssemblyInfo.cs
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\obj\Debug\net7.0\ShareSpace.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\obj\Debug\net7.0\ShareSpace.Shared.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\obj\Debug\net7.0\refint\ShareSpace.Shared.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\obj\Debug\net7.0\ShareSpace.Shared.pdb
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\obj\Debug\net7.0\ref\ShareSpace.Shared.dll

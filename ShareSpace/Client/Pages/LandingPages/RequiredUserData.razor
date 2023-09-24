@@ -1,0 +1,39 @@
+﻿@page "/sign-in/required-user-data"
+
+<PageTitle>Login/Sign-up</PageTitle>
+
+<div style="background-color: rgb(20, 20, 20);" class="container-fluid full-height d-flex justify-content-center align-items-center">
+    <EditForm Model="@ReigisterModel" OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator />
+        <MudGrid>
+            <MudItem xs="12" sm="12">
+                <MudCard Style="background-color: rgb(23, 24, 24); border-radius: 20px;">
+                    <MudCardContent>
+                        <MudTextField OnlyValidateIfDirty="true" Label="Username" HelperText="Max. 8 characters"
+                        @bind-Value="ReigisterModel.Username" For="@(() => ReigisterModel.Username)" />
+                        <MudTextField OnlyValidateIfDirty="true" Label="Email" Class="mt-3"
+                        @bind-Value="ReigisterModel.Email" For="@(() => ReigisterModel.Email)" />
+                        <MudTextField OnlyValidateIfDirty="true" Label="Password" HelperText="Choose a strong password" Class="mt-3"
+                        @bind-Value="ReigisterModel.Password" For="@(() => ReigisterModel.Password)" InputType="InputType.Password" />
+                        <MudTextField OnlyValidateIfDirty="true" Label="Password" HelperText="Repeat the password" Class="mt-3"
+                        @bind-Value="ReigisterModel.Password2" For="@(() => ReigisterModel.Password2)" InputType="InputType.Password" />
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Continue</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+            <MudItem xs="12">
+                <MudText Typo="Typo.body2" Align="Align.Center">
+                    Enter The Required Fields Carefully. <span style="color: transparent;">fffffffffffffffffffffff</span>
+                </MudText>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+</div>
+
+
+
+@code {
+
+}

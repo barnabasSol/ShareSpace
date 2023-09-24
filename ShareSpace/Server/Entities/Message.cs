@@ -7,15 +7,20 @@ namespace ShareSpace.Server.Entities
     {
         [Key]
         [Column("message_id")]
-        public int MessageId { get; set; }
+        public Guid MessageId { get; set; }
+
         [Column("content")]
         public required string Content { get; set; }
+
         [Column("seen")]
-        public bool Seen {  get; set; }
+        public bool Seen { get; set; }
+
         [Column("created_at")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+
         [Column("sender_id")]
         public Guid SenderId { get; set; }
+
         [Column("sender_id")]
         public Guid ReceiverId { get; set; }
     }

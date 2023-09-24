@@ -316,6 +316,38 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "Microsoft.Extensions.Localization/7.0.5": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Localization.Abstractions": "7.0.5",
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Localization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Localization.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Extensions.Localization.Abstractions/7.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Localization.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Localization.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Logging/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -417,6 +449,30 @@
           "lib/net7.0/Microsoft.JSInterop.WebAssembly.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "MudBlazor/6.10.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "7.0.5",
+          "Microsoft.AspNetCore.Components.Web": "7.0.5",
+          "Microsoft.Extensions.Localization": "7.0.5"
+        },
+        "compile": {
+          "lib/net7.0/MudBlazor.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/MudBlazor.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/MudBlazor.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/MudBlazor.props": {}
         }
       },
       "System.IO.Pipelines/7.0.0": {
@@ -802,6 +858,38 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "Microsoft.Extensions.Localization/7.0.5": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Localization.Abstractions": "7.0.5",
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Localization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Localization.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Extensions.Localization.Abstractions/7.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Localization.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Localization.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Logging/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -903,6 +991,30 @@
           "lib/net7.0/Microsoft.JSInterop.WebAssembly.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "MudBlazor/6.10.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "7.0.5",
+          "Microsoft.AspNetCore.Components.Web": "7.0.5",
+          "Microsoft.Extensions.Localization": "7.0.5"
+        },
+        "compile": {
+          "lib/net7.0/MudBlazor.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/MudBlazor.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/MudBlazor.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/MudBlazor.props": {}
         }
       },
       "System.IO.Pipelines/7.0.0": {
@@ -1499,6 +1611,44 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.Localization/7.0.5": {
+      "sha512": "F5aAQlf29mSTEl13OnJ3f3mBOyjYQ4P9RVC0lIVyhqP2pP7ZdjyWpaGrHjx1rR0g8IRaeM1I8fDYI0nnkanksA==",
+      "type": "package",
+      "path": "microsoft.extensions.localization/7.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.Extensions.Localization.dll",
+        "lib/net462/Microsoft.Extensions.Localization.xml",
+        "lib/net7.0/Microsoft.Extensions.Localization.dll",
+        "lib/net7.0/Microsoft.Extensions.Localization.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Localization.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Localization.xml",
+        "microsoft.extensions.localization.7.0.5.nupkg.sha512",
+        "microsoft.extensions.localization.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Localization.Abstractions/7.0.5": {
+      "sha512": "9aKOv6iaYLhCLsLIYIZePKLQ8LYpnasoqjg5lv2RCOz+jkLp/A7YmtNrYfhhmNARX2sq8427KQOyvkFIf8uLaw==",
+      "type": "package",
+      "path": "microsoft.extensions.localization.abstractions/7.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.Extensions.Localization.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.Localization.Abstractions.xml",
+        "lib/net7.0/Microsoft.Extensions.Localization.Abstractions.dll",
+        "lib/net7.0/Microsoft.Extensions.Localization.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Localization.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Localization.Abstractions.xml",
+        "microsoft.extensions.localization.abstractions.7.0.5.nupkg.sha512",
+        "microsoft.extensions.localization.abstractions.nuspec"
+      ]
+    },
     "Microsoft.Extensions.Logging/7.0.0": {
       "sha512": "Nw2muoNrOG5U5qa2ZekXwudUn2BJcD41e65zwmDHb1fQegTX66UokLWZkJRpqSSHXDOWZ5V0iqhbxOEky91atA==",
       "type": "package",
@@ -1684,6 +1834,29 @@
         "microsoft.jsinterop.webassembly.nuspec"
       ]
     },
+    "MudBlazor/6.10.0": {
+      "sha512": "Dpjouo3MVva4p8Nh2VCzHzvzReWhnzmCBNlrhymeXjn6oBEtT3Oi9z/R2sHOg/jYrW/hIPKMhfZHnptilHScsw==",
+      "type": "package",
+      "path": "mudblazor/6.10.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "Nuget.png",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "build/MudBlazor.props",
+        "buildMultiTargeting/MudBlazor.props",
+        "buildTransitive/MudBlazor.props",
+        "lib/net6.0/MudBlazor.dll",
+        "lib/net6.0/MudBlazor.xml",
+        "lib/net7.0/MudBlazor.dll",
+        "lib/net7.0/MudBlazor.xml",
+        "mudblazor.6.10.0.nupkg.sha512",
+        "mudblazor.nuspec",
+        "staticwebassets/MudBlazor.min.css",
+        "staticwebassets/MudBlazor.min.js"
+      ]
+    },
     "System.IO.Pipelines/7.0.0": {
       "sha512": "jRn6JYnNPW6xgQazROBLSfpdoczRw694vO5kKvMcNnpXuolEixUyw6IBuBs2Y2mlSX/LdLvyyWmfXhaI3ND1Yg==",
       "type": "package",
@@ -1823,6 +1996,7 @@
     "net7.0": [
       "Microsoft.AspNetCore.Components.WebAssembly >= 7.0.11",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 7.0.11",
+      "MudBlazor >= 6.10.0",
       "ShareSpace.Shared >= 1.0.0"
     ]
   },
@@ -1883,6 +2057,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.11, )"
+          },
+          "MudBlazor": {
+            "target": "Package",
+            "version": "[6.10.0, )"
           }
         },
         "imports": [

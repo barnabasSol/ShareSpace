@@ -1,0 +1,17 @@
+/* /Pages/LandingPages/LandingPage.razor.rz.scp.css */
+.astyle[b-5nov5wf1df] {
+    color: gray;
+    text-decoration: none;
+    transition: color, text-decoration, 0.2s;
+}
+
+    .astyle:hover[b-5nov5wf1df] {
+        color: white;
+    }
+
+    .astyle:focus[b-5nov5wf1df] {
+        color: white;
+    }
+/* /Pages/LandingPages/LoginPage.razor.rz.scp.css */
+/* /Shared/UserLayout.razor.rz.scp.css */
+
