@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "8wTMXizbbA3tU4H1e15LrrfsAm0ceAvXScH0DW3qLnU8whBXpSF366RQondEn95QFoQbBQge9hOCj+CcyerOBQ==",
+  "dgSpecHash": "+BsDVB2rQ3Km+7sfxd9PGheAd+KdaaI3TFLO3uHpWGNSMo/Q6V07RehQqcEc8Is75QB6DYvHIJOn+fRYpqT5zg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\ShareSpace.Server.csproj",
+  "projectFilePath": "c:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\ShareSpace.Server.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.11\\microsoft.aspnetcore.authorization.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.11\\microsoft.aspnetcore.components.7.0.11.nupkg.sha512",
@@ -41,6 +43,10 @@
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.0.1\\microsoft.identitymodel.abstractions.7.0.1.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.0.1\\microsoft.identitymodel.jsonwebtokens.7.0.1.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.identitymodel.logging\\7.0.1\\microsoft.identitymodel.logging.7.0.1.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.0.1\\microsoft.identitymodel.tokens.7.0.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.jsinterop\\7.0.11\\microsoft.jsinterop.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.jsinterop.webassembly\\7.0.11\\microsoft.jsinterop.webassembly.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
@@ -53,6 +59,7 @@
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.0.1\\system.identitymodel.tokens.jwt.7.0.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"

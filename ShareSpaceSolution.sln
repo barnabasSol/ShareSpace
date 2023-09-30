@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareSpace.Server", "ShareSpace\Server\ShareSpace.Server.csproj", "{9E63A4C8-3272-4D26-AA64-C39FDDDB526B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareSpace.Server", "ShareSpace\Server\ShareSpace.Server.csproj", "{9E63A4C8-3272-4D26-AA64-C39FDDDB526B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareSpace.Client", "ShareSpace\Client\ShareSpace.Client.csproj", "{7A8E8593-1299-46AD-B2D8-4687BDFA6FDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareSpace.Client", "ShareSpace\Client\ShareSpace.Client.csproj", "{7A8E8593-1299-46AD-B2D8-4687BDFA6FDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareSpace.Shared", "ShareSpace\Shared\ShareSpace.Shared.csproj", "{CFD93DF5-CC07-4FF9-A249-50A0FF5AC518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareSpace.Shared", "ShareSpace\Shared\ShareSpace.Shared.csproj", "{CFD93DF5-CC07-4FF9-A249-50A0FF5AC518}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

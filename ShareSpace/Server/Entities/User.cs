@@ -13,17 +13,14 @@ namespace ShareSpace.Server.Entities
         [Column("username", TypeName = "VARCHAR(100)")]
         public required string UserName { get; set; }
 
-        [Column("first_name", TypeName = "VARCHAR(100)")]
-        public required string FirstName { get; set; }
-
-        [Column("last_name", TypeName = "VARCHAR(100)")]
-        public string? LastName { get; set; }
+        [Column("name", TypeName = "VARCHAR(100)")]
+        public required string Name { get; set; }
 
         [Column("email", TypeName = "VARCHAR(150)")]
         public required string Email { get; set; }
 
-        [Column("password", TypeName = "bytea")]
-        public byte[] PasswordHash { get; set; } = Array.Empty<byte>();
+        [Column("password_hash", TypeName = "TEXT")]
+        public required string PasswordHash { get; set; }
 
         [Column("bio")]
         public string? Bio { get; set; }
@@ -38,5 +35,7 @@ namespace ShareSpace.Server.Entities
         public virtual ICollection<Post>? Posts { get; set; }
         public virtual ICollection<Comment>? Comments { get; set; }
         public virtual ICollection<Message>? Messages { get; set; }
+        public virtual ICollection<Follower>? Followers { get; set; }
+        public virtual ICollection<Notification>? Notifications { get; set; }
     }
 }

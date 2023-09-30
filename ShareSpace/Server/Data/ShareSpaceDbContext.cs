@@ -10,26 +10,40 @@ namespace ShareSpace.Server.Data
         public DbSet<LikedPost> LikedPosts { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
-        //public DbSet<Follower> Followers { get; set; }
-        //public DbSet<Notification> Notifications { get; set; }
-        //public DbSet<NotificationType> NotificationTypes { get; set; }
-        //public DbSet<Tag> Tags { get; set; }
-        //public DbSet<PostTag> PostTags { get; set; }
+        public DbSet<Follower> Followers { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<NotificationType> NotificationTypes { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<PostTag> PostTags { get; set; }
 
         public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options)
             : base(options) { }
 
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<LikedPost>().HasKey(lp => new { lp.UserId, lp.PostId });
+            modelBuilder.Entity<PostTag>(pt =>
+            {
+                pt.HasKey(pt => new { pt.PostId, pt.TagId });
+            });
+
+            modelBuilder.Entity<Follower>(f =>
+            {
+                f.Property(f => f.CreatedAt).HasDefaultValueSql("Now()");
+                f.HasKey(f => new { f.FollowedId, f.FollowerId });
+                f.HasOne("ShareSpace.Server.Entities.User", "FollowedUser")
+                    .WithMany("Followers")
+                    .HasForeignKey("FollowedId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
             modelBuilder.Entity<User>(u =>
             {
                 u.Property(e => e.CreatedAt).HasDefaultValueSql("Now()");
                 u.Property(e => e.UserId).HasDefaultValueSql("uuid_generate_v4()");
+                u.HasIndex(e => e.UserName).IsUnique();
+                u.HasIndex(e => e.Email).IsUnique();
             });
 
             modelBuilder.Entity<Post>(p =>
@@ -54,11 +68,32 @@ namespace ShareSpace.Server.Data
                 m.HasOne("ShareSpace.Server.Entities.User", "Receiver")
                     .WithMany("Messages")
                     .HasForeignKey("ReceiverId")
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .IsRequired();
+
+                m.HasOne("ShareSpace.Server.Entities.User", "Sender")
+                    .WithMany()
+                    .HasForeignKey("SenderId")
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity<Notification>(n =>
+            {
+                n.Property(c => c.CreatedAt).HasDefaultValueSql("Now()");
+                n.Property(i => i.Id).HasDefaultValueSql("uuid_generate_v4()");
+                n.Property(l => l.Seen).HasDefaultValue("FALSE");
+                n.HasOne("ShareSpace.Server.Entities.User", "GetterUser")
+                    .WithMany("Notifications")
+                    .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
             });
 
-
+            modelBuilder.Entity<Tag>(t =>
+            {
+                t.Property(i => i.Id).HasDefaultValueSql("uuid_generate_v4()");
+            });
         }
     }
 }

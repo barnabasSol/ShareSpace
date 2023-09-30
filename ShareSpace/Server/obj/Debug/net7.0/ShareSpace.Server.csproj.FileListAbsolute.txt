@@ -73,3 +73,10 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\MudBlazor.dll
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Blazored.LocalStorage.dll
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.AspNetCore.Components.Authorization.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

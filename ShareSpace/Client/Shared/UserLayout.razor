@@ -1,6 +1,5 @@
 ﻿@inherits LayoutComponentBase
 
-
 <PageTitle>THE SHIT</PageTitle>
 
 <MudThemeProvider />
@@ -8,6 +7,14 @@
 <MudSnackbarProvider />
 
 <MudLayout>
+    <AuthorizeView>
+        <Authorized>
+            <h1 style="color: green;">WELOCME @GetUserInfo(context.User.Claims.ToList()).Name</h1>
+        </Authorized>
+        <NotAuthorized>
+            <h1 style="color: red;">FUCK YOU</h1>
+        </NotAuthorized>
+    </AuthorizeView>
     <MudMainContent Class="p-0">
         @Body
     </MudMainContent>

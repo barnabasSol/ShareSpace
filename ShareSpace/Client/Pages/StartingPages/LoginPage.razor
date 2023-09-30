@@ -1,0 +1,50 @@
+﻿@page "/sign-in"
+@layout LandingLayout
+@inject HttpClient http;
+@inject IUserService UserService
+@inject NavigationManager NavigationManager
+@inject ILocalStorageService localstorage
+@inject AuthenticationStateProvider authstate
+
+
+<PageTitle>Login/Sign-up</PageTitle>
+
+<div style="background-color: rgb(20, 20, 20);"
+    class="container-fluid full-height d-flex justify-content-center align-items-center">
+    <MudGrid Style="display: flex; justify-content: center !important; align-items: center !important; ">
+        <MudItem xs="12" sm="5">
+            <MudCard Style="background-color: rgb(23, 24, 24); border-radius: 20px;">
+                <MudForm @ref="form" Model="LoginModel" Validation="Validations.ValidateValue">
+                    <MudCardContent>
+                        <MudTextField id="username" OnlyValidateIfDirty="true" Label="Username"
+                            HelperText="Max. 20 characters" @bind-Value="LoginModel.Username"
+                            For="@(() => LoginModel.Username)" />
+                        <MudTextField id="password" OnlyValidateIfDirty="true" Label="Password"
+                            HelperText="enter your password" Class="mt-3" @bind-Value="LoginModel.Password"
+                            For="@(() => LoginModel.Password)" InputType="InputType.Password" />
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Disabled="@processing" OnClick="Submit" Variant="Variant.Filled"
+                            Color="Color.Success" Class="ml-auto">
+                            @if (processing)
+                            {
+                                <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                                <MudText Class="ms-2">please wait</MudText>
+                            }
+                            else
+                            {
+                                <MudText>Login</MudText>
+                            }
+                        </MudButton>
+                    </MudCardActions>
+                </MudForm>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12">
+            <MudText Typo="Typo.body2" Align="Align.Center">
+                <span style="display: @show;">@message</span>
+                <span>Or Sign In with <a style="color:yellow" href="/sign-in/required-user-data">Google</a></span>
+            </MudText>
+        </MudItem>
+    </MudGrid>
+</div>

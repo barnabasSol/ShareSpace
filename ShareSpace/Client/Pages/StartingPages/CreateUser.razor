@@ -1,0 +1,43 @@
+﻿@page "/sign-in/required-user-data"
+@layout LandingLayout
+@inject IUserService UserService
+
+<PageTitle>Login/Sign-up</PageTitle>
+
+<div style="background-color: rgb(20, 20, 20);"
+    class="container-fluid full-height d-flex justify-content-center align-items-center">
+
+    <MudGrid Style="display: flex; justify-content: center !important; align-items: center !important; ">
+        <MudItem xs="12" sm="6">
+            <MudCard Style="background-color: rgb(23, 24, 24); border-radius: 20px;">
+                <MudForm @ref="form" Model="ReigisterModel" Validation="Validations.ValidateValue">
+                    <MudCardContent>
+                        <MudTextField id="username" OnlyValidateIfDirty="true" Label="Username"
+                            HelperText="Max. 20 characters" @bind-Value="ReigisterModel.Username"
+                            For="@(() => ReigisterModel.Username)" />
+                        <MudTextField id="name" OnlyValidateIfDirty="true" Label="Name"
+                            HelperText="Enter your full name" @bind-Value="ReigisterModel.FullName"
+                            For="@(() => ReigisterModel.FullName)" />
+                        <MudTextField id="email" OnlyValidateIfDirty="true" Label="Email" Class="mt-3"
+                            @bind-Value="ReigisterModel.Email" For="@(() => ReigisterModel.Email)" />
+                        <MudTextField id="password" OnlyValidateIfDirty="true" Label="Password"
+                            HelperText="Choose a strong password" Class="mt-3" @bind-Value="ReigisterModel.Password"
+                            For="@(() => ReigisterModel.Password)" InputType="InputType.Password" />
+                        <MudTextField id="confpassword" OnlyValidateIfDirty="true" Label="Password"
+                            HelperText="Repeat the password" Class="mt-3" @bind-Value="ReigisterModel.Password2"
+                            For="@(() => ReigisterModel.Password2)" InputType="InputType.Password" />
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton OnClick="Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">
+                            Continue</MudButton>
+                    </MudCardActions>
+                </MudForm>
+            </MudCard>
+        </MudItem>
+        <MudItem Class="d-flex justify-content-center align-items-center" xs="12">
+            <MudText Typo="Typo.body2" Align="Align.Center">
+                @message
+            </MudText>
+        </MudItem>
+    </MudGrid>
+</div>

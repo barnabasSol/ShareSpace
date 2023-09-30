@@ -814,8 +814,6 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\oIRVWhda.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\owPUVbFO.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\iOWDSc2u.gz
-C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\LYpWqj+b.gz
-C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\MDEw7yb5.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\8PTfosM0.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\sY9ggRIw.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\WThGywYK.gz
@@ -848,8 +846,6 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\xvw+wkUt.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\hwLkdOZB.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\foKL+bht.gz
-C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Pages\LandingPages\LandingPage.razor.rz.scp.css
-C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Pages\LandingPages\LoginPage.razor.rz.scp.css
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Shared\UserLayout.razor.rz.scp.css
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\Blazored.LocalStorage.dll
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll
@@ -859,3 +855,11 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\Microsoft.AspNetCore.Components.Authorization.dll
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\bcEc7eId.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\vGOua+h5.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Pages\StartingPages\LandingPage.razor.rz.scp.css
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Pages\StartingPages\LoginPage.razor.rz.scp.css
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\FluentValidation.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\FluentValidation.dll.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\M+rgKJvR.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\LYpWqj+b.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\MDEw7yb5.gz

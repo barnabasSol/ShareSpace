@@ -20,16 +20,36 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/LandingPages/RequiredUserData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFuZGluZ1BhZ2VzXFJlcXVpcmVkVXNlckRhdGEucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
 [c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/RoutingProblemPages/NotFound.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGluZ1Byb2JsZW1QYWdlc1xOb3RGb3VuZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/PostsContent.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2VzXFBvc3RzQ29udGVudC5yYXpvcg==
+[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/StartingPages/CreateUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhcnRpbmdQYWdlc1xDcmVhdGVVc2VyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/MessageList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2VzXE1lc3NhZ2VMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/NavBar.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2VzXE5hdkJhci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/Post.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2VzXFBvc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/PostsList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2VzXFBvc3RzTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/UserProfile.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2VzXFVzZXJQcm9maWxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/UserSettings.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2VzXFVzZXJTZXR0aW5ncy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Shared/LandingLayout.razor]
@@ -40,13 +60,13 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/LandingPages/LandingPage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFuZGluZ1BhZ2VzXExhbmRpbmdQYWdlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-5nov5wf1df
+[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/StartingPages/LandingPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhcnRpbmdQYWdlc1xMYW5kaW5nUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-z27iwrltlz
 
-[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/LandingPages/LoginPage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFuZGluZ1BhZ2VzXExvZ2luUGFnZS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-sly4eib1ot
+[c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/StartingPages/LoginPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhcnRpbmdQYWdlc1xMb2dpblBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-kyitpf5pqt
 
 [c:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Shared/UserLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVzZXJMYXlvdXQucmF6b3I=

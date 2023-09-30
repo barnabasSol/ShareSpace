@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "terxyrq1wSj8BhKyA/rx0RG8t7GZMVeLu2YX+qumwc5/GDXnMqWlkrJHCaoBTZJTOaoBR4z/D6ICsIUJJp60yA==",
+  "dgSpecHash": "Pffd01xcuLEOGgkAJpXx0xdhoIAkTniJRbdygjHv2bve33WVKqLBcOogYi9SY3sQhud1XXVTsVcGs4shjdI1Vg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\ShareSpace.Client.csproj",
+  "projectFilePath": "c:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\ShareSpace.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
+    "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.11\\microsoft.aspnetcore.authorization.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.11\\microsoft.aspnetcore.components.7.0.11.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\7.0.11\\microsoft.aspnetcore.components.analyzers.7.0.11.nupkg.sha512",

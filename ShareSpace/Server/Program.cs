@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using ShareSpace.Server.Data;
+using ShareSpace.Server.JWT;
+using ShareSpace.Server.Repository;
+using ShareSpace.Server.Repository.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +12,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPostRepository, PostRepository>();
+
 builder.Services.AddDbContext<ShareSpaceDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection(nameof(TokenSettings)));
 
 var app = builder.Build();
 

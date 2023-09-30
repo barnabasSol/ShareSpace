@@ -8,6 +8,7 @@
   "resources": {
     "assembly": {
       "Blazored.LocalStorage.dll": "sha256-5V8ovY1srbIIz7lzzMhLd3nNJ9LJ6bHoBOnLJahv8Go=",
+      "FluentValidation.dll": "sha256-PPUiqWeSvEoNjo19oYQ8GTBU4gBsEEBiyTf2eqVg+gI=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-+79HPC+snrhJjzOJbwBnWtkWOY6jdopnEnle7ZiRr7Y=",
       "Microsoft.AspNetCore.Components.dll": "sha256-Ai5PTdfbdzeheOh7Ly3Uoqa3f175oOxvfu2QfxDZGso=",
       "Microsoft.AspNetCore.Components.Authorization.dll": "sha256-OWafokWFpTwEIei1TKAH8t\/oRr6Sj73KUKWSwCnkXVY=",
@@ -203,15 +204,15 @@
       "mscorlib.dll": "sha256-X+o60j6cZnlI2vFFjdH81yYTAxx13\/wqnNSWTKbDsyw=",
       "netstandard.dll": "sha256-Cr6slBs\/R2v2t\/vecFDHbQHakbEhar0adYu0YemwiXI=",
       "System.Private.CoreLib.dll": "sha256-dDw5nzGJhW1jOjGfSJcs\/Mi4KQ+DZygXnoK+vJ+jHyk=",
-      "ShareSpace.Shared.dll": "sha256-pPq4Aqf1Wn2IhgfZ\/S5LBuCwq+y7PqjEftyUIhszuF8=",
-      "ShareSpace.Client.dll": "sha256-sbsHAG2Iq5Qn\/vO0p4yzgv06\/jxHbFGA7um5LQ4fcwk="
+      "ShareSpace.Shared.dll": "sha256-De+xbIPSGBOc8xg4ClCa\/8xUlnIOE\/mDIA8kKTe+OfM=",
+      "ShareSpace.Client.dll": "sha256-PrzRNHPlQp8dVVF1IXentJF0rTJ2PCfxhIWB9Vwg4to="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "ShareSpace.Shared.pdb": "sha256-gJAjtlmhianlRbLESfhTquhTBYvQXhkTyWaaTc8Akhw=",
-      "ShareSpace.Client.pdb": "sha256-0LJQkfRliN3fi5c1c2We7uqUAhxZM6c8wDDpQCzIPN4="
+      "ShareSpace.Shared.pdb": "sha256-IhCeNWHGDHsnZVHtj6QF3PfvmrdBcZ3xOhT5\/tmMT6Y=",
+      "ShareSpace.Client.pdb": "sha256-qlJy1ss0FbkXekKdoUiLIsFpapjbh6yRGzTKhTlAhXI="
     },
     "runtime": {
       "dotnet.7.0.11.5912rerilo.js": "sha256-RtIVigdAD1mUvR4pxoKyD8kcQgw4INP81v+PVSqkeQY=",
