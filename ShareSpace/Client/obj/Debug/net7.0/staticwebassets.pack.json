@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets\\Assets\\shield.png"
     },
     {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\social.png",
+      "PackagePath": "staticwebassets\\Assets\\social.png"
+    },
+    {
       "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\tiki (2).png",
       "PackagePath": "staticwebassets\\Assets\\tiki (2).png"
     },

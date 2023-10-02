@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Pffd01xcuLEOGgkAJpXx0xdhoIAkTniJRbdygjHv2bve33WVKqLBcOogYi9SY3sQhud1XXVTsVcGs4shjdI1Vg==",
+  "dgSpecHash": "MnJlbJSkS+QNgSCMSnL5fmP8XmMh1c7e6DdPN6tkzDbixAmRJtwC+KNDLVP9w4qRWL2UulDelAG7YEAkS5av9Q==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\ShareSpace.Client.csproj",
+  "projectFilePath": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\ShareSpace.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
     "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",

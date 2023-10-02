@@ -2,20 +2,132 @@
 
 <PageTitle>THE SHIT</PageTitle>
 
-<MudThemeProvider />
+<MudThemeProvider IsDarkMode="true" Theme="MyCustomTheme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <AuthorizeView>
-        <Authorized>
-            <h1 style="color: green;">WELOCME @GetUserInfo(context.User.Claims.ToList()).Name</h1>
-        </Authorized>
-        <NotAuthorized>
-            <h1 style="color: red;">FUCK YOU</h1>
-        </NotAuthorized>
-    </AuthorizeView>
-    <MudMainContent Class="p-0">
-        @Body
-    </MudMainContent>
+    <MudDrawer Style="background: rgb(23, 24, 24);" @bind-Open="@open" Anchor="@anchor" Elevation="1"
+        Variant="@DrawerVariant.Temporary">
+        <MudDrawerHeader>
+            <h4 style="color: white !important;">ShareSpace</h4>
+        </MudDrawerHeader>
+        <AuthorizeView>
+            <Authorized>
+                <MudNavMenu>
+                    <MudNavLink Style="color: yellow;" Match="NavLinkMatch.All">
+                        @GetUserInfo(context.User.Claims.ToList()).Name</MudNavLink>
+                        <MudNavLink Style="color: yellow;" Match="NavLinkMatch.All">Library</MudNavLink>
+                        <MudNavLink Style="color: yellow;" Match="NavLinkMatch.All">Community</MudNavLink>
+                    </MudNavMenu>
+
+                </Authorized>
+
+            </AuthorizeView>
+        </MudDrawer>
+
+        <main>
+            <header style="background-color: rgb(23, 24, 24);">
+                <div class="phone_header w-100">
+                    <AuthorizeView>
+                        <Authorized>
+                            <MudButton OnClick="@(() => OpenDrawer(Anchor.Start))">
+                                <MudAvatar Color="Color.Primary" Square="true" Variant="Variant.Outlined">
+                                    @GetUserInfo(context.User.Claims.ToList()).Name![0]
+                            </MudAvatar>
+                        </MudButton>
+
+                    </Authorized>
+                </AuthorizeView>
+                <h1 style="color: white;">ShareSpace</h1>
+                <MudIconButton Icon="@Icons.Material.Rounded.Search" Color="Color.Inherit" />
+            </div>
+            <div class="pcheader gridlayoutab w-100">
+                <div class="header1">
+                    <div class="navbar h-100 d-flex justify-content-around" style="background-color: rgb(23, 24, 24);">
+                        <AuthorizeView>
+                            <Authorized>
+                                <MudButton Class="flex-md-row-reverse" OnClick="@(() => OpenDrawer(Anchor.Start))">
+                                    <MudAvatar Color="Color.Primary" Square="true" Variant="Variant.Outlined">
+                                        @GetUserInfo(context.User.Claims.ToList()).Name![0]
+                                    </MudAvatar>
+                                </MudButton>
+                                <MudIconButton Icon="@Icons.Material.Rounded.Home" Color="Color.Inherit" />
+                                <MudIconButton Icon="@Icons.Material.Rounded.Chat" Color="Color.Inherit" />
+                                <MudIconButton Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
+                                <MudIconButton Icon="@Icons.Material.Rounded.Favorite" Color="Color.Inherit" />
+                            </Authorized>
+                        </AuthorizeView>
+                        <MudIconButton Icon="@Icons.Material.Filled.Search" Color="Color.Inherit" />
+                    </div>
+                </div>
+                <div class="header2 d-flex justify-content-center align-items-center">
+                    <h4 style="color: white;">what's trending</h4>
+                </div>
+            </div>
+        </header>
+        <section>
+            <MudMainContent Class="p-2 m-0 bg-black">
+                @Body
+            </MudMainContent>
+        </section>
+        <nav>
+        </nav>
+        <footer>
+            <MudAppBar Class="p-0" Style="background-color: rgb(23, 24, 24);" Elevation="0" Fixed="false" Dense="false">
+                <AuthorizeView>
+                    <Authorized>
+
+                        <div class="d-flex justify-content-between w-100">
+                            <MudIconButton Icon="@Icons.Material.Rounded.Home" Color="Color.Inherit" />
+                            <MudIconButton Icon="@Icons.Material.Rounded.Chat" Color="Color.Inherit" />
+                            <MudIconButton Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
+                            <MudIconButton Icon="@Icons.Material.Rounded.Favorite" Color="Color.Inherit" />
+                        </div>
+                    </Authorized>
+                </AuthorizeView>
+                <MudSpacer />
+            </MudAppBar>
+        </footer>
+    </main>
 </MudLayout>
+
+
+
+@code {
+
+    object selectedValue = 1;
+
+    bool open;
+
+    Anchor anchor;
+
+
+    void OpenDrawer(Anchor anchor)
+    {
+        this.anchor = anchor;
+        open = true;
+    }
+
+
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new PaletteLight()
+            {
+                Primary = Colors.Blue.Default,
+                Secondary = Colors.Green.Accent4,
+                AppbarBackground = Colors.Red.Default,
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Yellow.Accent3,
+                Secondary = Colors.Shades.White,
+                Tertiary = Colors.Grey.Darken4,
+            },
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "470px",
+                DrawerWidthRight = "100%"
+            }
+        };
+}

@@ -19,6 +19,9 @@ namespace ShareSpace.Server.Entities
         [Column("likes")]
         public int Likes { get; set; }
 
+        [Column("views")]
+        public int Views { get; set; }
+
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
 

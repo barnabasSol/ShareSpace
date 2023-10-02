@@ -14,4 +14,141 @@
     }
 /* /Pages/StartingPages/LoginPage.razor.rz.scp.css */
 /* /Shared/UserLayout.razor.rz.scp.css */
+header[b-qeisqmnyxe] {
+  grid-area: header;
+}
 
+.header1[b-qeisqmnyxe] {
+  grid-area: h1;
+  background: red !important;
+}
+
+.header2[b-qeisqmnyxe] {
+  grid-area: h2;
+  background: transparent;
+}
+.gridlayoutab[b-qeisqmnyxe] {
+  display: grid;
+  grid-template-rows: 64px;
+  grid-template-columns: 7fr 5fr;
+  grid-template-areas: "h1 h2";
+}
+section[b-qeisqmnyxe] {
+  grid-area: section;
+  background-color: purple;
+  overflow-y: scroll;
+}
+
+.phone_header[b-qeisqmnyxe] {
+  display: none;
+}
+
+footer[b-qeisqmnyxe] {
+  display: none;
+  grid-area: footer;
+}
+
+section[b-qeisqmnyxe]::-webkit-scrollbar {
+  display: none;
+}
+
+nav[b-qeisqmnyxe] {
+  grid-area: nav;
+  background-color: peru;
+  min-height: calc(100vh-64px);
+  overflow-y: scroll;
+}
+nav[b-qeisqmnyxe]::-webkit-scrollbar {
+  display: none;
+}
+
+main[b-qeisqmnyxe] {
+  display: grid;
+  gap: 0.3rem;
+  height: 100vh;
+  grid-template-rows: 64px 8fr;
+  grid-template-columns: 7fr 5fr;
+  background-color: aqua;
+  grid-template-areas:
+    "header header"
+    "section nav";
+}
+
+@media only screen and (min-width: 500px) and (max-width: 980px) {
+  main[b-qeisqmnyxe] {
+    grid-template-rows: 64px 8fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "section";
+  }
+
+    .header2[b-qeisqmnyxe]{
+        display: none !important;
+    }
+    .header1[b-qeisqmnyxe]{
+        background: red !important;
+    }
+
+    .gridlayoutab[b-qeisqmnyxe] {
+        display: grid;
+        grid-template-rows: 64px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "h1";
+    }
+
+    section[b-qeisqmnyxe] {
+        grid-area: section;
+        background-color: purple;
+        overflow-y: scroll;
+    }
+
+  nav[b-qeisqmnyxe] {
+    display: none;
+    gap: 0.4rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+
+  nav > div[b-qeisqmnyxe] {
+    flex-shrink: 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  header[b-qeisqmnyxe] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .pcheader[b-qeisqmnyxe] {
+    display: none !important;
+  }
+  .phone_header[b-qeisqmnyxe] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer[b-qeisqmnyxe] {
+    display: grid;
+  }
+  main[b-qeisqmnyxe] {
+    grid-template-rows: 64px 8fr 60px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "section"
+      "footer";
+  }
+
+  nav[b-qeisqmnyxe] {
+    display: none;
+    gap: 0.4rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+
+  nav > div[b-qeisqmnyxe] {
+    flex-shrink: 0;
+  }
+}

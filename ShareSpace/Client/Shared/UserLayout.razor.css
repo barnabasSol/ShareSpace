@@ -1,1 +1,138 @@
+header {
+  grid-area: header;
+}
 
+.header1 {
+  grid-area: h1;
+  background: red !important;
+}
+
+.header2 {
+  grid-area: h2;
+  background: transparent;
+}
+.gridlayoutab {
+  display: grid;
+  grid-template-rows: 64px;
+  grid-template-columns: 7fr 5fr;
+  grid-template-areas: "h1 h2";
+}
+section {
+  grid-area: section;
+  background-color: purple;
+  overflow-y: scroll;
+}
+
+.phone_header {
+  display: none;
+}
+
+footer {
+  display: none;
+  grid-area: footer;
+}
+
+section::-webkit-scrollbar {
+  display: none;
+}
+
+nav {
+  grid-area: nav;
+  background-color: peru;
+  min-height: calc(100vh-64px);
+  overflow-y: scroll;
+}
+nav::-webkit-scrollbar {
+  display: none;
+}
+
+main {
+  display: grid;
+  gap: 0.3rem;
+  height: 100vh;
+  grid-template-rows: 64px 8fr;
+  grid-template-columns: 7fr 5fr;
+  background-color: aqua;
+  grid-template-areas:
+    "header header"
+    "section nav";
+}
+
+@media only screen and (min-width: 500px) and (max-width: 980px) {
+  main {
+    grid-template-rows: 64px 8fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "section";
+  }
+
+    .header2{
+        display: none !important;
+    }
+    .header1{
+        background: red !important;
+    }
+
+    .gridlayoutab {
+        display: grid;
+        grid-template-rows: 64px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "h1";
+    }
+
+    section {
+        grid-area: section;
+        background-color: purple;
+        overflow-y: scroll;
+    }
+
+  nav {
+    display: none;
+    gap: 0.4rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+
+  nav > div {
+    flex-shrink: 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .pcheader {
+    display: none !important;
+  }
+  .phone_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer {
+    display: grid;
+  }
+  main {
+    grid-template-rows: 64px 8fr 60px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "section"
+      "footer";
+  }
+
+  nav {
+    display: none;
+    gap: 0.4rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+
+  nav > div {
+    flex-shrink: 0;
+  }
+}

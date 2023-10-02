@@ -40,7 +40,7 @@ namespace ShareSpace.Client.Pages.StartingPages
                     processing = false;
                     await localstorage.SetItemAsync("ShareSpaceToken", response.Token);
                     (authstate as CustomAuthenticationStateProvider)!.NotifyAuthStateChange();
-                    NavigationManager.NavigateTo($"/main");
+                    NavigationManager.NavigateTo("/main");
                 }
             }
             this.StateHasChanged();
