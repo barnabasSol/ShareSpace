@@ -15,17 +15,22 @@ namespace ShareSpace.Server.Data
         public DbSet<NotificationType> NotificationTypes { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<PostTag> PostTags { get; set; }
+        public DbSet<UserInterest> UserInterests { get; set; }
+        public DbSet<Interest> Interests { get; set; }
 
         public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options)
             : base(options) { }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<LikedPost>().HasKey(lp => new { lp.UserId, lp.PostId });
+            modelBuilder.Entity<UserInterest>().HasKey(lp => new { lp.UserId, lp.InterestId });
             modelBuilder.Entity<PostTag>(pt =>
             {
                 pt.HasKey(pt => new { pt.PostId, pt.TagId });
             });
+
+
 
             modelBuilder.Entity<Follower>(f =>
             {
@@ -51,6 +56,13 @@ namespace ShareSpace.Server.Data
                 p.Property(c => c.CreatedAt).HasDefaultValueSql("Now()");
                 p.Property(i => i.Id).HasDefaultValueSql("uuid_generate_v4()");
                 p.Property(l => l.Likes).HasDefaultValue("0");
+                p.Property(l => l.Views).HasDefaultValue("0");
+            });
+
+            modelBuilder.Entity<LikedPost>(lp =>
+            {
+                lp.HasKey(lp => new { lp.UserId, lp.PostId });
+                lp.Property(lp => lp.CreatedAt).HasDefaultValueSql("Now()");
             });
 
             modelBuilder.Entity<Comment>(c =>

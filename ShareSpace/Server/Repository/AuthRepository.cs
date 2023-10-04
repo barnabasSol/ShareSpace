@@ -13,71 +13,71 @@ using ShareSpace.Shared.ResponseTypes;
 
 namespace ShareSpace.Server.Repository
 {
-    public class UserRepository : IUserRepository
+    public class AuthRepository : IAuthRepository
     {
         private readonly ShareSpaceDbContext shareSpaceDb;
         private readonly TokenSettings token_Setting;
 
-        public UserRepository(
-            ShareSpaceDbContext shareSpaceDb,
-            IOptions<TokenSettings> token_setting
-        )
+        public AuthRepository(ShareSpaceDbContext shareSpaceDb, IOptions<TokenSettings> token_setting)
         {
             this.shareSpaceDb = shareSpaceDb;
             token_Setting = token_setting.Value;
         }
 
-        public async Task<CreateUserResponse> CreateUser(CreateUserDTO requesting_user)
+        public async Task<AuthResponse> CreateUser(CreateUserDTO requesting_user)
         {
             try
             {
                 if (await shareSpaceDb.Users.AnyAsync(_ => _.UserName == requesting_user.UserName))
                 {
-                    return new CreateUserResponse()
+                    return new AuthResponse()
                     {
-                        IsCreated = false,
+                        IsSuccess = false,
                         Message = "username is in use"
                     };
                 }
                 if (await shareSpaceDb.Users.AnyAsync(_ => _.Email == requesting_user.Email))
                 {
-                    return new CreateUserResponse()
+                    return new AuthResponse()
                     {
-                        IsCreated = false,
+                        IsSuccess = false,
                         Message = "email is in use"
                     };
                 }
-
+                var NewUser = new User()
+                {
+                    UserName = requesting_user.UserName,
+                    Name = requesting_user.Name,
+                    Email = requesting_user.Email,
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword(requesting_user.Password)
+                };
                 await shareSpaceDb.Users.AddAsync(
-                    new User()
-                    {
-                        UserName = requesting_user.UserName,
-                        Name = requesting_user.Name,
-                        Email = requesting_user.Email,
-                        PasswordHash = BCrypt.Net.BCrypt.HashPassword(requesting_user.Password)
-                    }
+                    NewUser
                 );
 
                 await shareSpaceDb.SaveChangesAsync();
 
-                return new CreateUserResponse()
+                return new AuthResponse()
                 {
-                    IsCreated = true,
-                    Message = "user is successfully created"
+                    IsSuccess = true,
+                    Message = "",
+                    Token = GenerateToken(NewUser)
                 };
+            
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new CreateUserResponse()
+                return new AuthResponse()
                 {
-                    IsCreated = false,
-                    Message = "server error happened, try again later"
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message} try again later"
                 };
             }
         }
 
 
-        public async Task<LoginResponse> LoginUser(UserLoginDTO user_login)
+        public async Task<AuthResponse> LoginUser(UserLoginDTO user_login)
         {
             try
             {
@@ -86,9 +86,9 @@ namespace ShareSpace.Server.Repository
                     || string.IsNullOrEmpty(user_login.Password)
                 )
                 {
-                    return new LoginResponse()
+                    return new AuthResponse()
                     {
-                        Authorized = false,
+                        IsSuccess = false,
                         Message = "enter the required field"
                     };
                 }
@@ -99,34 +99,34 @@ namespace ShareSpace.Server.Repository
 
                 if (queried_user is null)
                 {
-                    return new LoginResponse()
+                    return new AuthResponse()
                     {
-                        Authorized = false,
+                        IsSuccess = false,
                         Message = "user doesn't exist"
                     };
                 }
 
                 if (!BCrypt.Net.BCrypt.Verify(user_login.Password, queried_user.PasswordHash))
                 {
-                    return new LoginResponse()
+                    return new AuthResponse()
                     {
-                        Authorized = false,
+                        IsSuccess = false,
                         Message = "incorrect password or username"
                     };
                 }
 
-                return new LoginResponse()
+                return new AuthResponse()
                 {
-                    Authorized = true,
+                    IsSuccess = true,
                     Message = "",
                     Token = GenerateToken(queried_user)
                 };
             }
             catch (Exception)
             {
-                return new LoginResponse()
+                return new AuthResponse()
                 {
-                    Authorized = false,
+                    IsSuccess = false,
                     Message = "something went wrong, try again later."
                 };
             }
@@ -149,7 +149,7 @@ namespace ShareSpace.Server.Repository
                 new(
                     issuer: token_Setting.Issuer,
                     audience: token_Setting.Audience,
-                    expires: DateTime.Now.AddMinutes(1),
+                    expires: DateTime.Now.AddSeconds(30),
                     signingCredentials: credentials,
                     claims: claims
                 );

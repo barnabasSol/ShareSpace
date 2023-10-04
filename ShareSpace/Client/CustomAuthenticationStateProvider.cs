@@ -33,7 +33,7 @@ namespace ShareSpace.Client
                 );
 
             NotifyAuthenticationStateChanged(Task.FromResult(state));
-            navigationManager.NavigateTo("/main");
+            //navigationManager.NavigateTo("/main");
             return await Task.FromResult(state);
         }
 
@@ -55,7 +55,7 @@ namespace ShareSpace.Client
                     base64 += "==";
                     break;
                 case 3:
-                    base64 += "=";
+                    base64 += "=            ";
                     break;
             }
             return Convert.FromBase64String(base64);

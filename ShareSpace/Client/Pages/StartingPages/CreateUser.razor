@@ -1,6 +1,11 @@
 ﻿@page "/sign-in/required-user-data"
 @layout LandingLayout
-@inject IUserService UserService
+@inject IAuthService UserService
+@inject NavigationManager NavigationManager
+@inject ILocalStorageService localstorage
+@inject AuthenticationStateProvider authstate
+
+
 
 <PageTitle>Login/Sign-up</PageTitle>
 

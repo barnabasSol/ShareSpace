@@ -5,32 +5,32 @@ using ShareSpace.Shared.ResponseTypes;
 
 namespace ShareSpace.Client.Services
 {
-    public class UserService : IUserService
+    public class AuthService : IAuthService
     {
         private readonly HttpClient http;
 
-        public UserService(HttpClient http)
+        public AuthService(HttpClient http)
         {
             this.http = http;
         }
 
-        public async Task<CreateUserResponse> CreateUser(CreateUserDTO userDTO)
+        public async Task<AuthResponse> CreateUser(CreateUserDTO userDTO)
         {
             try
             {
                 var response = await http.PostAsJsonAsync("Auth/create-user", userDTO);
-                var result = await response.Content.ReadFromJsonAsync<CreateUserResponse>();
+                var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
                 if (response is not null)
                     return result!;
                 throw new Exception($"{response!.StatusCode}");
             }
             catch (Exception ex)
             {
-                return new CreateUserResponse() { IsCreated = false, Message = ex.Message };
+                return new AuthResponse() { IsSuccess = false, Message = ex.Message };
             }
         }
 
-        public async Task<LoginResponse> LoginUser(UserLoginDTO userDTO)
+        public async Task<AuthResponse> LoginUser(UserLoginDTO userDTO)
         {
             try
             {
@@ -41,12 +41,12 @@ namespace ShareSpace.Client.Services
                 if (!response.IsSuccessStatusCode)
                     throw new Exception($"either username or password is incorrect");
 
-                var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
+                var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
                 return result ?? throw new Exception("Result was null");
             }
             catch (Exception ex)
             {
-                return new LoginResponse() { Authorized = false, Message = ex.Message };
+                return new AuthResponse() { IsSuccess = false, Message = ex.Message };
             }
         }
     }

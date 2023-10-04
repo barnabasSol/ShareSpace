@@ -12,8 +12,8 @@ using ShareSpace.Server.Data;
 namespace ShareSpace.Server.Migrations
 {
     [DbContext(typeof(ShareSpaceDbContext))]
-    [Migration("20230927085339_Initial")]
-    partial class Initial
+    [Migration("20231004165720_MoreOnLikedPosts")]
+    partial class MoreOnLikedPosts
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,6 +90,30 @@ namespace ShareSpace.Server.Migrations
                     b.ToTable("followers");
                 });
 
+            modelBuilder.Entity("ShareSpace.Server.Entities.Interest", b =>
+                {
+                    b.Property<int>("InterestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("interest_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("InterestId"));
+
+                    b.Property<string>("InterestName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("interest_name");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("InterestId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("interests");
+                });
+
             modelBuilder.Entity("ShareSpace.Server.Entities.LikedPost", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -99,6 +123,12 @@ namespace ShareSpace.Server.Migrations
                     b.Property<Guid>("PostId")
                         .HasColumnType("uuid")
                         .HasColumnName("post_id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("Now()");
 
                     b.HasKey("UserId", "PostId");
 
@@ -243,6 +273,12 @@ namespace ShareSpace.Server.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("user_id");
 
+                    b.Property<int>("Views")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("views");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
@@ -321,7 +357,7 @@ namespace ShareSpace.Server.Migrations
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("TEXT")
-                        .HasColumnName("password");
+                        .HasColumnName("password_hash");
 
                     b.Property<string>("ProfilePicUrl")
                         .HasColumnType("text")
@@ -341,6 +377,24 @@ namespace ShareSpace.Server.Migrations
                         .IsUnique();
 
                     b.ToTable("users");
+                });
+
+            modelBuilder.Entity("ShareSpace.Server.Entities.UserInterest", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.Property<int>("InterestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("interest_id");
+
+                    b.HasKey("UserId", "InterestId");
+
+                    b.HasIndex("InterestId");
+
+                    b.ToTable("user_interests");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.Comment", b =>
@@ -379,6 +433,13 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("FollowedUser");
 
                     b.Navigation("FollowerUser");
+                });
+
+            modelBuilder.Entity("ShareSpace.Server.Entities.Interest", b =>
+                {
+                    b.HasOne("ShareSpace.Server.Entities.User", null)
+                        .WithMany("Interests")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.LikedPost", b =>
@@ -483,6 +544,25 @@ namespace ShareSpace.Server.Migrations
                         .HasForeignKey("PostId");
                 });
 
+            modelBuilder.Entity("ShareSpace.Server.Entities.UserInterest", b =>
+                {
+                    b.HasOne("ShareSpace.Server.Entities.Interest", "Interest")
+                        .WithMany()
+                        .HasForeignKey("InterestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShareSpace.Server.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Interest");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ShareSpace.Server.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
@@ -495,6 +575,8 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Followers");
+
+                    b.Navigation("Interests");
 
                     b.Navigation("LikedPosts");
 

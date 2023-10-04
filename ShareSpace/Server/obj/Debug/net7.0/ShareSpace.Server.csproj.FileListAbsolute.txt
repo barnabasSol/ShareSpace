@@ -65,7 +65,6 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\ShareSpace.Shared.dll
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\ShareSpace.Client.pdb
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\ShareSpace.Shared.pdb
-C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\obj\Debug\net7.0\ShareSpace.Server.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\obj\Debug\net7.0\staticwebassets\msbuild.ShareSpace.Server.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\obj\Debug\net7.0\staticwebassets\msbuild.build.ShareSpace.Server.props
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.ShareSpace.Server.props
@@ -80,3 +79,6 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\obj\Debug\net7.0\ShareSpace.Server.pdb
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\obj\Debug\net7.0\ShareSpace.Server.genruntimeconfig.cache
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\obj\Debug\net7.0\ref\ShareSpace.Server.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Server\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

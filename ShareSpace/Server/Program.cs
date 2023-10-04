@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using ShareSpace.Server.Data;
 using ShareSpace.Server.JWT;
 using ShareSpace.Server.Repository;
 using ShareSpace.Server.Repository.Contracts;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +15,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 
 builder.Services.AddDbContext<ShareSpaceDbContext>(options =>
@@ -21,6 +24,22 @@ builder.Services.AddDbContext<ShareSpaceDbContext>(options =>
 });
 
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection(nameof(TokenSettings)));
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        var token_settings = builder.Configuration.GetSection(nameof(TokenSettings)).Get<TokenSettings>();
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = token_settings!.Issuer,
+            ValidateAudience = true,
+            ValidAudience = token_settings!.Audience,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(token_settings.SecretKey)),
+            ClockSkew = TimeSpan.Zero
+        };
+
+    });
 
 var app = builder.Build();
 

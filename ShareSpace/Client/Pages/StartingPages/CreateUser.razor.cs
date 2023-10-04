@@ -7,7 +7,7 @@ namespace ShareSpace.Client.Pages.StartingPages
     public partial class CreateUser
     {
         private readonly RegisterAccountForm ReigisterModel = new();
-        RegisterAccountFormValidator Validations = new();
+        private readonly RegisterAccountFormValidator Validations = new();
         private string message = "Enter The Required Fields Properly.";
         MudForm? form;
         
@@ -26,6 +26,12 @@ namespace ShareSpace.Client.Pages.StartingPages
                         Password = ReigisterModel.Password
                     }
                 );
+                if (result.IsSuccess){
+                    NavigationManager.NavigateTo("/interests");
+                    await localstorage.SetItemAsync("ShareSpaceToken", result.Token);
+                    (authstate as CustomAuthenticationStateProvider)!.NotifyAuthStateChange();
+                    NavigationManager.NavigateTo("/interests");
+                }
                 message = result.Message;
             }
             this.StateHasChanged();

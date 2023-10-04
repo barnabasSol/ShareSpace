@@ -10,7 +10,6 @@ namespace ShareSpace.Server.Entities
         [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
         [Column("name")]
         public required string Name { get; set; }
     }

@@ -9,9 +9,12 @@ namespace ShareSpace.Server.Entities
         [ForeignKey("User")]
         public Guid UserId { get; set; }
 
-        [ForeignKey("Post")]
         [Column("post_id")]
+        [ForeignKey("Post")]
         public Guid PostId { get; set; }
+        
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; }
 
         public User? User { get; set; }
         public Post? Post { get; set; }

@@ -1,12 +1,16 @@
 ﻿<CascadingAuthenticationState>
     <Router AppAssembly="@typeof(Program).Assembly">
         <Found Context="routeData">
-            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(UserLayout)" />
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(LandingLayout)" >
+                <NotAuthorized>
+                    <ShareSpace.Client.Pages.ProblemPages.NotAuthoirzed/>
+                </NotAuthorized>
+            </AuthorizeRouteView>
         </Found>
         <NotFound>
             <CascadingAuthenticationState>
                 <LayoutView Layout="@typeof(LandingLayout)">
-                    <ShareSpace.Client.Pages.RoutingProblemPages.NotFound/>
+                    <ShareSpace.Client.Pages.ProblemPages.NotFound/>
                 </LayoutView>
             </CascadingAuthenticationState>
         </NotFound>

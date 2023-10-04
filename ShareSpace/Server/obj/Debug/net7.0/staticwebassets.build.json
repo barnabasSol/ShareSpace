@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QoJL/JhTYwA1KdXik8i5AmFyPFwnsjcItYB3TrvQu1A=",
+  "Hash": "xhXuDcIwFbWQi1WS+iD/NGabnCf3oDFu+tt1J/0iVOo=",
   "Source": "ShareSpace.Server",
   "BasePath": "_content/ShareSpace.Server",
   "Mode": "Default",
@@ -7337,6 +7337,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\live-chat.png"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\machine-learning.png",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "Assets/machine-learning.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\machine-learning.png"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\mask.png",

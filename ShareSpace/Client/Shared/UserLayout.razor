@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@attribute [Authorize]
 
 <PageTitle>THE SHIT</PageTitle>
 
@@ -20,9 +21,7 @@
                         <MudNavLink Style="color: yellow;" Match="NavLinkMatch.All">Library</MudNavLink>
                         <MudNavLink Style="color: yellow;" Match="NavLinkMatch.All">Community</MudNavLink>
                     </MudNavMenu>
-
                 </Authorized>
-
             </AuthorizeView>
         </MudDrawer>
 

@@ -1,5 +1,4 @@
-﻿using System.Xml;
-using FluentValidation;
+﻿using FluentValidation;
 using MudBlazor;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
@@ -8,11 +7,10 @@ namespace ShareSpace.Client.Pages.StartingPages
 {
     public partial class LoginPage
     {
-        private string message = "";
-        private string show = "none";
+        private string message = "", show = "none";
         private readonly Login LoginModel = new();
         readonly LoginValidator Validations = new();
-        private LoginResponse? response;
+        private AuthResponse? response;
         private bool processing = false;
         MudForm? form;
 
@@ -29,7 +27,7 @@ namespace ShareSpace.Client.Pages.StartingPages
                         Password = LoginModel.Password
                     }
                 );
-                if (!response.Authorized)
+                if (!response.IsSuccess)
                 {
                     processing = false;
                     show = "block";
