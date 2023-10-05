@@ -145,7 +145,7 @@
       "url": "manifest.json"
     },
     {
-      "hash": "sha256-44NJBQPVu6rgp4A8RLdHM5HcV23cN9EWh\/WwGi0w6SM=",
+      "hash": "sha256-Y9UcuQB16bP7920f+zOvG1vlsaHHxmHdhNn+QA44dcw=",
       "url": "ShareSpace.Client.styles.css"
     },
     {
@@ -223,6 +223,10 @@
     {
       "hash": "sha256-Gm0yiS5fySh2nZXdCRKZIbASK8sSukwjogLc+a9EBZY=",
       "url": "_framework\/Microsoft.Extensions.FileSystemGlobbing.dll"
+    },
+    {
+      "hash": "sha256-QqjUvBFxKOeh8XX3IrmuIesFycYZMmwrhsRakmXvrXE=",
+      "url": "_framework\/Microsoft.Extensions.Http.dll"
     },
     {
       "hash": "sha256-rnkeVtcxS4PihFm2ubtCGhgvkzoRObZTdIu6lRsJu2A=",
@@ -965,19 +969,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-d7ao1bnl+AWq39LW7c0PlZMRzCgJTGIUP1iekniR6e4=",
+      "hash": "sha256-Wa7Gp9Isyj+uky\/NYQq2ZlMLyzV96ck5eNJGp7w4Cew=",
       "url": "_framework\/ShareSpace.Shared.dll"
     },
     {
-      "hash": "sha256-Si9ExH5boQiAKCf6YZCzGin0WCQrnI7Dc6LcZ009+aw=",
+      "hash": "sha256-m9IodWIqfstLdaljV\/+6y7llPhfqZdolh8udj2wjjPI=",
       "url": "_framework\/ShareSpace.Shared.pdb"
     },
     {
-      "hash": "sha256-pv\/mA3PmiCM8p4fJz6TZst8n3fJ2g08aGFKIgimauD4=",
+      "hash": "sha256-yTVrATVYdcpauvn1nTItEh04ZHHdh5czSwaMkucXx7c=",
       "url": "_framework\/ShareSpace.Client.dll"
     },
     {
-      "hash": "sha256-w86xO8ZaNd64++RpEhe+3R1YttnwgzwN2tgpErUpQbA=",
+      "hash": "sha256-auEqA9wImB1+u\/BmUihgxwz6+1W0mBovnIx0NhChqI4=",
       "url": "_framework\/ShareSpace.Client.pdb"
     },
     {
@@ -985,7 +989,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-yO2xlU7DOt+tY+YkvwITirLCg8EBfloI9WrNVwqxUnw=",
+      "hash": "sha256-PBe\/WFVEsin5Op7m2y5pMh03APEiM9Fuhz2cft0i3Sk=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -997,5 +1001,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "Mjd4pSJD"
+  "version": "javDQr\/A"
 };

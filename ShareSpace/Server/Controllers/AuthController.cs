@@ -11,9 +11,9 @@ namespace ShareSpace.Server.Controllers
     {
         private readonly IAuthRepository authRepository;
 
-        public AuthController(IAuthRepository userRepository)
+        public AuthController(IAuthRepository authRepository)
         {
-            this.authRepository = userRepository;
+            this.authRepository = authRepository;
         }
 
         [HttpPost("create-user")]

@@ -13,6 +13,19 @@ namespace ShareSpace.Server.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "interests",
+                columns: table => new
+                {
+                    interest_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    interest_name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_interests", x => x.interest_id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "notification_types",
                 columns: table => new
                 {
@@ -66,25 +79,6 @@ namespace ShareSpace.Server.Migrations
                         principalTable: "users",
                         principalColumn: "user_id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "interests",
-                columns: table => new
-                {
-                    interest_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    interest_name = table.Column<string>(type: "text", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_interests", x => x.interest_id);
-                    table.ForeignKey(
-                        name: "FK_interests_users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "users",
-                        principalColumn: "user_id");
                 });
 
             migrationBuilder.CreateTable(
@@ -176,8 +170,8 @@ namespace ShareSpace.Server.Migrations
                 name: "user_interests",
                 columns: table => new
                 {
-                    interest_id = table.Column<int>(type: "integer", nullable: false),
-                    user_id = table.Column<Guid>(type: "uuid", nullable: false)
+                    user_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    interest_id = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -229,7 +223,8 @@ namespace ShareSpace.Server.Migrations
                 columns: table => new
                 {
                     user_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    post_id = table.Column<Guid>(type: "uuid", nullable: false)
+                    post_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "Now()")
                 },
                 constraints: table =>
                 {
@@ -304,11 +299,6 @@ namespace ShareSpace.Server.Migrations
                 name: "IX_followers_follower_id",
                 table: "followers",
                 column: "follower_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_interests_UserId",
-                table: "interests",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_liked_posts_post_id",

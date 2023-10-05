@@ -7,17 +7,18 @@ namespace ShareSpace.Client.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly HttpClient http;
+        private readonly IHttpClientFactory http_client;
 
-        public AuthService(HttpClient http)
+        public AuthService(IHttpClientFactory http)
         {
-            this.http = http;
+            http_client = http;
         }
 
         public async Task<AuthResponse> CreateUser(CreateUserDTO userDTO)
         {
             try
             {
+                var http = http_client.CreateClient("ShareSpaceApi");
                 var response = await http.PostAsJsonAsync("Auth/create-user", userDTO);
                 var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
                 if (response is not null)
@@ -34,6 +35,8 @@ namespace ShareSpace.Client.Services
         {
             try
             {
+                var http = http_client.CreateClient("ShareSpaceApi");
+
                 var response =
                     await http.PostAsJsonAsync("Auth/login-user", userDTO)
                     ?? throw new Exception("Response was null");

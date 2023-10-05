@@ -83,25 +83,25 @@ main[b-qeisqmnyxe] {
       "section";
   }
 
-    .header2[b-qeisqmnyxe]{
-        display: none !important;
-    }
-    .header1[b-qeisqmnyxe]{
-        background: red !important;
-    }
+  .header2[b-qeisqmnyxe] {
+    display: none !important;
+  }
+  .header1[b-qeisqmnyxe] {
+    background: red !important;
+  }
 
-    .gridlayoutab[b-qeisqmnyxe] {
-        display: grid;
-        grid-template-rows: 64px;
-        grid-template-columns: 1fr;
-        grid-template-areas: "h1";
-    }
+  .gridlayoutab[b-qeisqmnyxe] {
+    display: grid;
+    grid-template-rows: 64px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "h1";
+  }
 
-    section[b-qeisqmnyxe] {
-        grid-area: section;
-        background-color: purple;
-        overflow-y: scroll;
-    }
+  section[b-qeisqmnyxe] {
+    grid-area: section;
+    background-color: purple;
+    overflow-y: scroll;
+  }
 
   nav[b-qeisqmnyxe] {
     display: none;

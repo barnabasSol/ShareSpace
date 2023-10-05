@@ -10,7 +10,6 @@ namespace ShareSpace.Client.Pages.StartingPages
         private readonly RegisterAccountFormValidator Validations = new();
         private string message = "Enter The Required Fields Properly.";
         MudForm? form;
-        
 
         private async void Submit()
         {
@@ -26,7 +25,8 @@ namespace ShareSpace.Client.Pages.StartingPages
                         Password = ReigisterModel.Password
                     }
                 );
-                if (result.IsSuccess){
+                if (result.IsSuccess)
+                {
                     NavigationManager.NavigateTo("/interests");
                     await localstorage.SetItemAsync("ShareSpaceToken", result.Token);
                     (authstate as CustomAuthenticationStateProvider)!.NotifyAuthStateChange();
@@ -36,7 +36,6 @@ namespace ShareSpace.Client.Pages.StartingPages
             }
             this.StateHasChanged();
         }
-
 
         private class RegisterAccountForm
         {

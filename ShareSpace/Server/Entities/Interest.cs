@@ -8,7 +8,8 @@ namespace ShareSpace.Server.Entities
     {
         [Key]
         [Column("interest_id")]
-        public int InterestId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         
         [Column("interest_name")]
         public string InterestName { get; set; } = string.Empty;

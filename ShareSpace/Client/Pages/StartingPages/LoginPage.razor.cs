@@ -7,7 +7,8 @@ namespace ShareSpace.Client.Pages.StartingPages
 {
     public partial class LoginPage
     {
-        private string message = "", show = "none";
+        private string message = "",
+            show = "none";
         private readonly Login LoginModel = new();
         readonly LoginValidator Validations = new();
         private AuthResponse? response;

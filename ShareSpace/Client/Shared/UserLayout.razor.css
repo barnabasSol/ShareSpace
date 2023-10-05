@@ -67,25 +67,25 @@ main {
       "section";
   }
 
-    .header2{
-        display: none !important;
-    }
-    .header1{
-        background: red !important;
-    }
+  .header2 {
+    display: none !important;
+  }
+  .header1 {
+    background: red !important;
+  }
 
-    .gridlayoutab {
-        display: grid;
-        grid-template-rows: 64px;
-        grid-template-columns: 1fr;
-        grid-template-areas: "h1";
-    }
+  .gridlayoutab {
+    display: grid;
+    grid-template-rows: 64px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "h1";
+  }
 
-    section {
-        grid-area: section;
-        background-color: purple;
-        overflow-y: scroll;
-    }
+  section {
+    grid-area: section;
+    background-color: purple;
+    overflow-y: scroll;
+  }
 
   nav {
     display: none;

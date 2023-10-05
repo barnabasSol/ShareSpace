@@ -89,24 +89,19 @@ namespace ShareSpace.Server.Migrations
 
             modelBuilder.Entity("ShareSpace.Server.Entities.Interest", b =>
                 {
-                    b.Property<int>("InterestId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("interest_id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("InterestId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("InterestName")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("interest_name");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("InterestId");
-
-                    b.HasIndex("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("interests");
                 });
@@ -383,7 +378,6 @@ namespace ShareSpace.Server.Migrations
                         .HasColumnName("user_id");
 
                     b.Property<int>("InterestId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("interest_id");
 
@@ -430,13 +424,6 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("FollowedUser");
 
                     b.Navigation("FollowerUser");
-                });
-
-            modelBuilder.Entity("ShareSpace.Server.Entities.Interest", b =>
-                {
-                    b.HasOne("ShareSpace.Server.Entities.User", null)
-                        .WithMany("Interests")
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.LikedPost", b =>
@@ -572,8 +559,6 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Followers");
-
-                    b.Navigation("Interests");
 
                     b.Navigation("LikedPosts");
 

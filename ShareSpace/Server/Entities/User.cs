@@ -37,6 +37,5 @@ namespace ShareSpace.Server.Entities
         public virtual ICollection<Message>? Messages { get; set; }
         public virtual ICollection<Follower>? Followers { get; set; }
         public virtual ICollection<Notification>? Notifications { get; set; }
-        public virtual ICollection<Interest>? Interests { get; set; }
     }
 }

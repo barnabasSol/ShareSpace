@@ -18,7 +18,10 @@ namespace ShareSpace.Server.Repository
         private readonly ShareSpaceDbContext shareSpaceDb;
         private readonly TokenSettings token_Setting;
 
-        public AuthRepository(ShareSpaceDbContext shareSpaceDb, IOptions<TokenSettings> token_setting)
+        public AuthRepository(
+            ShareSpaceDbContext shareSpaceDb,
+            IOptions<TokenSettings> token_setting
+        )
         {
             this.shareSpaceDb = shareSpaceDb;
             token_Setting = token_setting.Value;
@@ -30,19 +33,11 @@ namespace ShareSpace.Server.Repository
             {
                 if (await shareSpaceDb.Users.AnyAsync(_ => _.UserName == requesting_user.UserName))
                 {
-                    return new AuthResponse()
-                    {
-                        IsSuccess = false,
-                        Message = "username is in use"
-                    };
+                    return new AuthResponse() { IsSuccess = false, Message = "username is in use" };
                 }
                 if (await shareSpaceDb.Users.AnyAsync(_ => _.Email == requesting_user.Email))
                 {
-                    return new AuthResponse()
-                    {
-                        IsSuccess = false,
-                        Message = "email is in use"
-                    };
+                    return new AuthResponse() { IsSuccess = false, Message = "email is in use" };
                 }
                 var NewUser = new User()
                 {
@@ -51,9 +46,7 @@ namespace ShareSpace.Server.Repository
                     Email = requesting_user.Email,
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword(requesting_user.Password)
                 };
-                await shareSpaceDb.Users.AddAsync(
-                    NewUser
-                );
+                await shareSpaceDb.Users.AddAsync(NewUser);
 
                 await shareSpaceDb.SaveChangesAsync();
 
@@ -63,8 +56,6 @@ namespace ShareSpace.Server.Repository
                     Message = "",
                     Token = GenerateToken(NewUser)
                 };
-            
-
             }
             catch (Exception ex)
             {
@@ -75,7 +66,6 @@ namespace ShareSpace.Server.Repository
                 };
             }
         }
-
 
         public async Task<AuthResponse> LoginUser(UserLoginDTO user_login)
         {
@@ -99,11 +89,7 @@ namespace ShareSpace.Server.Repository
 
                 if (queried_user is null)
                 {
-                    return new AuthResponse()
-                    {
-                        IsSuccess = false,
-                        Message = "user doesn't exist"
-                    };
+                    return new AuthResponse() { IsSuccess = false, Message = "user doesn't exist" };
                 }
 
                 if (!BCrypt.Net.BCrypt.Verify(user_login.Password, queried_user.PasswordHash))
@@ -132,7 +118,6 @@ namespace ShareSpace.Server.Repository
             }
         }
 
-
         private string GenerateToken(User authorized_user)
         {
             SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
@@ -143,7 +128,13 @@ namespace ShareSpace.Server.Repository
                     new Claim("Sub", authorized_user.UserId.ToString()),
                     new Claim("UserName", authorized_user.UserName),
                     new Claim("Name", authorized_user.Name),
-                    new Claim("Email", authorized_user.Email)
+                    new Claim("Email", authorized_user.Email),
+                    new Claim(
+                        JwtRegisteredClaimNames.Exp,
+                        new DateTimeOffset(DateTime.Now.AddSeconds(30))
+                            .ToUnixTimeSeconds()
+                            .ToString()
+                    )
                 };
             JwtSecurityToken securityToken =
                 new(

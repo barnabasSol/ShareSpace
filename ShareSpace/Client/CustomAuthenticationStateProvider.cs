@@ -11,7 +11,10 @@ namespace ShareSpace.Client
         private readonly ILocalStorageService localStorage;
         private readonly NavigationManager navigationManager;
 
-        public CustomAuthenticationStateProvider(ILocalStorageService localStorage, NavigationManager navigationManager)
+        public CustomAuthenticationStateProvider(
+            ILocalStorageService localStorage,
+            NavigationManager navigationManager
+        )
         {
             this.localStorage = localStorage;
             this.navigationManager = navigationManager;
@@ -22,15 +25,26 @@ namespace ShareSpace.Client
             string token = await localStorage.GetItemAsync<string>("ShareSpaceToken");
             if (string.IsNullOrEmpty(token))
             {
+                navigationManager.NavigateTo("/");
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
             }
 
+            var claims = ParseClaimsFromJwt(token);
+            var expClaim = claims.Where(_ => _.Type == "exp").Select(_ => _.Value).FirstOrDefault();
+
+            if (expClaim != null)
+            {
+                var expDate = DateTimeOffset.FromUnixTimeSeconds(long.Parse(expClaim));
+                if (expDate < DateTimeOffset.UtcNow)
+                {
+                    await localStorage.RemoveItemAsync("ShareSpaceToken");
+                    navigationManager.NavigateTo("/sign-in");
+                    return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+                }
+            }
+
             AuthenticationState state =
-                new(
-                    new ClaimsPrincipal(
-                        new ClaimsIdentity(ParseClaimsFromJwt(token), "ShareSpaceTokenAuth")
-                    )
-                );
+                new(new ClaimsPrincipal(new ClaimsIdentity(claims, "ShareSpaceTokenAuth")));
 
             NotifyAuthenticationStateChanged(Task.FromResult(state));
             //navigationManager.NavigateTo("/main");

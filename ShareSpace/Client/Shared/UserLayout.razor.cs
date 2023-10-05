@@ -9,11 +9,11 @@ namespace ShareSpace.Client.Shared
             return base.OnInitializedAsync();
         }
 
-        private UserInfo GetUserInfo(List<Claim> claims)
+        private static UserInfo GetUserInfo(List<Claim> claims)
         {
             var Sub = claims.Where(_ => _.Type == "Sub").Select(_ => _.Value).FirstOrDefault();
             var Name = claims.Where(_ => _.Type == "Name").Select(_ => _.Value).FirstOrDefault();
-            var UserName = claims.Where(_ => _.Type == "UserName").Select(_ => _.Value).FirstOrDefault();
+            var UserName = claims .Where(_ => _.Type == "UserName") .Select(_ => _.Value) .FirstOrDefault();
             var Email = claims.Where(_ => _.Type == "Email").Select(_ => _.Value).FirstOrDefault();
             return new UserInfo()
             {
