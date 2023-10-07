@@ -3,22 +3,100 @@
 @attribute [Authorize]
 
 
+<MudCard Class="mb-3">
+    <MudCardHeader Style="background: rgb(30, 30, 30); height: 64px">
+        <CardHeaderAvatar>
+            <MudAvatar Size="Size.Large" Color="Color.Tertiary">I</MudAvatar>
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body1">Istra Croatia</MudText>
+            <MudText Typo="Typo.body2">Peninsula in Europe</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true">
+                <MudMenuItem>Dense Stuff</MudMenuItem>
+                <MudMenuItem>Stuff is Dense</MudMenuItem>
+                <MudMenuItem>Soo Dense</MudMenuItem>
+            </MudMenu>
+        </CardHeaderActions>
+    </MudCardHeader>
 
-<div style="height: 200px; background-color: green; margin-bottom: 2px;">contnet</div>
-<div style="height: 200px; background-color: green; margin-bottom: 2px;">contnet</div>
-<div style="height: 200px; background-color: green; margin-bottom: 2px;">contnet</div>
-<div style="height: 200px; background-color: green; margin-bottom: 2px;">contnet</div>
-<div style="height: 200px; background-color: green; margin-bottom: 2px;">contnet</div>
-<div style="height: 200px; background-color: green; margin-bottom: 2px;">contnet</div>
-<div style="height: 200px; background-color: green; margin-bottom: 2px;">contnet</div>
-<div style="height: 200px; background-color: green; margin-bottom: 2px;">contnet</div>
-<div style="height: 200px; background-color: green; margin-bottom: 2px;">contnet</div>
-<div style="height: 200px; background-color: green; margin-bottom: 2px;">contnet</div>
-<div style="height: 200px; background-color: green;">contnet</div>
+    <div class="d-flex justify-content-center" style="background: rgb(32, 32, 32);">
+        <MudImage Style="overflow: hidden; border-radius: 10px !important;" ObjectFit="ObjectFit.Contain" Height="320"
+            Src="/Assets/tiki-mask (2).png" Elevation="0" Class="rounded-lg" />
+    </div>
+
+    <MudCardContent Style="background: rgb(32, 32, 32); color: white;">
+        <MudText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
+    </MudCardContent>
+    <MudCardActions Style="background: rgb(32, 32, 32);" Class="d-flex justify-content-between gap-5">
+        <div>
+            <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Primary" />
+            <span style="color: white;">233</span>
+        </div>
+        <div>
+            <MudIconButton Icon="@Icons.Material.Filled.AddComment" Color="Color.Default" />
+            <span style="color: white;">233</span>
+
+        </div>
+        <div>
+            <span style="color: white;">233</span>
+            <MudIconButton Icon="@Icons.Material.Filled.RemoveRedEye" Color="Color.Default" />
+
+        </div>
+    </MudCardActions>
+</MudCard>
+
+
+<MudCard Class="mb-2">
+    <MudCardHeader Style="background: rgb(30, 30, 30); height: 64px">
+        <CardHeaderAvatar>
+            <MudAvatar Color="Color.Tertiary">I</MudAvatar>
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body1">Istra Croatia</MudText>
+            <MudText Typo="Typo.body2">Peninsula in Europe</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true"
+                Style="background: rgb(30, 30, 30) !important;">
+                <MudMenuItem IconSize="Size.Small" IconColor="Color.Primary" Icon="@Icons.Material.Filled.Chair">Not
+                    Interested</MudMenuItem>
+                <MudMenuItem Icon="@Icons.Material.Filled.DoorFront">Door</MudMenuItem>
+                <MudMenuItem IconSize="Size.Large" IconColor="Color.Secondary" Icon="@Icons.Material.Filled.Window">
+                    Window</MudMenuItem>
+            </MudMenu>
+        </CardHeaderActions>
+    </MudCardHeader>
+
+    <div class="d-flex justify-content-center" style="background: rgb(32, 32, 32);">
+        <MudImage Style="overflow: hidden; border-radius: 10px !important;" ObjectFit="ObjectFit.Contain" Height="320"
+            Src="/Assets/photo_2023-10-06_18-06-51.jpg" Elevation="0" Class="rounded-lg" />
+    </div>
+
+    <MudCardContent Style="background: rgb(32, 32, 32); color: white;">
+        <MudText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
+    </MudCardContent>
+    <MudCardActions Style="background: rgb(32, 32, 32);" Class="d-flex justify-content-between gap-5">
+        <div>
+            <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Primary" />
+            <span style="color: white;">233</span>
+        </div>
+        <div>
+            <MudIconButton Icon="@Icons.Material.Filled.AddComment" Color="Color.Default" />
+            <span style="color: white;">233</span>
+
+        </div>
+        <div>
+            <span style="color: white;">233</span>
+            <MudIconButton Icon="@Icons.Material.Filled.RemoveRedEye" Color="Color.Default" />
+        </div>
+    </MudCardActions>
+</MudCard>
+
 
 
 @code {
-
 
 
 }

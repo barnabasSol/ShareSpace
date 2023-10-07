@@ -5,7 +5,7 @@
                 <NotAuthorized>
                     @if (!context.User.Identity!.IsAuthenticated)
                     {
-                        <ShareSpace.Client.Pages.ProblemPages.RedirectToLogin/>
+                        <ShareSpace.Client.Pages.ProblemPages.RedirectToLogin />
                     }
                 </NotAuthorized>
             </AuthorizeRouteView>
@@ -19,7 +19,3 @@
         </NotFound>
     </Router>
 </CascadingAuthenticationState>
-
-@code {
-
-}

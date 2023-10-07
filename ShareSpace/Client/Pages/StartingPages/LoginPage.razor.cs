@@ -37,7 +37,8 @@ namespace ShareSpace.Client.Pages.StartingPages
                 else
                 {
                     processing = false;
-                    await localstorage.SetItemAsync("ShareSpaceToken", response.Token);
+                    await localstorage.SetItemAsync("ShareSpaceAccessToken", response.AccessToken);
+                    await localstorage.SetItemAsync("ShareSpaceRefreshToken", response.RefreshToken);
                     (authstate as CustomAuthenticationStateProvider)!.NotifyAuthStateChange();
                     NavigationManager.NavigateTo("/main");
                 }

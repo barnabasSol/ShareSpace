@@ -41,10 +41,11 @@ namespace ShareSpace.Client.Services
                     await http.PostAsJsonAsync("Auth/login-user", userDTO)
                     ?? throw new Exception("Response was null");
 
-                if (!response.IsSuccessStatusCode)
-                    throw new Exception($"either username or password is incorrect");
-
                 var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
+
+                if (!response.IsSuccessStatusCode)
+                    return result!;
+
                 return result ?? throw new Exception("Result was null");
             }
             catch (Exception ex)

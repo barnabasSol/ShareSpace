@@ -295,6 +295,34 @@ namespace ShareSpace.Server.Migrations
                     b.ToTable("post_tags");
                 });
 
+            modelBuilder.Entity("ShareSpace.Server.Entities.RefreshToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("uuid_generate_v4()");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("expiration_date");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("token");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("refresh_token");
+                });
+
             modelBuilder.Entity("ShareSpace.Server.Entities.Tag", b =>
                 {
                     b.Property<Guid>("Id")
@@ -521,6 +549,17 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("ShareSpace.Server.Entities.RefreshToken", b =>
+                {
+                    b.HasOne("ShareSpace.Server.Entities.User", "User")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ShareSpace.Server.Entities.Tag", b =>
                 {
                     b.HasOne("ShareSpace.Server.Entities.Post", null)
@@ -567,6 +606,8 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("Notifications");
 
                     b.Navigation("Posts");
+
+                    b.Navigation("RefreshTokens");
                 });
 #pragma warning restore 612, 618
         }

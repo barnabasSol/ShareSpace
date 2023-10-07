@@ -867,3 +867,4 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.Extensions.Http.dll.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\Microsoft.Extensions.Http.dll
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\k2suALLE.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Pages\StartingPages\Interests.razor.rz.scp.css

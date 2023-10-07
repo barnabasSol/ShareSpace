@@ -8,6 +8,7 @@ namespace ShareSpace.Client.Pages.StartingPages
     {
         private readonly RegisterAccountForm ReigisterModel = new();
         private readonly RegisterAccountFormValidator Validations = new();
+        private bool processing = false;
         private string message = "Enter The Required Fields Properly.";
         MudForm? form;
 
@@ -16,6 +17,7 @@ namespace ShareSpace.Client.Pages.StartingPages
             await form!.Validate();
             if (form.IsValid)
             {
+                processing = true;
                 var result = await UserService.CreateUser(
                     new CreateUserDTO()
                     {
@@ -27,11 +29,12 @@ namespace ShareSpace.Client.Pages.StartingPages
                 );
                 if (result.IsSuccess)
                 {
-                    NavigationManager.NavigateTo("/interests");
-                    await localstorage.SetItemAsync("ShareSpaceToken", result.Token);
+                    await localstorage.SetItemAsync("ShareSpaceAccessToken", result.AccessToken);
+                    await localstorage.SetItemAsync("ShareSpaceRefreshToken", result.RefreshToken);
                     (authstate as CustomAuthenticationStateProvider)!.NotifyAuthStateChange();
                     NavigationManager.NavigateTo("/interests");
                 }
+                processing = false;
                 message = result.Message;
             }
             this.StateHasChanged();

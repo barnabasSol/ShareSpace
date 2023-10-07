@@ -18,6 +18,5 @@ namespace ShareSpace.Server.Entities
 
         public User? User { get; set; }
         public Post? Post { get; set; }
-
     }
 }

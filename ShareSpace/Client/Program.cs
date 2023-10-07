@@ -31,9 +31,4 @@ builder.Services
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<CustomHttpHandler>();
 
-// builder.Services.AddScoped(
-//     sp => new HttpClient { BaseAddress = new Uri("https://localhost:1738/") }
-// );
-
-
 await builder.Build().RunAsync();

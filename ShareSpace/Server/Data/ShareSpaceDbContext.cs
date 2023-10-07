@@ -17,20 +17,21 @@ namespace ShareSpace.Server.Data
         public DbSet<PostTag> PostTags { get; set; }
         public DbSet<UserInterest> UserInterests { get; set; }
         public DbSet<Interest> Interests { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
-        public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options)
-            : base(options) { }
-
+        public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options) : base(options)
+        {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserInterest>().HasKey(lp => new { lp.UserId, lp.InterestId });
+
             modelBuilder.Entity<PostTag>(pt =>
             {
                 pt.HasKey(pt => new { pt.PostId, pt.TagId });
             });
-
-
 
             modelBuilder.Entity<Follower>(f =>
             {
@@ -49,6 +50,11 @@ namespace ShareSpace.Server.Data
                 u.Property(e => e.UserId).HasDefaultValueSql("uuid_generate_v4()");
                 u.HasIndex(e => e.UserName).IsUnique();
                 u.HasIndex(e => e.Email).IsUnique();
+            });
+
+            modelBuilder.Entity<RefreshToken>(p =>
+            {
+                p.Property(i => i.Id).HasDefaultValueSql("uuid_generate_v4()");
             });
 
             modelBuilder.Entity<Post>(p =>

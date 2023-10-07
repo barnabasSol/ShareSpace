@@ -1,5 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -18,10 +19,7 @@ namespace ShareSpace.Server.Repository
         private readonly ShareSpaceDbContext shareSpaceDb;
         private readonly TokenSettings token_Setting;
 
-        public AuthRepository(
-            ShareSpaceDbContext shareSpaceDb,
-            IOptions<TokenSettings> token_setting
-        )
+        public AuthRepository(ShareSpaceDbContext shareSpaceDb, IOptions<TokenSettings> token_setting)
         {
             this.shareSpaceDb = shareSpaceDb;
             token_Setting = token_setting.Value;
@@ -54,7 +52,8 @@ namespace ShareSpace.Server.Repository
                 {
                     IsSuccess = true,
                     Message = "",
-                    Token = GenerateToken(NewUser)
+                    AccessToken = GenerateAccessToken(NewUser),
+                    RefreshToken = await GenerateRefershToken(NewUser.UserId)
                 };
             }
             catch (Exception ex)
@@ -104,22 +103,23 @@ namespace ShareSpace.Server.Repository
                 return new AuthResponse()
                 {
                     IsSuccess = true,
-                    Message = "",
-                    Token = GenerateToken(queried_user)
+                    AccessToken = GenerateAccessToken(queried_user),
+                    RefreshToken = await GenerateRefershToken(queried_user.UserId)
                 };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new AuthResponse()
                 {
                     IsSuccess = false,
-                    Message = "something went wrong, try again later."
+                    Message = "something went wrong, try again later." + ex.Message
                 };
             }
         }
 
-        private string GenerateToken(User authorized_user)
+        private string GenerateAccessToken(User authorized_user)
         {
+            var TokenExpiration = DateTime.Now.AddMinutes(30);
             SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
             SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha256);
             List<Claim> claims =
@@ -131,7 +131,7 @@ namespace ShareSpace.Server.Repository
                     new Claim("Email", authorized_user.Email),
                     new Claim(
                         JwtRegisteredClaimNames.Exp,
-                        new DateTimeOffset(DateTime.Now.AddSeconds(30))
+                        new DateTimeOffset(TokenExpiration)
                             .ToUnixTimeSeconds()
                             .ToString()
                     )
@@ -140,11 +140,32 @@ namespace ShareSpace.Server.Repository
                 new(
                     issuer: token_Setting.Issuer,
                     audience: token_Setting.Audience,
-                    expires: DateTime.Now.AddSeconds(30),
+                    expires: TokenExpiration,
                     signingCredentials: credentials,
                     claims: claims
                 );
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
+        }
+
+
+        private async Task<string> GenerateRefershToken(Guid authorized_user_id)
+        {
+            byte[] TokenBytes = new byte[32];
+            using (var range = RandomNumberGenerator.Create())
+            {
+                range.GetBytes(TokenBytes);
+            }
+            var token = Convert.ToBase64String(TokenBytes);
+            RefreshToken refreshToken =
+                new()
+                {
+                    ExpirationDate = DateTime.Now.AddMinutes(1),
+                    Token = token,
+                    UserId = authorized_user_id,
+                };
+            await shareSpaceDb.RefreshTokens.AddAsync(refreshToken);
+            await shareSpaceDb.SaveChangesAsync();
+            return token;
         }
     }
 }

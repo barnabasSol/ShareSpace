@@ -1,7 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @attribute [Authorize]
 
-<PageTitle>THE SHIT</PageTitle>
+<PageTitle>Home</PageTitle>
 
 <MudThemeProvider IsDarkMode="true" Theme="MyCustomTheme" />
 <MudDialogProvider />
@@ -15,13 +15,7 @@
         </MudDrawerHeader>
         <AuthorizeView>
             <Authorized>
-                <MudNavMenu>
-                    <MudNavLink Style="color: yellow;" Match="NavLinkMatch.All">
-                        @GetUserInfo(context.User.Claims.ToList()).Name</MudNavLink>
-                        <MudNavLink Style="color: yellow;" Match="NavLinkMatch.All">Library</MudNavLink>
-                        <MudNavLink Style="color: yellow;" Match="NavLinkMatch.All">Community</MudNavLink>
-                    </MudNavMenu>
-                </Authorized>
+            </Authorized>
             </AuthorizeView>
         </MudDrawer>
 
@@ -61,12 +55,12 @@
                     </div>
                 </div>
                 <div class="header2 d-flex justify-content-center align-items-center">
-                    <h4 style="color: white;">what's trending</h4>
+                    <h4 style="color: white;">explore more</h4>
                 </div>
             </div>
         </header>
         <section>
-            <MudMainContent Class="p-2 m-0 bg-black">
+            <MudMainContent Class="p-2 m-0 gap-2" Style="background-color: rgb(23, 24, 24);">
                 @Body
             </MudMainContent>
         </section>
@@ -80,6 +74,7 @@
                         <div class="d-flex justify-content-between w-100">
                             <MudIconButton Icon="@Icons.Material.Rounded.Home" Color="Color.Inherit" />
                             <MudIconButton Icon="@Icons.Material.Rounded.Chat" Color="Color.Inherit" />
+                            <MudIconButton Icon="@Icons.Material.Rounded.PostAdd" Color="Color.Inherit" />
                             <MudIconButton Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
                             <MudIconButton Icon="@Icons.Material.Rounded.Favorite" Color="Color.Inherit" />
                         </div>
@@ -108,6 +103,7 @@
     }
 
 
+
     MudTheme MyCustomTheme = new MudTheme()
         {
             Palette = new PaletteLight()
@@ -122,10 +118,10 @@
                 Secondary = Colors.Shades.White,
                 Tertiary = Colors.Grey.Darken4,
             },
-            LayoutProperties = new LayoutProperties()
-            {
-                DrawerWidthLeft = "470px",
-                DrawerWidthRight = "100%"
-            }
+            // LayoutProperties = new LayoutProperties()
+            // {
+            //     DrawerWidthLeft = "470px",
+            //     DrawerWidthRight = "100%"
+            // }
         };
 }

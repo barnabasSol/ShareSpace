@@ -1,38 +1,20 @@
-@page "/interests"
+@page "/user/interests"
 @using ShareSpace.Shared.DTOs;
 @using ShareSpace.Shared.ResponseTypes;
 @layout LandingLayout
 @attribute [Authorize]
 @inject IUserService UserService
+@inject NavigationManager NavigationManager
 
-<h2 class="mb-10 mt-10" style="background-color: rgb(20, 20, 20); color: white; text-align: center;">what are you into?
+
+<h2 class="mb-10 mt-5" style="background-color: rgb(20, 20, 20); color: white; text-align: center;">what are you into?
 </h2>
 
 <div style="background-color: rgb(20, 20, 20);"
     class="container-fluid full-height pt-2 d-flex justify-content-center full-height">
-    <div style="width: 50%;">
-        <MudChipSet @bind-SelectedChips="selected" MultiSelection="true" Filter="filter">
-            @* <MudChip Text="pink" Variant="Variant.Outlined" Color="Color.Secondary">Secondary</MudChip>
-            <MudChip Text="Salad"></MudChip>
-            <MudChip Text="Apples"></MudChip>
-            <MudChip Text="Milk"></MudChip>
-            <MudChip Text="Eggs"></MudChip>
-            <MudChip Text="Cornflakes"></MudChip>
-            <MudChip Text="black" Variant="Variant.Outlined" Color="Color.Dark">Dark</MudChip>
-            <MudChip Text="purple" Variant="Variant.Outlined" Color="Color.Primary">Primary</MudChip>
-            <MudChip Text="orange" Variant="Variant.Outlined" Color="Color.Warning">Warning</MudChip>
-            <MudChip Text="green" Variant="Variant.Outlined" Color="Color.Success">Success</MudChip>
-            <MudChip Text="blue" Variant="Variant.Outlined" Color="Color.Info">Info</MudChip>
-            <MudChip Text="grey" Variant="Variant.Filled" Color="Color.Default">Default</MudChip>
-            <MudChip Text="Red wine"></MudChip>
-            <MudChip Text="Soap"></MudChip>
-            <MudChip Text="red" Variant="Variant.Outlined" Color="Color.Error">Error</MudChip>
-            <MudChip Text="blue" Variant="Variant.Filled" Color="Color.Info">Info</MudChip>
-            <MudChip Text="green" Variant="Variant.Filled" Color="Color.Success">Success</MudChip>
-            <MudChip Text="orange" Variant="Variant.Filled" Color="Color.Warning">Warning</MudChip>
-            <MudChip Text="red" Variant="Variant.Filled" Color="Color.Error">Error</MudChip>
-            <MudChip Text="black" Variant="Variant.Filled" Color="Color.Dark">Dark</MudChip> *@
-
+    <div class="muchipswidth">
+        <MudChipSet @bind-SelectedChips="selected" MultiSelection="true" Filter="filter"
+            Class="d-flex justify-content-center flex-wrap">
             @if (response.Data is null)
             {
                 <div class="d-flex justify-content-center">
@@ -44,10 +26,49 @@
             {
                 @foreach (var item in response.Data)
                 {
-                    <MudChip Value=item.Id.ToString() Variant="Variant.Outlined" Color="Color.Primary">@item.Value</MudChip>
+                    <MudChip Value=item.Id.ToString() Text="@item.Value" Variant="Variant.Outlined" Color="Color.Primary">
+                        @item.Value</MudChip>
                 }
             }
         </MudChipSet>
+        <div class="w-100 d-flex flex-column align-items-center">
+            @if (selected is not null)
+            {
+                @if (selected.Length > 2)
+                {
+                    <MudButton Disabled="@processing" OnClick="Submit" Variant="Variant.Filled" Color="Color.Success"
+                        Class="mt-6">
+                        @if (processing)
+                        {
+                            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                            <MudText Class="ms-2">please wait</MudText>
+                        }
+                        else
+                        {
+                            <MudText>Done</MudText>
+                        }
+                    </MudButton>
+                }
+                else
+                {
+                    <MudAlert Dense="true" Class="mt-7" Severity="Severity.Normal" Variant="Variant.Outlined">please select
+                        atleast @(selected_count - selected.Length)</MudAlert>
+                }
+            }
+            else
+            {
+                <MudAlert Dense="true" Class="mt-7" Severity="Severity.Normal" Variant="Variant.Outlined">please select
+                    atleast @(selected_count)</MudAlert>
+            }
+            @if (SendInterestsResponse is not null)
+            {
+                @if (!SendInterestsResponse.IsSuccess)
+                {
+                    <MudAlert Dense="true" Class="mt-7" Severity="Severity.Error" Variant="Variant.Outlined">
+                        @SendInterestsResponse.Message</MudAlert>
+                }
+            }
+        </div>
     </div>
 </div>
 
@@ -55,12 +76,6 @@
 @code
 {
     bool filter = true;
-    MudChip[]? selected;
-    DataResponse<IEnumerable<InterestsDto>> response = new();
-
-    protected async override Task OnInitializedAsync()
-    {
-        response = await UserService.GetInterests();
-    }
+    int selected_count = 3;
 
 }

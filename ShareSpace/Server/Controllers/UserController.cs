@@ -17,12 +17,35 @@ namespace ShareSpace.Server.Controllers
             this.userRepository = userRepository;
         }
 
-        [HttpGet("get-interests")]
         [Authorize]
+        [HttpGet("get-interests")]
         public async Task<ActionResult<DataResponse<IEnumerable<InterestsDto>>>> GetInterests()
         {
-            // string UserId = User.FindFirst("Sub")!.Value;
             return await userRepository.GetInterests();
+        }
+
+        [Authorize]
+        [HttpPost("store-interests")]
+        public async Task<ActionResult<DataResponse<string>>> StoreInterests(IEnumerable<InterestsDto> interests)
+        {
+            string UserId = User.FindFirst("Sub")!.Value;
+            await Console.Out.WriteLineAsync(UserId);
+            try
+            {
+                var result = await userRepository.StoreInterests(
+                    current_user: Guid.Parse(UserId),
+                    interests: interests
+                );
+                return result.IsSuccess ? Ok(result) : BadRequest(result);
+            }
+            catch (Exception ex)
+            {
+                return new DataResponse<string>()
+                {
+                    IsSuccess = false,
+                    Message = $"a server error occured {ex.Message}"
+                };
+            }
         }
     }
 }

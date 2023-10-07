@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\Assets\\chat.png"
     },
     {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\fit.webp",
+      "PackagePath": "staticwebassets\\Assets\\fit.webp"
+    },
+    {
       "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\flag (1).png",
       "PackagePath": "staticwebassets\\Assets\\flag (1).png"
     },
@@ -51,6 +55,10 @@
     {
       "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\mask.png",
       "PackagePath": "staticwebassets\\Assets\\mask.png"
+    },
+    {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\photo_2023-10-06_18-06-51.jpg",
+      "PackagePath": "staticwebassets\\Assets\\photo_2023-10-06_18-06-51.jpg"
     },
     {
       "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\shield.png",
