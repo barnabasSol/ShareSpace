@@ -16,17 +16,17 @@
         <AuthorizeView>
             <Authorized>
             </Authorized>
-            </AuthorizeView>
-        </MudDrawer>
+        </AuthorizeView>
+    </MudDrawer>
 
-        <main>
-            <header style="background-color: rgb(23, 24, 24);">
-                <div class="phone_header w-100">
-                    <AuthorizeView>
-                        <Authorized>
-                            <MudButton OnClick="@(() => OpenDrawer(Anchor.Start))">
-                                <MudAvatar Color="Color.Primary" Square="true" Variant="Variant.Outlined">
-                                    @GetUserInfo(context.User.Claims.ToList()).Name![0]
+    <main>
+        <header style="background-color: rgb(23, 24, 24);">
+            <div class="phone_header w-100">
+                <AuthorizeView>
+                    <Authorized>
+                        <MudButton OnClick="@(() => OpenDrawer(Anchor.Start))">
+                            <MudAvatar Color="Color.Primary" Square="true" Variant="Variant.Outlined">
+                                @GetUserInfo(context.User.Claims.ToList()).Name![0]
                             </MudAvatar>
                         </MudButton>
 
@@ -45,8 +45,9 @@
                                         @GetUserInfo(context.User.Claims.ToList()).Name![0]
                                     </MudAvatar>
                                 </MudButton>
-                                <MudIconButton Icon="@Icons.Material.Rounded.Home" Color="Color.Inherit" />
-                                <MudIconButton Icon="@Icons.Material.Rounded.Chat" Color="Color.Inherit" />
+                                <MudIconButton Href="/main" Icon="@Icons.Material.Rounded.Home" Color="Color.Inherit" />
+                                <MudIconButton Href="/chat" Icon="@Icons.Material.Rounded.Chat" Color="Color.Inherit" />
+                                <MudIconButton Icon="@Icons.Material.Rounded.PostAdd" Color="Color.Inherit" />
                                 <MudIconButton Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
                                 <MudIconButton Icon="@Icons.Material.Rounded.Favorite" Color="Color.Inherit" />
                             </Authorized>
@@ -60,7 +61,7 @@
             </div>
         </header>
         <section>
-            <MudMainContent Class="p-2 m-0 gap-2" Style="background-color: rgb(23, 24, 24);">
+            <MudMainContent Class="py-0" Style="background-color: rgb(23, 24, 24);">
                 @Body
             </MudMainContent>
         </section>
@@ -72,8 +73,8 @@
                     <Authorized>
 
                         <div class="d-flex justify-content-between w-100">
-                            <MudIconButton Icon="@Icons.Material.Rounded.Home" Color="Color.Inherit" />
-                            <MudIconButton Icon="@Icons.Material.Rounded.Chat" Color="Color.Inherit" />
+                            <MudIconButton Href="/home" Icon="@Icons.Material.Rounded.Home" Color="Color.Inherit" />
+                            <MudIconButton Href="/chat" Icon="@Icons.Material.Rounded.Chat" Color="Color.Inherit" />
                             <MudIconButton Icon="@Icons.Material.Rounded.PostAdd" Color="Color.Inherit" />
                             <MudIconButton Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
                             <MudIconButton Icon="@Icons.Material.Rounded.Favorite" Color="Color.Inherit" />
@@ -120,8 +121,8 @@
             },
             // LayoutProperties = new LayoutProperties()
             // {
-            //     DrawerWidthLeft = "470px",
-            //     DrawerWidthRight = "100%"
+            // DrawerWidthLeft = "470px",
+            // DrawerWidthRight = "100%"
             // }
         };
 }

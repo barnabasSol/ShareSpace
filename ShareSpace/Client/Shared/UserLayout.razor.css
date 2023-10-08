@@ -58,44 +58,45 @@ main {
         "section nav";
 }
 
-@media only screen and (min-width: 500px) and (max-width: 980px) {
-  main {
-    grid-template-rows: 64px 8fr;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "header"
-      "section";
-  }
+@media only screen and (min-width: 500px) and (max-width: 1169px) {
+    main {
+        grid-template-rows: 64px 8fr;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "section";
+    }
 
-  .header2 {
-    display: none !important;
-  }
-  .header1 {
-    background: red !important;
-  }
+    .header2 {
+        display: none !important;
+    }
 
-  .gridlayoutab {
-    display: grid;
-    grid-template-rows: 64px;
-    grid-template-columns: 1fr;
-    grid-template-areas: "h1";
-  }
+    .header1 {
+        background: red !important;
+    }
 
-  section {
-    grid-area: section;
-    overflow-y: scroll;
-  }
+    .gridlayoutab {
+        display: grid;
+        grid-template-rows: 64px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "h1";
+    }
 
-  nav {
-    display: none;
-    gap: 0.4rem;
-    overflow-x: scroll;
-    white-space: nowrap;
-  }
+    section {
+        grid-area: section;
+        overflow-y: scroll;
+    }
 
-  nav > div {
-    flex-shrink: 0;
-  }
+    nav {
+        display: none;
+        gap: 0.4rem;
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+
+        nav > div {
+            flex-shrink: 0;
+        }
 }
 
 @media only screen and (max-width: 500px) {

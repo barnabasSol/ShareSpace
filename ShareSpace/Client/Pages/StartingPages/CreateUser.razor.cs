@@ -9,7 +9,6 @@ namespace ShareSpace.Client.Pages.StartingPages
         private readonly RegisterAccountForm ReigisterModel = new();
         private readonly RegisterAccountFormValidator Validations = new();
         private bool processing = false;
-        private string message = "Enter The Required Fields Properly.";
         MudForm? form;
 
         private async void Submit()
@@ -32,12 +31,22 @@ namespace ShareSpace.Client.Pages.StartingPages
                     await localstorage.SetItemAsync("ShareSpaceAccessToken", result.AccessToken);
                     await localstorage.SetItemAsync("ShareSpaceRefreshToken", result.RefreshToken);
                     (authstate as CustomAuthenticationStateProvider)!.NotifyAuthStateChange();
-                    NavigationManager.NavigateTo("/interests");
+                    NavigationManager.NavigateTo("/user/interests");
                 }
+                else
+                {
                 processing = false;
-                message = result.Message;
+                ShowSnackBarWithOptions(message: result.Message, variant: Variant.Filled);
+                }
             }
             this.StateHasChanged();
+        }
+
+        void ShowSnackBarWithOptions(string message, Variant variant)
+        {
+            SnackBar.Configuration.SnackbarVariant = variant;
+            SnackBar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
+            SnackBar.Add($"Error: {message}", MudBlazor.Severity.Error);
         }
 
         private class RegisterAccountForm

@@ -206,14 +206,14 @@
       "netstandard.dll": "sha256-Cr6slBs\/R2v2t\/vecFDHbQHakbEhar0adYu0YemwiXI=",
       "System.Private.CoreLib.dll": "sha256-dDw5nzGJhW1jOjGfSJcs\/Mi4KQ+DZygXnoK+vJ+jHyk=",
       "ShareSpace.Shared.dll": "sha256-qKoYbckzGUL1Y12v8GwjAcvrrKjGDnDBiz4YT7j5768=",
-      "ShareSpace.Client.dll": "sha256-vTf9XOVB0TErfbIPHw17jMTFA8pZeCrjwBO0my00LaA="
+      "ShareSpace.Client.dll": "sha256-qDb+SLqql+VgGh\/BTPo3j9R0tG4Hau9QmryIZSO0T2E="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "ShareSpace.Shared.pdb": "sha256-KBX5QD2IEY1K+ivAQOxU8zUj3hRioWBsxZMji7T9c+w=",
-      "ShareSpace.Client.pdb": "sha256-2RuMUgsuFAzjWIO5Ayqv4pB5QWtIaENNUgrzjpDRTcc="
+      "ShareSpace.Client.pdb": "sha256-A9vwMKHqBd3hKMKqmB\/Bgtx5AslD8wLawqwaPM9JKOk="
     },
     "runtime": {
       "dotnet.7.0.11.5912rerilo.js": "sha256-RtIVigdAD1mUvR4pxoKyD8kcQgw4INP81v+PVSqkeQY=",

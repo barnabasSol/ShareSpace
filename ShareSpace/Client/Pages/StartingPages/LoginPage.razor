@@ -5,6 +5,7 @@
 @inject NavigationManager NavigationManager
 @inject ILocalStorageService localstorage
 @inject AuthenticationStateProvider authstate
+@inject ISnackbar SnackBar
 
 
 <PageTitle>Login/Sign-up</PageTitle>
@@ -40,11 +41,12 @@
                 </MudForm>
             </MudCard>
         </MudItem>
-        <MudItem xs="12">
-            <MudText Typo="Typo.body2" Align="Align.Center">
-                <span style="display: @show;">@message</span>
-                <span>Or Sign In with <a style="color:yellow" href="/sign-in/required-user-data">Google</a></span>
-            </MudText>
+        <MudItem xs="12" Class="d-flex justify-content-center">
+            <span>Or Sign In with <a style="color:yellow" href="/sign-in/required-user-data">Google</a></span>
         </MudItem>
     </MudGrid>
 </div>
+
+@code {
+
+}

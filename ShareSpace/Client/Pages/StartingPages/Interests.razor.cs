@@ -16,7 +16,7 @@ namespace ShareSpace.Client.Pages.StartingPages
             response = await UserService.GetInterests();
         }
 
-        async void Submit()
+        private async void Submit()
         {
             try
             {

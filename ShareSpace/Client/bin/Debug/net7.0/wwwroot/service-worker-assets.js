@@ -153,7 +153,7 @@
       "url": "manifest.json"
     },
     {
-      "hash": "sha256-IGqSLz7E5PAZFpDdS750q82Vhok9PB3oqu97ZxFdm0M=",
+      "hash": "sha256-2LmdWVpdO5\/woLqxvH\/ynwZrnN29+hkrQOcV4gDV+tk=",
       "url": "ShareSpace.Client.styles.css"
     },
     {
@@ -985,11 +985,11 @@
       "url": "_framework\/ShareSpace.Shared.pdb"
     },
     {
-      "hash": "sha256-0QrKEXRTD3p1yFXB2MV3EQOFgvdJgovB85P2rQ6U7kw=",
+      "hash": "sha256-WX\/6+jyyYmsz5lK631g9oRHCD2uPfYc0Mhvxhdp6yA4=",
       "url": "_framework\/ShareSpace.Client.dll"
     },
     {
-      "hash": "sha256-0f\/qCEEniGHzAIwTCG64AWW7UMsTsj5LFZie1ylSd4k=",
+      "hash": "sha256-qFz4B3aFJk2Q0H7eAU4ZERCeoT6p\/7wdka5oyYfvsgM=",
       "url": "_framework\/ShareSpace.Client.pdb"
     },
     {
@@ -997,7 +997,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-Xw\/PcLUQ9Y3Lt9iL54b6X+nqgQf46M4z+fC2PmL5cOc=",
+      "hash": "sha256-yk4cN2E0hpSw2K4IWTZraFmUzQtDpyraKTWc6p\/RBbw=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1009,5 +1009,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "4cqfuF0C"
+  "version": "jOO6XXae"
 };

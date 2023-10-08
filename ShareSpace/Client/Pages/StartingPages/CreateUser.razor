@@ -4,7 +4,7 @@
 @inject NavigationManager NavigationManager
 @inject ILocalStorageService localstorage
 @inject AuthenticationStateProvider authstate
-
+@inject ISnackbar SnackBar
 
 
 <PageTitle>Login/Sign-up</PageTitle>
@@ -34,7 +34,7 @@
                     </MudCardContent>
                     <MudCardActions>
                         <MudButton Disabled="@processing" OnClick="Submit" Variant="Variant.Filled"
-                                   Color="Color.Success" Class="ml-auto">
+                            Color="Color.Success" Class="ml-auto">
                             @if (processing)
                             {
                                 <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
@@ -51,7 +51,7 @@
         </MudItem>
         <MudItem Class="d-flex justify-content-center align-items-center" xs="12">
             <MudText Typo="Typo.body2" Align="Align.Center">
-                @message
+                Enter The Required Fields Properly.
             </MudText>
         </MudItem>
     </MudGrid>

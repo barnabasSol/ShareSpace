@@ -89,44 +89,45 @@ main[b-qeisqmnyxe] {
         "section nav";
 }
 
-@media only screen and (min-width: 500px) and (max-width: 980px) {
-  main[b-qeisqmnyxe] {
-    grid-template-rows: 64px 8fr;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "header"
-      "section";
-  }
+@media only screen and (min-width: 500px) and (max-width: 1169px) {
+    main[b-qeisqmnyxe] {
+        grid-template-rows: 64px 8fr;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "section";
+    }
 
-  .header2[b-qeisqmnyxe] {
-    display: none !important;
-  }
-  .header1[b-qeisqmnyxe] {
-    background: red !important;
-  }
+    .header2[b-qeisqmnyxe] {
+        display: none !important;
+    }
 
-  .gridlayoutab[b-qeisqmnyxe] {
-    display: grid;
-    grid-template-rows: 64px;
-    grid-template-columns: 1fr;
-    grid-template-areas: "h1";
-  }
+    .header1[b-qeisqmnyxe] {
+        background: red !important;
+    }
 
-  section[b-qeisqmnyxe] {
-    grid-area: section;
-    overflow-y: scroll;
-  }
+    .gridlayoutab[b-qeisqmnyxe] {
+        display: grid;
+        grid-template-rows: 64px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "h1";
+    }
 
-  nav[b-qeisqmnyxe] {
-    display: none;
-    gap: 0.4rem;
-    overflow-x: scroll;
-    white-space: nowrap;
-  }
+    section[b-qeisqmnyxe] {
+        grid-area: section;
+        overflow-y: scroll;
+    }
 
-  nav > div[b-qeisqmnyxe] {
-    flex-shrink: 0;
-  }
+    nav[b-qeisqmnyxe] {
+        display: none;
+        gap: 0.4rem;
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+
+        nav > div[b-qeisqmnyxe] {
+            flex-shrink: 0;
+        }
 }
 
 @media only screen and (max-width: 500px) {

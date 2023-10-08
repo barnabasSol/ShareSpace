@@ -7,8 +7,6 @@ namespace ShareSpace.Client.Pages.StartingPages
 {
     public partial class LoginPage
     {
-        private string message = "",
-            show = "none";
         private readonly Login LoginModel = new();
         readonly LoginValidator Validations = new();
         private AuthResponse? response;
@@ -31,19 +29,28 @@ namespace ShareSpace.Client.Pages.StartingPages
                 if (!response.IsSuccess)
                 {
                     processing = false;
-                    show = "block";
-                    message = response.Message;
+                    ShowSnackBarWithOptions(response.Message, Variant.Filled);
                 }
                 else
                 {
                     processing = false;
                     await localstorage.SetItemAsync("ShareSpaceAccessToken", response.AccessToken);
-                    await localstorage.SetItemAsync("ShareSpaceRefreshToken", response.RefreshToken);
+                    await localstorage.SetItemAsync(
+                        "ShareSpaceRefreshToken",
+                        response.RefreshToken
+                    );
                     (authstate as CustomAuthenticationStateProvider)!.NotifyAuthStateChange();
                     NavigationManager.NavigateTo("/main");
                 }
             }
             this.StateHasChanged();
+        }
+
+        void ShowSnackBarWithOptions(string message, Variant variant)
+        {
+            SnackBar.Configuration.SnackbarVariant = variant;
+            SnackBar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
+            SnackBar.Add($"Error {message}", MudBlazor.Severity.Error);
         }
     }
 
