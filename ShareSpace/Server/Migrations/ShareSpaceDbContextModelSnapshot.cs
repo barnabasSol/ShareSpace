@@ -37,7 +37,7 @@ namespace ShareSpace.Server.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("Now()");
 
@@ -76,7 +76,7 @@ namespace ShareSpace.Server.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("Now()");
 
@@ -118,7 +118,7 @@ namespace ShareSpace.Server.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("Now()");
 
@@ -144,7 +144,7 @@ namespace ShareSpace.Server.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("Now()");
 
@@ -181,7 +181,7 @@ namespace ShareSpace.Server.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("Now()");
 
@@ -247,7 +247,7 @@ namespace ShareSpace.Server.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("Now()");
 
@@ -290,8 +290,6 @@ namespace ShareSpace.Server.Migrations
 
                     b.HasKey("PostId", "TagId");
 
-                    b.HasIndex("TagId");
-
                     b.ToTable("post_tags");
                 });
 
@@ -304,7 +302,7 @@ namespace ShareSpace.Server.Migrations
                         .HasDefaultValueSql("uuid_generate_v4()");
 
                     b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("expiration_date");
 
                     b.Property<string>("Token")
@@ -323,29 +321,6 @@ namespace ShareSpace.Server.Migrations
                     b.ToTable("refresh_token");
                 });
 
-            modelBuilder.Entity("ShareSpace.Server.Entities.Tag", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasDefaultValueSql("uuid_generate_v4()");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.Property<Guid?>("PostId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("tags");
-                });
-
             modelBuilder.Entity("ShareSpace.Server.Entities.User", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -360,7 +335,7 @@ namespace ShareSpace.Server.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("Now()");
 
@@ -414,6 +389,23 @@ namespace ShareSpace.Server.Migrations
                     b.HasIndex("InterestId");
 
                     b.ToTable("user_interests");
+                });
+
+            modelBuilder.Entity("ShareSpace.Server.Entities.ViewedPost", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("post_id");
+
+                    b.HasKey("UserId", "PostId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("viewed_posts");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.Comment", b =>
@@ -538,15 +530,7 @@ namespace ShareSpace.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShareSpace.Server.Entities.Tag", "Tag")
-                        .WithMany()
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Post");
-
-                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.RefreshToken", b =>
@@ -558,13 +542,6 @@ namespace ShareSpace.Server.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ShareSpace.Server.Entities.Tag", b =>
-                {
-                    b.HasOne("ShareSpace.Server.Entities.Post", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("PostId");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.UserInterest", b =>
@@ -586,11 +563,30 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ShareSpace.Server.Entities.ViewedPost", b =>
+                {
+                    b.HasOne("ShareSpace.Server.Entities.Post", "Post")
+                        .WithMany("ViewedPosts")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShareSpace.Server.Entities.User", "User")
+                        .WithMany("ViewedPosts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ShareSpace.Server.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Tags");
+                    b.Navigation("ViewedPosts");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.User", b =>
@@ -608,6 +604,8 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("Posts");
 
                     b.Navigation("RefreshTokens");
+
+                    b.Navigation("ViewedPosts");
                 });
 #pragma warning restore 612, 618
         }

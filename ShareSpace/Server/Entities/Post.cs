@@ -31,6 +31,6 @@ namespace ShareSpace.Server.Entities
 
         public User? User { get; set; }
         public virtual ICollection<Comment>? Comments { get; set; }
-        public virtual ICollection<Tag>? Tags { get; set; }
+        public virtual ICollection<ViewedPost>? ViewedPosts { get; set; }
     }
 }

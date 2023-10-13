@@ -7,5 +7,7 @@ namespace ShareSpace.Server.Repository.Contracts
     {
         Task<DataResponse<IEnumerable<InterestsDto>>> GetInterests();
         Task<DataResponse<string>> StoreInterests(IEnumerable<InterestsDto> interests, Guid current_user);
+        Task<DataResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId);
+        Task<DataResponse<IEnumerable<string>>> UploadImages(IEnumerable<string> image_url);
     }
 }

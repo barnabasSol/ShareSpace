@@ -1,0 +1,34 @@
+main[b-qfps82va3f] {
+  display: grid;
+  gap: 0.3rem;
+  grid-template-rows: 1fr 5fr;
+  grid-template-columns: 1fr;
+  background: rgb(23, 24, 24);
+  grid-template-areas:
+    "usersugg"
+    "trending";
+}
+header[b-qfps82va3f] {
+  grid-area: header;
+}
+section[b-qfps82va3f] {
+    grid-area: trending;
+    background: rgb(23, 24, 24);
+    overflow-y: scroll;
+}
+
+.horiz-scroll[b-qfps82va3f] {
+  grid-area: usersugg;
+  display: flex;
+  overflow-x: scroll;
+  height: 200px;
+  background: rgb(23, 24, 24);
+}
+
+.horiz-scroll[b-qfps82va3f]::-webkit-scrollbar {
+  display: none;
+}
+
+section[b-qfps82va3f]::-webkit-scrollbar {
+  display: none;
+}

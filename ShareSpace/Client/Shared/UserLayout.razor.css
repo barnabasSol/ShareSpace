@@ -4,12 +4,12 @@ header {
 
 .header1 {
   grid-area: h1;
-  background: transparent;
+  background: rgb(23, 24, 24);
 }
 
 .header2 {
   grid-area: h2;
-  background: transparent;
+  background: rgb(23, 24, 24);
 }
 .gridlayoutab {
   display: grid;
@@ -18,9 +18,9 @@ header {
   grid-template-areas: "h1 h2";
 }
 section {
-    grid-area: section;
-    background: rgb(23, 24, 24);
-    overflow-y: scroll;
+  grid-area: section;
+  background: rgb(23, 24, 24);
+  overflow-y: scroll;
 }
 
 .phone_header {
@@ -37,66 +37,65 @@ section::-webkit-scrollbar {
 }
 
 nav {
-    grid-area: nav;
-    background: rgb(23, 24, 24);
-    min-height: calc(100vh-64px);
-    overflow-y: scroll;
+  grid-area: nav;
+  background: rgb(23, 24, 24);
+  min-height: calc(100vh-64px);
+  overflow-y: scroll;
+  /*border-left: 1px solid grey;*/
 }
+
 nav::-webkit-scrollbar {
   display: none;
 }
 
 main {
-    display: grid;
-    gap: 0.3rem;
-    height: 100vh;
-    grid-template-rows: 64px 8fr;
-    grid-template-columns: 7fr 5fr;
-    background: rgb(23, 24, 24) !important;
-    grid-template-areas:
-        "header header"
-        "section nav";
+  display: grid;
+  gap: 0.3rem;
+  height: 100vh;
+  grid-template-rows: 64px 8fr;
+  grid-template-columns: 7fr 5fr;
+  background: rgb(23, 24, 24);
+
+  grid-template-areas:
+    "header header"
+    "section nav";
 }
 
-@media only screen and (min-width: 500px) and (max-width: 1169px) {
-    main {
-        grid-template-rows: 64px 8fr;
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "header"
-            "section";
-    }
+@media only screen and (min-width: 500px) and (max-width: 1197px) {
+  main {
+    grid-template-rows: 64px 8fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "section";
+  }
 
-    .header2 {
-        display: none !important;
-    }
+  .header2 {
+    display: none !important;
+  }
 
-    .header1 {
-        background: red !important;
-    }
+  .gridlayoutab {
+    display: grid;
+    grid-template-rows: 64px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "h1";
+  }
 
-    .gridlayoutab {
-        display: grid;
-        grid-template-rows: 64px;
-        grid-template-columns: 1fr;
-        grid-template-areas: "h1";
-    }
+  section {
+    grid-area: section;
+    overflow-y: scroll;
+  }
 
-    section {
-        grid-area: section;
-        overflow-y: scroll;
-    }
+  nav {
+    display: none;
+    gap: 0.4rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
 
-    nav {
-        display: none;
-        gap: 0.4rem;
-        overflow-x: scroll;
-        white-space: nowrap;
-    }
-
-        nav > div {
-            flex-shrink: 0;
-        }
+  nav > div {
+    flex-shrink: 0;
+  }
 }
 
 @media only screen and (max-width: 500px) {

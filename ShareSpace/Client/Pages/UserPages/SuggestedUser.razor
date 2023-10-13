@@ -1,0 +1,24 @@
+<div class="card effect" style="width: 15rem; flex-shrink: 0;  background: rgb(27, 27, 27);">
+    <div class="d-flex justify-content-center align-items-center pt-1">
+
+        <MudAvatar Style="height: 100px; width: 100px;" Color="Color.Primary" Variant="Variant.Text">
+            <MudImage Style="border-radius: 10%; border: 0;"  Src="/Assets/photo_2023-10-06_18-06-51.jpg"
+                Alt="Card image cap"/>
+
+        </MudAvatar>
+
+    </div>
+    <div style="height: fit-content;" class="card-body d-flex flex-column align-items-center">
+        <span class="card-text">
+            Barnabas Solomon.<span style="color: yellow">
+                &#64;barney
+            </span>
+        </span>
+        <MudButton Class="mt-1" Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">Follow</MudButton>
+    </div>
+</div>
+@code {
+
+    @* [Parameter]
+private IEnumerable<SuggestedUserDto>? Users { get; set; } *@
+}

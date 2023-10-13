@@ -58,11 +58,7 @@ namespace ShareSpace.Server.Repository
             }
             catch (Exception ex)
             {
-                return new AuthResponse()
-                {
-                    IsSuccess = false,
-                    Message = $"server error happened, {ex.Message} try again later"
-                };
+                throw new Exception(ex.Message);
             }
         }
 
@@ -109,17 +105,13 @@ namespace ShareSpace.Server.Repository
             }
             catch (Exception ex)
             {
-                return new AuthResponse()
-                {
-                    IsSuccess = false,
-                    Message = "something went wrong, try again later." + ex.Message
-                };
+                throw new Exception(ex.Message);
             }
         }
 
         private string GenerateAccessToken(User authorized_user)
         {
-            var TokenExpiration = DateTime.Now.AddMinutes(30);
+            DateTime TokenExpiration = DateTime.Now.AddSeconds(15);
             SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
             SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha256);
             List<Claim> claims =

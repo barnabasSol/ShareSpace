@@ -28,6 +28,50 @@
         color: white;
     }
 /* /Pages/StartingPages/LoginPage.razor.rz.scp.css */
+/* /Pages/UserPages/SuggestedUser.razor.rz.scp.css */
+.effect[b-a654zkq300] {
+    transition: 0.3s;
+}
+
+    .effect:hover[b-a654zkq300] {
+        cursor: pointer;
+        scale: 1.032;
+    }
+/* /Pages/UserPages/Suggestions.razor.rz.scp.css */
+main[b-qfps82va3f] {
+  display: grid;
+  gap: 0.3rem;
+  grid-template-rows: 1fr 5fr;
+  grid-template-columns: 1fr;
+  background: rgb(23, 24, 24);
+  grid-template-areas:
+    "usersugg"
+    "trending";
+}
+header[b-qfps82va3f] {
+  grid-area: header;
+}
+section[b-qfps82va3f] {
+    grid-area: trending;
+    background: rgb(23, 24, 24);
+    overflow-y: scroll;
+}
+
+.horiz-scroll[b-qfps82va3f] {
+  grid-area: usersugg;
+  display: flex;
+  overflow-x: scroll;
+  height: 200px;
+  background: rgb(23, 24, 24);
+}
+
+.horiz-scroll[b-qfps82va3f]::-webkit-scrollbar {
+  display: none;
+}
+
+section[b-qfps82va3f]::-webkit-scrollbar {
+  display: none;
+}
 /* /Shared/UserLayout.razor.rz.scp.css */
 header[b-qeisqmnyxe] {
   grid-area: header;
@@ -35,12 +79,12 @@ header[b-qeisqmnyxe] {
 
 .header1[b-qeisqmnyxe] {
   grid-area: h1;
-  background: transparent;
+  background: rgb(23, 24, 24);
 }
 
 .header2[b-qeisqmnyxe] {
   grid-area: h2;
-  background: transparent;
+  background: rgb(23, 24, 24);
 }
 .gridlayoutab[b-qeisqmnyxe] {
   display: grid;
@@ -49,9 +93,9 @@ header[b-qeisqmnyxe] {
   grid-template-areas: "h1 h2";
 }
 section[b-qeisqmnyxe] {
-    grid-area: section;
-    background: rgb(23, 24, 24);
-    overflow-y: scroll;
+  grid-area: section;
+  background: rgb(23, 24, 24);
+  overflow-y: scroll;
 }
 
 .phone_header[b-qeisqmnyxe] {
@@ -68,66 +112,65 @@ section[b-qeisqmnyxe]::-webkit-scrollbar {
 }
 
 nav[b-qeisqmnyxe] {
-    grid-area: nav;
-    background: rgb(23, 24, 24);
-    min-height: calc(100vh-64px);
-    overflow-y: scroll;
+  grid-area: nav;
+  background: rgb(23, 24, 24);
+  min-height: calc(100vh-64px);
+  overflow-y: scroll;
+  /*border-left: 1px solid grey;*/
 }
+
 nav[b-qeisqmnyxe]::-webkit-scrollbar {
   display: none;
 }
 
 main[b-qeisqmnyxe] {
-    display: grid;
-    gap: 0.3rem;
-    height: 100vh;
-    grid-template-rows: 64px 8fr;
-    grid-template-columns: 7fr 5fr;
-    background: rgb(23, 24, 24) !important;
-    grid-template-areas:
-        "header header"
-        "section nav";
+  display: grid;
+  gap: 0.3rem;
+  height: 100vh;
+  grid-template-rows: 64px 8fr;
+  grid-template-columns: 7fr 5fr;
+  background: rgb(23, 24, 24);
+
+  grid-template-areas:
+    "header header"
+    "section nav";
 }
 
-@media only screen and (min-width: 500px) and (max-width: 1169px) {
-    main[b-qeisqmnyxe] {
-        grid-template-rows: 64px 8fr;
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "header"
-            "section";
-    }
+@media only screen and (min-width: 500px) and (max-width: 1197px) {
+  main[b-qeisqmnyxe] {
+    grid-template-rows: 64px 8fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "section";
+  }
 
-    .header2[b-qeisqmnyxe] {
-        display: none !important;
-    }
+  .header2[b-qeisqmnyxe] {
+    display: none !important;
+  }
 
-    .header1[b-qeisqmnyxe] {
-        background: red !important;
-    }
+  .gridlayoutab[b-qeisqmnyxe] {
+    display: grid;
+    grid-template-rows: 64px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "h1";
+  }
 
-    .gridlayoutab[b-qeisqmnyxe] {
-        display: grid;
-        grid-template-rows: 64px;
-        grid-template-columns: 1fr;
-        grid-template-areas: "h1";
-    }
+  section[b-qeisqmnyxe] {
+    grid-area: section;
+    overflow-y: scroll;
+  }
 
-    section[b-qeisqmnyxe] {
-        grid-area: section;
-        overflow-y: scroll;
-    }
+  nav[b-qeisqmnyxe] {
+    display: none;
+    gap: 0.4rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
 
-    nav[b-qeisqmnyxe] {
-        display: none;
-        gap: 0.4rem;
-        overflow-x: scroll;
-        white-space: nowrap;
-    }
-
-        nav > div[b-qeisqmnyxe] {
-            flex-shrink: 0;
-        }
+  nav > div[b-qeisqmnyxe] {
+    flex-shrink: 0;
+  }
 }
 
 @media only screen and (max-width: 500px) {

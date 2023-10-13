@@ -2,26 +2,11 @@
 @layout UserLayout
 @attribute [Authorize]
 
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 m-0">
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-    <Post/>
-
+<div class="row row-cols-1 row-cols-md-2 row-cols-xlg-3 m-0">
+    @for (int x = 0; x < 10; x++)
+    {
+        <Post />
+    }
 </div>
 
 

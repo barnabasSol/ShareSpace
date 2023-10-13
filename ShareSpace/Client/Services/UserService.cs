@@ -14,13 +14,19 @@ namespace ShareSpace.Client.Services
             http_client = http;
         }
 
+        public async Task<DataResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId)
+        {
+            var http = http_client.CreateClient("ShareSpaceApi");
+            var response = await http.GetAsync("/get-extra-user-info");
+            var result = await response.Content.ReadFromJsonAsync<DataResponse<ExtraUserInfoDto>>();
+            return result!;
+        }
+
         public async Task<DataResponse<IEnumerable<InterestsDto>>> GetInterests()
         {
             var http = http_client.CreateClient("ShareSpaceApi");
             var response = await http.GetAsync("/User/get-interests");
-            var result = await response.Content.ReadFromJsonAsync<
-                DataResponse<IEnumerable<InterestsDto>>
-            >();
+            var result = await response.Content.ReadFromJsonAsync< DataResponse<IEnumerable<InterestsDto>>>();
             return result!;
         }
 

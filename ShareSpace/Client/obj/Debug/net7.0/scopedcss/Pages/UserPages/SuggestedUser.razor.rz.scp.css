@@ -1,0 +1,8 @@
+.effect[b-a654zkq300] {
+    transition: 0.3s;
+}
+
+    .effect:hover[b-a654zkq300] {
+        cursor: pointer;
+        scale: 1.032;
+    }

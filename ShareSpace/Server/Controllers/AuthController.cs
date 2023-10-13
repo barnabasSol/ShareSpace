@@ -28,7 +28,11 @@ namespace ShareSpace.Server.Controllers
             {
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
-                    new AuthResponse() { IsSuccess = false, Message = ex.Message }
+                    new AuthResponse()
+                    {
+                        IsSuccess = false,
+                        Message = $"server error happened, {ex.Message}. try again later"
+                    }
                 );
             }
         }
@@ -45,7 +49,11 @@ namespace ShareSpace.Server.Controllers
             {
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
-                    new AuthResponse() { IsSuccess = false, Message = ex.Message }
+                    new AuthResponse()
+                    {
+                        IsSuccess = false,
+                        Message = "something went wrong, try again later." + ex.Message
+                    }
                 );
             }
         }

@@ -11,7 +11,6 @@ namespace ShareSpace.Server.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository userRepository;
-
         public UserController(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
@@ -21,7 +20,20 @@ namespace ShareSpace.Server.Controllers
         [HttpGet("get-interests")]
         public async Task<ActionResult<DataResponse<IEnumerable<InterestsDto>>>> GetInterests()
         {
-            return await userRepository.GetInterests();
+            try
+            {
+                var interests = await userRepository.GetInterests();
+                return interests.IsSuccess ? Ok(interests) : BadRequest(interests);
+            }
+            catch (Exception ex)
+            {
+                return new DataResponse<IEnumerable<InterestsDto>>()
+                {
+                    IsSuccess = false,
+                    Message = $"a server error occured {ex.Message}",
+                    Data = Enumerable.Empty<InterestsDto>()
+                };
+            }
         }
 
         [Authorize]
@@ -29,7 +41,6 @@ namespace ShareSpace.Server.Controllers
         public async Task<ActionResult<DataResponse<string>>> StoreInterests(IEnumerable<InterestsDto> interests)
         {
             string UserId = User.FindFirst("Sub")!.Value;
-            await Console.Out.WriteLineAsync(UserId);
             try
             {
                 var result = await userRepository.StoreInterests(
@@ -43,7 +54,28 @@ namespace ShareSpace.Server.Controllers
                 return new DataResponse<string>()
                 {
                     IsSuccess = false,
-                    Message = $"a server error occured {ex.Message}"
+                    Message = $"a server error occured {ex.Message}",
+                    Data = ""
+                };
+            }
+        }
+
+        [Authorize]
+        [HttpPost("get-extra-user-info")]
+        public async Task<ActionResult<DataResponse<ExtraUserInfoDto>>> GetExtraInfo()
+        {
+            string UserId = User.FindFirst("Sub")!.Value;
+            try
+            {
+                var result = await userRepository.GetExtraUserInfo(Guid.Parse(UserId));
+                return result.IsSuccess ? Ok(result) : BadRequest(result);
+            }
+            catch (Exception ex)
+            {
+                return new DataResponse<ExtraUserInfoDto>()
+                {
+                    IsSuccess = false,
+                    Message = $"a server error occured {ex.Message}",
                 };
             }
         }

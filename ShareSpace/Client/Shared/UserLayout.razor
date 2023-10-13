@@ -1,5 +1,4 @@
 ﻿@inherits LayoutComponentBase
-@attribute [Authorize]
 
 <PageTitle>Home</PageTitle>
 
@@ -10,13 +9,48 @@
 <MudLayout>
     <MudDrawer Style="background: rgb(23, 24, 24);" @bind-Open="@open" Anchor="@anchor" Elevation="1"
         Variant="@DrawerVariant.Temporary">
-        <MudDrawerHeader>
-            <h4 style="color: white !important;">ShareSpace</h4>
-        </MudDrawerHeader>
-        <AuthorizeView>
-            <Authorized>
-            </Authorized>
-        </AuthorizeView>
+        <MudNavMenu Class="mud-width-full">
+            <MudStack Row="true" Class="px-2 py-2">
+                <MudAvatar Color="Color.Primary" Square="true" Variant="Variant.Outlined">
+                    <AuthorizeView>
+                        <Authorized>
+                            <MudButton Class="flex-md-row-reverse">
+                                <MudAvatar Color="Color.Primary" Square="true" Variant="Variant.Outlined">
+                                    @GetUserInfo(context.User.Claims.ToList()).Name![0]
+                                </MudAvatar>
+                            </MudButton>
+                        </Authorized>
+                    </AuthorizeView>
+                </MudAvatar>
+                <MudStack Justify="Justify.Center" Spacing="0">
+                <AuthorizeView>
+                    <Authorized>
+                    <MudText Typo="Typo.body1">@GetUserInfo(context.User.Claims.ToList()).Name</MudText>
+                            <MudText Typo="Typo.body2">&#64;@GetUserInfo(context.User.Claims.ToList()).UserName</MudText>
+
+                    </Authorized>
+                    <NotAuthorized>
+
+                    </NotAuthorized>
+                </AuthorizeView>
+                </MudStack>
+            </MudStack>
+            <MudDivider Class="my-2" />
+            <MudNavLink Style="color: white; text-decoration:none !important;" Href="/chat"
+                Icon="@Icons.Material.Filled.Dashboard">Dashboard
+            </MudNavLink>
+            <MudNavLink Style="color: white;" Href="/servers" Icon="@Icons.Material.Filled.Storage">Servers</MudNavLink>
+            <MudNavGroup Style="color: white;" Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="true">
+                <MudNavLink Style="color: white;" Href="/users" Icon="@Icons.Material.Filled.People"
+                    IconColor="Color.Success">
+                    Users
+                </MudNavLink>
+                <MudNavLink Style="color: white;" Href="/security" Icon="@Icons.Material.Filled.Security"
+                    IconColor="Color.Info">
+                    Security
+                </MudNavLink>
+            </MudNavGroup>
+        </MudNavMenu>
     </MudDrawer>
 
     <main>
@@ -45,11 +79,20 @@
                                         @GetUserInfo(context.User.Claims.ToList()).Name![0]
                                     </MudAvatar>
                                 </MudButton>
-                                <MudIconButton Href="/main" Icon="@Icons.Material.Rounded.Home" Color="Color.Inherit" />
-                                <MudIconButton Href="/chat" Icon="@Icons.Material.Rounded.Chat" Color="Color.Inherit" />
-                                <MudIconButton Icon="@Icons.Material.Rounded.PostAdd" Color="Color.Inherit" />
-                                <MudIconButton Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
-                                <MudIconButton Icon="@Icons.Material.Rounded.Favorite" Color="Color.Inherit" />
+                                <MudIconButton Class="py-0" Href="/main" Icon="@Icons.Material.Rounded.Home"
+                                    Color="Color.Inherit" />
+                                <MudBadge Overlap="true" Color="Color.Tertiary" Content="23">
+                                    <MudIconButton Class="py-0 px-1" Href="/chat" Icon="@Icons.Material.Rounded.Chat"
+                                        Color="Color.Inherit" />
+                                </MudBadge>
+                                <MudIconButton Href="/create-post" Icon="@Icons.Material.Rounded.PostAdd"
+                                    Color="Color.Inherit" />
+                                <MudBadge Overlap="true" Color="Color.Tertiary" Content="23">
+                                    <MudIconButton Class="py-0 px-0 ml-3" Href="/notifications"
+                                        Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
+                                </MudBadge>
+                                <MudIconButton Class="py-0 ml-2" Href="/favorites"
+                                    Icon="@Icons.Material.Rounded.Favorite" Color="Color.Inherit" />
                             </Authorized>
                         </AuthorizeView>
                         <MudIconButton Icon="@Icons.Material.Filled.Search" Color="Color.Inherit" />
@@ -62,10 +105,21 @@
         </header>
         <section>
             <MudMainContent Class="py-0" Style="background-color: rgb(23, 24, 24);">
+
+
+
+                @* DA MAINNNNNNNNNNN *@
+
                 @Body
+
+                @* DA MAINNNNNNNNNNN *@
+
+
+
             </MudMainContent>
         </section>
         <nav>
+            <ShareSpace.Client.Pages.UserPages.Suggestions />
         </nav>
         <footer>
             <MudAppBar Class="p-0" Style="background-color: rgb(23, 24, 24);" Elevation="0" Fixed="false" Dense="false">
@@ -73,7 +127,7 @@
                     <Authorized>
 
                         <div class="d-flex justify-content-between w-100">
-                            <MudIconButton Href="/home" Icon="@Icons.Material.Rounded.Home" Color="Color.Inherit" />
+                            <MudIconButton Href="/main" Icon="@Icons.Material.Rounded.Home" Color="Color.Inherit" />
                             <MudIconButton Href="/chat" Icon="@Icons.Material.Rounded.Chat" Color="Color.Inherit" />
                             <MudIconButton Icon="@Icons.Material.Rounded.PostAdd" Color="Color.Inherit" />
                             <MudIconButton Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
@@ -88,22 +142,16 @@
 </MudLayout>
 
 
-
 @code {
     object selectedValue = 1;
-
     bool open;
-
     Anchor anchor;
-
 
     void OpenDrawer(Anchor anchor)
     {
         this.anchor = anchor;
         open = true;
     }
-
-
 
     MudTheme MyCustomTheme = new MudTheme()
         {
@@ -119,10 +167,10 @@
                 Secondary = Colors.Shades.White,
                 Tertiary = Colors.Grey.Darken4,
             },
-            // LayoutProperties = new LayoutProperties()
-            // {
-            // DrawerWidthLeft = "470px",
-            // DrawerWidthRight = "100%"
-            // }
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "355px",
+                DrawerWidthRight = "100%"
+            }
         };
 }

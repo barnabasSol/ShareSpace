@@ -13,11 +13,11 @@ namespace ShareSpace.Server.Data
         public DbSet<Follower> Followers { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<NotificationType> NotificationTypes { get; set; }
-        public DbSet<Tag> Tags { get; set; }
         public DbSet<PostTag> PostTags { get; set; }
         public DbSet<UserInterest> UserInterests { get; set; }
         public DbSet<Interest> Interests { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<ViewedPost> ViewedPosts { get; set; }
 
         public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options) : base(options)
         {
@@ -27,6 +27,7 @@ namespace ShareSpace.Server.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserInterest>().HasKey(lp => new { lp.UserId, lp.InterestId });
+            modelBuilder.Entity<ViewedPost>().HasKey(lp => new { lp.UserId, lp.PostId });
 
             modelBuilder.Entity<PostTag>(pt =>
             {
@@ -106,11 +107,6 @@ namespace ShareSpace.Server.Data
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
-            });
-
-            modelBuilder.Entity<Tag>(t =>
-            {
-                t.Property(i => i.Id).HasDefaultValueSql("uuid_generate_v4()");
             });
         }
     }

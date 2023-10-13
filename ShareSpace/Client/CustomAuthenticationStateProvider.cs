@@ -11,7 +11,7 @@ namespace ShareSpace.Client
         private readonly ILocalStorageService localStorage;
         private readonly NavigationManager navigationManager;
 
-        public CustomAuthenticationStateProvider( ILocalStorageService localStorage, NavigationManager navigationManager)
+        public CustomAuthenticationStateProvider(ILocalStorageService localStorage, NavigationManager navigationManager)
         {
             this.localStorage = localStorage;
             this.navigationManager = navigationManager;
@@ -30,7 +30,7 @@ namespace ShareSpace.Client
             var claims = ParseClaimsFromJwt(token);
             var expClaim = claims.Where(_ => _.Type == "exp").Select(_ => _.Value).FirstOrDefault();
 
-            if (expClaim != null)
+            if (expClaim is not null)
             {
                 var expDate = DateTimeOffset.FromUnixTimeSeconds(long.Parse(expClaim));
                 if (expDate < DateTimeOffset.UtcNow)

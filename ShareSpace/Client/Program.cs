@@ -7,6 +7,7 @@ using ShareSpace.Client;
 using ShareSpace.Client.Services;
 using ShareSpace.Client.Services.Contracts;
 
+
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");

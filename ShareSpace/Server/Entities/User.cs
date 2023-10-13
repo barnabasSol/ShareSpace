@@ -38,5 +38,6 @@ namespace ShareSpace.Server.Entities
         public virtual ICollection<Follower>? Followers { get; set; }
         public virtual ICollection<Notification>? Notifications { get; set; }
         public virtual ICollection<RefreshToken>? RefreshTokens { get; set; }
+        public virtual ICollection<ViewedPost>? ViewedPosts { get; set; }
     }
 }

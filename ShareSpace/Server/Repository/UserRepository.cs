@@ -16,6 +16,40 @@ namespace ShareSpace.Server.Repository
             this.shareSpaceDb = shareSpaceDb;
         }
 
+        public async Task<DataResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId)
+        {
+            try
+            {
+                var user = await shareSpaceDb.Users
+                    .Where(w => w.UserId.Equals(UserId))
+                    .Select(
+                        x =>
+                            new ExtraUserInfoDto()
+                            {
+                                ProfilePicUrl = x.ProfilePicUrl,
+                                FollowersCount = shareSpaceDb.Followers
+                                    .Where(w => w.FollowedId.Equals(UserId))
+                                    .Count(),
+                                FollowingCount = shareSpaceDb.Followers
+                                    .Where(w => w.FollowerId.Equals(UserId))
+                                    .Count(),
+                                JoinedDate = x.CreatedAt
+                            }
+                    )
+                    .FirstOrDefaultAsync();
+                return new DataResponse<ExtraUserInfoDto>()
+                {
+                    IsSuccess = true,
+                    Message = "",
+                    Data = user
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<DataResponse<IEnumerable<InterestsDto>>> GetInterests()
         {
             try
@@ -31,14 +65,10 @@ namespace ShareSpace.Server.Repository
             }
             catch (Exception ex)
             {
-                return new DataResponse<IEnumerable<InterestsDto>>()
-                {
-                    IsSuccess = false,
-                    Message = ex.Message,
-                    Data = Enumerable.Empty<InterestsDto>()
-                };
+                throw new Exception(ex.Message);
             }
         }
+
 
         public async Task<DataResponse<string>> StoreInterests(IEnumerable<InterestsDto> interests, Guid current_user)
         {
@@ -60,18 +90,19 @@ namespace ShareSpace.Server.Repository
                 return new DataResponse<string>
                 {
                     IsSuccess = false,
-                    Message = $"the received content is empty"
+                    Message = $"the received content is not valid"
                 };
             }
             catch (Exception ex)
             {
                 transaction.Rollback();
-                return new DataResponse<string>
-                {
-                    IsSuccess = false,
-                    Message = $"couldn't store your interests, {ex.Message}"
-                };
+                throw new Exception(ex.Message);
             }
+        }
+
+        public Task<DataResponse<IEnumerable<string>>> UploadImages(IEnumerable<string> image_url)
+        {
+            throw new NotImplementedException();
         }
     }
 }

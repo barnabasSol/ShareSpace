@@ -9,10 +9,16 @@ h1:focus {
   outline: none;
 }
 
+.my-link:hover {
+    color: yellow !important;
+}
+
 a,
 .btn-link {
   color: #0071c1;
 }
+
+
 
 .btn-primary {
   color: #fff;
