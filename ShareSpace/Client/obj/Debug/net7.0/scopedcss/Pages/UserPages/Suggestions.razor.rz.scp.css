@@ -1,4 +1,4 @@
-main[b-qfps82va3f] {
+.main_sugg[b-qfps82va3f] {
   display: grid;
   gap: 0.3rem;
   grid-template-rows: 1fr 5fr;
@@ -12,9 +12,9 @@ header[b-qfps82va3f] {
   grid-area: header;
 }
 section[b-qfps82va3f] {
-    grid-area: trending;
-    background: rgb(23, 24, 24);
-    overflow-y: scroll;
+  grid-area: trending;
+  background: rgb(23, 24, 24);
+  overflow-y: scroll;
 }
 
 .horiz-scroll[b-qfps82va3f] {

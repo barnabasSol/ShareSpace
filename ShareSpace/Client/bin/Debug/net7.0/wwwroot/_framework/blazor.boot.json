@@ -213,15 +213,15 @@
       "mscorlib.dll": "sha256-8OmdVHzoN7xteY5ehp0L8R17I9QxFkH2lUVHFuslE0s=",
       "netstandard.dll": "sha256-urq+e2ZQXxmOWMRxTR92529HnUVu6+kyVnfF6SoLad8=",
       "System.Private.CoreLib.dll": "sha256-ixnF\/wVKLHZM1N0lfJufpZ41EC2LvvyiSqdW43h3Xew=",
-      "ShareSpace.Shared.dll": "sha256-B6hiZmcdf1U\/gXi3vjyqmkSQAkgQV+upE9Xp8lOK0oo=",
-      "ShareSpace.Client.dll": "sha256-xbLIfqsJdDEOj5TURo3\/U7bnYbjqWak68KjKsAalapg="
+      "ShareSpace.Shared.dll": "sha256-hYh9EbABgHZw1imrcrAy38rKA73Ac2PBqIkdY1R1TuM=",
+      "ShareSpace.Client.dll": "sha256-z9LYYGuuVZU7dc2ZCPem+4bx7Zf0PgiRitoXW9oh\/jU="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "ShareSpace.Shared.pdb": "sha256-KnkyxuUTK8ufu7PfJB5eghG3wybGHRbHCBVBgyw19QU=",
-      "ShareSpace.Client.pdb": "sha256-3aeHN3rlN26fMX9BWTSHGJC+IBFrNCt1oZQ76OgKT9I="
+      "ShareSpace.Shared.pdb": "sha256-S6dQzviyG9818vRkXi3WG\/QTTjMywyzvZYzJ0c1e8Ng=",
+      "ShareSpace.Client.pdb": "sha256-uWAX\/IY3ogNhZU5GmY35WaIBZ0tMXuQz4cZF1Eg3fX0="
     },
     "runtime": {
       "dotnet.7.0.12.7cg25k91oz.js": "sha256-cPJgWy8SjMaYFeimGkYy23ls+rDZVmoC\/eMoHpqRc+4=",

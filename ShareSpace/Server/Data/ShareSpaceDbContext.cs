@@ -18,6 +18,7 @@ namespace ShareSpace.Server.Data
         public DbSet<Interest> Interests { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<ViewedPost> ViewedPosts { get; set; }
+        public DbSet<PostImage> PostImages { get; set; }
 
         public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options) : base(options)
         {

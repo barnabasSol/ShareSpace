@@ -1,2 +1,52 @@
 @page "/create-post"
 @layout UserLayout
+@inject IPostService PostService
+
+
+<div class="px-lg-5 p-2 py-2 ">
+    <MudTextField @bind-Value="PostText" T="string" Placeholder="write something" Variant="Variant.Outlined"
+        Lines="10" />
+    <span>@PostText</span>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <InputFile id="post_file" OnChange="CollectFiles" hidden multiple />
+        <MudFab Class="mt-1" Size="Size.Medium" HtmlTag="label" Color="Color.Default"
+            StartIcon="@Icons.Material.Filled.AttachFile" for="post_file" />
+        @if (collected_files.Count > 0 || AllowedToPost)
+        {
+            <MudButton Disabled="@processing" OnClick="UploadPost" Variant="Variant.Filled" Color="Color.Success"
+                Class="ml-auto">
+
+                @if (processing)
+                {
+                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                    <MudText Class="ms-2">please wait</MudText>
+                }
+                else
+                {
+                    <MudText>Post</MudText>
+                }
+            </MudButton>
+
+        }
+
+    </div>
+    <div class="w-100">
+        @if (collected_files is not null)
+        {
+            @foreach (var file in collected_files)
+            {
+                <MudCard Class="p-0 mt-1" Style="background-color: transparent; border: 1px solid white; border-radius: 10px;">
+                    <MudCardContent Class="p-0">
+                        <MudCardMedia Style="border-radius: 10px;"
+                            Image="@($"data:{file.Type};base64,{Convert.ToBase64String(file.ImageBytes!)}")" Height="320" />
+                        <MudIconButton OnClick="(_ => collected_files.Remove(file))" Icon="@Icons.Material.Filled.Delete"
+                            Variant="Variant.Filled" Color="Color.Default" />
+                    </MudCardContent>
+                </MudCard>
+            }
+        }
+
+    </div>
+
+</div>

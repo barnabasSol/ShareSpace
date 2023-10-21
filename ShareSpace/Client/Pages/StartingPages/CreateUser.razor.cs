@@ -31,12 +31,12 @@ namespace ShareSpace.Client.Pages.StartingPages
                     await localstorage.SetItemAsync("ShareSpaceAccessToken", result.AccessToken);
                     await localstorage.SetItemAsync("ShareSpaceRefreshToken", result.RefreshToken);
                     (authstate as CustomAuthenticationStateProvider)!.NotifyAuthStateChange();
-                    NavigationManager.NavigateTo("/user/interests");
+                    NavigationManager.NavigateTo("/interests");
                 }
                 else
                 {
-                processing = false;
-                ShowSnackBarWithOptions(message: result.Message, variant: Variant.Filled);
+                    processing = false;
+                    ShowSnackBarWithOptions(message: result.Message, variant: Variant.Filled);
                 }
             }
             this.StateHasChanged();

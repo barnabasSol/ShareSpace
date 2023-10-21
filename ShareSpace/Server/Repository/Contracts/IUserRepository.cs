@@ -5,9 +5,12 @@ namespace ShareSpace.Server.Repository.Contracts
 {
     public interface IUserRepository
     {
-        Task<DataResponse<IEnumerable<InterestsDto>>> GetInterests();
-        Task<DataResponse<string>> StoreInterests(IEnumerable<InterestsDto> interests, Guid current_user);
-        Task<DataResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId);
-        Task<DataResponse<IEnumerable<string>>> UploadImages(IEnumerable<string> image_url);
+        Task<ApiResponse<IEnumerable<InterestsDto>>> GetInterests();
+        Task<ApiResponse<string>> StoreInterests(
+            IEnumerable<InterestsDto> interests,
+            Guid current_user
+        );
+        Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId);
+        Task<ApiResponse<string>> UploadPost(CreatePostDto post);
     }
 }

@@ -23,16 +23,16 @@
                     </AuthorizeView>
                 </MudAvatar>
                 <MudStack Justify="Justify.Center" Spacing="0">
-                <AuthorizeView>
-                    <Authorized>
-                    <MudText Typo="Typo.body1">@GetUserInfo(context.User.Claims.ToList()).Name</MudText>
-                            <MudText Typo="Typo.body2">&#64;@GetUserInfo(context.User.Claims.ToList()).UserName</MudText>
+                    <AuthorizeView>
+                        <Authorized>
+                            <MudText Typo="Typo.body1">@GetUserInfo(context.User.Claims.ToList()).Name</MudText>
+                                <MudText Typo="Typo.body2">&#64;@GetUserInfo(context.User.Claims.ToList()).UserName
+                            </MudText>
+                        </Authorized>
+                        <NotAuthorized>
 
-                    </Authorized>
-                    <NotAuthorized>
-
-                    </NotAuthorized>
-                </AuthorizeView>
+                        </NotAuthorized>
+                    </AuthorizeView>
                 </MudStack>
             </MudStack>
             <MudDivider Class="my-2" />
@@ -63,7 +63,6 @@
                                 @GetUserInfo(context.User.Claims.ToList()).Name![0]
                             </MudAvatar>
                         </MudButton>
-
                     </Authorized>
                 </AuthorizeView>
                 <h1 style="color: white;">ShareSpace</h1>
@@ -71,7 +70,8 @@
             </div>
             <div class="pcheader gridlayoutab w-100">
                 <div class="header1">
-                    <div class="navbar h-100 d-flex justify-content-around" style="background-color: rgb(23, 24, 24);">
+                    <div class="navbar h-100 ml-2 d-flex justify-content-start"
+                        style="background-color: rgb(23, 24, 24);">
                         <AuthorizeView>
                             <Authorized>
                                 <MudButton Class="flex-md-row-reverse" OnClick="@(() => OpenDrawer(Anchor.Start))">
@@ -79,30 +79,41 @@
                                         @GetUserInfo(context.User.Claims.ToList()).Name![0]
                                     </MudAvatar>
                                 </MudButton>
-                                <MudIconButton Class="py-0" Href="/main" Icon="@Icons.Material.Rounded.Home"
-                                    Color="Color.Inherit" />
-                                <MudBadge Overlap="true" Color="Color.Tertiary" Content="23">
-                                    <MudIconButton Class="py-0 px-1" Href="/chat" Icon="@Icons.Material.Rounded.Chat"
-                                        Color="Color.Inherit" />
-                                </MudBadge>
-                                <MudIconButton Href="/create-post" Icon="@Icons.Material.Rounded.PostAdd"
-                                    Color="Color.Inherit" />
-                                <MudBadge Overlap="true" Color="Color.Tertiary" Content="23">
-                                    <MudIconButton Class="py-0 px-0 ml-3" Href="/notifications"
-                                        Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
-                                </MudBadge>
-                                <MudIconButton Class="py-0 ml-2" Href="/favorites"
-                                    Icon="@Icons.Material.Rounded.Favorite" Color="Color.Inherit" />
+
                             </Authorized>
                         </AuthorizeView>
-                        <MudIconButton Icon="@Icons.Material.Filled.Search" Color="Color.Inherit" />
                     </div>
+                </div>
+                <div class="headerx d-flex justify-content-around align-items-center">
+                    <MudIconButton Class="py-0" Href="/main" Icon="@Icons.Material.Rounded.Home"
+                        Color="Color.Inherit" />
+                    <MudBadge Overlap="true" Color="Color.Tertiary" Content="23">
+                        <MudIconButton Class="py-0 px-1" Href="/chat" Icon="@Icons.Material.Rounded.Chat"
+                            Color="Color.Inherit" />
+                    </MudBadge>
+                    <MudIconButton Href="/create-post" Icon="@Icons.Material.Rounded.PostAdd" Color="Color.Inherit" />
+                    <MudBadge Overlap="true" Color="Color.Tertiary" Content="23">
+                        <MudIconButton Class="py-0 px-0 ml-3" Href="/history"
+                            Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
+                    </MudBadge>
+@*                     <MudIconButton Class="py-0 ml-2" Href="/favorites" Icon="@Icons.Material.Rounded.Favorite"
+                        Color="Color.Inherit" /> *@
+                    <MudIconButton Icon="@Icons.Material.Filled.Search" Color="Color.Inherit" Class="mr-2"/>
+
                 </div>
                 <div class="header2 d-flex justify-content-center align-items-center">
                     <h4 style="color: white;">explore more</h4>
                 </div>
             </div>
         </header>
+
+        <article class="p-1">
+            <AuthorizeView>
+                <Authorized>
+                    <ShareSpace.Client.Pages.UserPages.UserProfile claims="@context.User.Claims.ToList()" />
+                </Authorized>
+            </AuthorizeView>
+        </article>
         <section>
             <MudMainContent Class="py-0" Style="background-color: rgb(23, 24, 24);">
 

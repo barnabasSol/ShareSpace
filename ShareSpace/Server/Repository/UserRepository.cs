@@ -16,7 +16,7 @@ namespace ShareSpace.Server.Repository
             this.shareSpaceDb = shareSpaceDb;
         }
 
-        public async Task<DataResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId)
+        public async Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace ShareSpace.Server.Repository
                             }
                     )
                     .FirstOrDefaultAsync();
-                return new DataResponse<ExtraUserInfoDto>()
+                return new ApiResponse<ExtraUserInfoDto>()
                 {
                     IsSuccess = true,
                     Message = "",
@@ -50,12 +50,12 @@ namespace ShareSpace.Server.Repository
             }
         }
 
-        public async Task<DataResponse<IEnumerable<InterestsDto>>> GetInterests()
+        public async Task<ApiResponse<IEnumerable<InterestsDto>>> GetInterests()
         {
             try
             {
                 var interests = await shareSpaceDb.Interests.ToListAsync();
-                return new DataResponse<IEnumerable<InterestsDto>>()
+                return new ApiResponse<IEnumerable<InterestsDto>>()
                 {
                     IsSuccess = true,
                     Data = interests.Select(
@@ -69,8 +69,10 @@ namespace ShareSpace.Server.Repository
             }
         }
 
-
-        public async Task<DataResponse<string>> StoreInterests(IEnumerable<InterestsDto> interests, Guid current_user)
+        public async Task<ApiResponse<string>> StoreInterests(
+            IEnumerable<InterestsDto> interests,
+            Guid current_user
+        )
         {
             using var transaction = shareSpaceDb.Database.BeginTransaction();
             try
@@ -85,9 +87,9 @@ namespace ShareSpace.Server.Repository
                     }
                     await shareSpaceDb.SaveChangesAsync();
                     transaction.Commit();
-                    return new DataResponse<string> { IsSuccess = true };
+                    return new ApiResponse<string> { IsSuccess = true };
                 }
-                return new DataResponse<string>
+                return new ApiResponse<string>
                 {
                     IsSuccess = false,
                     Message = $"the received content is not valid"
@@ -100,7 +102,7 @@ namespace ShareSpace.Server.Repository
             }
         }
 
-        public Task<DataResponse<IEnumerable<string>>> UploadImages(IEnumerable<string> image_url)
+        public Task<ApiResponse<string>> UploadPost(CreatePostDto post)
         {
             throw new NotImplementedException();
         }

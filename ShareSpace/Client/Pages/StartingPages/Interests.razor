@@ -1,8 +1,8 @@
-@page "/user/interests"
+@page "/interests"
+@attribute [Authorize]
 @using ShareSpace.Shared.DTOs;
 @using ShareSpace.Shared.ResponseTypes;
 @layout LandingLayout
-@attribute [Authorize]
 @inject IUserService UserService
 @inject NavigationManager NavigationManager
 

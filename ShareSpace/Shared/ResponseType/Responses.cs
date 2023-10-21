@@ -8,7 +8,7 @@ namespace ShareSpace.Shared.ResponseTypes
         public string Message { get; set; } = string.Empty;
     }
 
-    public class DataResponse<T>
+    public class ApiResponse<T>
     {
         public bool IsSuccess { get; set;}
         public string Message { get; set;} = string.Empty;

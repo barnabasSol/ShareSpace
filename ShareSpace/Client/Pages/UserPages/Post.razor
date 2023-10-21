@@ -1,6 +1,6 @@
 ﻿<div class="col mb-1 p-1">
     <MudCard>
-        <MudCardHeader Style="background: rgb(27, 27, 27); height: 64px">
+        <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
             <CardHeaderAvatar>
                 <MudAvatar Size="Size.Large" Color="Color.Tertiary">S</MudAvatar>
             </CardHeaderAvatar>
@@ -16,23 +16,22 @@
                 </MudMenu>
             </CardHeaderActions>
         </MudCardHeader>
-
-        <div class="d-flex justify-content-center" style="background: rgb(23, 24, 24);">
-            <MudImage Style="overflow: hidden; border-radius: 10px !important;" ObjectFit="ObjectFit.Contain" Height="320"
-                      Src="/Assets/tiki-mask (5).png" Elevation="0" Class="rounded-lg" />
+  @*       <div class="d-flex justify-content-center w-100" style="background: rgb(23, 24, 24);">
+            <MudImage Style="overflow: hidden; border-radius: 10px !important;" ObjectFit="ObjectFit.Contain"
+                Height="320" Src="/Assets/tiki-mask (5).png" Elevation="0" Class="rounded-lg" />
         </div>
+ *@
+        <MudCardMedia Image="/Assets/avatar_night_in_the_woods.jpg" Height="320" />
 
-        <MudCardContent Style="background: rgb(23, 24, 24); color: white;">
+        <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
             <MudText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
         </MudCardContent>
         <MudCardActions Style="background: rgb(27, 27, 27);" Class="d-flex justify-content-between gap-5">
             <div>
-                <MudToggleIconButton @bind-Toggled="@Liked"
-                                     Icon="@Icons.Material.Filled.Favorite"
-                                     ToggledIcon="@Icons.Material.Filled.Favorite"
-                                     ToggledColor="Color.Primary" />
-
-                <span style="color: white;">233</span>
+                <MudToggleIconButton Toggled="@Liked" ToggledChanged="OnToggledChanged"
+                                     Icon="@Icons.Material.Filled.Favorite" Title="Off"
+                                     ToggledIcon="@Icons.Material.Filled.Favorite" ToggledColor="@Color.Primary" />
+                <span style="color: white;">@like_count</span>
             </div>
             <div>
                 <MudIconButton Icon="@Icons.Material.Filled.AddComment" Color="Color.Default" />
@@ -50,8 +49,23 @@
 
 @code {
     public bool Liked { get; set; }
+    public int like_count = 233;
+
 
     [Parameter]
     public required List<PostDto> PostDtos { get; set; }
+
+    public void OnToggledChanged(bool toggled)
+    {
+        // Because variable is not two-way bound, we need to update it ourself
+        Liked = toggled;
+        if (Liked && like_count > 0)
+            like_count++;
+        else
+        {
+            Liked = false;  
+            like_count--;
+        }
+    }
 
 }

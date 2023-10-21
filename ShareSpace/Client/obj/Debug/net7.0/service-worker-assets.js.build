@@ -1,6 +1,10 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
+      "hash": "sha256-8rVGWisVzG9p8m4epfBM+lTLiWf8Zv6BIBisAgfbkBo=",
+      "url": "Assets\/avatar_night_in_the_woods.jpg"
+    },
+    {
       "hash": "sha256-4vB6EqhoqFUwAcnHI2AxqqAD9z\/igVGtACh+ZLtzkbo=",
       "url": "Assets\/chat.png"
     },
@@ -153,7 +157,7 @@
       "url": "manifest.json"
     },
     {
-      "hash": "sha256-tg+8ejp1+FiYgMzEcE4dJzLhhVz9MfO5awK7sV3E3X4=",
+      "hash": "sha256-0Ug+SselPiRaTPM+3FWawfVnTcnqME0oeEgRtsjzhlM=",
       "url": "ShareSpace.Client.styles.css"
     },
     {
@@ -1009,19 +1013,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-+DnMyrzfNkZvrjFrlQvQkkKfye17GTIp+PoK53EICVs=",
+      "hash": "sha256-hYh9EbABgHZw1imrcrAy38rKA73Ac2PBqIkdY1R1TuM=",
       "url": "_framework\/ShareSpace.Shared.dll"
     },
     {
-      "hash": "sha256-RvXgTnqPExtHxHPsgASWrB7kObzsO9WYSvf1Q\/0l\/wk=",
+      "hash": "sha256-S6dQzviyG9818vRkXi3WG\/QTTjMywyzvZYzJ0c1e8Ng=",
       "url": "_framework\/ShareSpace.Shared.pdb"
     },
     {
-      "hash": "sha256-+pqLckOYu8Asv\/qHEszRnxSbf8eFp3rwudvD64WLVpA=",
+      "hash": "sha256-z9LYYGuuVZU7dc2ZCPem+4bx7Zf0PgiRitoXW9oh\/jU=",
       "url": "_framework\/ShareSpace.Client.dll"
     },
     {
-      "hash": "sha256-8ql9hMcIpp2aGOzMVsUmkXumnb1q\/wmMQ\/3n9t7zqwA=",
+      "hash": "sha256-uWAX\/IY3ogNhZU5GmY35WaIBZ0tMXuQz4cZF1Eg3fX0=",
       "url": "_framework\/ShareSpace.Client.pdb"
     },
     {
@@ -1029,7 +1033,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-29FqwkQ+7W+VYBqyhjhrGeJ6UnG0d3D+qVzjjZj\/Qq4=",
+      "hash": "sha256-fAopN50Q6tocdOZCA9LU78lHQyfkkcRekcZAeXTpcj0=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1041,5 +1045,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "vX9DgyFM"
+  "version": "tOwLSwpV"
 };

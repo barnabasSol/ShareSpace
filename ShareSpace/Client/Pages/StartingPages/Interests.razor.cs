@@ -8,8 +8,8 @@ namespace ShareSpace.Client.Pages.StartingPages
     {
         bool processing = false;
         public MudChip[]? selected;
-        public DataResponse<string>? SendInterestsResponse;
-        DataResponse<IEnumerable<InterestsDto>> response = new();
+        public ApiResponse<string>? SendInterestsResponse;
+        ApiResponse<IEnumerable<InterestsDto>> response = new();
 
         protected override async Task OnInitializedAsync()
         {
@@ -37,7 +37,7 @@ namespace ShareSpace.Client.Pages.StartingPages
             }
             catch (Exception ex)
             {
-                SendInterestsResponse = new DataResponse<string>()
+                SendInterestsResponse = new ApiResponse<string>()
                 {
                     IsSuccess = false,
                     Message = ex.Message,

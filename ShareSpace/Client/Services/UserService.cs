@@ -13,29 +13,32 @@ namespace ShareSpace.Client.Services
         {
             http_client = http;
         }
-
-        public async Task<DataResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId)
+        
+        public async Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId)
         {
             var http = http_client.CreateClient("ShareSpaceApi");
-            var response = await http.GetAsync("/get-extra-user-info");
-            var result = await response.Content.ReadFromJsonAsync<DataResponse<ExtraUserInfoDto>>();
+            var response = await http.GetAsync("/User/get-extra-user-info");
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<ExtraUserInfoDto>>();
             return result!;
         }
 
-        public async Task<DataResponse<IEnumerable<InterestsDto>>> GetInterests()
+        public async Task<ApiResponse<IEnumerable<InterestsDto>>> GetInterests()
         {
             var http = http_client.CreateClient("ShareSpaceApi");
             var response = await http.GetAsync("/User/get-interests");
-            var result = await response.Content.ReadFromJsonAsync< DataResponse<IEnumerable<InterestsDto>>>();
+            var result = await response.Content.ReadFromJsonAsync<
+                ApiResponse<IEnumerable<InterestsDto>>
+            >();
             return result!;
         }
 
-        public async Task<DataResponse<string>> SendInterests(IEnumerable<InterestsDto> interests)
+        public async Task<ApiResponse<string>> SendInterests(IEnumerable<InterestsDto> interests)
         {
             var http = http_client.CreateClient("ShareSpaceApi");
             var response = await http.PostAsJsonAsync("/User/store-interests", interests);
-            var result = await response.Content.ReadFromJsonAsync<DataResponse<string>>();
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<string>>();
             return result!;
         }
+
     }
 }

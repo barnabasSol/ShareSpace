@@ -23,7 +23,7 @@ namespace ShareSpace.Client.Services
                 var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
                 if (response is not null)
                     return result!;
-                throw new Exception($"{response!.StatusCode}");
+                throw new Exception($"{result!.Message}");
             }
             catch (Exception ex)
             {

@@ -13,9 +13,6 @@ namespace ShareSpace.Server.Entities
         [Column("content")]
         public string? Content { get; set; }
 
-        [Column("image_url")]
-        public string? ImageUrl { get; set; }
-
         [Column("likes")]
         public int Likes { get; set; }
 
@@ -30,7 +27,9 @@ namespace ShareSpace.Server.Entities
         public Guid UserId { get; set; }
 
         public User? User { get; set; }
+
         public virtual ICollection<Comment>? Comments { get; set; }
         public virtual ICollection<ViewedPost>? ViewedPosts { get; set; }
+        public virtual ICollection<PostImage>? PostImages { get; set; }
     }
 }

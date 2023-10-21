@@ -19,7 +19,10 @@ namespace ShareSpace.Server.Repository
         private readonly ShareSpaceDbContext shareSpaceDb;
         private readonly TokenSettings token_Setting;
 
-        public AuthRepository(ShareSpaceDbContext shareSpaceDb, IOptions<TokenSettings> token_setting)
+        public AuthRepository(
+            ShareSpaceDbContext shareSpaceDb,
+            IOptions<TokenSettings> token_setting
+        )
         {
             this.shareSpaceDb = shareSpaceDb;
             token_Setting = token_setting.Value;
@@ -37,13 +40,14 @@ namespace ShareSpace.Server.Repository
                 {
                     return new AuthResponse() { IsSuccess = false, Message = "email is in use" };
                 }
-                var NewUser = new User()
-                {
-                    UserName = requesting_user.UserName,
-                    Name = requesting_user.Name,
-                    Email = requesting_user.Email,
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword(requesting_user.Password)
-                };
+                User NewUser =
+                    new()
+                    {
+                        UserName = requesting_user.UserName,
+                        Name = requesting_user.Name,
+                        Email = requesting_user.Email,
+                        PasswordHash = BCrypt.Net.BCrypt.HashPassword(requesting_user.Password)
+                    };
                 await shareSpaceDb.Users.AddAsync(NewUser);
 
                 await shareSpaceDb.SaveChangesAsync();
@@ -111,7 +115,7 @@ namespace ShareSpace.Server.Repository
 
         private string GenerateAccessToken(User authorized_user)
         {
-            DateTime TokenExpiration = DateTime.Now.AddSeconds(15);
+            DateTime TokenExpiration = DateTime.Now.AddDays(15);
             SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
             SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha256);
             List<Claim> claims =
@@ -123,9 +127,7 @@ namespace ShareSpace.Server.Repository
                     new Claim("Email", authorized_user.Email),
                     new Claim(
                         JwtRegisteredClaimNames.Exp,
-                        new DateTimeOffset(TokenExpiration)
-                            .ToUnixTimeSeconds()
-                            .ToString()
+                        new DateTimeOffset(TokenExpiration).ToUnixTimeSeconds().ToString()
                     )
                 };
             JwtSecurityToken securityToken =
@@ -138,7 +140,6 @@ namespace ShareSpace.Server.Repository
                 );
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
-
 
         private async Task<string> GenerateRefershToken(Guid authorized_user_id)
         {

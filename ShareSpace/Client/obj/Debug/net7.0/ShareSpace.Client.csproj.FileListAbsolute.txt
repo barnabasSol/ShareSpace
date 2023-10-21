@@ -902,3 +902,4 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\KP+pZZrq.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Pages\UserPages\SuggestedUser.razor.rz.scp.css
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Pages\UserPages\Suggestions.razor.rz.scp.css
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\scopedcss\Pages\UserPages\UserProfile.razor.rz.scp.css

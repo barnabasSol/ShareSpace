@@ -11,6 +11,7 @@ namespace ShareSpace.Server.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository userRepository;
+
         public UserController(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
@@ -18,7 +19,7 @@ namespace ShareSpace.Server.Controllers
 
         [Authorize]
         [HttpGet("get-interests")]
-        public async Task<ActionResult<DataResponse<IEnumerable<InterestsDto>>>> GetInterests()
+        public async Task<ActionResult<ApiResponse<IEnumerable<InterestsDto>>>> GetInterests()
         {
             try
             {
@@ -27,7 +28,7 @@ namespace ShareSpace.Server.Controllers
             }
             catch (Exception ex)
             {
-                return new DataResponse<IEnumerable<InterestsDto>>()
+                return new ApiResponse<IEnumerable<InterestsDto>>()
                 {
                     IsSuccess = false,
                     Message = $"a server error occured {ex.Message}",
@@ -38,7 +39,9 @@ namespace ShareSpace.Server.Controllers
 
         [Authorize]
         [HttpPost("store-interests")]
-        public async Task<ActionResult<DataResponse<string>>> StoreInterests(IEnumerable<InterestsDto> interests)
+        public async Task<ActionResult<ApiResponse<string>>> StoreInterests(
+            IEnumerable<InterestsDto> interests
+        )
         {
             string UserId = User.FindFirst("Sub")!.Value;
             try
@@ -51,7 +54,7 @@ namespace ShareSpace.Server.Controllers
             }
             catch (Exception ex)
             {
-                return new DataResponse<string>()
+                return new ApiResponse<string>()
                 {
                     IsSuccess = false,
                     Message = $"a server error occured {ex.Message}",
@@ -62,7 +65,7 @@ namespace ShareSpace.Server.Controllers
 
         [Authorize]
         [HttpPost("get-extra-user-info")]
-        public async Task<ActionResult<DataResponse<ExtraUserInfoDto>>> GetExtraInfo()
+        public async Task<ActionResult<ApiResponse<ExtraUserInfoDto>>> GetExtraInfo()
         {
             string UserId = User.FindFirst("Sub")!.Value;
             try
@@ -72,7 +75,7 @@ namespace ShareSpace.Server.Controllers
             }
             catch (Exception ex)
             {
-                return new DataResponse<ExtraUserInfoDto>()
+                return new ApiResponse<ExtraUserInfoDto>()
                 {
                     IsSuccess = false,
                     Message = $"a server error occured {ex.Message}",

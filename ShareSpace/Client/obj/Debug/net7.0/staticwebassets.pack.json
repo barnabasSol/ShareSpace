@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\service-worker.js"
     },
     {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\avatar_night_in_the_woods.jpg",
+      "PackagePath": "staticwebassets\\Assets\\avatar_night_in_the_woods.jpg"
+    },
+    {
       "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\chat.png",
       "PackagePath": "staticwebassets\\Assets\\chat.png"
     },

@@ -6,20 +6,31 @@ header {
   grid-area: h1;
   background: rgb(23, 24, 24);
 }
+.headerx {
+    grid-area: hx;
+    background: rgb(23, 24, 24);
+}
 
 .header2 {
   grid-area: h2;
   background: rgb(23, 24, 24);
 }
+
 .gridlayoutab {
-  display: grid;
-  grid-template-rows: 64px;
-  grid-template-columns: 7fr 5fr;
-  grid-template-areas: "h1 h2";
+    display: grid;
+    grid-template-rows: 64px;
+    grid-template-columns: 3fr 5fr 4fr;
+    grid-template-areas: "h1 hx h2";
 }
+
 section {
   grid-area: section;
   background: rgb(23, 24, 24);
+  overflow-y: scroll;
+}
+
+article {
+  grid-area: profcon;
   overflow-y: scroll;
 }
 
@@ -39,12 +50,13 @@ section::-webkit-scrollbar {
 nav {
   grid-area: nav;
   background: rgb(23, 24, 24);
-  min-height: calc(100vh-64px);
   overflow-y: scroll;
-  /*border-left: 1px solid grey;*/
 }
 
 nav::-webkit-scrollbar {
+  display: none;
+}
+article::-webkit-scrollbar {
   display: none;
 }
 
@@ -53,21 +65,20 @@ main {
   gap: 0.3rem;
   height: 100vh;
   grid-template-rows: 64px 8fr;
-  grid-template-columns: 7fr 5fr;
+  grid-template-columns: 3fr 5fr 4fr;
   background: rgb(23, 24, 24);
-
   grid-template-areas:
-    "header header"
-    "section nav";
+    "header header header"
+    "profcon section nav";
 }
 
-@media only screen and (min-width: 500px) and (max-width: 1197px) {
+@media only screen and (min-width: 601px) and (max-width: 1197px) {
   main {
     grid-template-rows: 64px 8fr;
-    grid-template-columns: 1fr;
+    grid-template-columns: 0.7fr 1fr;
     grid-template-areas:
       "header"
-      "section";
+      "profcon section";
   }
 
   .header2 {
@@ -77,8 +88,8 @@ main {
   .gridlayoutab {
     display: grid;
     grid-template-rows: 64px;
-    grid-template-columns: 1fr;
-    grid-template-areas: "h1";
+    grid-template-columns: 0.7fr 1fr;
+    grid-template-areas: "h1 hx";
   }
 
   section {
@@ -93,12 +104,15 @@ main {
     white-space: nowrap;
   }
 
-  nav > div {
+  /*  nav > div {
     flex-shrink: 0;
-  }
+  }*/
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 601px) {
+  article {
+    display: none;
+  }
   header {
     display: flex;
     justify-content: center;

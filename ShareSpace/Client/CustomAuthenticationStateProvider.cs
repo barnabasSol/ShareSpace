@@ -11,16 +11,19 @@ namespace ShareSpace.Client
         private readonly ILocalStorageService localStorage;
         private readonly NavigationManager navigationManager;
 
-        public CustomAuthenticationStateProvider(ILocalStorageService localStorage, NavigationManager navigationManager)
+        public CustomAuthenticationStateProvider(
+            ILocalStorageService localStorage,
+            NavigationManager navigationManager
+        )
         {
             this.localStorage = localStorage;
             this.navigationManager = navigationManager;
         }
 
-
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
+
             if (string.IsNullOrEmpty(token))
             {
                 navigationManager.NavigateTo("/");
@@ -44,7 +47,7 @@ namespace ShareSpace.Client
             AuthenticationState state =
                 new(new ClaimsPrincipal(new ClaimsIdentity(claims, "ShareSpaceTokenAuth")));
 
-            NotifyAuthenticationStateChanged(Task.FromResult(state));
+            // NotifyAuthenticationStateChanged(Task.FromResult(state));
             //navigationManager.NavigateTo("/main");
             return await Task.FromResult(state);
         }
@@ -72,6 +75,7 @@ namespace ShareSpace.Client
             }
             return Convert.FromBase64String(base64);
         }
+
         public void NotifyAuthStateChange()
         {
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());

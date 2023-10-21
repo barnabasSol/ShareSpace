@@ -17,7 +17,7 @@ namespace ShareSpace.Server.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -251,10 +251,6 @@ namespace ShareSpace.Server.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("Now()");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("image_url");
-
                     b.Property<int>("Likes")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
@@ -276,6 +272,29 @@ namespace ShareSpace.Server.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("posts");
+                });
+
+            modelBuilder.Entity("ShareSpace.Server.Entities.PostImage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("image_url");
+
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("post_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("post_images");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.PostTag", b =>
@@ -522,6 +541,17 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ShareSpace.Server.Entities.PostImage", b =>
+                {
+                    b.HasOne("ShareSpace.Server.Entities.Post", "Post")
+                        .WithMany("PostImages")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+                });
+
             modelBuilder.Entity("ShareSpace.Server.Entities.PostTag", b =>
                 {
                     b.HasOne("ShareSpace.Server.Entities.Post", "Post")
@@ -585,6 +615,8 @@ namespace ShareSpace.Server.Migrations
             modelBuilder.Entity("ShareSpace.Server.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("PostImages");
 
                     b.Navigation("ViewedPosts");
                 });
