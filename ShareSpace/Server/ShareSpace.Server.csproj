@@ -33,6 +33,8 @@
   <ItemGroup>
     <Folder Include="Data\Uploads\ProfilePictures\" />
     <Folder Include="Data\Uploads\PostPictures\" />
+    <Folder Include="wwwroot\Uploads\ProfilePictures\" />
+    <Folder Include="wwwroot\Uploads\PostPictures\" />
   </ItemGroup>
 
 

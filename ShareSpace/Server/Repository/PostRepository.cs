@@ -9,10 +9,12 @@ namespace ShareSpace.Server.Repository
     public class PostRepository : IPostRepository
     {
         private readonly ShareSpaceDbContext shareSpaceDb;
+        private readonly IWebHostEnvironment webHost;
 
-        public PostRepository(ShareSpaceDbContext shareSpaceDb)
+        public PostRepository(ShareSpaceDbContext shareSpaceDb, IWebHostEnvironment webHost)
         {
             this.shareSpaceDb = shareSpaceDb;
+            this.webHost = webHost;
         }
 
         public async Task<ApiResponse<string>> CreatePost(CreatePostDto post)
@@ -34,18 +36,28 @@ namespace ShareSpace.Server.Repository
                     foreach (var file in post.PostFiles)
                     {
                         Guid guid = Guid.NewGuid();
-                        string FileExtension = file.Type.ToLower().Contains("png") ? "png" : "jpg";
-                        string FileName =
-                            $"C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\Data\\Uploads\\PostPictures\\{guid}.{FileExtension}";
+                        string FileExtension = file.Type.ToLower() switch
+                        {
+                            string type when type.Contains("png") => "png",
+                            string type when type.Contains("jpg") => "jpg",
+                            string type when type.Contains("webp") => "webp",
+                            _ => throw new Exception("Invalid file format!")
+                        };
+
+                        string webRootPath = webHost.WebRootPath;
+                        string FileName = Path.Combine(
+                            webRootPath,
+                            $"Uploads/PostPictures/{guid}.{FileExtension}"
+                        );
 
                         await shareSpaceDb.PostImages.AddAsync(
                             new PostImage()
                             {
                                 PostId = post_id,
-                                ImageUrl = FileName[FileName.IndexOf("\\Server")..]
+                                ImageUrl = $"Uplaods/PostPictures/{guid}.{FileExtension}"
                             }
                         );
-                        using var FileStream = File.Create(FileName);
+                        using var FileStream = System.IO.File.Create(FileName);
                         await FileStream.WriteAsync(file.ImageBytes);
                     }
                     await shareSpaceDb.SaveChangesAsync();
@@ -69,6 +81,5 @@ namespace ShareSpace.Server.Repository
         {
             throw new NotImplementedException();
         }
-
     }
 }

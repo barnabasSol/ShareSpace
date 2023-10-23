@@ -1,45 +1,49 @@
 ﻿@page "/profile"
-@using System.Security.Claims;
-
 @layout UserLayout
+
 <div class="w-100 d-flex flex-column align-items-center pl-2 noscrollbar">
     <MudCard>
         <MudCardMedia Image="/Assets/avatar_night_in_the_woods.jpg" Height="200" />
         <MudCardContent Class="" Style="background: rgb(27, 27, 27);">
             <div class="d-flex flex-column align-items-center">
-                @if (claims!.FirstOrDefault(c => c.Type == "Name")!.Value.Length >= 9)
-                {
-                    <h3 style="color:white;">
-                        @claims!.FirstOrDefault(c => c.Type == "Name")!.Value.Substring(0, 9)...
-                    </h3>
-                }
-                else
-                {
-                    <h3 style="color:white;">
-                        @claims!.FirstOrDefault(c => c.Type == "Name")!.Value
-                    </h3>
-                }
-                @if (claims!.FirstOrDefault(c => c.Type == "UserName")!.Value.Length >= 9)
-                {
-                    <h6 style="color: rgb(185, 183, 183);">
-                        &#64;@claims!.FirstOrDefault(c => c.Type == "UserName")!.Value.Substring(0, 9)...
-                    </h6>
-                }
-                else
-                {
-                    <h6 style="color: rgb(185, 183, 183);">
-                        &#64;@claims!.FirstOrDefault(c => c.Type == "UserName")!.Value
-                    </h6>
-                }
+                <AuthorizeView>
+                    <Authorized>
+                        @if (context.User.Claims.FirstOrDefault(c => c.Type == "Name")!.Value.Length >= 9)
+                        {
+                            <h3 style="color:white;">
+                                @context.User.Claims.FirstOrDefault(c => c.Type == "Name")!.Value.Substring(0, 9)...
+                            </h3>
+                        }
+                        else
+                        {
+                            <h3 style="color:white;">
+                                @context.User.Claims.FirstOrDefault(c => c.Type == "Name")!.Value
+                            </h3>
+                        }
+                        @if (context.User.Claims.FirstOrDefault(c => c.Type == "UserName")!.Value.Length >= 9)
+                        {
+                            <h6 style="color: rgb(185, 183, 183);">
+                                &#64;@context.User.Claims.FirstOrDefault(c => c.Type == "UserName")!.Value.Substring(0,
+                                    9)...
+                            </h6>
+                        }
+                        else
+                        {
+                            <h6 style="color: rgb(185, 183, 183);">
+                                &#64;@context.User.Claims.FirstOrDefault(c => c.Type == "UserName")!.Value
+                            </h6>
+                        }
 
+                    </Authorized>
+                </AuthorizeView>
             </div>
             <div class="d-flex justify-content-between">
                 <div class="d-flex flex-column align-items-center">
-                    <h5 style="color: white">70</h5>
+                    <h5 style="color: white">@Extras.FollowersCount</h5>
                     <h5 style="color: rgb(185, 183, 183);">Followers</h5>
                 </div>
                 <div class="d-flex flex-column align-items-center">
-                    <h5 style="color: white;">70</h5>
+                    <h5 style="color: white;">@Extras.FollowingCount</h5>
                     <h5 style="color: rgb(185, 183, 183);">Following</h5>
                 </div>
             </div>
@@ -64,5 +68,6 @@
 
 @code {
     [Parameter]
-    public IEnumerable<Claim>? claims { get; set; }
+    public ExtraUserInfoDto Extras { get; set; } = new();
+
 }

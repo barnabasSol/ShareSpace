@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using MudBlazor;
 using ShareSpace.Shared.DTOs;
 
 namespace ShareSpace.Client.Pages.UserPages
@@ -7,13 +8,9 @@ namespace ShareSpace.Client.Pages.UserPages
     {
         public string PostText { get; set; } = string.Empty;
 
-        private CreatePostDto postDto = new();
-
-        private List<PostFile> collected_files = new();
+        private List<ShareSpace.Shared.DTOs.File> collected_files = new();
 
         private bool processing = false;
-
-        private bool AllowedToPost;
 
         private async Task CollectFiles(InputFileChangeEventArgs e)
         {
@@ -22,7 +19,7 @@ namespace ShareSpace.Client.Pages.UserPages
                 var buffer = new byte[input_file.Size];
                 await input_file.OpenReadStream().ReadAsync(buffer);
                 collected_files.Add(
-                    new PostFile()
+                    new ShareSpace.Shared.DTOs.File()
                     {
                         Name = input_file.Name,
                         Size = input_file.Size,
@@ -33,23 +30,30 @@ namespace ShareSpace.Client.Pages.UserPages
             }
         }
 
-        private void IsAllowed()
+        private async void UploadPost()
         {
-            if (string.IsNullOrEmpty(PostText))
+            processing = true;
+            var response = await PostService.CreatePost(
+                new CreatePostDto() { TextContent = PostText, PostFiles = collected_files }
+            );
+            if (response.IsSuccess)
             {
-                AllowedToPost = false;
+                processing = false;
+                ShowSnackBarWithOptions("it is posted", Variant.Filled, Severity.Success);
             }
             else
             {
-                AllowedToPost = true;
+                ShowSnackBarWithOptions(response.Message, Variant.Filled, Severity.Error);
             }
+            StateHasChanged();
         }
 
-        private async void UploadPost()
+        void ShowSnackBarWithOptions(string message, Variant variant, Severity severity)
         {
-            await PostService.CreatePost(
-                new CreatePostDto() { TextContent = PostText, PostFiles = collected_files }
-            );
+            SnackBar.Configuration.SnackbarVariant = variant;
+            SnackBar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
+            SnackBar.Configuration.VisibleStateDuration = 1500;
+            SnackBar.Add($"{message}", severity);
         }
     }
 }

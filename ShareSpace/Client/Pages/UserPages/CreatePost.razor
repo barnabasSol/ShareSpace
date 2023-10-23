@@ -1,18 +1,18 @@
 @page "/create-post"
 @layout UserLayout
 @inject IPostService PostService
+@inject ISnackbar SnackBar
 
 
 <div class="px-lg-5 p-2 py-2 ">
     <MudTextField @bind-Value="PostText" T="string" Placeholder="write something" Variant="Variant.Outlined"
         Lines="10" />
-    <span>@PostText</span>
 
     <div class="d-flex justify-content-between align-items-center">
-        <InputFile id="post_file" OnChange="CollectFiles" hidden multiple />
+        <InputFile id="post_file" OnChange="CollectFiles" hidden multiple accept="image/*" />
         <MudFab Class="mt-1" Size="Size.Medium" HtmlTag="label" Color="Color.Default"
             StartIcon="@Icons.Material.Filled.AttachFile" for="post_file" />
-        @if (collected_files.Count > 0 || AllowedToPost)
+        @if (collected_files.Count > 0 || !string.IsNullOrEmpty(PostText))
         {
             <MudButton Disabled="@processing" OnClick="UploadPost" Variant="Variant.Filled" Color="Color.Success"
                 Class="ml-auto">
@@ -29,7 +29,6 @@
             </MudButton>
 
         }
-
     </div>
     <div class="w-100">
         @if (collected_files is not null)

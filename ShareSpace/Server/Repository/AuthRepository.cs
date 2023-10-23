@@ -84,7 +84,7 @@ namespace ShareSpace.Server.Repository
 
                 var queried_user = await shareSpaceDb.Users
                     .Where(_ => _.UserName == user_login.UserName)
-                    .FirstOrDefaultAsync();
+                    .FirstAsync();
 
                 if (queried_user is null)
                 {
@@ -128,7 +128,7 @@ namespace ShareSpace.Server.Repository
                     new Claim(
                         JwtRegisteredClaimNames.Exp,
                         new DateTimeOffset(TokenExpiration).ToUnixTimeSeconds().ToString()
-                    )
+                    ),
                 };
             JwtSecurityToken securityToken =
                 new(

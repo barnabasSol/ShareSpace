@@ -22,11 +22,11 @@ namespace ShareSpace.Shared.DTOs
     public class CreatePostDto
     {
         public string? TextContent { get; set; }
-        public IEnumerable<PostFile>? PostFiles { get; set; }
+        public IEnumerable<File>? PostFiles { get; set; }
         public Guid PostedUserId { get; set; }
     }
 
-    public class PostFile
+    public class File
     {
         public byte[]? ImageBytes { get; set; }
         public string Name { get; set; } = string.Empty;

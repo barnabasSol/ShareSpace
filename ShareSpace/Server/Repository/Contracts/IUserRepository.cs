@@ -11,6 +11,5 @@ namespace ShareSpace.Server.Repository.Contracts
             Guid current_user
         );
         Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId);
-        Task<ApiResponse<string>> UploadPost(CreatePostDto post);
     }
 }

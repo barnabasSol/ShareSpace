@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "q4evv6U9YVqLtyS/mDRJ6F0uf0fGgG96YYLDPPDAd+A=",
+  "Hash": "RagKfTJDSr5wDBZuo0iL+bo1DnORItY5M5fSAk+1V28=",
   "Source": "ShareSpace.Server",
   "BasePath": "_content/ShareSpace.Server",
   "Mode": "Default",
@@ -24,6 +24,13 @@
       "Source": "ShareSpace.Client",
       "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\",
       "BasePath": "/",
+      "Pattern": "**"
+    },
+    {
+      "Name": "ShareSpace.Server\\wwwroot",
+      "Source": "ShareSpace.Server",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\",
+      "BasePath": "_content/ShareSpace.Server",
       "Pattern": "**"
     }
   ],
@@ -182,23 +189,6 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\fluentvalidation\\11.7.1\\lib\\net7.0\\FluentValidation.dll"
     },
     {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\icudt.dat",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt.dat",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "BlazorWebAssemblyResource",
-      "AssetTraitValue": "native",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.12\\runtimes\\browser-wasm\\native\\icudt.dat"
-    },
-    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\icudt_CJK.dat",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -248,6 +238,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.12\\runtimes\\browser-wasm\\native\\icudt_no_CJK.dat"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\icudt.dat",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt.dat",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "native",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.12\\runtimes\\browser-wasm\\native\\icudt.dat"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Authorization.dll",
@@ -7509,23 +7516,6 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\scopedcss\\bundle\\ShareSpace.Client.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\service-worker\\service-worker.js",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\service-worker\\",
-      "BasePath": "/",
-      "RelativePath": "service-worker.js",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "BlazorServiceWorker",
-      "AssetTraitValue": "ServiceWorkerJs",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "wwwroot\\service-worker.js"
-    },
-    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\service-worker-assets.js.build",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -7541,6 +7531,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net7.0\\service-worker-assets.js.build"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\service-worker\\service-worker.js",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\service-worker\\",
+      "BasePath": "/",
+      "RelativePath": "service-worker.js",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorServiceWorker",
+      "AssetTraitValue": "ServiceWorkerJs",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "wwwroot\\service-worker.js"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\avatar_night_in_the_woods.jpg",
@@ -7781,23 +7788,6 @@
       "OriginalItemSpec": "wwwroot\\Assets\\tiki (2).png"
     },
     {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\tiki.png",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "Assets/tiki.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Assets\\tiki.png"
-    },
-    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\tiki-mask (1).png",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -7900,6 +7890,23 @@
       "OriginalItemSpec": "wwwroot\\Assets\\tiki-mask-main.png"
     },
     {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\tiki.png",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "Assets/tiki.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\tiki.png"
+    },
+    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\Assets\\tribe.pdf",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -7966,6 +7973,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/open-iconic/FONT-LICENSE",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
@@ -8068,23 +8092,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
-    },
-    {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "css/open-iconic/FONT-LICENSE",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
@@ -8204,6 +8211,57 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\manifest.json"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\16d7da4a-8284-48bc-8158-3778cec24b3f.png",
+      "SourceId": "ShareSpace.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\",
+      "BasePath": "_content/ShareSpace.Server",
+      "RelativePath": "Uploads/PostPictures/16d7da4a-8284-48bc-8158-3778cec24b3f.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\PostPictures\\16d7da4a-8284-48bc-8158-3778cec24b3f.png"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\c8ad44ba-35ba-4209-a00b-6f4408e513e3.png",
+      "SourceId": "ShareSpace.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\",
+      "BasePath": "_content/ShareSpace.Server",
+      "RelativePath": "Uploads/PostPictures/c8ad44ba-35ba-4209-a00b-6f4408e513e3.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\PostPictures\\c8ad44ba-35ba-4209-a00b-6f4408e513e3.png"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\ProfilePictures\\4c4b5742-95c0-4c34-9213-54608783fa44.png",
+      "SourceId": "ShareSpace.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\",
+      "BasePath": "_content/ShareSpace.Server",
+      "RelativePath": "Uploads/ProfilePictures/4c4b5742-95c0-4c34-9213-54608783fa44.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\ProfilePictures\\4c4b5742-95c0-4c34-9213-54608783fa44.png"
     }
   ]
 }

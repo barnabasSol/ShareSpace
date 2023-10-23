@@ -33,10 +33,11 @@ namespace ShareSpace.Server.Repository
                                 FollowingCount = shareSpaceDb.Followers
                                     .Where(w => w.FollowerId.Equals(UserId))
                                     .Count(),
-                                JoinedDate = x.CreatedAt
+                                JoinedDate = x.CreatedAt,
+                                Bio = x.Bio
                             }
                     )
-                    .FirstOrDefaultAsync();
+                    .FirstAsync();
                 return new ApiResponse<ExtraUserInfoDto>()
                 {
                     IsSuccess = true,
@@ -89,22 +90,13 @@ namespace ShareSpace.Server.Repository
                     transaction.Commit();
                     return new ApiResponse<string> { IsSuccess = true };
                 }
-                return new ApiResponse<string>
-                {
-                    IsSuccess = false,
-                    Message = $"the received content is not valid"
-                };
+                throw new Exception($"the received content is not valid");
             }
             catch (Exception ex)
             {
                 transaction.Rollback();
                 throw new Exception(ex.Message);
             }
-        }
-
-        public Task<ApiResponse<string>> UploadPost(CreatePostDto post)
-        {
-            throw new NotImplementedException();
         }
     }
 }

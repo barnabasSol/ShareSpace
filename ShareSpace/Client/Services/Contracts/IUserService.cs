@@ -7,6 +7,6 @@ namespace ShareSpace.Client.Services.Contracts
     {
         Task<ApiResponse<IEnumerable<InterestsDto>>> GetInterests();
         Task<ApiResponse<string>> SendInterests(IEnumerable<InterestsDto> interests);
-        Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId);
+        Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo();
     }
 }

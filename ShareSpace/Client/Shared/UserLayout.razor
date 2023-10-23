@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@inject ISnackbar SnackBar
+@inject IUserService UserService
 
 <PageTitle>Home</PageTitle>
 
@@ -11,17 +13,23 @@
         Variant="@DrawerVariant.Temporary">
         <MudNavMenu Class="mud-width-full">
             <MudStack Row="true" Class="px-2 py-2">
-                <MudAvatar Color="Color.Primary" Square="true" Variant="Variant.Outlined">
                     <AuthorizeView>
                         <Authorized>
-                            <MudButton Class="flex-md-row-reverse">
-                                <MudAvatar Color="Color.Primary" Square="true" Variant="Variant.Outlined">
-                                    @GetUserInfo(context.User.Claims.ToList()).Name![0]
-                                </MudAvatar>
-                            </MudButton>
+                            @if (extraUserInfo is null)
+                            {
+                            <MudAvatar Size="Size.Large" Color="Color.Tertiary">
+                                <MudProgressCircular Style="text-align: center;" Indeterminate="true" Color="Color.Primary"
+                                                     Size="Size.Small" />
+                            </MudAvatar>
+                            }
+                            else
+                            {
+                            <MudAvatar Size="Size.Large" Color="Color.Tertiary">
+                                <MudImage Src="@extraUserInfo.ProfilePicUrl" />
+                            </MudAvatar>
+                            }
                         </Authorized>
                     </AuthorizeView>
-                </MudAvatar>
                 <MudStack Justify="Justify.Center" Spacing="0">
                     <AuthorizeView>
                         <Authorized>
@@ -108,11 +116,7 @@
         </header>
 
         <article class="p-1">
-            <AuthorizeView>
-                <Authorized>
-                    <ShareSpace.Client.Pages.UserPages.UserProfile claims="@context.User.Claims.ToList()" />
-                </Authorized>
-            </AuthorizeView>
+                    <ShareSpace.Client.Pages.UserPages.UserProfile Extras="@extraUserInfo"/>
         </article>
         <section>
             <MudMainContent Class="py-0" Style="background-color: rgb(23, 24, 24);">
@@ -154,7 +158,7 @@
 
 
 @code {
-    object selectedValue = 1;
+    //object selectedValue = 1;
     bool open;
     Anchor anchor;
 
@@ -164,7 +168,7 @@
         open = true;
     }
 
-    MudTheme MyCustomTheme = new MudTheme()
+    MudTheme MyCustomTheme = new()
         {
             Palette = new PaletteLight()
             {

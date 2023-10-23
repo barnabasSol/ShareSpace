@@ -64,13 +64,13 @@ namespace ShareSpace.Server.Controllers
         }
 
         [Authorize]
-        [HttpPost("get-extra-user-info")]
+        [HttpGet("extra-user-info")]
         public async Task<ActionResult<ApiResponse<ExtraUserInfoDto>>> GetExtraInfo()
         {
-            string UserId = User.FindFirst("Sub")!.Value;
             try
             {
-                var result = await userRepository.GetExtraUserInfo(Guid.Parse(UserId));
+                Guid UserId = Guid.Parse(User.FindFirst("Sub")!.Value);
+                var result = await userRepository.GetExtraUserInfo(UserId);
                 return result.IsSuccess ? Ok(result) : BadRequest(result);
             }
             catch (Exception ex)

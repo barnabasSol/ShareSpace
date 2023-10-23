@@ -6,7 +6,6 @@
 @inject ILocalStorageService localstorage
 @inject AuthenticationStateProvider authstate
 @inject ISnackbar SnackBar
-@inject IJSRuntime JSRuntime
 
 
 <PageTitle>Login/Sign-up</PageTitle>
@@ -18,12 +17,13 @@
             <MudCard Style="background-color: rgb(23, 24, 24); border-radius: 20px;">
                 <MudForm @ref="form" Model="LoginModel" Validation="Validations.ValidateValue">
                     <MudCardContent>
+
                         <MudTextField id="username" OnlyValidateIfDirty="true" Label="Username"
                             HelperText="Max. 20 characters" @bind-Value="LoginModel.Username"
                             For="@(() => LoginModel.Username)" />
-                        <MudTextField id="password" OnlyValidateIfDirty="true" Label="Password"
-                            HelperText="enter your password" Class="mt-3" @bind-Value="LoginModel.Password"
-                            For="@(() => LoginModel.Password)" InputType="InputType.Password" />
+
+                        <MudTextField id="password" For="@(() => LoginModel.Password)" @bind-Value="LoginModel.Password" Label="Password" Variant="Variant.Text" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" />
+
                     </MudCardContent>
                     <MudCardActions>
                         <MudButton Disabled="@processing" OnClick="Submit" Variant="Variant.Filled"

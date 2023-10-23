@@ -1,20 +1,11 @@
 .main_sugg {
-  display: grid;
-  gap: 0.3rem;
-  grid-template-rows: 1fr 5fr;
-  grid-template-columns: 1fr;
-  background: rgb(23, 24, 24);
-  grid-template-areas:
-    "usersugg"
-    "trending";
+    background: rgb(23, 24, 24);
 }
-header {
-  grid-area: header;
-}
+
+
 section {
-  grid-area: trending;
   background: rgb(23, 24, 24);
-  overflow-y: scroll;
+
 }
 
 .horiz-scroll {

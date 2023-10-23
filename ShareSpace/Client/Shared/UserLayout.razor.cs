@@ -1,19 +1,41 @@
+using MudBlazor;
+using ShareSpace.Shared.DTOs;
 using System.Security.Claims;
 
 namespace ShareSpace.Client.Shared
 {
     public partial class UserLayout
     {
-        protected override Task OnInitializedAsync()
+        private readonly string[] messages = new[] { "hi", "hellow", "fuck you", "piece of shit" };
+
+        public ExtraUserInfoDto extraUserInfo = new();
+
+        protected override async Task OnInitializedAsync()
         {
-            return base.OnInitializedAsync();
+            var response = await UserService.GetExtraUserInfo();
+            if (response is not null)
+            {
+                if (response.IsSuccess)
+                {
+                    if (response.Data is not null)
+                        extraUserInfo = response.Data;
+                }
+            }
+            foreach (var message in messages)
+            {
+                ShowSnackBarWithOptions(message, Variant.Filled);
+                await Task.Delay(2000);
+            }
         }
 
         private static UserInfo GetUserInfo(List<Claim> claims)
         {
             var Sub = claims.Where(_ => _.Type == "Sub").Select(_ => _.Value).FirstOrDefault();
             var Name = claims.Where(_ => _.Type == "Name").Select(_ => _.Value).FirstOrDefault();
-            var UserName = claims .Where(_ => _.Type == "UserName") .Select(_ => _.Value) .FirstOrDefault();
+            var UserName = claims
+                .Where(_ => _.Type == "UserName")
+                .Select(_ => _.Value)
+                .FirstOrDefault();
             var Email = claims.Where(_ => _.Type == "Email").Select(_ => _.Value).FirstOrDefault();
             return new UserInfo()
             {
@@ -22,6 +44,14 @@ namespace ShareSpace.Client.Shared
                 UserName = UserName,
                 Email = Email
             };
+        }
+
+        void ShowSnackBarWithOptions(string message, Variant variant)
+        {
+            SnackBar.Configuration.SnackbarVariant = variant;
+            SnackBar.Configuration.PositionClass = Defaults.Classes.Position.BottomRight;
+            SnackBar.Configuration.VisibleStateDuration = 1000;
+            SnackBar.Add($"{message}", Severity.Normal);
         }
     }
 

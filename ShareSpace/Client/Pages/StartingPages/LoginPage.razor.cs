@@ -43,14 +43,36 @@ namespace ShareSpace.Client.Pages.StartingPages
                     NavigationManager.NavigateTo("/main");
                 }
             }
-            this.StateHasChanged();
+            StateHasChanged();
         }
 
         void ShowSnackBarWithOptions(string message, Variant variant)
         {
             SnackBar.Configuration.SnackbarVariant = variant;
             SnackBar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
-            SnackBar.Add($"Error {message}", MudBlazor.Severity.Error);
+            SnackBar.Add($"{message}", MudBlazor.Severity.Error);
+        }
+
+        public string Password { get; set; } = "superstrong123";
+
+        bool isShow;
+        InputType PasswordInput = InputType.Password;
+        string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+        void ButtonTestclick()
+        {
+            if(isShow)
+        {
+                isShow = false;
+                PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+                PasswordInput = InputType.Password;
+            }
+        else
+            {
+                isShow = true;
+                PasswordInputIcon = Icons.Material.Filled.Visibility;
+                PasswordInput = InputType.Text;
+            }
         }
     }
 
