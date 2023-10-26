@@ -34,6 +34,14 @@ namespace ShareSpace.Server.Repository
                                     .Where(w => w.FollowerId.Equals(UserId))
                                     .Count(),
                                 JoinedDate = x.CreatedAt,
+                                Interests = shareSpaceDb.UserInterests.Where(w => w.UserId.Equals(UserId)).Join(shareSpaceDb.Interests,
+                                user_int => user_int.InterestId,
+                                interest => interest.Id,
+                                (uintr, intr)=> new InterestsDto()
+                                {
+                                    Id = uintr.InterestId,
+                                    Value = intr.InterestName
+                                }).ToList(),
                                 Bio = x.Bio
                             }
                     )

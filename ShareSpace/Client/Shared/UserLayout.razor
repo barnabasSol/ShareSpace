@@ -33,7 +33,7 @@
                 <MudStack Justify="Justify.Center" Spacing="0">
                     <AuthorizeView>
                         <Authorized>
-                            <MudText Typo="Typo.body1">@GetUserInfo(context.User.Claims.ToList()).Name</MudText>
+                            <MudText Style="color: white;" Typo="Typo.body1">@GetUserInfo(context.User.Claims.ToList()).Name</MudText>
                                 <MudText Typo="Typo.body2">&#64;@GetUserInfo(context.User.Claims.ToList()).UserName
                             </MudText>
                         </Authorized>
@@ -116,7 +116,7 @@
         </header>
 
         <article class="p-1">
-                    <ShareSpace.Client.Pages.UserPages.UserProfile Extras="@extraUserInfo"/>
+                    <ShareSpace.Client.Pages.UserPages.UserProfile/>
         </article>
         <section>
             <MudMainContent Class="py-0" Style="background-color: rgb(23, 24, 24);">

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using ShareSpace.Shared.DTOs;
+using System;
 
 namespace ShareSpace.Client.Pages.UserPages
 {
@@ -16,15 +17,22 @@ namespace ShareSpace.Client.Pages.UserPages
         {
             foreach (var input_file in e.GetMultipleFiles())
             {
-                var buffer = new byte[input_file.Size];
-                await input_file.OpenReadStream().ReadAsync(buffer);
+                int maxFileSize = 1024 * 1024 * 1024; 
+                using var stream = input_file.OpenReadStream(maxAllowedSize: maxFileSize);
+                var buffer = new byte[1024];
+                int bytesRead;
+                using var memoryStream = new MemoryStream();
+                while ((bytesRead = await stream.ReadAsync(buffer)) != 0)
+                {
+                    await memoryStream.WriteAsync(buffer.AsMemory(0, bytesRead));
+                }
                 collected_files.Add(
                     new ShareSpace.Shared.DTOs.File()
                     {
                         Name = input_file.Name,
                         Size = input_file.Size,
                         Type = input_file.ContentType,
-                        ImageBytes = buffer
+                        ImageBytes = memoryStream.ToArray()
                     }
                 );
             }
@@ -43,6 +51,7 @@ namespace ShareSpace.Client.Pages.UserPages
             }
             else
             {
+                processing = false;
                 ShowSnackBarWithOptions(response.Message, Variant.Filled, Severity.Error);
             }
             StateHasChanged();

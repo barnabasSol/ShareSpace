@@ -7,5 +7,6 @@
         public int FollowersCount { get; set; }
         public int FollowingCount { get; set; }
         public DateTime JoinedDate { get; set; }
+        public IEnumerable<InterestsDto>? Interests { get; set; }
     }
 }

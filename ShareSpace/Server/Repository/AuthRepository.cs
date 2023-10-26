@@ -84,7 +84,7 @@ namespace ShareSpace.Server.Repository
 
                 var queried_user = await shareSpaceDb.Users
                     .Where(_ => _.UserName == user_login.UserName)
-                    .FirstAsync();
+                    .FirstOrDefaultAsync();
 
                 if (queried_user is null)
                 {
@@ -143,7 +143,7 @@ namespace ShareSpace.Server.Repository
 
         private async Task<string> GenerateRefershToken(Guid authorized_user_id)
         {
-            byte[] TokenBytes = new byte[32];
+            var TokenBytes = new byte[32];
             using (var range = RandomNumberGenerator.Create())
             {
                 range.GetBytes(TokenBytes);

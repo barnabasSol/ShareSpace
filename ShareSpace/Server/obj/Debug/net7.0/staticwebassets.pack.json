@@ -1,16 +1,36 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\16d7da4a-8284-48bc-8158-3778cec24b3f.png",
-      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\16d7da4a-8284-48bc-8158-3778cec24b3f.png"
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\3a0df682-31ee-4758-897d-d0e0041f23e1.png",
+      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\3a0df682-31ee-4758-897d-d0e0041f23e1.png"
     },
     {
-      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\c8ad44ba-35ba-4209-a00b-6f4408e513e3.png",
-      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\c8ad44ba-35ba-4209-a00b-6f4408e513e3.png"
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\515319f0-f602-4d80-9e06-a14d8447e033.webp",
+      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\515319f0-f602-4d80-9e06-a14d8447e033.webp"
     },
     {
-      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\ProfilePictures\\4c4b5742-95c0-4c34-9213-54608783fa44.png",
-      "PackagePath": "staticwebassets\\Uploads\\ProfilePictures\\4c4b5742-95c0-4c34-9213-54608783fa44.png"
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\53cc5954-2ded-4259-a179-3abc49daf9a6.png",
+      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\53cc5954-2ded-4259-a179-3abc49daf9a6.png"
+    },
+    {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\5cbbe11d-32d9-4b5c-8791-99d5cbb3fd0b.png",
+      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\5cbbe11d-32d9-4b5c-8791-99d5cbb3fd0b.png"
+    },
+    {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\a3c8863f-3c72-4624-a517-c1b46817364a.jpeg",
+      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\a3c8863f-3c72-4624-a517-c1b46817364a.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\e7c76aed-6311-4ed5-8e3a-efd2ba37e17e.png",
+      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\e7c76aed-6311-4ed5-8e3a-efd2ba37e17e.png"
+    },
+    {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\eea76157-a086-4894-98f8-76e6a1cfef14.png",
+      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\eea76157-a086-4894-98f8-76e6a1cfef14.png"
+    },
+    {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\ProfilePictures\\avatar_night_in_the_woods.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\ProfilePictures\\avatar_night_in_the_woods.jpg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.ShareSpace.Server.Microsoft.AspNetCore.StaticWebAssets.props",

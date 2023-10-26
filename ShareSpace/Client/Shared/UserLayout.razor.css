@@ -7,8 +7,8 @@ header {
   background: rgb(23, 24, 24);
 }
 .headerx {
-    grid-area: hx;
-    background: rgb(23, 24, 24);
+  grid-area: hx;
+  background: rgb(23, 24, 24);
 }
 
 .header2 {
@@ -17,10 +17,10 @@ header {
 }
 
 .gridlayoutab {
-    display: grid;
-    grid-template-rows: 64px;
-    grid-template-columns: 3fr 5fr 4fr;
-    grid-template-areas: "h1 hx h2";
+  display: grid;
+  grid-template-rows: 64px;
+  grid-template-columns: 3fr 5fr 4fr;
+  grid-template-areas: "h1 hx h2";
 }
 
 section {
@@ -145,7 +145,7 @@ main {
     white-space: nowrap;
   }
 
-  nav > div {
+  /* nav > div {
     flex-shrink: 0;
-  }
+  } */
 }

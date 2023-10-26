@@ -35,11 +35,12 @@ namespace ShareSpace.Server.Repository
                     );
                     foreach (var file in post.PostFiles)
                     {
+                        await Console.Out.WriteLineAsync(file.Type.ToLower());
                         Guid guid = Guid.NewGuid();
                         string FileExtension = file.Type.ToLower() switch
                         {
                             string type when type.Contains("png") => "png",
-                            string type when type.Contains("jpg") => "jpg",
+                            string type when type.Contains("jpeg") => "jpeg",
                             string type when type.Contains("webp") => "webp",
                             _ => throw new Exception("Invalid file format!")
                         };
@@ -49,7 +50,6 @@ namespace ShareSpace.Server.Repository
                             webRootPath,
                             $"Uploads/PostPictures/{guid}.{FileExtension}"
                         );
-
                         await shareSpaceDb.PostImages.AddAsync(
                             new PostImage()
                             {

@@ -5,7 +5,6 @@ namespace ShareSpace.Server.Entities
     [Table("user_interests")]
     public class UserInterest
     {
-
         [Column("user_id")]
         [ForeignKey("User")]
         public Guid UserId { get; set; }
@@ -16,6 +15,5 @@ namespace ShareSpace.Server.Entities
 
         public Interest? Interest { get; set; }
         public User? User { get; set; }
-
     }
 }
