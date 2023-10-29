@@ -17,7 +17,7 @@ namespace ShareSpace.Server.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.12")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -299,15 +299,22 @@ namespace ShareSpace.Server.Migrations
 
             modelBuilder.Entity("ShareSpace.Server.Entities.PostTag", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
                     b.Property<Guid>("PostId")
                         .HasColumnType("uuid")
                         .HasColumnName("post_id");
 
-                    b.Property<Guid>("TagId")
+                    b.Property<Guid>("TagName")
                         .HasColumnType("uuid")
-                        .HasColumnName("tag_id");
+                        .HasColumnName("tag_name");
 
-                    b.HasKey("PostId", "TagId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
 
                     b.ToTable("post_tags");
                 });

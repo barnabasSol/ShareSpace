@@ -16,21 +16,19 @@
                 </MudMenu>
             </CardHeaderActions>
         </MudCardHeader>
-  @*       <div class="d-flex justify-content-center w-100" style="background: rgb(23, 24, 24);">
-            <MudImage Style="overflow: hidden; border-radius: 10px !important;" ObjectFit="ObjectFit.Contain"
-                Height="320" Src="/Assets/tiki-mask (5).png" Elevation="0" Class="rounded-lg" />
-        </div>
- *@
-        <MudCardMedia Image="/Assets/photo_2023-10-06_18-06-51.jpg" Height="320" />
-
+        <MudCarousel Style="background-color: rgb(27, 27, 27); height:320px;" ShowBullets="false" EnableSwipeGesture="true" AutoCycle="false" TData="object">
+            <MudCarouselItem Style="background-color: rgb(27, 27, 27);" Transition="Transition.Slide">
+                <MudCardMedia loading="lazy" Class="w-100" Image="/Assets/avatar_night_in_the_woods.jpg" Height="320" />
+            </MudCarouselItem>  
+        </MudCarousel>
         <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
             <MudText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
         </MudCardContent>
         <MudCardActions Style="background: rgb(27, 27, 27);" Class="d-flex justify-content-between gap-5">
             <div>
                 <MudToggleIconButton Toggled="@Liked" ToggledChanged="OnToggledChanged"
-                                     Icon="@Icons.Material.Filled.Favorite" Title="Off"
-                                     ToggledIcon="@Icons.Material.Filled.Favorite" ToggledColor="@Color.Primary" />
+                    Icon="@Icons.Material.Filled.Favorite" Title="Off" ToggledIcon="@Icons.Material.Filled.Favorite"
+                    ToggledColor="@Color.Primary" />
                 <span style="color: white;">@like_count</span>
             </div>
             <div>
@@ -49,8 +47,8 @@
 
 @code {
     public bool Liked { get; set; }
+    TimeSpan rate = TimeSpan.FromSeconds(3);
     public int like_count = 233;
-
 
     [Parameter]
     public required List<PostDto> PostDtos { get; set; }
@@ -62,7 +60,7 @@
             like_count++;
         else
         {
-            Liked = false;  
+            Liked = false;
             like_count--;
         }
     }

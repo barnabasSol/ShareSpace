@@ -6,8 +6,12 @@ namespace ShareSpace.Server.Entities
     [Table("post_tags")]
     public class PostTag
     {
-        [Column("tag_id")]
-        public Guid TagId { get; set; }
+        [Key]
+        [Column("id")]
+        public Guid Id { get; set; }
+
+        [Column("tag_name")]
+        public Guid TagName { get; set; }
 
         [Column("post_id")]
         [ForeignKey("Post")]

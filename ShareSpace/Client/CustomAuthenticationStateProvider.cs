@@ -23,7 +23,6 @@ namespace ShareSpace.Client
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
-
             if (string.IsNullOrEmpty(token))
             {
                 navigationManager.NavigateTo("/");

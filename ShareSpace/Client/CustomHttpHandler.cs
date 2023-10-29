@@ -20,7 +20,7 @@ namespace ShareSpace.Client
                 return await base.SendAsync(request, cancellationToken);
             }
 
-            var token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
+            var token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken", cancellationToken);
             if (!string.IsNullOrEmpty(token))
             {
                 request.Headers.Add("Authorization", $"Bearer {token}");

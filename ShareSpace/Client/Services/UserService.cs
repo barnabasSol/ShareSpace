@@ -26,9 +26,7 @@ namespace ShareSpace.Client.Services
         {
             var http = http_client.CreateClient("ShareSpaceApi");
             var response = await http.GetAsync("/User/get-interests");
-            var result = await response.Content.ReadFromJsonAsync<
-                ApiResponse<IEnumerable<InterestsDto>>
-            >();
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<IEnumerable<InterestsDto>>>();
             return result!;
         }
 

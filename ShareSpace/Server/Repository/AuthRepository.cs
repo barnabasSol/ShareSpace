@@ -115,7 +115,7 @@ namespace ShareSpace.Server.Repository
 
         private string GenerateAccessToken(User authorized_user)
         {
-            DateTime TokenExpiration = DateTime.Now.AddDays(15);
+            DateTime TokenExpiration = DateTime.Now.AddHours(15);
             SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
             SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha256);
             List<Claim> claims =

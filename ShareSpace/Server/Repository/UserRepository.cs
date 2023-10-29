@@ -20,7 +20,7 @@ namespace ShareSpace.Server.Repository
         {
             try
             {
-                var user = await shareSpaceDb.Users
+                var user_info = await shareSpaceDb.Users
                     .Where(w => w.UserId.Equals(UserId))
                     .Select(
                         x =>
@@ -34,14 +34,20 @@ namespace ShareSpace.Server.Repository
                                     .Where(w => w.FollowerId.Equals(UserId))
                                     .Count(),
                                 JoinedDate = x.CreatedAt,
-                                Interests = shareSpaceDb.UserInterests.Where(w => w.UserId.Equals(UserId)).Join(shareSpaceDb.Interests,
-                                user_int => user_int.InterestId,
-                                interest => interest.Id,
-                                (uintr, intr)=> new InterestsDto()
-                                {
-                                    Id = uintr.InterestId,
-                                    Value = intr.InterestName
-                                }).ToList(),
+                                Interests = shareSpaceDb.UserInterests
+                                    .Where(w => w.UserId.Equals(UserId))
+                                    .Join(
+                                        shareSpaceDb.Interests,
+                                        user_int => user_int.InterestId,
+                                        interest => interest.Id,
+                                        (uintr, intr) =>
+                                            new InterestsDto()
+                                            {
+                                                Id = uintr.InterestId,
+                                                Value = intr.InterestName
+                                            }
+                                    )
+                                    .ToList(),
                                 Bio = x.Bio
                             }
                     )
@@ -50,7 +56,7 @@ namespace ShareSpace.Server.Repository
                 {
                     IsSuccess = true,
                     Message = "",
-                    Data = user
+                    Data = user_info
                 };
             }
             catch (Exception ex)

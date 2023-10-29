@@ -22,8 +22,6 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\nWqA4Ax6.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\Wlh+sdB8.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\PgG3IxL5.gz
-C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\8PTfosM0.gz
-C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\sY9ggRIw.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\blazor.boot.json
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\staticwebassets\msbuild.ShareSpace.Client.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\staticwebassets\msbuild.build.ShareSpace.Client.props
@@ -672,8 +670,6 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\service-worker-assets.js.build
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\ShareSpace.Client.csproj.CopyComplete
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\ref\ShareSpace.Client.dll
-C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\LYpWqj+b.gz
-C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\MDEw7yb5.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.Extensions.Http.dll
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\wwwroot\_framework\Microsoft.Extensions.Http.dll.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\bin\Debug\net7.0\Microsoft.Extensions.Http.dll
@@ -903,3 +899,7 @@ C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolutio
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\vmeX+9Ah.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\Hahj9ukm.gz
 C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\2vrZj6nj.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\LYpWqj+b.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\MDEw7yb5.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\8PTfosM0.gz
+C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Client\obj\Debug\net7.0\build-gz\sY9ggRIw.gz

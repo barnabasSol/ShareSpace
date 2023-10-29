@@ -20,7 +20,8 @@ namespace ShareSpace.Server.Data
         public DbSet<ViewedPost> ViewedPosts { get; set; }
         public DbSet<PostImage> PostImages { get; set; }
 
-        public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options) : base(options)
+        public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options)
+            : base(options)
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
@@ -29,11 +30,6 @@ namespace ShareSpace.Server.Data
         {
             modelBuilder.Entity<UserInterest>().HasKey(lp => new { lp.UserId, lp.InterestId });
             modelBuilder.Entity<ViewedPost>().HasKey(lp => new { lp.UserId, lp.PostId });
-
-            modelBuilder.Entity<PostTag>(pt =>
-            {
-                pt.HasKey(pt => new { pt.PostId, pt.TagId });
-            });
 
             modelBuilder.Entity<Follower>(f =>
             {

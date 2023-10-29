@@ -43,11 +43,10 @@ namespace ShareSpace.Server.Controllers
             IEnumerable<InterestsDto> interests
         )
         {
-            string UserId = User.FindFirst("Sub")!.Value;
             try
             {
                 var result = await userRepository.StoreInterests(
-                    current_user: Guid.Parse(UserId),
+                    current_user: Guid.Parse(User.FindFirst("Sub")!.Value),
                     interests: interests
                 );
                 return result.IsSuccess ? Ok(result) : BadRequest(result);

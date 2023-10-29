@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using ShareSpace.Shared.DTOs;
-using System;
 
 namespace ShareSpace.Client.Pages.UserPages
 {
@@ -17,7 +16,7 @@ namespace ShareSpace.Client.Pages.UserPages
         {
             foreach (var input_file in e.GetMultipleFiles())
             {
-                int maxFileSize = 1024 * 1024 * 1024; 
+                int maxFileSize = 1024 * 1024 * 1024;
                 using var stream = input_file.OpenReadStream(maxAllowedSize: maxFileSize);
                 var buffer = new byte[1024];
                 int bytesRead;

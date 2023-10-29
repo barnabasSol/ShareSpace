@@ -1,22 +1,32 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ShareSpace.Server.Data;
 using ShareSpace.Server.JWT;
 using ShareSpace.Server.Repository;
 using ShareSpace.Server.Repository.Contracts;
+using ShareSpace.Server.ShareSpaceHub;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
+
+builder.Services.AddResponseCompression(opts =>
+{
+    opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+        new[] { "application/octet-stream" }
+    );
+});
 
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<INotificationRepostiory, NotificationRepository>();
 
 builder.Services.AddDbContext<ShareSpaceDbContext>(options =>
 {
@@ -44,6 +54,24 @@ builder.Services
             ),
             ClockSkew = TimeSpan.Zero
         };
+
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var accessToken = context.Request.Query["access_token"];
+                // If the request is for our hub...
+                var path = context.HttpContext.Request.Path;
+                if (!string.IsNullOrEmpty(accessToken) &&
+                    (path.StartsWithSegments("/sharespacechathub")))
+                {
+                    // Read the token out of the query string
+                    context.Token = accessToken;
+                }
+                return Task.CompletedTask;
+            }
+        };
+
     });
 
 var app = builder.Build();
@@ -71,8 +99,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseResponseCompression();
+
 app.MapRazorPages();
 app.MapControllers();
+app.MapHub<ShareSpaceChat>("/sharespacechathub");
 app.MapFallbackToFile("index.html");
 
 app.Run();

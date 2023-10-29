@@ -22,7 +22,10 @@
                             HelperText="Max. 20 characters" @bind-Value="LoginModel.Username"
                             For="@(() => LoginModel.Username)" />
 
-                        <MudTextField id="password" For="@(() => LoginModel.Password)" @bind-Value="LoginModel.Password" Label="Password" Variant="Variant.Text" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" />
+                        <MudTextField id="password" For="@(() => LoginModel.Password)" @bind-Value="LoginModel.Password"
+                            Label="Password" Variant="Variant.Text" InputType="@PasswordInput" Adornment="Adornment.End"
+                            AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonAddornmentChange"
+                            AdornmentAriaLabel="Show Password" />
 
                     </MudCardContent>
                     <MudCardActions>
