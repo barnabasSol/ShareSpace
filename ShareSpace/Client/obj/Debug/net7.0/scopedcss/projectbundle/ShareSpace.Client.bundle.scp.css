@@ -28,6 +28,37 @@
         color: white;
     }
 /* /Pages/StartingPages/LoginPage.razor.rz.scp.css */
+/* /Pages/UserPages/ChatArea.razor.rz.scp.css */
+.grid-container[b-acnney49g5] {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: calc(100vh - 64px);
+}
+
+.header[b-acnney49g5] {
+  padding: 10px;
+  text-align: center;
+}
+
+.main[b-acnney49g5] {
+  border: 1px solid #ccc;
+  margin: 10px;
+  overflow-y: auto;
+}
+
+
+
+.input[b-acnney49g5] {
+  border: 1px solid #ccc;
+  margin: 5px;
+  width: calc(100% - 10px);
+}
+
+.button[b-acnney49g5] {
+  color: white;
+  margin: 5px;
+  width: calc(100% - 10px);
+}
 /* /Pages/UserPages/SuggestedUser.razor.rz.scp.css */
 .effect[b-a654zkq300] {
     transition: 0.3s;
@@ -63,6 +94,58 @@ section[b-qfps82va3f] {
 section[b-qfps82va3f]::-webkit-scrollbar {
   display: none;
 }
+/* /Pages/UserPages/UserChat.razor.rz.scp.css */
+.message[b-dd2ww08qqk] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(23, 24, 24);
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+    .message:hover[b-dd2ww08qqk] {
+        cursor: pointer;
+    }
+
+.effect[b-dd2ww08qqk] {
+    transition: 0.3s;
+}
+
+    .effect:hover[b-dd2ww08qqk] {
+        cursor: pointer;
+        scale: 1.022;
+    }
+
+.mycolor[b-dd2ww08qqk] {
+    text-decoration: none;
+}
+
+    .mycolor:hover[b-dd2ww08qqk] {
+        color: yellow;
+    }
+
+.avatar[b-dd2ww08qqk] {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message-content[b-dd2ww08qqk] {
+    background-color: rgb(23, 24, 24);
+    display: flex;
+    align-items: center;
+}
+
+.message-text[b-dd2ww08qqk] {
+    color: #ffffff;
+    margin: 0;
+}
+
+.message-time[b-dd2ww08qqk] {
+    color: #a0a0a0;
+}
 /* /Pages/UserPages/UserProfile.razor.rz.scp.css */
 .noscrollbar[b-hhyj85w644]::-webkit-scrollbar {
     display: none;
@@ -76,6 +159,7 @@ header[b-qeisqmnyxe] {
   grid-area: h1;
   background: rgb(23, 24, 24);
 }
+
 .headerx[b-qeisqmnyxe] {
   grid-area: hx;
   background: rgb(23, 24, 24);

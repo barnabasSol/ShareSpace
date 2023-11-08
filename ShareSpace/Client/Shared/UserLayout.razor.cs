@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using ShareSpace.Shared.DTOs;
 using System.Security.Claims;
@@ -6,7 +7,11 @@ namespace ShareSpace.Client.Shared
 {
     public partial class UserLayout
     {
-        private readonly string[] messages = new[] { "hi", "hellow", "fuck you", "piece of shit" };
+        private HubConnection? hubConnection;
+        private List<string> notifications = new() { 
+            "okay", "hey", "wtf bro"
+        };
+        public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
 
         public ExtraUserInfoDto extraUserInfo = new();
 
@@ -21,10 +26,35 @@ namespace ShareSpace.Client.Shared
                         extraUserInfo = response.Data;
                 }
             }
-            foreach (var message in messages)
+
+        }
+
+        protected override async void OnAfterRender(bool firstRender)
+        {
+            string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
+            hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager
+            .ToAbsoluteUri("/sharespacehub"), opts =>
             {
-                ShowSnackBarWithOptions(message, Variant.Filled);
-                await Task.Delay(2000);
+                opts.AccessTokenProvider = () => Task.FromResult(token)!;
+            })
+            .WithAutomaticReconnect()
+            .Build();
+
+            hubConnection.On<string, string>("ReceiveNotificationFromUser", (user, message) =>
+            {
+                var formatted_message = $"{user}: {message}";
+                notifications.Add(formatted_message);
+                StateHasChanged();
+            });
+            await hubConnection.StartAsync();
+            if (firstRender)
+            {
+                foreach (var notif in notifications)
+                {
+                    ShowSnackBarWithOptions(notif, Variant.Filled);
+                    await Task.Delay(2000);
+                }
             }
         }
 
@@ -32,10 +62,7 @@ namespace ShareSpace.Client.Shared
         {
             var Sub = claims.Where(_ => _.Type == "Sub").Select(_ => _.Value).FirstOrDefault();
             var Name = claims.Where(_ => _.Type == "Name").Select(_ => _.Value).FirstOrDefault();
-            var UserName = claims
-                .Where(_ => _.Type == "UserName")
-                .Select(_ => _.Value)
-                .FirstOrDefault();
+            var UserName = claims.Where(_ => _.Type == "UserName").Select(_ => _.Value).FirstOrDefault();
             var Email = claims.Where(_ => _.Type == "Email").Select(_ => _.Value).FirstOrDefault();
             return new UserInfo()
             {
@@ -52,6 +79,14 @@ namespace ShareSpace.Client.Shared
             SnackBar.Configuration.PositionClass = Defaults.Classes.Position.BottomRight;
             SnackBar.Configuration.VisibleStateDuration = 1000;
             SnackBar.Add($"{message}", Severity.Normal);
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            if (hubConnection is not null)
+            {
+                await hubConnection.DisposeAsync();
+            }
         }
     }
 

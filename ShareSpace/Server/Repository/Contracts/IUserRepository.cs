@@ -11,5 +11,6 @@ namespace ShareSpace.Server.Repository.Contracts
             Guid current_user
         );
         Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId);
+        Task<ApiResponse<IEnumerable<SuggestedUserDto>>> GetSuggestedUsers(Guid current_user);
     }
 }

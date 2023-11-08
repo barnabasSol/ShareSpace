@@ -46,7 +46,7 @@ namespace ShareSpace.Client
             AuthenticationState state =
                 new(new ClaimsPrincipal(new ClaimsIdentity(claims, "ShareSpaceTokenAuth")));
 
-            // NotifyAuthenticationStateChanged(Task.FromResult(state));
+            NotifyAuthenticationStateChanged(Task.FromResult(state));
             //navigationManager.NavigateTo("/main");
             return await Task.FromResult(state);
         }
@@ -73,11 +73,6 @@ namespace ShareSpace.Client
                     break;
             }
             return Convert.FromBase64String(base64);
-        }
-
-        public void NotifyAuthStateChange()
-        {
-            NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
     }
 }

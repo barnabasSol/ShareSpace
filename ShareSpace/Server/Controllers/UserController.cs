@@ -68,8 +68,29 @@ namespace ShareSpace.Server.Controllers
         {
             try
             {
+                
                 Guid UserId = Guid.Parse(User.FindFirst("Sub")!.Value);
                 var result = await userRepository.GetExtraUserInfo(UserId);
+                return result.IsSuccess ? Ok(result) : BadRequest(result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<ExtraUserInfoDto>()
+                {
+                    IsSuccess = false,
+                    Message = $"a server error occured {ex.Message}",
+                };
+            }
+        }
+
+        [Authorize]
+        [HttpGet("suggested-users")]
+        public async Task<ActionResult<ApiResponse<ExtraUserInfoDto>>> GetSuggestedUsers()
+        {
+            try
+            {
+                Guid UserId = Guid.Parse(User.FindFirst("Sub")!.Value);
+                var result = await userRepository.GetSuggestedUsers(UserId);
                 return result.IsSuccess ? Ok(result) : BadRequest(result);
             }
             catch (Exception ex)

@@ -1,73 +1,93 @@
-﻿
-<style>
-    .message {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: rgb(23, 24, 24) !important;
-        padding: 10px 20px;
-        border-radius: 8px;
-    }
+﻿@inject IMessageService MessageService
+@inject NavigationManager nav
+@inject ILocalStorageService localStorage
+@inject AuthenticationStateProvider authstate
+@inject IMessageService MessageService
+@implements IAsyncDisposable
+@attribute [Authorize]
 
-    .message:hover{
-        cursor: pointer;
-    }
 
-    .effect {
-        transition: 0.3s;
-    }
-
-        .effect:hover {
-            cursor: pointer;
-            scale: 1.032;
-        }
-
-    .mycolor{
-        text-decoration: none;
-    }
-    .mycolor:hover{
-        color: yellow;
-    }
-
-    .avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 10px;
-    }
-
-    .message-content {
-        background-color: rgb(23, 24, 24);
-        display: flex;
-        align-items: center;
-    }
-
-    .message-text {
-        color: #ffffff;
-        margin: 0;
-    }
-
-    .message-time {
-        color: #a0a0a0;
-    }
-</style>
-
-<a class="mycolor" href="/chat-area">
-<div class="message w-100 mb-2 effect">
-    <div class="message-content">
-        <MudAvatar Class="mr-2" Size="Size.Large" Color="Color.Tertiary">
-            N
-        </MudAvatar>
-        <div class="bg-transparent">
-            <p class="message-author mb-2">Christina Alonso</p>
-            <p class="message-text">Sounds good.</p>
+@foreach (var user in users_messages)
+{
+    <a class="mycolor" href="/chat/@user.UserName">
+        <div class="message w-100 mb-2 effect">
+            <div class="message-content">
+                @if (user.ProfilePicUrl == null)
+                {
+                    <MudAvatar Class="mr-2" Size="Size.Large" Color="Color.Tertiary">
+                        @user.Name![0]
+                    </MudAvatar>
+                }
+                else
+                {
+                    <MudAvatar Class="mr-2" Size="Size.Large" Color="Color.Tertiary">
+                        <MudImage Src=@user.ProfilePicUrl Alt="Card image cap" />
+                    </MudAvatar>
+                }
+                <div class="bg-transparent">
+                    <p class="message-author mb-2">@user.UserName</p>
+                    <p class="message-text">@user.Message</p>
+                </div>
+            </div>
+            <p class="message-time">@user.SentDateTime
+            </p>
         </div>
-    </div>
-    <p class="message-time">9:41 am</p>
-</div>
-</a>
+    </a>
+}
+
 
 
 @code {
+    private HubConnection? hubConnection;
+    private List<UserMessageDto> users_messages = new();
+    public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
+    protected override async Task OnInitializedAsync()
+    {
+        string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
+        hubConnection = new HubConnectionBuilder()
+        .WithUrl(nav
+        .ToAbsoluteUri("/sharespacehub"), opts =>
+        {
+            opts.AccessTokenProvider = () => Task.FromResult(token)!;
+        })
+        .WithAutomaticReconnect()
+        .Build();
+
+
+        hubConnection.On<List<UserMessageDto>>("ReceiveUsersInFromUser", (users_in_chat) =>
+        {
+            users_messages = users_in_chat;
+            StateHasChanged();
+        });
+
+        await hubConnection.StartAsync();
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var state = await authstate.GetAuthenticationStateAsync();
+            string current_username = state.User.Claims
+            .Where(_ => _.Type == "UserName")
+            .Select(_ => _.Value).FirstOrDefault()!;
+            if (hubConnection is not null)
+            {
+                await hubConnection.InvokeAsync("ShowUsersInChat", current_username);
+            }
+        }
+    }
+
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+
+
+    }
 
 }

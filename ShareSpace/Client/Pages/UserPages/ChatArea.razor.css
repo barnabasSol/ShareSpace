@@ -1,0 +1,30 @@
+.grid-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: calc(100vh - 64px);
+}
+
+.header {
+  padding: 10px;
+  text-align: center;
+}
+
+.main {
+  border: 1px solid #ccc;
+  margin: 10px;
+  overflow-y: auto;
+}
+
+
+
+.input {
+  border: 1px solid #ccc;
+  margin: 5px;
+  width: calc(100% - 10px);
+}
+
+.button {
+  color: white;
+  margin: 5px;
+  width: calc(100% - 10px);
+}

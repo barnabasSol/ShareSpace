@@ -112,5 +112,34 @@ namespace ShareSpace.Server.Repository
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<ApiResponse<IEnumerable<SuggestedUserDto>>> GetSuggestedUsers(
+            Guid current_user
+        )
+        {
+            try
+            {
+                var suggested_users = await shareSpaceDb.Users
+                    .Where(w => w.UserId != current_user)
+                    .ToListAsync();
+                return new ApiResponse<IEnumerable<SuggestedUserDto>>()
+                {
+                    IsSuccess = true,
+                    Message = "",
+                    Data = suggested_users.Select(
+                        s =>
+                            new SuggestedUserDto()
+                            {
+                                Name = s.Name,
+                                ProfilePicUrl = s.ProfilePicUrl,
+                            }
+                    )
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -20,8 +20,7 @@ namespace ShareSpace.Server.Data
         public DbSet<ViewedPost> ViewedPosts { get; set; }
         public DbSet<PostImage> PostImages { get; set; }
 
-        public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options)
-            : base(options)
+        public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options) : base(options)
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }

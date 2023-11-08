@@ -3,7 +3,7 @@
 ### A Social Media Web App
 
 ```csharp
-Console.WriteLine("hello bitch")';
+Console.WriteLine("hello, mate")';
 ```
 
 ##Prerequisites

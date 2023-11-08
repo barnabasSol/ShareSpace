@@ -16,9 +16,11 @@ builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
-builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthService, MessageService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddScoped<ISuggestedUsersService, SuggestedUsersService>();
+builder.Services.AddScoped<IMessageService, MessageServices>();
 
 builder.Services
     .AddHttpClient(

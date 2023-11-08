@@ -6,6 +6,7 @@ header {
   grid-area: h1;
   background: rgb(23, 24, 24);
 }
+
 .headerx {
   grid-area: hx;
   background: rgb(23, 24, 24);

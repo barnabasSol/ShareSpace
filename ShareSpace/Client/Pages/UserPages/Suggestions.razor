@@ -1,12 +1,43 @@
 @page "/suggestions"
+@using System.Security.Claims;
 @layout UserLayout
+@inject ISuggestedUsersService SuggestedUsersService
+@inject AuthenticationStateProvider authstate
+
 
 <div class="w-100 p1 main_sugg">
     <div class="horiz-scroll p-1 gap-1">
-        @for (int i = 0; i < 10; i++)
+        @if (SuggestedUsers is null)
         {
-            <SuggestedUser />
+            <div class="card effect" style="width: 15rem; flex-shrink: 0;  background: rgb(27, 27, 27);">
+                <div class="d-flex justify-content-center align-items-center pt-1">
+                    <MudSkeleton SkeletonType="SkeletonType.Circle" Width="100px" Height="100px" />
+                </div>
+                <div style="height: fit-content;" class="card-body d-flex flex-column align-items-center">
+                    <span class="card-text">
+                        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="70px" Height="12px" />
+                    </span>
+                </div>
+            </div>
+            <div class="card effect" style="width: 15rem; flex-shrink: 0;  background: rgb(27, 27, 27);">
+                <div class="d-flex justify-content-center align-items-center pt-1">
+                    <MudSkeleton SkeletonType="SkeletonType.Circle" Width="100px" Height="100px" />
+                </div>
+                <div style="height: fit-content;" class="card-body d-flex flex-column align-items-center">
+                    <span class="card-text">
+                        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="70px" Height="12px" />
+                    </span>
+                </div>
+            </div>
         }
+        else
+        {
+            foreach (var user in SuggestedUsers)
+            {
+                <SuggestedUser User="@user" />
+            }
+        }
+
     </div>
 
     <section class="trending w-100">
@@ -14,5 +45,21 @@
         <h2 class="ml-2" style="color: white; position: sticky; top: 0;">Trending</h2>
 
     </section>
-
 </div>
+
+@code {
+    IEnumerable<SuggestedUserDto>? SuggestedUsers;
+    ClaimsPrincipal? currentUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var state = await authstate.GetAuthenticationStateAsync();
+        currentUser = state.User;
+        string user_id = currentUser.Claims.FirstOrDefault(c => c.Type == "Sub")!.Value;
+        var response = await SuggestedUsersService.GetSuggestedUsers(Guid.Parse(user_id));
+        if (response.IsSuccess)
+        {
+            SuggestedUsers = response.Data;
+        }
+    }
+}

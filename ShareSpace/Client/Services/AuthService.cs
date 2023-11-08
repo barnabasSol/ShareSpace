@@ -5,11 +5,11 @@ using ShareSpace.Shared.ResponseTypes;
 
 namespace ShareSpace.Client.Services
 {
-    public class AuthService : IAuthService
+    public class MessageService : IAuthService
     {
         private readonly IHttpClientFactory http_client;
 
-        public AuthService(IHttpClientFactory http)
+        public MessageService(IHttpClientFactory http)
         {
             http_client = http;
         }

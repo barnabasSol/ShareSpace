@@ -1,6 +1,12 @@
 ﻿@inherits LayoutComponentBase
 @inject ISnackbar SnackBar
 @inject IUserService UserService
+@inject NavigationManager NavigationManager
+@inject ILocalStorageService localStorage
+@inject AuthenticationStateProvider authstate
+@attribute [Authorize]
+@implements IAsyncDisposable
+
 
 <PageTitle>Home</PageTitle>
 
@@ -44,8 +50,7 @@
                 </MudStack>
             </MudStack>
             <MudDivider Class="my-2" />
-            <MudNavLink Style="color: white;" Href="/chat"
-                Icon="@Icons.Material.Filled.Dashboard">Dashboard
+            <MudNavLink Style="color: white;" Href="/chat" Icon="@Icons.Material.Filled.Dashboard">Dashboard
             </MudNavLink>
             <MudNavLink Style="color: white;" Href="/servers" Icon="@Icons.Material.Filled.Storage">Servers</MudNavLink>
             <MudNavGroup Style="color: white;" Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="true">
@@ -73,15 +78,17 @@
                         </MudButton>
                     </Authorized>
                 </AuthorizeView>
-                <h1 style="color: white;">ShareSpace</h1>
+                <h1 style="color: white;" class="mb-0">ShareSpace</h1>
                 <MudIconButton Icon="@Icons.Material.Rounded.Search" Color="Color.Inherit" />
             </div>
             <div class="pcheader gridlayoutab w-100">
                 <div class="header1">
                     <div class="navbar h-100 ml-2 d-flex justify-content-start"
                         style="background-color: rgb(23, 24, 24);">
+
                         <AuthorizeView>
                             <Authorized>
+
                                 <MudButton Class="flex-md-row-reverse" OnClick="@(() => OpenDrawer(Anchor.Start))">
                                     <MudAvatar Color="Color.Primary" Square="true" Variant="Variant.Outlined">
                                         @GetUserInfo(context.User.Claims.ToList()).Name![0]

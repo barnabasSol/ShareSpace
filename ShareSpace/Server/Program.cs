@@ -27,6 +27,7 @@ builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<INotificationRepostiory, NotificationRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 
 builder.Services.AddDbContext<ShareSpaceDbContext>(options =>
 {
@@ -60,18 +61,14 @@ builder.Services
             OnMessageReceived = context =>
             {
                 var accessToken = context.Request.Query["access_token"];
-                // If the request is for our hub...
                 var path = context.HttpContext.Request.Path;
-                if (!string.IsNullOrEmpty(accessToken) &&
-                    (path.StartsWithSegments("/sharespacechathub")))
+                if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/sharespacehub"))
                 {
-                    // Read the token out of the query string
                     context.Token = accessToken;
                 }
                 return Task.CompletedTask;
             }
         };
-
     });
 
 var app = builder.Build();
@@ -103,7 +100,7 @@ app.UseResponseCompression();
 
 app.MapRazorPages();
 app.MapControllers();
-app.MapHub<ShareSpaceChat>("/sharespacechathub");
+app.MapHub<ShareSpaceHub>("/sharespacehub");
 app.MapFallbackToFile("index.html");
 
 app.Run();

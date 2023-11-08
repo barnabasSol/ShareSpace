@@ -34,7 +34,7 @@ namespace ShareSpace.Client.Pages.StartingPages
                         "ShareSpaceRefreshToken",
                         response.RefreshToken
                     );
-                    (authstate as CustomAuthenticationStateProvider)!.NotifyAuthStateChange();
+                    await authstate.GetAuthenticationStateAsync();
                     NavigationManager.NavigateTo("/main");
                 }
                 else

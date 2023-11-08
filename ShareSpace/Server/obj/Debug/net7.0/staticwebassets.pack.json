@@ -1,6 +1,18 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\134d4dd7-6fd0-4c7d-b40f-6444f5afaf01.png",
+      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\134d4dd7-6fd0-4c7d-b40f-6444f5afaf01.png"
+    },
+    {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\a971e9e6-aafa-4554-9328-e73004c5c128.webp",
+      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\a971e9e6-aafa-4554-9328-e73004c5c128.webp"
+    },
+    {
+      "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\PostPictures\\ab3a2806-7fd7-4c50-8cd1-4fe24c8db240.png",
+      "PackagePath": "staticwebassets\\Uploads\\PostPictures\\ab3a2806-7fd7-4c50-8cd1-4fe24c8db240.png"
+    },
+    {
       "Id": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Server\\wwwroot\\Uploads\\ProfilePictures\\avatar_night_in_the_woods.jpg",
       "PackagePath": "staticwebassets\\Uploads\\ProfilePictures\\avatar_night_in_the_woods.jpg"
     },
