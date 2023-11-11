@@ -5,7 +5,7 @@ namespace ShareSpace.Server.Repository.Contracts
 {
     public interface IMessageRepository
     {
-        Task<ApiResponse<IEnumerable<MessageDto>>> GetMessagesOfUser(Guid user_id);
+        Task<ApiResponse<IEnumerable<MessageDto>>> GetMessagesOfUser(Guid current_user, string other_user);
         Task<ApiResponse<IEnumerable<UserMessageDto>>> GetUsersInChat(string username);
         Task<ApiResponse<string>> StoreMessage(MessageDto message);
         Task<ApiResponse<string>> DeleteMessage(Guid message_id);

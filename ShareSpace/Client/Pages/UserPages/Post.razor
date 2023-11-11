@@ -46,12 +46,13 @@
 
 
 @code {
+    [Parameter]
+    public required List<PostDto> PostDtos { get; set; }
+
     public bool Liked { get; set; }
     TimeSpan rate = TimeSpan.FromSeconds(3);
     public int like_count = 233;
 
-    [Parameter]
-    public required List<PostDto> PostDtos { get; set; }
 
     public void OnToggledChanged(bool toggled)
     {

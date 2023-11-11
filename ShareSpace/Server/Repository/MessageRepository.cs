@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using MudBlazor;
 using ShareSpace.Server.Data;
 using ShareSpace.Server.Entities;
 using ShareSpace.Server.Repository.Contracts;
@@ -22,41 +21,57 @@ namespace ShareSpace.Server.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<ApiResponse<IEnumerable<MessageDto>>> GetMessagesOfUser(Guid user_id)
+        public async Task<ApiResponse<IEnumerable<MessageDto>>> GetMessagesOfUser(
+            Guid current_user,
+            string other_user
+        )
         {
             try
             {
-                var receiver = shareSpaceDb.Users
-                    .Where(w => w.UserId == user_id)
-                    .Select(s => s.UserName)
-                    .FirstOrDefault();
+                var other_user_guid = await shareSpaceDb.Users.FirstAsync(
+                    f => f.UserName == other_user
+                );
 
                 var messages = await shareSpaceDb.Messages
-                    .Where(w => w.SenderId.Equals(user_id) || w.ReceiverId.Equals(user_id))
+                    .Where(
+                        w =>
+                            (
+                                w.SenderId.Equals(current_user)
+                                && w.ReceiverId.Equals(other_user_guid.UserId)
+                            )
+                            || (
+                                w.SenderId.Equals(other_user_guid.UserId)
+                                && w.ReceiverId.Equals(current_user)
+                            )
+                    )
                     .Select(
                         s =>
-                            new MessageDto()
+                            new MessageDto
                             {
-                                From = s.SenderId,
-                                To = receiver!,
-                                Text = s.Content
+                                MessageId = s.MessageId,
+                                To = shareSpaceDb.Users
+                                    .FirstOrDefault(f => f.UserId.Equals(other_user_guid))!
+                                    .UserName,
+                                Text = s.Content,
+                                Seen = s.Seen,
+                                SentDateTime = s.CreatedAt
                             }
                     )
                     .ToListAsync();
                 if (messages.Count < 1)
                 {
-                    return new ApiResponse<IEnumerable<MessageDto>>()
+                    return new ApiResponse<IEnumerable<MessageDto>>
                     {
                         IsSuccess = true,
-                        Message = "",
-                        Data = Enumerable.Empty<MessageDto>()
+                        Data = Enumerable.Empty<MessageDto>(),
+                        Message = ""
                     };
                 }
-                return new ApiResponse<IEnumerable<MessageDto>>()
+                return new ApiResponse<IEnumerable<MessageDto>>
                 {
                     IsSuccess = true,
-                    Message = "",
-                    Data = messages
+                    Data = messages,
+                    Message = ""
                 };
             }
             catch (Exception ex)
@@ -72,6 +87,7 @@ namespace ShareSpace.Server.Repository
                 Guid current_user_guid = shareSpaceDb.Users
                     .FirstOrDefault(w => w.UserName == username)!
                     .UserId;
+
                 var messages = await shareSpaceDb.Messages
                     .Where(
                         m =>
@@ -105,7 +121,7 @@ namespace ShareSpace.Server.Repository
                                 SentDateTime = chat.LastMessage.CreatedAt
                             }
                     )
-                    .OrderByDescending(dto => dto.SentDateTime)
+                    .OrderByDescending(o => o.SentDateTime)
                     .ToList();
                 return new ApiResponse<IEnumerable<UserMessageDto>>()
                 {

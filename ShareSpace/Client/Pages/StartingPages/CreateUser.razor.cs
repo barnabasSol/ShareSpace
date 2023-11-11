@@ -2,8 +2,8 @@
 using FluentValidation;
 using MudBlazor;
 
-namespace ShareSpace.Client.Pages.StartingPages
-{
+namespace ShareSpace.Client.Pages.StartingPages;
+
     public partial class CreateUser
     {
         private readonly RegisterAccountForm ReigisterModel = new();
@@ -112,4 +112,4 @@ namespace ShareSpace.Client.Pages.StartingPages
                 };
         }
     }
-}
+

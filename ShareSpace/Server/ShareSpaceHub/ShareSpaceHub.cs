@@ -15,9 +15,26 @@ namespace ShareSpace.Server.ShareSpaceHub
         }
 
         [Authorize]
-        public async Task SendMessage(string message)
+        public async Task FetchMessagesOfUser(string username)
         {
-            await Clients.All.SendAsync("ReceiveMessage", Context.UserIdentifier, message);
+            Guid current_user = Guid.Parse(
+                Context.User!.Claims
+                    .Where(w => w.Type == "Sub")
+                    .Select(s => s.Value)
+                    .FirstOrDefault()!
+            );
+            var response = await messageRepository.GetMessagesOfUser(
+                current_user,
+                other_user: username
+            );
+
+            if (response.IsSuccess)
+            {
+                await Clients
+                    .User(Context.UserIdentifier!)
+                    .SendAsync("ShowMessages", response.Data);
+                // await Clients.Caller.SendAsync("ShowMessagesFromUser", response.Data);
+            }
         }
 
         [Authorize]
@@ -69,11 +86,11 @@ namespace ShareSpace.Server.ShareSpaceHub
                 .FirstOrDefault();
 
             var response = await messageRepository.GetUsersInChat(username);
-            foreach (var item in response.Data!)
-            {
-                await Console.Out.WriteLineAsync(item.UserName!.ToString());
-                await Console.Out.WriteLineAsync(item.Message);
-            }
+            // foreach (var item in response.Data!)
+            // {
+            //     await Console.Out.WriteLineAsync(item.UserName!.ToString());
+            //     await Console.Out.WriteLineAsync(item.Message);
+            // }
             if (response.IsSuccess)
             {
                 await Clients.User(username).SendAsync("ReceiveUsersInFromUser", response.Data);

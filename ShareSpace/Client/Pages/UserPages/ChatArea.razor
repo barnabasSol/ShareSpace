@@ -14,9 +14,9 @@
     </div>
     <div class="main">
         <ul id="messagesList">
-            @foreach (var message in messages)
+            @foreach (var message in messageDtos)
             {
-                <li style="color: white;">@message</li>
+                <li style="color: white;">@message.Text</li>
             }
         </ul>
     </div>
@@ -37,6 +37,7 @@
     public string? username { get; set; }
     private HubConnection? hubConnection;
     private List<string> messages = new();
+    private List<MessageDto> messageDtos = new();
     private string? MessageInput;
     public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
     private MudTextField<string>? multilineReference;
@@ -64,13 +65,22 @@
 
         hubConnection.On<string, string>("ReceiveMessageFromUser", (user, message) =>
         {
-            var formatted_message = $"{user}: {message}";
-            messages.Add(formatted_message);
+            messageDtos.Add(new MessageDto
+            {
+                Text = message!,
+                To = user!
+            });
             StateHasChanged();
         });
-
+        hubConnection.On<List<MessageDto>>("ShowMessages", (messages) =>
+        {
+            messageDtos = messages;
+            StateHasChanged();
+        });
         await hubConnection.StartAsync();
+        await hubConnection.InvokeAsync("FetchMessagesOfUser", username);
     }
+
 
     private async Task Send()
     {

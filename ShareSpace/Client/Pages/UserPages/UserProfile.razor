@@ -16,7 +16,8 @@
                 else
                 {
                     <MudCardMedia @onclick="@(()=>ShowSnackBarWithOptions(Variant.Filled, Severity.Success))"
-                        Style="background-color: rgb(27, 27, 27); background-position: center;" Image="@Extras.ProfilePicUrl" Height="200" />
+                        Style="background-color: rgb(27, 27, 27); background-position: center;"
+                        Image="@Extras.ProfilePicUrl" Height="200" />
 
                 }
                 <MudCardContent Class="" Style="background: rgb(27, 27, 27);">
@@ -115,8 +116,8 @@
 
     private Color[] colors = new[]
     {
-        Color.Success, Color.Warning, Color.Error, Color.Dark
-    };
+Color.Success, Color.Warning, Color.Error, Color.Dark
+};
 
     void ShowSnackBarWithOptions(Variant variant, Severity severity)
     {

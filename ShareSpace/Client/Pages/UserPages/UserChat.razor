@@ -26,7 +26,14 @@
                 }
                 <div class="bg-transparent">
                     <p class="message-author mb-2">@user.UserName</p>
-                    <p class="message-text">@user.Message</p>
+                    @if (user.Seen is true)
+                    {
+                        <p style="color: gray;">@user.Message</p>
+                    }
+                    else
+                    {
+                        <p class="message-text">@user.Message</p>
+                    }
                 </div>
             </div>
             <p class="message-time">@user.SentDateTime
