@@ -85,7 +85,7 @@ namespace ShareSpace.Server.Repository
             try
             {
                 Guid current_user_guid = shareSpaceDb.Users
-                    .FirstOrDefault(w => w.UserName == username)!
+                    .First(w => w.UserName == username)!
                     .UserId;
 
                 var messages = await shareSpaceDb.Messages
@@ -98,14 +98,7 @@ namespace ShareSpace.Server.Repository
 
                 var users_in_chat = messages
                     .GroupBy(m => m.SenderId.Equals(current_user_guid) ? m.ReceiverId : m.SenderId)
-                    .Select(
-                        g =>
-                            new
-                            {
-                                UserId = g.Key,
-                                LastMessage = g.OrderByDescending(m => m.CreatedAt).FirstOrDefault()
-                            }
-                    )
+                    .Select(g => new { UserId = g.Key, LastMessage = g.MaxBy(b => b.CreatedAt) })
                     .Join(
                         shareSpaceDb.Users,
                         chat => chat.UserId,

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QjrV+tjc+DpztFFdAnQhBSZK08NCn9JU8ulClMKyZFQ=",
+  "Hash": "moXCTRfY7R18APvflXZgjDm6Du4MMs8nFtI3RwzccqE=",
   "Source": "ShareSpace.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -8243,6 +8243,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\manifest.json"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\site.js",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "site.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\site.js"
     }
   ]
 }

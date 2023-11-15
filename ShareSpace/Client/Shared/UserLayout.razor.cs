@@ -53,7 +53,7 @@ namespace ShareSpace.Client.Shared
                 foreach (var notif in notifications)
                 {
                     ShowSnackBarWithOptions(notif, Variant.Filled);
-                    await Task.Delay(2000);
+                    await Task.Delay(1000);
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace ShareSpace.Client.Shared
         {
             SnackBar.Configuration.SnackbarVariant = variant;
             SnackBar.Configuration.PositionClass = Defaults.Classes.Position.BottomRight;
-            SnackBar.Configuration.VisibleStateDuration = 1000;
+            SnackBar.Configuration.VisibleStateDuration = 100;
             SnackBar.Add($"{message}", Severity.Normal);
         }
 

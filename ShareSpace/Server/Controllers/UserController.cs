@@ -6,8 +6,8 @@ using ShareSpace.Shared.ResponseTypes;
 
 namespace ShareSpace.Server.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository userRepository;

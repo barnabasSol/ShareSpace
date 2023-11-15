@@ -113,25 +113,30 @@ namespace ShareSpace.Server.Repository
             }
         }
 
+        public Task<AuthResponse> UpdateToken()
+        {
+            throw new NotImplementedException();
+        }
+
         private string GenerateAccessToken(User authorized_user)
         {
             DateTime TokenExpiration = DateTime.Now.AddHours(15);
             SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
             SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha256);
             List<Claim> claims =
-                 new()
-                 {
+                new()
+                {
                     new Claim(ClaimTypes.NameIdentifier, authorized_user.UserName),
                     new Claim("Sub", authorized_user.UserId.ToString()),
                     new Claim("UserName", authorized_user.UserName),
                     new Claim("Name", authorized_user.Name),
                     new Claim("Email", authorized_user.Email),
-                    // new Claim(ClaimTypes.Role, authorized_user.role),
+                    // new Claim(ClaimTypes.Role, "Batman"),
                     new Claim(
                         JwtRegisteredClaimNames.Exp,
                         new DateTimeOffset(TokenExpiration).ToUnixTimeSeconds().ToString()
                     ),
-                 };
+                };
             JwtSecurityToken securityToken =
                 new(
                     issuer: token_Setting.Issuer,

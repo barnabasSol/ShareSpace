@@ -7,40 +7,50 @@
 @attribute [Authorize]
 
 
-@foreach (var user in users_messages)
+@if (hubConnection is null)
 {
-    <a class="mycolor" href="/chat/@user.UserName">
-        <div class="message w-100 mb-2 effect">
-            <div class="message-content">
-                @if (user.ProfilePicUrl == null)
-                {
-                    <MudAvatar Class="mr-2" Size="Size.Large" Color="Color.Tertiary">
-                        @user.Name![0]
-                    </MudAvatar>
-                }
-                else
-                {
-                    <MudAvatar Class="mr-2" Size="Size.Large" Color="Color.Tertiary">
-                        <MudImage Src=@user.ProfilePicUrl Alt="Card image cap" />
-                    </MudAvatar>
-                }
-                <div class="bg-transparent">
-                    <p class="message-author mb-2">@user.UserName</p>
-                    @if (user.Seen is true)
+    <h4 class="color: white;">loading..</h4>
+}
+else
+{
+    @foreach (var user in users_messages)
+    {
+        <a class="mycolor" href="/chat/@user.UserName">
+            <div class="message w-100 mb-2 effect">
+                <div class="message-content">
+                    @if (user.ProfilePicUrl == null)
                     {
-                        <p style="color: gray;">@user.Message</p>
+                        <MudAvatar Class="mr-2" Size="Size.Large" Color="Color.Tertiary">
+                            @user.Name![0].ToString().ToUpper()
+                        </MudAvatar>
                     }
                     else
                     {
-                        <p class="message-text">@user.Message</p>
+                        <MudAvatar Class="mr-2" Size="Size.Large" Color="Color.Tertiary">
+                            <MudImage Src=@user.ProfilePicUrl Alt="Card image cap" />
+                        </MudAvatar>
                     }
+                    <div class="bg-transparent">
+                        <p class="message-author mb-2">@user.UserName</p>
+                        @if (user.Seen is true)
+                        {
+                            <p style="color: gray;">@user.Message</p>
+                        }
+                        else
+                        {
+                            <p class="message-text">@user.Message</p>
+                        }
+                    </div>
                 </div>
+                <p class="message-time">
+                    @user.SentDateTime
+                </p>
             </div>
-            <p class="message-time">@user.SentDateTime
-            </p>
-        </div>
-    </a>
+        </a>
+    }
 }
+
+
 
 
 
@@ -93,8 +103,6 @@
         {
             await hubConnection.DisposeAsync();
         }
-
-
     }
 
 }

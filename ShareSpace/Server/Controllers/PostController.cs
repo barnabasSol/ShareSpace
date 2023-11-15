@@ -39,5 +39,5 @@ namespace ShareSpace.Server.Controllers
                 );
             }
         }
-   }
+    }
 }

@@ -49,6 +49,8 @@ namespace ShareSpace.Client.Pages.StartingPages
         void ShowSnackBarWithOptions(string message, Variant variant)
         {
             SnackBar.Configuration.SnackbarVariant = variant;
+            SnackBar.Configuration.ClearAfterNavigation = true;
+            SnackBar.Configuration.VisibleStateDuration = 100;
             SnackBar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
             SnackBar.Add($"{message}", MudBlazor.Severity.Error);
         }

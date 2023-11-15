@@ -1,6 +1,1 @@
-/ShareSpace/Client/bin/
-/ShareSpace/Server/bin/
-/ShareSpace/Shared/bin/
-/ShareSpace/Client/obj/
-/ShareSpace/Server/obj/
-/ShareSpace/Shared/obj/
+**/bin/ **/obj/

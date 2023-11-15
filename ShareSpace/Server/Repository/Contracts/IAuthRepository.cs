@@ -7,5 +7,7 @@ namespace ShareSpace.Server.Repository.Contracts
     {
         Task<AuthResponse> CreateUser(CreateUserDTO user);
         Task<AuthResponse> LoginUser(UserLoginDTO login);
+        Task<AuthResponse> UpdateToken();
+
     }
 }

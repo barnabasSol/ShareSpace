@@ -14,17 +14,13 @@
     </div>
     <div class="main">
         <ul id="messagesList">
-            @foreach (var message in messageDtos)
+            @foreach (var message in messages)
             {
                 <li style="color: white;">@message.Text</li>
             }
         </ul>
     </div>
     <div class="footer p-2">
-        <MudTextField Style="background-color: transparent;" @bind-Value="MessageInput" @ref="multilineReference"
-            T="string" Variant="Variant.Outlined" Lines="2" Adornment="Adornment.End"
-            AdornmentIcon="@Icons.Material.Filled.Send" OnAdornmentClick="@(() => multilineReference!.FocusAsync())" />
-
         <input @bind="MessageInput" type="text" class="input" placeholder="Type your message here...">
         <button class="button" @onclick="Send" disabled="@(!IsConnected)">Send</button>
     </div>
@@ -36,11 +32,9 @@
     [Parameter]
     public string? username { get; set; }
     private HubConnection? hubConnection;
-    private List<string> messages = new();
-    private List<MessageDto> messageDtos = new();
+    private List<MessageDto> messages = new();
     private string? MessageInput;
     public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
-    private MudTextField<string>? multilineReference;
 
 
     public async ValueTask DisposeAsync()
@@ -65,18 +59,21 @@
 
         hubConnection.On<string, string>("ReceiveMessageFromUser", (user, message) =>
         {
-            messageDtos.Add(new MessageDto
-            {
-                Text = message!,
-                To = user!
-            });
+            messages.Add(new MessageDto
+                {
+                    Text = message!,
+                    To = user!,
+                    SentDateTime = DateTime.Now
+                });
             StateHasChanged();
         });
+
         hubConnection.On<List<MessageDto>>("ShowMessages", (messages) =>
         {
-            messageDtos = messages;
+            this.messages = messages;
             StateHasChanged();
         });
+
         await hubConnection.StartAsync();
         await hubConnection.InvokeAsync("FetchMessagesOfUser", username);
     }

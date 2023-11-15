@@ -30,10 +30,7 @@ namespace ShareSpace.Server.ShareSpaceHub
 
             if (response.IsSuccess)
             {
-                await Clients
-                    .User(Context.UserIdentifier!)
-                    .SendAsync("ShowMessages", response.Data);
-                // await Clients.Caller.SendAsync("ShowMessagesFromUser", response.Data);
+                await Clients.Caller.SendAsync("ShowMessages", response.Data);
             }
         }
 
