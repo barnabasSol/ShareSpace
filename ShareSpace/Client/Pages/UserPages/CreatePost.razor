@@ -5,8 +5,8 @@
 
 
 <div class="px-lg-5 p-2 py-2 ">
-    <MudTextField @bind-Value="PostText" T="string" Placeholder="write something" Variant="Variant.Outlined"
-        Lines="10" />
+    <MudTextField AutoFocus=true @bind-Value="PostText" Immediate=true T="string" Placeholder="write something"
+        Variant="Variant.Outlined" Lines="10" />
 
     <div class="d-flex justify-content-between align-items-center">
         <InputFile id="post_file" OnChange="CollectFiles" hidden multiple accept="image/*" />

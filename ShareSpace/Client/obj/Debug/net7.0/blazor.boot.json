@@ -214,14 +214,14 @@
       "netstandard.dll": "sha256-urq+e2ZQXxmOWMRxTR92529HnUVu6+kyVnfF6SoLad8=",
       "System.Private.CoreLib.dll": "sha256-ixnF\/wVKLHZM1N0lfJufpZ41EC2LvvyiSqdW43h3Xew=",
       "ShareSpace.Shared.dll": "sha256-mbEr7kPo6sLkYCJZh8FtugprIZafaIef7CVe1TtBcwI=",
-      "ShareSpace.Client.dll": "sha256-3V00qkwO6CoZj7SCj1hPTeP3aM3F+rJToMXopSX5R7U="
+      "ShareSpace.Client.dll": "sha256-dTWkp1qClhb\/\/x4qyr9fEMN1+T6kffZXOfeuWVzuZAg="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "ShareSpace.Shared.pdb": "sha256-C8dGQuyL1Cruwoq+6jN3+biZUhXwgUmbItKtyyxwLgE=",
-      "ShareSpace.Client.pdb": "sha256-U5SWE262gPi6mvFf0MIXZtUVbVgagOLmHl3ecm2ulV4="
+      "ShareSpace.Client.pdb": "sha256-iFx30z5+nlmU0p2UNWeMBJPWoRBR1iUmbc\/tucoEA2s="
     },
     "runtime": {
       "dotnet.7.0.12.7cg25k91oz.js": "sha256-cPJgWy8SjMaYFeimGkYy23ls+rDZVmoC\/eMoHpqRc+4=",

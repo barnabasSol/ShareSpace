@@ -1025,11 +1025,11 @@
       "url": "_framework\/ShareSpace.Shared.pdb"
     },
     {
-      "hash": "sha256-3V00qkwO6CoZj7SCj1hPTeP3aM3F+rJToMXopSX5R7U=",
+      "hash": "sha256-RRi3emDVq9TVQcY\/cMcyXcDY7FFjcnWvRmowXvB3wQk=",
       "url": "_framework\/ShareSpace.Client.dll"
     },
     {
-      "hash": "sha256-U5SWE262gPi6mvFf0MIXZtUVbVgagOLmHl3ecm2ulV4=",
+      "hash": "sha256-FUcVQGnDfMC4InnfHC23MkKb9ZEIDvZIyxNFtHG5im8=",
       "url": "_framework\/ShareSpace.Client.pdb"
     },
     {
@@ -1037,7 +1037,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-Ktf5J8QbZWj4uX56c5wcofEf8vKEzIks7zXwR0INx4k=",
+      "hash": "sha256-IyUxhn3nfY+V1u6X2IlZSL2w8kaByFnyWSPXXAebmRI=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1049,5 +1049,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "YVwa8zT0"
+  "version": "aAcodjw0"
 };
