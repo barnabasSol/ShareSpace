@@ -11,6 +11,7 @@ using ShareSpace.Server.JWT;
 using ShareSpace.Server.Repository.Contracts;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ShareSpace.Server.Repository
 {
@@ -46,7 +47,7 @@ namespace ShareSpace.Server.Repository
                         UserName = requesting_user.UserName,
                         Name = requesting_user.Name,
                         Email = requesting_user.Email,
-                        PasswordHash = BCrypt.Net.BCrypt.HashPassword(requesting_user.Password)
+                        PasswordHash = BC.HashPassword(requesting_user.Password)
                     };
                 await shareSpaceDb.Users.AddAsync(NewUser);
 
@@ -91,7 +92,7 @@ namespace ShareSpace.Server.Repository
                     return new AuthResponse() { IsSuccess = false, Message = "user doesn't exist" };
                 }
 
-                if (!BCrypt.Net.BCrypt.Verify(user_login.Password, queried_user.PasswordHash))
+                if (!BC.Verify(user_login.Password, queried_user.PasswordHash))
                 {
                     return new AuthResponse()
                     {
