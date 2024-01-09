@@ -20,7 +20,8 @@ namespace ShareSpace.Server.Data
         public DbSet<ViewedPost> ViewedPosts { get; set; }
         public DbSet<PostImage> PostImages { get; set; }
 
-        public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options) : base(options)
+        public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options)
+            : base(options)
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
@@ -61,6 +62,8 @@ namespace ShareSpace.Server.Data
                 p.Property(l => l.Likes).HasDefaultValue("0");
                 p.Property(l => l.Views).HasDefaultValue("0");
             });
+
+            modelBuilder.Entity<UserRole>().HasKey(ur => new { ur.UserId, ur.RoleId });
 
             modelBuilder.Entity<LikedPost>(lp =>
             {

@@ -73,7 +73,7 @@ main {
     "profcon section nav";
 }
 
-@media only screen and (min-width: 601px) and (max-width: 1197px) {
+@media only screen and (min-width: 601px) and (max-width: 970px) {
   main {
     grid-template-rows: 64px 8fr;
     grid-template-columns: 0.7fr 1fr;
@@ -110,7 +110,7 @@ main {
   }*/
 }
 
-@media only screen and (max-width: 601px) {
+@media only screen and (max-width: 600px) {
   article {
     display: none;
   }

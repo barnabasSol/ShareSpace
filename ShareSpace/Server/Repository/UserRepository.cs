@@ -41,7 +41,7 @@ namespace ShareSpace.Server.Repository
                                         user_int => user_int.InterestId,
                                         interest => interest.Id,
                                         (uintr, intr) =>
-                                            new InterestsDto()
+                                            new InterestsDto
                                             {
                                                 Id = uintr.InterestId,
                                                 Value = intr.InterestName
@@ -52,7 +52,7 @@ namespace ShareSpace.Server.Repository
                             }
                     )
                     .FirstAsync();
-                return new ApiResponse<ExtraUserInfoDto>()
+                return new ApiResponse<ExtraUserInfoDto>
                 {
                     IsSuccess = true,
                     Message = "",
@@ -70,7 +70,7 @@ namespace ShareSpace.Server.Repository
             try
             {
                 var interests = await shareSpaceDb.Interests.ToListAsync();
-                return new ApiResponse<IEnumerable<InterestsDto>>()
+                return new ApiResponse<IEnumerable<InterestsDto>>
                 {
                     IsSuccess = true,
                     Data = interests.Select(
@@ -122,7 +122,7 @@ namespace ShareSpace.Server.Repository
                 var suggested_users = await shareSpaceDb.Users
                     .Where(w => w.UserId != current_user)
                     .ToListAsync();
-                return new ApiResponse<IEnumerable<SuggestedUserDto>>()
+                return new ApiResponse<IEnumerable<SuggestedUserDto>>
                 {
                     IsSuccess = true,
                     Message = "",

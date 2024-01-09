@@ -34,16 +34,44 @@ else
                         <p class="message-author mb-2">@user.UserName</p>
                         @if (user.Seen is true)
                         {
-                            <p style="color: gray;">@user.Message</p>
+                            if (user.Message!.Length > 20)
+                            {
+                                <p style="color: gray;">@(user.Message.Substring(0, 20) + "...")</p>
+                            }
+                            else
+                            {
+                                <p style="color: gray;">@user.Message</p>
+                            }
                         }
                         else
                         {
-                            <p class="message-text">@user.Message</p>
+                            if (user.Message!.Length > 20)
+                            {
+                                <p class="message-text">@(user.Message.Substring(0, 20) + "...")</p>
+                            }
+                            else
+                            {
+                                <p class="message-text">@user.Message</p>
+                            }
                         }
                     </div>
                 </div>
                 <p class="message-time">
-                    @user.SentDateTime
+                    @if ((DateTime.Now - user.SentDateTime).TotalHours > 24)
+                    {
+                        if ((DateTime.Now - user.SentDateTime).TotalHours < 48)
+                        {
+                            @("Yesterday at " + user.SentDateTime.ToString("t"))
+                        }
+                        else
+                        {
+                            @user.SentDateTime.ToString("g")
+                        }
+                    }
+                    else
+                    {
+                        @user.SentDateTime.ToString("t")
+                    }
                 </p>
             </div>
         </a>
@@ -63,7 +91,7 @@ else
         string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
         hubConnection = new HubConnectionBuilder()
         .WithUrl(nav
-        .ToAbsoluteUri("/sharespacehub"), opts =>
+        .ToAbsoluteUri("/messagehub"), opts =>
         {
             opts.AccessTokenProvider = () => Task.FromResult(token)!;
         })

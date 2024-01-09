@@ -5,6 +5,7 @@ namespace ShareSpace.Client
     public class CustomHttpHandler : DelegatingHandler
     {
         private readonly ILocalStorageService localStorage;
+
         public CustomHttpHandler(ILocalStorageService localStorage)
         {
             this.localStorage = localStorage;
@@ -15,12 +16,15 @@ namespace ShareSpace.Client
             CancellationToken cancellationToken
         )
         {
-            if (request.RequestUri!.AbsolutePath.ToLower().Contains("Auth"))
+            if (request.RequestUri!.AbsolutePath.Contains("Auth"))
             {
                 return await base.SendAsync(request, cancellationToken);
             }
 
-            var token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken", cancellationToken);
+            var token = await localStorage.GetItemAsync<string>(
+                "ShareSpaceAccessToken",
+                cancellationToken
+            );
             if (!string.IsNullOrEmpty(token))
             {
                 request.Headers.Add("Authorization", $"Bearer {token}");

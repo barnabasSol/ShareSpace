@@ -10,15 +10,13 @@ h1:focus {
 }
 
 .my-link:hover {
-    color: yellow !important;
+  color: yellow !important;
 }
 
 a,
 .btn-link {
   color: #0071c1;
 }
-
-
 
 .btn-primary {
   color: #fff;

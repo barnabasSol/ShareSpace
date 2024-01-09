@@ -18,7 +18,9 @@ namespace ShareSpace.Client.Services
         {
             var http = http_client.CreateClient("ShareSpaceApi");
             var response = await http.GetAsync("/get-messages");
-            var result = await response.Content.ReadFromJsonAsync<ApiResponse<IEnumerable<MessageDto>>>();
+            var result = await response.Content.ReadFromJsonAsync<
+                ApiResponse<IEnumerable<MessageDto>>
+            >();
             return result!;
         }
 

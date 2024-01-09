@@ -49,11 +49,12 @@ namespace ShareSpace.Server.Repository
                             new MessageDto
                             {
                                 MessageId = s.MessageId,
-                                To = shareSpaceDb.Users
-                                    .FirstOrDefault(f => f.UserId.Equals(other_user_guid))!
-                                    .UserName,
+                                From = s.SenderId.Equals(current_user)
+                                    ? current_user
+                                    : other_user_guid.UserId,
                                 Text = s.Content,
                                 Seen = s.Seen,
+                                ProfilePic = other_user_guid.ProfilePicUrl,
                                 SentDateTime = s.CreatedAt
                             }
                     )
@@ -116,7 +117,7 @@ namespace ShareSpace.Server.Repository
                     )
                     .OrderByDescending(o => o.SentDateTime)
                     .ToList();
-                return new ApiResponse<IEnumerable<UserMessageDto>>()
+                return new ApiResponse<IEnumerable<UserMessageDto>>
                 {
                     IsSuccess = true,
                     Message = "",
@@ -133,12 +134,13 @@ namespace ShareSpace.Server.Repository
         {
             try
             {
-                Guid receiver = shareSpaceDb.Users
+                Guid receiver = await shareSpaceDb.Users
                     .Where(w => w.UserName == message.To)
                     .Select(s => s.UserId)
-                    .FirstOrDefault();
+                    .FirstOrDefaultAsync();
+
                 await shareSpaceDb.Messages.AddAsync(
-                    new Message()
+                    new Message
                     {
                         Content = message.Text,
                         SenderId = message.From,
@@ -146,7 +148,7 @@ namespace ShareSpace.Server.Repository
                     }
                 );
                 await shareSpaceDb.SaveChangesAsync();
-                return new ApiResponse<string>()
+                return new ApiResponse<string>
                 {
                     IsSuccess = true,
                     Message = "",
@@ -157,6 +159,32 @@ namespace ShareSpace.Server.Repository
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public async Task<ApiResponse<int>> GetUnseenMessagesCount(Guid current_user)
+        {
+            try
+            {
+                var receiver = await shareSpaceDb.Messages
+                    .Where(w => w.ReceiverId.Equals(current_user))
+                    .ToListAsync();
+                int count = receiver.Count(c => !c.Seen);
+                return new ApiResponse<int>
+                {
+                    IsSuccess = true,
+                    Data = count,
+                    Message = ""
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public Task<ApiResponse<string>> UpdateSeenStatus(Guid current_user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

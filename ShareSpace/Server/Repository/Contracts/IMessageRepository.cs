@@ -9,5 +9,7 @@ namespace ShareSpace.Server.Repository.Contracts
         Task<ApiResponse<IEnumerable<UserMessageDto>>> GetUsersInChat(string username);
         Task<ApiResponse<string>> StoreMessage(MessageDto message);
         Task<ApiResponse<string>> DeleteMessage(Guid message_id);
+        Task<ApiResponse<int>> GetUnseenMessagesCount(Guid current_user);
+        Task<ApiResponse<string>> UpdateSeenStatus(Guid current_user); 
     }
 }

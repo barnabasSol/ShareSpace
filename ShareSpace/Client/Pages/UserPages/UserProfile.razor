@@ -1,6 +1,5 @@
 ﻿@page "/profile"
 @layout UserLayout
-@inject IUserService UserService
 @inject ISnackbar SnackBar
 
 <div class="w-100 d-flex flex-column align-items-center pl-2 noscrollbar">
@@ -61,7 +60,7 @@
                     </div>
                     @if (Extras is not null)
                     {
-                        <MudText Typo="Typo.body1" Class="mt-2">joined @(ToHumanReadableString(JoinedSince))</MudText>
+                        <MudText Typo="Typo.body1" Class="mt-2">joined @(GetDuration())</MudText>
                         <MudText Typo="Typo.body2" Class="mt-2">@Extras.Bio</MudText>
                     }
 
@@ -94,41 +93,27 @@
 </div>
 
 @code {
+    [Parameter]
     public ExtraUserInfoDto Extras { get; set; } = new();
-    public TimeSpan JoinedSince;
 
-    protected override async Task OnInitializedAsync()
-    {
-        var response = await UserService.GetExtraUserInfo();
-        if (response is not null)
-        {
-            if (response.IsSuccess)
-            {
-                if (response.Data is not null)
-                {
-                    Extras = response.Data;
-                    JoinedSince = (DateTime.Now - Extras.JoinedDate);
-
-                }
-            }
-        }
-    }
 
     private Color[] colors = new[]
     {
 Color.Success, Color.Warning, Color.Error, Color.Dark
 };
 
+
     void ShowSnackBarWithOptions(Variant variant, Severity severity)
     {
         SnackBar.Configuration.SnackbarVariant = variant;
         SnackBar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
         SnackBar.Configuration.VisibleStateDuration = 5000;
-        SnackBar.Add($"mother fucker", severity);
+        SnackBar.Add($"profile clicked", severity);
     }
 
-    public string ToHumanReadableString(TimeSpan timeSpan)
+    public string GetDuration()
     {
+        TimeSpan timeSpan = DateTime.Now - Extras.JoinedDate;
         return timeSpan.TotalDays switch
         {
             > 365 => $"{(int)(timeSpan.TotalDays / 365)} year(s) ago",

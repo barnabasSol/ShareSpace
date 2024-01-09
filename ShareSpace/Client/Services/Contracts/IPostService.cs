@@ -6,5 +6,6 @@ namespace ShareSpace.Client.Services.Contracts
     public interface IPostService
     {
         Task<ApiResponse<string>> CreatePost(CreatePostDto post);
+        Task<ApiResponse<List<PostDto>>> GetPosts();
     }
 }

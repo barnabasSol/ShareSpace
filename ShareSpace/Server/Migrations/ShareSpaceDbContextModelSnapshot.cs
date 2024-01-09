@@ -347,6 +347,25 @@ namespace ShareSpace.Server.Migrations
                     b.ToTable("refresh_token");
                 });
 
+            modelBuilder.Entity("ShareSpace.Server.Entities.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("role_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RoleId"));
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("role_name");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("role");
+                });
+
             modelBuilder.Entity("ShareSpace.Server.Entities.User", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -415,6 +434,23 @@ namespace ShareSpace.Server.Migrations
                     b.HasIndex("InterestId");
 
                     b.ToTable("user_interests");
+                });
+
+            modelBuilder.Entity("ShareSpace.Server.Entities.UserRole", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer")
+                        .HasColumnName("role_id");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("user_role");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.ViewedPost", b =>
@@ -590,12 +626,31 @@ namespace ShareSpace.Server.Migrations
                         .IsRequired();
 
                     b.HasOne("ShareSpace.Server.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("UserInterests")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Interest");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ShareSpace.Server.Entities.UserRole", b =>
+                {
+                    b.HasOne("ShareSpace.Server.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShareSpace.Server.Entities.User", "User")
+                        .WithMany("Roles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
 
                     b.Navigation("User");
                 });
@@ -643,6 +698,10 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("Posts");
 
                     b.Navigation("RefreshTokens");
+
+                    b.Navigation("Roles");
+
+                    b.Navigation("UserInterests");
 
                     b.Navigation("ViewedPosts");
                 });

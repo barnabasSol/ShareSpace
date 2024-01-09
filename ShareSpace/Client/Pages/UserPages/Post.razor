@@ -1,69 +1,114 @@
-﻿<div class="col mb-1 p-1">
-    <MudCard>
-        <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
-            <CardHeaderAvatar>
-                <MudAvatar Size="Size.Large" Color="Color.Tertiary">S</MudAvatar>
-            </CardHeaderAvatar>
-            <CardHeaderContent>
-                <MudText Typo="Typo.body1">ryan gosling</MudText>
-                <MudText Typo="Typo.body2">Peninsula in Europe</MudText>
-            </CardHeaderContent>
-            <CardHeaderActions>
-                <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true">
-                    <MudMenuItem>Share</MudMenuItem>
-                    <MudMenuItem>Not Interested</MudMenuItem>
-                    <MudMenuItem>Mute User</MudMenuItem>
-                </MudMenu>
-            </CardHeaderActions>
-        </MudCardHeader>
-        <MudCarousel Style="background-color: rgb(27, 27, 27); height:320px;" ShowBullets="false" EnableSwipeGesture="true" AutoCycle="false" TData="object">
-            <MudCarouselItem Style="background-color: rgb(27, 27, 27);" Transition="Transition.Slide">
-                <MudCardMedia loading="lazy" Class="w-100" Image="/Assets/avatar_night_in_the_woods.jpg" Height="320" />
-            </MudCarouselItem>  
-        </MudCarousel>
-        <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
-            <MudText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-        </MudCardContent>
-        <MudCardActions Style="background: rgb(27, 27, 27);" Class="d-flex justify-content-between gap-5">
-            <div>
-                <MudToggleIconButton Toggled="@Liked" ToggledChanged="OnToggledChanged"
-                    Icon="@Icons.Material.Filled.Favorite" Title="Off" ToggledIcon="@Icons.Material.Filled.Favorite"
-                    ToggledColor="@Color.Primary" />
-                <span style="color: white;">@like_count</span>
-            </div>
-            <div>
-                <MudIconButton Icon="@Icons.Material.Filled.AddComment" Color="Color.Default" />
-                <span style="color: white;">233</span>
-            </div>
-            <div>
-                <span style="color: white;">233</span>
-                <MudIconButton Icon="@Icons.Material.Filled.RemoveRedEye" Color="Color.Default" />
-            </div>
-        </MudCardActions>
-    </MudCard>
-</div>
+﻿
+    <div class="col mb-1 p-1">
+        <MudCard>
+            <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
+                <CardHeaderAvatar >
+                    @if (post.PostUserProfilePicUrl == null)
+                    {
+                        <MudAvatar Size="Size.Large" Color="Color.Tertiary">@post.PostedName[0]</MudAvatar>
+                    }
+                    else
+                    {
+                        <MudAvatar Size="Size.Medium">
+                        <MudImage Style="border-radius: 10%; border: 0;" Src="@post.PostUserProfilePicUrl" Alt="Card image cap" />
+                        </MudAvatar>
+                    }
+                </CardHeaderAvatar>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.body1">@post.PostedName</MudText>
+                    <MudText Typo="Typo.body2">@post.PostedUsername</MudText>
+                </CardHeaderContent>
+                <CardHeaderActions>
+                    <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true">
+                        <MudMenuItem>Share</MudMenuItem>
+                        <MudMenuItem>Not Interested</MudMenuItem>
+                        <MudMenuItem>Mute User</MudMenuItem>
+
+                        <AuthorizeView>
+                            <Authorized>
+                                @if (post.PostedUserId == Guid.Parse(context.User.Claims.FirstOrDefault(c => c.Type == "Sub")!.Value))
+                                {
+                                <MudMenuItem OnTouch="DeletePost" OnClick="DeletePost">Delete Post</MudMenuItem>
+                            }
+
+                        </Authorized>
+                        </AuthorizeView>
+
+                    </MudMenu>
+                </CardHeaderActions>
+            </MudCardHeader>
+
+                    @if (post.PostPictureUrls!.Any())
+                    {
+                <MudCarousel Style="background-color: rgb(27, 27, 27); height:320px;" ShowBullets="false"
+                         EnableSwipeGesture="true" AutoCycle="false" TData="object">
+                         @foreach (var image in post.PostPictureUrls!)
+                        {
+                        <MudCarouselItem Style="background-color: rgb(27, 27, 27);" Transition="Transition.Slide">
+                            <MudCardMedia loading="lazy" Class="w-100" Image="@image" Height="320" />
+                        </MudCarouselItem>
+                        }
+                </MudCarousel>
+                    }
+              
+               
+            <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
+                <MudText Typo="Typo.body2">@post.TextContent</MudText>
+            </MudCardContent>
+            <MudCardActions Style="background: rgb(27, 27, 27);" Class="d-flex justify-content-between gap-5">
+                <div>
+                    <MudToggleIconButton Toggled="@Liked" ToggledChanged="OnToggledChanged"
+                                         Icon="@Icons.Material.Filled.Favorite" Title="Off" ToggledIcon="@Icons.Material.Filled.Favorite"
+                                         ToggledColor="@Color.Primary" />
+                    <span style="color: white;">@post.LikesCount</span>
+                </div>
+                <div>
+                    <MudIconButton Icon="@Icons.Material.Filled.AddComment" Color="Color.Default" />
+                    <span style="color: white;">@post.CommentsCount</span>
+                </div>
+                <div>
+                    <span style="color: white;">@post.ViewsCount</span>
+                    <MudIconButton Icon="@Icons.Material.Filled.RemoveRedEye" Color="Color.Default" />
+                </div>
+            </MudCardActions>
+        </MudCard>
+    </div>
+
+
 
 
 
 @code {
     [Parameter]
-    public required List<PostDto> PostDtos { get; set; }
+    public required PostDto post { get; set; }
 
-    public bool Liked { get; set; }
+    [Parameter]
+    public EventCallback<PostDto> OnDelete { get; set; }
+
+    public bool Liked { get; set; } = false;
     TimeSpan rate = TimeSpan.FromSeconds(3);
-    public int like_count = 233;
+
+    void DeletePost()
+    {
+        OnDelete.InvokeAsync(post);
+    }
 
 
     public void OnToggledChanged(bool toggled)
     {
         Liked = toggled;
-        if (Liked && like_count > 0)
-            like_count++;
+        if (Liked)
+        {
+            post.LikesCount++;
+        }
         else
         {
-            Liked = false;
-            like_count--;
+            if (post.LikesCount > 0) // Ensure likes count doesn't go below zero
+            {
+                post.LikesCount--;
+            }
         }
     }
+
 
 }

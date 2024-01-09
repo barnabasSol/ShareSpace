@@ -29,6 +29,13 @@
             </MudButton>
 
         }
+        else
+        {
+            <MudButton Style="background: rgb(66, 65, 65);" Disabled=true Variant="Variant.Filled" Color="Color.Success"
+                Class="ml-auto">
+                <MudText Style="color: rgb(95, 94, 94);">Post</MudText>
+            </MudButton>
+        }
     </div>
     <div class="w-100">
         @if (collected_files is not null)

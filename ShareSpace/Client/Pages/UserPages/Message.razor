@@ -1,0 +1,53 @@
+@inject IJSRuntime JS
+
+@foreach (var message in Messages)
+{
+    <AuthorizeView>
+        <Authorized>
+            @if (message.From == Guid.Parse(context.User.Claims.FirstOrDefault(c => c.Type == "Sub")!.Value))
+            {
+                <div class="w-100 d-flex justify-content-end mb-2">
+                    <MudCard Style="background: rgb(48, 47, 47);" Outlined="true">
+                        <MudCardContent>
+                            <MudText Typo="Typo.body2" Style="word-wrap: break-word;  max-width: 200px;">
+                                @message.Text
+                            </MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </div>
+            }
+            else
+            {
+                <div class="w-100 d-flex justify-content-start mb-2">
+                    <div class="d-flex align-items-center">
+                        <MudAvatar Style="height: 50px; width: 50px; background: transparent;" Color="Color.Primary"
+                            Variant="Variant.Text">
+                            <MudAvatar Class="bg-transparent" Size="Size.Small" Color="Color.Tertiary">
+                                <MudImage Style="border-radius: 10%; border: 0;" Src="@message.ProfilePic"
+                                    Alt="Card image cap" />
+                            </MudAvatar>
+                        </MudAvatar>
+                        <MudCard Style="background: rgb(48, 47, 47);" Outlined="true">
+                            <MudCardContent>
+                                <MudText Typo="Typo.body2" Style="word-wrap: break-word; max-width: 200px;">
+                                    @message.Text
+                                </MudText>
+                            </MudCardContent>
+                        </MudCard>
+                    </div>
+                </div>
+            }
+        </Authorized>
+    </AuthorizeView>
+
+}
+
+@code {
+    [Parameter] public required List<MessageDto> Messages { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/site.js");
+        await module.InvokeVoidAsync("scrollToEnd");
+    }
+}

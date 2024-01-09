@@ -3,18 +3,22 @@ namespace ShareSpace.Shared.DTOs
     public class PostBase
     {
         public Guid PostId { get; set; }
-        public required string PostedUserId { get; set; }
-        public required string PostUsername { get; set; }
+        public required Guid PostedUserId { get; set; }
+        public required string PostedUsername { get; set; }
     }
 
     public class PostDto : PostBase
     {
+
         public string? PostUserProfilePicUrl { get; set; }
+        public required string PostedName { get; set; }
         public string? TextContent { get; set; }
         public IEnumerable<string>? PostPictureUrls { get; set; }
         public int LikesCount { get; set; }
         public int ViewsCount { get; set; }
         public int CommentsCount { get; set; }
+        public DateTime PostedDateTime { get; set; }
+
     }
 
     public class PostDtoDetailsDto : PostDto { }
@@ -24,7 +28,7 @@ namespace ShareSpace.Shared.DTOs
         public string? TextContent { get; set; }
         public IEnumerable<File>? PostFiles { get; set; }
         public Guid PostedUserId { get; set; }
-        public IEnumerable<string>? Tags { get; set; } 
+        public IEnumerable<string>? Tags { get; set; }
     }
 
     public class File
@@ -34,5 +38,4 @@ namespace ShareSpace.Shared.DTOs
         public string Type { get; set; } = string.Empty;
         public long Size { get; set; }
     }
-
 }

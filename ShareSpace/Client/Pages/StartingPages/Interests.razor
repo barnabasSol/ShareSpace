@@ -1,10 +1,10 @@
 @page "/interests"
-@attribute [Authorize]
+@layout LandingLayout
 @using ShareSpace.Shared.DTOs;
 @using ShareSpace.Shared.ResponseTypes;
-@layout LandingLayout
 @inject IUserService UserService
 @inject NavigationManager NavigationManager
+@attribute [Authorize]
 
 
 <h2 class="mb-10 mt-5" style="background-color: rgb(20, 20, 20); color: white; text-align: center;">what are you into?

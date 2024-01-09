@@ -8,16 +8,21 @@ namespace ShareSpace.Client.Shared
     public partial class UserLayout
     {
         private HubConnection? hubConnection;
-        private List<string> notifications = new() { 
-            "okay", "hey", "wtf bro"
-        };
+        private string? MessageCount;
+        private List<string> notifications = new();
         public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
 
         public ExtraUserInfoDto extraUserInfo = new();
 
         protected override async Task OnInitializedAsync()
         {
-            var response = await UserService.GetExtraUserInfo();
+            var state = await authstate.GetAuthenticationStateAsync();
+            string current_user_string = state.User.Claims
+                .Where(_ => _.Type == "Sub")
+                .Select(_ => _.Value)
+                .FirstOrDefault()!;
+
+            var response = await UserService.GetExtraUserInfo(Guid.Parse(current_user_string));
             if (response is not null)
             {
                 if (response.IsSuccess)
@@ -26,35 +31,45 @@ namespace ShareSpace.Client.Shared
                         extraUserInfo = response.Data;
                 }
             }
-
         }
 
-        protected override async void OnAfterRender(bool firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
             hubConnection = new HubConnectionBuilder()
-            .WithUrl(NavigationManager
-            .ToAbsoluteUri("/sharespacehub"), opts =>
-            {
-                opts.AccessTokenProvider = () => Task.FromResult(token)!;
-            })
-            .WithAutomaticReconnect()
-            .Build();
+                .WithUrl(
+                    NavigationManager.ToAbsoluteUri("/messagehub"),
+                    opts =>
+                    {
+                        opts.AccessTokenProvider = () => Task.FromResult(token)!;
+                    }
+                )
+                .WithAutomaticReconnect()
+                .Build();
 
-            hubConnection.On<string, string>("ReceiveNotificationFromUser", (user, message) =>
-            {
-                var formatted_message = $"{user}: {message}";
-                notifications.Add(formatted_message);
-                StateHasChanged();
-            });
+            hubConnection.On<string, string, Guid>(
+                "ReceiveMessageFromUser",
+                (user, message, current_user) =>
+                {
+                    string incoming_message = $"@{user}  {message}";
+                    ShowSnackBarWithOptions(incoming_message, Variant.Filled);
+                }
+            );
+
+            hubConnection.On<int>(
+                "ShowUnseenCount",
+                (count) =>
+                {
+                    MessageCount = count.ToString();
+                    StateHasChanged();
+                }
+            );
+
             await hubConnection.StartAsync();
+
             if (firstRender)
             {
-                foreach (var notif in notifications)
-                {
-                    ShowSnackBarWithOptions(notif, Variant.Filled);
-                    await Task.Delay(1000);
-                }
+                await hubConnection.InvokeAsync("GetUnseenMessagesCount");
             }
         }
 
@@ -62,7 +77,10 @@ namespace ShareSpace.Client.Shared
         {
             var Sub = claims.Where(_ => _.Type == "Sub").Select(_ => _.Value).FirstOrDefault();
             var Name = claims.Where(_ => _.Type == "Name").Select(_ => _.Value).FirstOrDefault();
-            var UserName = claims.Where(_ => _.Type == "UserName").Select(_ => _.Value).FirstOrDefault();
+            var UserName = claims
+                .Where(_ => _.Type == "UserName")
+                .Select(_ => _.Value)
+                .FirstOrDefault();
             var Email = claims.Where(_ => _.Type == "Email").Select(_ => _.Value).FirstOrDefault();
             return new UserInfo()
             {
@@ -77,7 +95,7 @@ namespace ShareSpace.Client.Shared
         {
             SnackBar.Configuration.SnackbarVariant = variant;
             SnackBar.Configuration.PositionClass = Defaults.Classes.Position.BottomRight;
-            SnackBar.Configuration.VisibleStateDuration = 100;
+            SnackBar.Configuration.VisibleStateDuration = 1000;
             SnackBar.Add($"{message}", Severity.Normal);
         }
 

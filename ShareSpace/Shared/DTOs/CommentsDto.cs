@@ -1,10 +1,10 @@
-namespace ShareSpace.Shared.DTOs
+namespace ShareSpace.Shared.DTOs;
+
+public class CommentDto
 {
-    public class CommentDto
-    {
-        public Guid CommentedUserId { get; set; }
-        public required string UserName { get; set; }
-        public string? UserProfilePicUrl { get; set; }
-        public required string CommentContent { get; set; }
-    }
+    public Guid UserId { get; set; }
+    public required string UserName { get; set; }
+    public required string Name { get; set; }
+    public string? UserProfilePicUrl { get; set; }
+    public required string Content { get; set; }
 }

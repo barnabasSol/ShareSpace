@@ -22,6 +22,12 @@ namespace ShareSpace.Client.Services
             return result!;
         }
 
-
+        public async Task<ApiResponse<List<PostDto>>> GetPosts()
+        {
+            var http = http_client.CreateClient("ShareSpaceApi");
+            var response = await http.GetAsync("/Post/get-posts");
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<List<PostDto>>>();
+            return result!;
+        }
     }
 }

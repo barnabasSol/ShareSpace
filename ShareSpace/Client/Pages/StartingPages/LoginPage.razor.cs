@@ -26,9 +26,9 @@ namespace ShareSpace.Client.Pages.StartingPages
                         Password = LoginModel.Password
                     }
                 );
+                processing = false;
                 if (response.IsSuccess)
                 {
-                    processing = false;
                     await localstorage.SetItemAsync("ShareSpaceAccessToken", response.AccessToken);
                     await localstorage.SetItemAsync(
                         "ShareSpaceRefreshToken",
@@ -38,10 +38,7 @@ namespace ShareSpace.Client.Pages.StartingPages
                     NavigationManager.NavigateTo("/main");
                 }
                 else
-                {
-                    processing = false;
                     ShowSnackBarWithOptions(response.Message, Variant.Filled);
-                }
             }
             StateHasChanged();
         }
@@ -55,20 +52,19 @@ namespace ShareSpace.Client.Pages.StartingPages
             SnackBar.Add($"{message}", MudBlazor.Severity.Error);
         }
 
-
         bool isShow;
         InputType PasswordInput = InputType.Password;
         string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
         void ButtonAddornmentChange()
         {
-            if(isShow)
-        {
+            if (isShow)
+            {
                 isShow = false;
                 PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
                 PasswordInput = InputType.Password;
             }
-        else
+            else
             {
                 isShow = true;
                 PasswordInputIcon = Icons.Material.Filled.Visibility;
