@@ -181,11 +181,11 @@
       "url": "_framework\/FluentValidation.dll"
     },
     {
-      "hash": "sha256-rtkwhICTsYE9Dtvit4qmKukHxhcBii8IGbm5icnCWbM=",
+      "hash": "sha256-D1Cpv8dUhVhigWOZxMvQ0dgeOCRgaFoDpnRrjK\/cjRM=",
       "url": "_framework\/Microsoft.AspNetCore.Authorization.dll"
     },
     {
-      "hash": "sha256-Qv8HUc4bc7hrinChcgqA5WvNTVXrGrA7KqK+y9K08KM=",
+      "hash": "sha256-exYLeZNL1vFA3MQumWi+ZzcFWgY5X7qZZcnV1h6Ae9s=",
       "url": "_framework\/Microsoft.AspNetCore.Components.dll"
     },
     {
@@ -193,11 +193,11 @@
       "url": "_framework\/Microsoft.AspNetCore.Components.Authorization.dll"
     },
     {
-      "hash": "sha256-OBwQa9gr6aP+n\/xh7tnGjONUh7W1qym12VKXdPnpyUI=",
+      "hash": "sha256-p85TpgJG4JgyaEcSwPMg5usQsPzPBSfXz6JhiPcRdyI=",
       "url": "_framework\/Microsoft.AspNetCore.Components.Forms.dll"
     },
     {
-      "hash": "sha256-Gx0g1syHcH5YyRh+rs88++NwatlG0Ou51bQM\/+Frqj8=",
+      "hash": "sha256-fufgcHvsaxvMQe0xlebCB4KKK5bHbz+G6MV9j6Ofd2c=",
       "url": "_framework\/Microsoft.AspNetCore.Components.Web.dll"
     },
     {
@@ -217,7 +217,7 @@
       "url": "_framework\/Microsoft.AspNetCore.Http.Connections.Common.dll"
     },
     {
-      "hash": "sha256-icfbQAYjnoXHBPRVr2IaSDv+w204xZlmwpb37PW5028=",
+      "hash": "sha256-buRnUKP2Y+yAMrKqT4KYoO4XIXWzcrFuuyI8SeadeTU=",
       "url": "_framework\/Microsoft.AspNetCore.Metadata.dll"
     },
     {
@@ -285,11 +285,11 @@
       "url": "_framework\/Microsoft.Extensions.Http.dll"
     },
     {
-      "hash": "sha256-rnkeVtcxS4PihFm2ubtCGhgvkzoRObZTdIu6lRsJu2A=",
+      "hash": "sha256-oL+8vEgiohIU\/VOsIukfsaS53JGMyOPV5Grr6Zd6TSk=",
       "url": "_framework\/Microsoft.Extensions.Localization.dll"
     },
     {
-      "hash": "sha256-KsL2v55KESYdrXazOUeB2eInnbai5SwYXKclQiCvGS0=",
+      "hash": "sha256-TKOaQRnQm+hkHVkE\/jvV5oD6bq4JkFYbkNaAwPXgpwg=",
       "url": "_framework\/Microsoft.Extensions.Localization.Abstractions.dll"
     },
     {
@@ -309,7 +309,7 @@
       "url": "_framework\/Microsoft.Extensions.Primitives.dll"
     },
     {
-      "hash": "sha256-4w31cVs8ZqmiTjPhXLdOP9nJt6goHkYVV9L8Nz+27\/g=",
+      "hash": "sha256-tDUEq1bRgkbwPRKdclDqQy6f2l2zgHm+84KImibIOF8=",
       "url": "_framework\/Microsoft.JSInterop.dll"
     },
     {
@@ -317,7 +317,7 @@
       "url": "_framework\/Microsoft.JSInterop.WebAssembly.dll"
     },
     {
-      "hash": "sha256-fZeXRwimdnkNYIcH1nxZtKemTPxYlfxqYtGXFluJYpY=",
+      "hash": "sha256-570UAJnJ5bPZY50+V71gYJOxH\/ZT90Pm1OSrr5hdRdE=",
       "url": "_framework\/MudBlazor.dll"
     },
     {
@@ -1021,33 +1021,33 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-WAaFaadP6E8wLznYEic29PZk3YU+S0orp1tK+VYL+oA=",
+      "hash": "sha256-xr8IhHNGknwQnrIEJDarvwzr5T8iKpKZ7Mnw5AyL1lE=",
       "url": "_framework\/ShareSpace.Shared.dll"
     },
     {
-      "hash": "sha256-VjrpxPto+vck+1yyBoskGUuZ6U564F4oLFDfuhPPfOw=",
+      "hash": "sha256-pOrPU2\/JrBh2DwsbygUuEXZRXLn7FERGX7bNkiy9gqA=",
       "url": "_framework\/ShareSpace.Shared.pdb"
     },
     {
-      "hash": "sha256-2D4tKqM3TzKeRHEl7u0vlYvdGszk9ptEE\/R2+BmwEnc=",
+      "hash": "sha256-bfuTwo0uyTJt+rfmblrzei38s\/Qxr\/BcLpkeA5QxQUQ=",
       "url": "_framework\/ShareSpace.Client.dll"
     },
     {
-      "hash": "sha256-jf8hFEeOlCUeHn0gQjpa7LoASFAv0mI5SkAUrNCdcFM=",
+      "hash": "sha256-3B8rZdtav24QXzeMJUYsPwpgNR5wQkPL9+64yzAtLSU=",
       "url": "_framework\/ShareSpace.Client.pdb"
     },
     {
-      "hash": "sha256-jg\/0ZoKru4OZXjV0al9WZ3MF+hhjyNiHxDEMsa5mdr4=",
+      "hash": "sha256-hXMtuoGqN+IMy2KqHDNj4U5Ty9KmJ4Su84JWYU22C0g=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-YRt7VVv7R8QKqqxiF7U39TJJE9k7rvVd35MPHWRs7Wk=",
+      "hash": "sha256-aswTL1F5gScm+h3ito3TSc2+78EGGOKjB2Xd+BQm44E=",
       "url": "_content\/MudBlazor\/MudBlazor.min.css"
     },
     {
-      "hash": "sha256-GCtA+TppdsK+07YxEakAQLwOkibijn+mpWkqphJvaKc=",
+      "hash": "sha256-ZACvjnWBCDqWLjnaUfdVjaZ53s0EOMyzKZqDjmvFtRY=",
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "IhPSB746"
+  "version": "7PNHMBtF"
 };

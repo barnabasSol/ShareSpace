@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uJxBzuvgfOTQB1Rn8OpCWTOOt62GZZKBYOc+CEQ65EU=",
+  "Hash": "nHiBbpOSFvp2PTYEXZ/T/T0jTrXVj8WfIKFpBpPlG2g=",
   "Source": "ShareSpace.Server",
   "BasePath": "_content/ShareSpace.Server",
   "Mode": "Default",
@@ -36,10 +36,10 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\MudBlazor.min.css",
+      "Identity": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.12.0\\staticwebassets\\MudBlazor.min.css",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.12.0\\staticwebassets\\",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\MudBlazor.min.css"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.12.0\\staticwebassets\\MudBlazor.min.css"
     },
     {
-      "Identity": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\MudBlazor.min.js",
+      "Identity": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.12.0\\staticwebassets\\MudBlazor.min.js",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.12.0\\staticwebassets\\",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.js",
       "AssetKind": "All",
@@ -71,7 +71,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\MudBlazor.min.js"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.12.0\\staticwebassets\\MudBlazor.min.js"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.boot.json",
@@ -280,7 +280,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.13\\lib\\net7.0\\Microsoft.AspNetCore.Authorization.dll"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.14\\lib\\net7.0\\Microsoft.AspNetCore.Authorization.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Authorization.dll",
@@ -318,7 +318,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.13\\lib\\net7.0\\Microsoft.AspNetCore.Components.dll"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.14\\lib\\net7.0\\Microsoft.AspNetCore.Components.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Forms.dll",
@@ -337,7 +337,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\7.0.13\\lib\\net7.0\\Microsoft.AspNetCore.Components.Forms.dll"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\7.0.14\\lib\\net7.0\\Microsoft.AspNetCore.Components.Forms.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Web.dll",
@@ -356,7 +356,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components.web\\7.0.13\\lib\\net7.0\\Microsoft.AspNetCore.Components.Web.dll"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.components.web\\7.0.14\\lib\\net7.0\\Microsoft.AspNetCore.Components.Web.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.WebAssembly.dll",
@@ -451,7 +451,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.13\\lib\\net7.0\\Microsoft.AspNetCore.Metadata.dll"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.14\\lib\\net7.0\\Microsoft.AspNetCore.Metadata.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.SignalR.Client.Core.dll",
@@ -793,7 +793,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\7.0.5\\lib\\net7.0\\Microsoft.Extensions.Localization.Abstractions.dll"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\7.0.14\\lib\\net7.0\\Microsoft.Extensions.Localization.Abstractions.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.dll",
@@ -812,7 +812,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.localization\\7.0.5\\lib\\net7.0\\Microsoft.Extensions.Localization.dll"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.extensions.localization\\7.0.14\\lib\\net7.0\\Microsoft.Extensions.Localization.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.Abstractions.dll",
@@ -907,7 +907,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.jsinterop\\7.0.13\\lib\\net7.0\\Microsoft.JSInterop.dll"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\microsoft.jsinterop\\7.0.14\\lib\\net7.0\\Microsoft.JSInterop.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.JSInterop.WebAssembly.dll",
@@ -1040,7 +1040,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.11.0\\lib\\net7.0\\MudBlazor.dll"
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\.nuget\\packages\\mudblazor\\6.12.0\\lib\\net7.0\\MudBlazor.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\netstandard.dll",
@@ -4235,6 +4235,25 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Memory.dll"
     },
     {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\03aodb01es.gz",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Metadata.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Metadata.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Metadata.dll"
+    },
+    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\0kpyx4km0z.gz",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -4309,25 +4328,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Diagnostics.FileVersionInfo.dll"
-    },
-    {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\0puljnpyq1.gz",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.AspNetCore.Components.Forms.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Forms.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Forms.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\0qvuk0fnav.gz",
@@ -4843,25 +4843,6 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Core.dll"
     },
     {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\5p7wlxoecb.gz",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.AspNetCore.Components.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.dll"
-    },
-    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\63e38qmwrv.gz",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -5299,25 +5280,6 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Drawing.dll"
     },
     {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\9yhoodlaph.gz",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.Extensions.Localization.Abstractions.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.Abstractions.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.Abstractions.dll"
-    },
-    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\9zx8xk5xiv.gz",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -5468,25 +5430,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.IO.Pipes.AccessControl.dll"
-    },
-    {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\awl32ed9a3.gz",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.AspNetCore.Components.Web.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Web.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Web.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\b3w30rbf5l.gz",
@@ -5736,6 +5679,25 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Runtime.Serialization.Json.dll"
     },
     {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\doruy23nyi.gz",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.Forms.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Forms.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Forms.dll"
+    },
+    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\dt1hp74r9z.gz",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -5753,6 +5715,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Configuration.Binder.dll"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\dtocf7e9x4.gz",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.JSInterop.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.JSInterop.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.JSInterop.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\dx324l67ot.gz",
@@ -5962,25 +5943,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Drawing.Primitives.dll"
-    },
-    {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\g0od817c7w.gz",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.AspNetCore.Metadata.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Metadata.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Metadata.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\g89fno96vp.gz",
@@ -6724,6 +6686,25 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Linq.Parallel.dll"
     },
     {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\ly8p66djfv.gz",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.Web.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Web.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Web.dll"
+    },
+    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\lyerfslky2.gz",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -6741,6 +6722,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Net.Ping.dll"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\m11u0dx59x.gz",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Localization.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\m4i6hhhnu8.gz",
@@ -6857,25 +6857,6 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\ShareSpace.Shared.pdb"
     },
     {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\mn09eml5im.gz",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.JSInterop.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.JSInterop.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.JSInterop.dll"
-    },
-    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\mw9tdld7n6.gz",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -6950,25 +6931,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.ComponentModel.dll"
-    },
-    {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\ns40gut3hi.gz",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.AspNetCore.Authorization.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Authorization.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Authorization.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\ntz3weocq0.gz",
@@ -7064,6 +7026,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.SignalR.Common.dll"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\oia6ycan8d.gz",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Authorization.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Authorization.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Authorization.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\ostuw9gi1n.gz",
@@ -7408,25 +7389,6 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Collections.Immutable.dll"
     },
     {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\s9ey4ca7ma.gz",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/MudBlazor.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\MudBlazor.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\MudBlazor.dll"
-    },
-    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\sicet25bqq.gz",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -7541,6 +7503,25 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Dynamic.Runtime.dll"
     },
     {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\tmra04nzuu.gz",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.dll"
+    },
+    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\tqpl4t3u0d.gz",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -7577,6 +7558,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.ObjectModel.dll"
+    },
+    {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\u2os8xkjvq.gz",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Localization.Abstractions.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.Abstractions.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.Abstractions.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\ucmi7ijreq.gz",
@@ -7959,6 +7959,25 @@
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Features.dll"
     },
     {
+      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\wyocq0dpcs.gz",
+      "SourceId": "ShareSpace.Client",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/MudBlazor.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\MudBlazor.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\MudBlazor.dll"
+    },
+    {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\x2r82j0ph3.gz",
       "SourceId": "ShareSpace.Client",
       "SourceType": "Project",
@@ -8185,25 +8204,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Net.HttpListener.dll"
-    },
-    {
-      "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\yggrozdrys.gz",
-      "SourceId": "ShareSpace.Client",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.Extensions.Localization.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.dll"
     },
     {
       "Identity": "C:\\Users\\Barnabas Solomon\\OneDrive\\Desktop\\web\\ASPNET projects\\ShareSpaceSolution\\ShareSpace\\Client\\obj\\Debug\\net7.0\\compressed\\yh2k877wep.gz",

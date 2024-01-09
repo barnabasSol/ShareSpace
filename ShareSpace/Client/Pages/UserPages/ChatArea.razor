@@ -14,7 +14,7 @@
     </div>
     <div class="footer p-2">
         <MudTextField Lines="1" @ref="singleLineReference" @bind-Text="MessageInput" T="string"
-            Placeholder="write something here..." Variant="Variant.Outlined" Adornment="Adornment.End"
+            Placeholder="@messageLabel" Variant="Variant.Outlined" Adornment="Adornment.End"
             AdornmentIcon="@Icons.Material.Filled.Send" OnAdornmentClick="Send" />
     </div>
 </div>
@@ -29,6 +29,7 @@
     private string? MessageInput;
     public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
     private MudTextField<string>? singleLineReference;
+    private string messageLabel = "";
 
 
 
@@ -44,6 +45,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        messageLabel = $"chat with @{username}";
         string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
         hubConnection = new HubConnectionBuilder()
         .WithUrl(NavigationManager

@@ -9,7 +9,6 @@ namespace ShareSpace.Shared.DTOs
 
     public class PostDto : PostBase
     {
-
         public string? PostUserProfilePicUrl { get; set; }
         public required string PostedName { get; set; }
         public string? TextContent { get; set; }
@@ -18,7 +17,6 @@ namespace ShareSpace.Shared.DTOs
         public int ViewsCount { get; set; }
         public int CommentsCount { get; set; }
         public DateTime PostedDateTime { get; set; }
-
     }
 
     public class PostDtoDetailsDto : PostDto { }
