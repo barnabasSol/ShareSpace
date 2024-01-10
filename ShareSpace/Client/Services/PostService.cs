@@ -2,6 +2,8 @@ using ShareSpace.Client.Services.Contracts;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
 using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
 
 namespace ShareSpace.Client.Services
 {
@@ -17,7 +19,16 @@ namespace ShareSpace.Client.Services
         public async Task<ApiResponse<string>> CreatePost(CreatePostDto post)
         {
             var http = http_client.CreateClient("ShareSpaceApi");
-            var response = await http.PostAsJsonAsync("/Post/create-post", post);
+            var response = await http.PostAsJsonAsync("/Post/create", post);
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<string>>();
+            return result!;
+        }
+
+        public async Task<ApiResponse<string>> DeletePost(Guid post_id)
+        {
+            var http = http_client.CreateClient("ShareSpaceApi");
+            var url = $"/Post/delete/{post_id}";
+            var response = await http.DeleteAsync(url);
             var result = await response.Content.ReadFromJsonAsync<ApiResponse<string>>();
             return result!;
         }
@@ -27,6 +38,15 @@ namespace ShareSpace.Client.Services
             var http = http_client.CreateClient("ShareSpaceApi");
             var response = await http.GetAsync("/Post/get-posts");
             var result = await response.Content.ReadFromJsonAsync<ApiResponse<List<PostDto>>>();
+            return result!;
+        }
+
+        public async Task<ApiResponse<string>> UpdateLike(LikedPostDto likedPost)
+        {
+            var http = http_client.CreateClient("ShareSpaceApi");
+            var url = $"/Post/like";
+            var response = await http.PutAsJsonAsync(url, likedPost);
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<string>>();
             return result!;
         }
     }

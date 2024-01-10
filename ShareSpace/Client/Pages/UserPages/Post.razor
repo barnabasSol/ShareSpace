@@ -1,4 +1,7 @@
-﻿
+﻿@inject IPostService PostService
+@inject AuthenticationStateProvider authstate
+
+
     <div class="col mb-1 p-1">
         <MudCard>
             <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
@@ -57,7 +60,7 @@
             </MudCardContent>
             <MudCardActions Style="background: rgb(27, 27, 27);" Class="d-flex justify-content-between gap-5">
                 <div>
-                    <MudToggleIconButton Toggled="@Liked" ToggledChanged="OnToggledChanged"
+                    <MudToggleIconButton Toggled="@post.IsLikedByCurrentUser" ToggledChanged="OnToggledChanged"
                                          Icon="@Icons.Material.Filled.Favorite" Title="Off" ToggledIcon="@Icons.Material.Filled.Favorite"
                                          ToggledColor="@Color.Primary" />
                     <span style="color: white;">@post.LikesCount</span>
@@ -85,29 +88,64 @@
     [Parameter]
     public EventCallback<PostDto> OnDelete { get; set; }
 
-    public bool Liked { get; set; } = false;
     TimeSpan rate = TimeSpan.FromSeconds(3);
+
+    private Guid current_user_id;
+
+    private bool Liked;
+
+
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        Liked = post.IsLikedByCurrentUser;
+
+        var state = await authstate.GetAuthenticationStateAsync();
+        string current_user_string = state.User.Claims
+            .Where(_ => _.Type == "Sub")
+            .Select(_ => _.Value)
+            .FirstOrDefault()!;
+
+        current_user_id = Guid.Parse(current_user_string);
+
+    }
+
+
+
+
+
 
     void DeletePost()
     {
         OnDelete.InvokeAsync(post);
     }
 
-
-    public void OnToggledChanged(bool toggled)
+    public async void OnToggledChanged(bool toggled)
     {
-        Liked = toggled;
-        if (Liked)
-        {
-            post.LikesCount++;
-        }
-        else
-        {
-            if (post.LikesCount > 0) // Ensure likes count doesn't go below zero
+        var result = await PostService.UpdateLike(new LikedPostDto
             {
-                post.LikesCount--;
+                UserId = current_user_id,
+                PostId = post.PostId
+            });
+       
+
+
+        if (result.IsSuccess)
+        {
+            post.IsLikedByCurrentUser = !post.IsLikedByCurrentUser;
+            if (post.IsLikedByCurrentUser)
+            {
+                post.LikesCount += 1;
+            }
+            else
+            {
+                post.LikesCount -= 1;
             }
         }
+
+        StateHasChanged();
     }
 
 

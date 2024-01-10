@@ -4,15 +4,13 @@
 @inject IPostService PostService
 
 <div class="w-100">
-@*     <MudAlert Class="my-2" Severity="Severity.Normal" Variant="Variant.Outlined">The reactor type is
-        RBMK-1000</MudAlert> *@
     @if (isLoading)
     {
-        <PostLoading/>
+        <PostLoading />
     }
-    else if (Posts is null)
+    else if (!Posts.Any())
     {
-        <h1 style="color: white;">No posts found</h1>
+        <MudAlert Class="my-2" Severity="Severity.Normal" Variant="Variant.Outlined">NO POSTS FOR NOW</MudAlert>
     }
     else
     {
@@ -29,9 +27,14 @@
     private bool isLoading = true;
 
 
-    void DeletePost(PostDto postToDelete)
+    async void DeletePost(PostDto postToDelete)
     {
-        Posts.Remove(postToDelete);
+        var result = await PostService.DeletePost(postToDelete.PostId);
+        if (result.IsSuccess)
+        {
+            Posts.Remove(postToDelete);
+            StateHasChanged();
+        }
     }
 
     protected override async Task OnInitializedAsync()

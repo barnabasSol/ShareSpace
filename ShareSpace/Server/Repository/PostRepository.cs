@@ -42,11 +42,7 @@ namespace ShareSpace.Server.Repository
                         string webRootPath = webHost.WebRootPath;
                         string FileName = Path.Combine(webRootPath, image_url);
 
-                        var newPostImage = new PostImage
-                        {
-                            ImageUrl = image_url,
-                            Post = NewPost 
-                        };
+                        var newPostImage = new PostImage { ImageUrl = image_url, Post = NewPost };
 
                         shareSpaceDb.PostImages.Add(newPostImage);
 
@@ -108,28 +104,72 @@ namespace ShareSpace.Server.Repository
                 {
                     IsSuccess = true,
                     Message = "",
-                    Data = posts.Select(
-                        s =>
-                            new PostDto
-                            {
-                                TextContent = s.Content,
-                                PostUserProfilePicUrl = s.User?.ProfilePicUrl,
-                                PostedName = s.User!.Name,
-                                PostedUsername = s.User!.UserName,
-                                PostedUserId = s.UserId,
-                                PostId = s.Id,
-                                PostPictureUrls = s.PostImages?.Select(i => i.ImageUrl),
-                                LikesCount = s.Likes,
-                                ViewsCount = s.Views,
-                                CommentsCount = s.Comments?.Count ?? 0,
-                                PostedDateTime = s.CreatedAt
-                            }
-                    ).OrderByDescending(o => o.PostedDateTime)
+                    Data = posts
+                        .Select(
+                            s =>
+                                new PostDto
+                                {
+                                    TextContent = s.Content,
+                                    PostUserProfilePicUrl = s.User?.ProfilePicUrl,
+                                    PostedName = s.User!.Name,
+                                    PostedUsername = s.User!.UserName,
+                                    PostedUserId = s.UserId,
+                                    PostId = s.Id,
+                                    PostPictureUrls = s.PostImages?.Select(i => i.ImageUrl),
+                                    LikesCount = s.Likes,
+                                    ViewsCount = s.Views,
+                                    CommentsCount = s.Comments?.Count ?? 0,
+                                    PostedDateTime = s.CreatedAt,
+                                    IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
+                                        a => a.PostId == s.Id && a.UserId == current_user
+                                    )
+                                }
+                        )
+                        .OrderByDescending(o => o.PostedDateTime)
                 };
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<ApiResponse<string>> UpdateLike(Guid post_id, Guid user_id)
+        {
+            using var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
+            try
+            {
+                var liked_post = await shareSpaceDb.LikedPosts.FirstOrDefaultAsync(
+                    f => f.UserId == user_id && f.PostId == post_id
+                );
+
+                if (liked_post is not null)
+                {
+                    shareSpaceDb.LikedPosts.Remove(liked_post);
+                }
+                else
+                {
+                    await shareSpaceDb.LikedPosts.AddAsync(
+                        new LikedPost { UserId = user_id, PostId = post_id, }
+                    );
+                }
+
+                await shareSpaceDb.SaveChangesAsync();
+
+                var postLikeCount = await shareSpaceDb.LikedPosts.CountAsync(
+                    lp => lp.PostId == post_id
+                );
+                await shareSpaceDb.Posts
+                    .Where(p => p.Id == post_id)
+                    .ExecuteUpdateAsync(s => s.SetProperty(p => p.Likes, postLikeCount));
+
+                await transaction.CommitAsync();
+                return new ApiResponse<string>() { IsSuccess = true };
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return new ApiResponse<string>() { IsSuccess = false, Message = ex.Message };
             }
         }
     }

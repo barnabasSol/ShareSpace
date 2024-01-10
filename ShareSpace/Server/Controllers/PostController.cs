@@ -18,7 +18,7 @@ public class PostController : ControllerBase
     }
 
     [Authorize]
-    [HttpPost("create-post")]
+    [HttpPost("create")]
     public async Task<ActionResult<ApiResponse<string>>> CreatePost(CreatePostDto post)
     {
         try
@@ -64,12 +64,35 @@ public class PostController : ControllerBase
     }
 
     [Authorize]
-    [HttpDelete("delete-post/{post_id}")]
+    [HttpDelete("delete/{post_id}")]
     public async Task<ActionResult<ApiResponse<string>>> DeletePost(Guid post_id)
     {
         try
         {
             var result = await postRepository.DeletePost(post_id);
+            return result.IsSuccess ? Ok(result) : BadRequest(result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>()
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
+        }
+    }
+
+    [Authorize]
+    [HttpPut("like")]
+    public async Task<ActionResult<ApiResponse<string>>> Like(LikedPostDto likedPost)
+    {
+        try
+        {
+            Guid user_id = Guid.Parse(User.FindFirst("Sub")!.Value);
+            var result = await postRepository.UpdateLike(likedPost.PostId, user_id);
             return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
         catch (Exception ex)
