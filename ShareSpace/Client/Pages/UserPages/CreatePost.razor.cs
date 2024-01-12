@@ -47,6 +47,7 @@ namespace ShareSpace.Client.Pages.UserPages
             {
                 processing = false;
                 ShowSnackBarWithOptions("it is posted", Variant.Filled, Severity.Success);
+                NavManager.NavigateTo("/main");
             }
             else
             {

@@ -141,5 +141,10 @@ namespace ShareSpace.Server.Repository
                 throw new Exception(ex.Message);
             }
         }
+
+        public Task<ApiResponse<string>> UpdateProfilePhoto()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

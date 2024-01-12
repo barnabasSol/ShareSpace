@@ -2,8 +2,6 @@ using ShareSpace.Client.Services.Contracts;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
 
 namespace ShareSpace.Client.Services
 {
@@ -36,7 +34,7 @@ namespace ShareSpace.Client.Services
         public async Task<ApiResponse<List<PostDto>>> GetPosts()
         {
             var http = http_client.CreateClient("ShareSpaceApi");
-            var response = await http.GetAsync("/Post/get-posts");
+            var response = await http.GetAsync("/Post/posts");
             var result = await response.Content.ReadFromJsonAsync<ApiResponse<List<PostDto>>>();
             return result!;
         }
@@ -44,7 +42,7 @@ namespace ShareSpace.Client.Services
         public async Task<ApiResponse<string>> UpdateLike(LikedPostDto likedPost)
         {
             var http = http_client.CreateClient("ShareSpaceApi");
-            var url = $"/Post/like";
+            var url = "/Post/like";
             var response = await http.PutAsJsonAsync(url, likedPost);
             var result = await response.Content.ReadFromJsonAsync<ApiResponse<string>>();
             return result!;

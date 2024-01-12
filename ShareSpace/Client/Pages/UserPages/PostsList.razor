@@ -1,6 +1,6 @@
 ﻿@page "/main"
 @layout UserLayout
-@attribute [Authorize]
+@attribute [Authorize(Roles = "user")]
 @inject IPostService PostService
 
 <div class="w-100">
@@ -14,9 +14,9 @@
     }
     else
     {
-        @foreach (var item in Posts)
+        @foreach (var post in Posts)
         {
-            <Post post="item" OnDelete="DeletePost" />
+            <Post post="post" OnDelete="DeletePost" />
         }
     }
 </div>

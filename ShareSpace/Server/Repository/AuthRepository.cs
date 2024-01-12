@@ -15,6 +15,12 @@ using BC = BCrypt.Net.BCrypt;
 
 namespace ShareSpace.Server.Repository;
 
+public enum Role
+{
+    User = 1,
+    Admin = 2
+}
+
 public class AuthRepository : IAuthRepository
 {
     private readonly ShareSpaceDbContext shareSpaceDb;
@@ -26,18 +32,25 @@ public class AuthRepository : IAuthRepository
         token_Setting = token_setting.Value;
     }
 
+    private async Task<bool> UserOrEmailExists(string userName, string email)
+    {
+        return await shareSpaceDb.Users.AnyAsync(_ => _.UserName == userName || _.Email == email);
+    }
+
     public async Task<AuthResponse> CreateUser(CreateUserDTO requesting_user)
     {
+        using var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
         try
         {
-            if (await shareSpaceDb.Users.AnyAsync(_ => _.UserName == requesting_user.UserName))
+            if (await UserOrEmailExists(requesting_user.UserName, requesting_user.Email))
             {
-                return new AuthResponse() { IsSuccess = false, Message = "username is in use" };
+                return new AuthResponse()
+                {
+                    IsSuccess = false,
+                    Message = "username or email is in use"
+                };
             }
-            if (await shareSpaceDb.Users.AnyAsync(_ => _.Email == requesting_user.Email))
-            {
-                return new AuthResponse() { IsSuccess = false, Message = "email is in use" };
-            }
+
             User NewUser =
                 new()
                 {
@@ -46,19 +59,27 @@ public class AuthRepository : IAuthRepository
                     Email = requesting_user.Email,
                     PasswordHash = BC.HashPassword(requesting_user.Password)
                 };
+
             await shareSpaceDb.Users.AddAsync(NewUser);
-            await shareSpaceDb.SaveChangesAsync();
+            await shareSpaceDb.SaveChangesAsync(); // Save changes so that NewUser.Id gets updated
+
+            UserRole newUserRole = new() { UserId = NewUser.UserId, RoleId = (int)Role.User };
+            await shareSpaceDb.UserRoles.AddAsync(newUserRole);
+            await shareSpaceDb.SaveChangesAsync(); // Save changes to insert the new UserRole
+
+            await transaction.CommitAsync();
 
             return new AuthResponse()
             {
                 IsSuccess = true,
                 Message = "",
-                AccessToken = GenerateAccessToken(NewUser),
+                AccessToken = GenerateAccessToken(NewUser, Role.User),
                 RefreshToken = await GenerateRefershToken(NewUser.UserId)
             };
         }
         catch (Exception ex)
         {
+            await transaction.RollbackAsync();
             throw new Exception(ex.Message);
         }
     }
@@ -72,11 +93,7 @@ public class AuthRepository : IAuthRepository
                 || string.IsNullOrEmpty(user_login.Password)
             )
             {
-                return new AuthResponse()
-                {
-                    IsSuccess = false,
-                    Message = "enter the required field"
-                };
+                return new AuthResponse { IsSuccess = false, Message = "enter the required field" };
             }
 
             var queried_user = await shareSpaceDb.Users
@@ -85,7 +102,7 @@ public class AuthRepository : IAuthRepository
 
             if (queried_user is null)
             {
-                return new AuthResponse() { IsSuccess = false, Message = "user doesn't exist" };
+                return new AuthResponse { IsSuccess = false, Message = "user doesn't exist" };
             }
 
             if (!BC.Verify(user_login.Password, queried_user.PasswordHash))
@@ -100,7 +117,7 @@ public class AuthRepository : IAuthRepository
             return new AuthResponse()
             {
                 IsSuccess = true,
-                AccessToken = GenerateAccessToken(queried_user),
+                AccessToken = GenerateAccessToken(queried_user, Role.User),
                 RefreshToken = await GenerateRefershToken(queried_user.UserId)
             };
         }
@@ -115,7 +132,7 @@ public class AuthRepository : IAuthRepository
         throw new NotImplementedException();
     }
 
-    private string GenerateAccessToken(User authorized_user)
+    private string GenerateAccessToken(User authorized_user, Role role)
     {
         DateTime TokenExpiration = DateTime.Now.AddHours(15);
         SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
@@ -128,7 +145,7 @@ public class AuthRepository : IAuthRepository
                 new Claim("UserName", authorized_user.UserName),
                 new Claim("Name", authorized_user.Name),
                 new Claim("Email", authorized_user.Email),
-                // new Claim(ClaimTypes.Role, "Batman"),
+                new Claim(ClaimTypes.Role, role == Role.User ? "user" : "admin"),
                 new Claim(
                     JwtRegisteredClaimNames.Exp,
                     new DateTimeOffset(TokenExpiration).ToUnixTimeSeconds().ToString()

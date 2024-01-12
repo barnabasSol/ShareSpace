@@ -5,6 +5,7 @@ using ShareSpace.Shared.DTOs;
 
 namespace ShareSpace.Server.ShareSpaceHub;
 
+[Authorize(Roles = "user")]
 public class MessageHub : Hub
 {
     private readonly IMessageRepository messageRepository;
@@ -14,19 +15,16 @@ public class MessageHub : Hub
         this.messageRepository = messageRepository;
     }
 
-    [Authorize]
     public override Task OnDisconnectedAsync(Exception? exception)
     {
         return base.OnDisconnectedAsync(exception);
     }
 
-    [Authorize]
     public override Task OnConnectedAsync()
     {
         return base.OnConnectedAsync();
     }
 
-    [Authorize]
     public async Task FetchMessagesOfUser(string username)
     {
         Guid current_user = Guid.Parse(
@@ -41,7 +39,6 @@ public class MessageHub : Hub
             await Clients.Caller.SendAsync("ShowMessages", response.Data);
     }
 
-    [Authorize]
     public async Task GetUnseenMessagesCount()
     {
         Guid current_user = Guid.Parse(
@@ -53,7 +50,6 @@ public class MessageHub : Hub
             await Clients.Caller.SendAsync("ShowUnseenCount", response.Data);
     }
 
-    [Authorize]
     public async Task SendMessageToUser(string username, string message)
     {
         var current_user = Context.User!.Claims
@@ -91,7 +87,6 @@ public class MessageHub : Hub
         }
     }
 
-    [Authorize]
     public async Task ShowUsersInChat(string username)
     {
         var current_user = Context.User!.Claims

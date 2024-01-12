@@ -75,7 +75,7 @@ namespace ShareSpace.Client.Pages.StartingPages;
                 RuleFor(x => x.FullName)
                     .NotEmpty()
                     .WithMessage("Full Name is required.")
-                    .Length(1, 8)
+                    .Length(1, 20)
                     .WithMessage("Full Name length can't be more than 8.");
 
                 RuleFor(x => x.Email)

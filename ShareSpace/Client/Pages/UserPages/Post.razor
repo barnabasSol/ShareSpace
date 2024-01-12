@@ -1,121 +1,92 @@
 ﻿@inject IPostService PostService
-@inject AuthenticationStateProvider authstate
 
 
-    <div class="col mb-1 p-1">
-        <MudCard>
-            <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
-                <CardHeaderAvatar >
-                    @if (post.PostUserProfilePicUrl == null)
-                    {
-                        <MudAvatar Size="Size.Large" Color="Color.Tertiary">@post.PostedName[0]</MudAvatar>
-                    }
-                    else
-                    {
-                        <MudAvatar Size="Size.Medium">
-                        <MudImage Style="border-radius: 10%; border: 0;" Src="@post.PostUserProfilePicUrl" Alt="Card image cap" />
-                        </MudAvatar>
-                    }
-                </CardHeaderAvatar>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.body1">@post.PostedName</MudText>
-                    <MudText Typo="Typo.body2">@post.PostedUsername</MudText>
-                </CardHeaderContent>
-                <CardHeaderActions>
-                    <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true">
-                        <MudMenuItem>Share</MudMenuItem>
-                        <MudMenuItem>Not Interested</MudMenuItem>
-                        <MudMenuItem>Mute User</MudMenuItem>
+<div class="col mb-1 p-1">
+    <MudCard>
+        <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
+            <CardHeaderAvatar>
+                @if (post.PostUserProfilePicUrl == "")
+                {
+                    <MudAvatar Size="Size.Large" Color="Color.Tertiary">@post.PostedName[0]</MudAvatar>
+                }
+                else
+                {
+                    <MudAvatar Size="Size.Medium">
+                        <MudImage Style="border-radius: 10%; border: 0;" Src="@post.PostUserProfilePicUrl"
+                            Alt="Card image cap" />
+                    </MudAvatar>
+                }
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.body1">@post.PostedName</MudText>
+                <MudText Typo="Typo.body2">@post.PostedUsername</MudText>
+            </CardHeaderContent>
+            <CardHeaderActions>
+                <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true">
+                    <MudMenuItem>Share</MudMenuItem>
+                    <MudMenuItem>Not Interested</MudMenuItem>
+                    <MudMenuItem>Mute User</MudMenuItem>
 
-                        <AuthorizeView>
-                            <Authorized>
-                                @if (post.PostedUserId == Guid.Parse(context.User.Claims.FirstOrDefault(c => c.Type == "Sub")!.Value))
-                                {
+                    <AuthorizeView>
+                        <Authorized>
+                            @if (post.PostedUserId == Guid.Parse(context.User.Claims.FirstOrDefault(c => c.Type ==
+                            "Sub")!.Value))
+                            {
                                 <MudMenuItem OnTouch="DeletePost" OnClick="DeletePost">Delete Post</MudMenuItem>
                             }
-
                         </Authorized>
-                        </AuthorizeView>
+                    </AuthorizeView>
 
-                    </MudMenu>
-                </CardHeaderActions>
-            </MudCardHeader>
+                </MudMenu>
+            </CardHeaderActions>
+        </MudCardHeader>
 
-                    @if (post.PostPictureUrls!.Any())
-                    {
-                <MudCarousel Style="background-color: rgb(27, 27, 27); height:320px;" ShowBullets="false"
-                         EnableSwipeGesture="true" AutoCycle="false" TData="object">
-                         @foreach (var image in post.PostPictureUrls!)
-                        {
-                        <MudCarouselItem Style="background-color: rgb(27, 27, 27);" Transition="Transition.Slide">
-                            <MudCardMedia loading="lazy" Class="w-100" Image="@image" Height="320" />
-                        </MudCarouselItem>
-                        }
-                </MudCarousel>
-                    }
-              
-               
-            <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
-                <MudText Typo="Typo.body2">@post.TextContent</MudText>
-            </MudCardContent>
-            <MudCardActions Style="background: rgb(27, 27, 27);" Class="d-flex justify-content-between gap-5">
-                <div>
-                    <MudToggleIconButton Toggled="@post.IsLikedByCurrentUser" ToggledChanged="OnToggledChanged"
-                                         Icon="@Icons.Material.Filled.Favorite" Title="Off" ToggledIcon="@Icons.Material.Filled.Favorite"
-                                         ToggledColor="@Color.Primary" />
-                    <span style="color: white;">@post.LikesCount</span>
-                </div>
-                <div>
-                    <MudIconButton Icon="@Icons.Material.Filled.AddComment" Color="Color.Default" />
-                    <span style="color: white;">@post.CommentsCount</span>
-                </div>
-                <div>
-                    <span style="color: white;">@post.ViewsCount</span>
-                    <MudIconButton Icon="@Icons.Material.Filled.RemoveRedEye" Color="Color.Default" />
-                </div>
-            </MudCardActions>
-        </MudCard>
-    </div>
+        @if (post.PostPictureUrls!.Any())
+        {
+            <MudCarousel Style="background-color: rgb(27, 27, 27); height:320px;" ShowBullets="false"
+                EnableSwipeGesture="true" AutoCycle="false" TData="object" ShowArrows="@(post.PostPictureUrls!.Count() > 1)">
+                @foreach (var image in post.PostPictureUrls!)
+                {
+                    <MudCarouselItem Style="background-color: rgb(27, 27, 27);" Transition="Transition.Slide">
+                        <MudCardMedia loading="lazy" Class="w-100" Image="@image" Height="320" />
+                    </MudCarouselItem>
+                }
+            </MudCarousel>
 
-
-
+        }
+        <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
+            <MudText Typo="Typo.body2">@post.TextContent</MudText>
+        </MudCardContent>
+        <MudCardActions Style="background: rgb(27, 27, 27);" Class="d-flex justify-content-between gap-5">
+            <div>
+                <MudToggleIconButton Toggled="@post.IsLikedByCurrentUser" ToggledChanged="OnToggledChanged"
+                    Icon="@Icons.Material.Filled.Favorite" Title="Like" ToggledIcon="@Icons.Material.Filled.Favorite"
+                    ToggledColor="@Color.Primary" />
+                <span style="color: white;">@post.LikesCount</span>
+            </div>
+            <div>
+                <MudIconButton Icon="@Icons.Material.Filled.AddComment" Color="Color.Default" />
+                <span style="color: white;">@post.CommentsCount</span>
+            </div>
+            <div>
+                <span style="color: white;">@post.ViewsCount</span>
+                <MudIconButton Icon="@Icons.Material.Filled.RemoveRedEye" Color="Color.Default" />
+            </div>
+        </MudCardActions>
+    </MudCard>
+</div>
 
 
 @code {
     [Parameter]
     public required PostDto post { get; set; }
 
+
+
     [Parameter]
     public EventCallback<PostDto> OnDelete { get; set; }
 
     TimeSpan rate = TimeSpan.FromSeconds(3);
-
-    private Guid current_user_id;
-
-    private bool Liked;
-
-
-
-
-
-    protected override async Task OnInitializedAsync()
-    {
-        Liked = post.IsLikedByCurrentUser;
-
-        var state = await authstate.GetAuthenticationStateAsync();
-        string current_user_string = state.User.Claims
-            .Where(_ => _.Type == "Sub")
-            .Select(_ => _.Value)
-            .FirstOrDefault()!;
-
-        current_user_id = Guid.Parse(current_user_string);
-
-    }
-
-
-
-
-
 
     void DeletePost()
     {
@@ -126,15 +97,13 @@
     {
         var result = await PostService.UpdateLike(new LikedPostDto
             {
-                UserId = current_user_id,
+                UserId = Guid.Empty,
                 PostId = post.PostId
             });
-       
-
-
         if (result.IsSuccess)
         {
             post.IsLikedByCurrentUser = !post.IsLikedByCurrentUser;
+
             if (post.IsLikedByCurrentUser)
             {
                 post.LikesCount += 1;
@@ -144,9 +113,6 @@
                 post.LikesCount -= 1;
             }
         }
-
         StateHasChanged();
     }
-
-
 }

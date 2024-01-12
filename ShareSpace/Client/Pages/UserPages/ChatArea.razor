@@ -10,7 +10,10 @@
 
 <div class="chat-container">
     <div id="mainchat" class="m-1">
-        <Message Messages="messages" />
+        @foreach (var message in messages)
+        {
+            <Message message="message" />
+        }
     </div>
     <div class="footer p-2">
         <MudTextField Lines="1" @ref="singleLineReference" @bind-Text="MessageInput" T="string"

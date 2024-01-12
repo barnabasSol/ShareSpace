@@ -6,6 +6,7 @@ using ShareSpace.Shared.ResponseTypes;
 
 namespace ShareSpace.Server.Controllers;
 
+[Authorize(Roles = "user")]
 [Route("[controller]")]
 [ApiController]
 public class PostController : ControllerBase
@@ -17,7 +18,6 @@ public class PostController : ControllerBase
         this.postRepository = postRepository;
     }
 
-    [Authorize]
     [HttpPost("create")]
     public async Task<ActionResult<ApiResponse<string>>> CreatePost(CreatePostDto post)
     {
@@ -31,7 +31,7 @@ public class PostController : ControllerBase
         {
             return StatusCode(
                 StatusCodes.Status500InternalServerError,
-                new ApiResponse<string>()
+                new ApiResponse<string>
                 {
                     IsSuccess = false,
                     Message = $"server error happened, {ex.Message}. try again later"
@@ -40,8 +40,7 @@ public class PostController : ControllerBase
         }
     }
 
-    [Authorize]
-    [HttpGet("get-posts")]
+    [HttpGet("posts")]
     public async Task<ActionResult<ApiResponse<IEnumerable<PostDto>>>> GetPosts()
     {
         try
@@ -54,7 +53,7 @@ public class PostController : ControllerBase
         {
             return StatusCode(
                 StatusCodes.Status500InternalServerError,
-                new ApiResponse<string>()
+                new ApiResponse<string>
                 {
                     IsSuccess = false,
                     Message = $"server error happened, {ex.Message}. try again later"
@@ -63,7 +62,6 @@ public class PostController : ControllerBase
         }
     }
 
-    [Authorize]
     [HttpDelete("delete/{post_id}")]
     public async Task<ActionResult<ApiResponse<string>>> DeletePost(Guid post_id)
     {
@@ -76,7 +74,7 @@ public class PostController : ControllerBase
         {
             return StatusCode(
                 StatusCodes.Status500InternalServerError,
-                new ApiResponse<string>()
+                new ApiResponse<string>
                 {
                     IsSuccess = false,
                     Message = $"server error happened, {ex.Message}. try again later"
@@ -85,7 +83,6 @@ public class PostController : ControllerBase
         }
     }
 
-    [Authorize]
     [HttpPut("like")]
     public async Task<ActionResult<ApiResponse<string>>> Like(LikedPostDto likedPost)
     {
@@ -99,7 +96,7 @@ public class PostController : ControllerBase
         {
             return StatusCode(
                 StatusCodes.Status500InternalServerError,
-                new ApiResponse<string>()
+                new ApiResponse<string>
                 {
                     IsSuccess = false,
                     Message = $"server error happened, {ex.Message}. try again later"

@@ -12,15 +12,15 @@ using ShareSpace.Server.Data;
 namespace ShareSpace.Server.Migrations
 {
     [DbContext(typeof(ShareSpaceDbContext))]
-    [Migration("20231010170029_RemovedTag")]
-    partial class RemovedTag
+    [Migration("20240112201906_Latest")]
+    partial class Latest
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -254,10 +254,6 @@ namespace ShareSpace.Server.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("Now()");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("image_url");
-
                     b.Property<int>("Likes")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
@@ -281,17 +277,47 @@ namespace ShareSpace.Server.Migrations
                     b.ToTable("posts");
                 });
 
-            modelBuilder.Entity("ShareSpace.Server.Entities.PostTag", b =>
+            modelBuilder.Entity("ShareSpace.Server.Entities.PostImage", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("image_url");
+
                     b.Property<Guid>("PostId")
                         .HasColumnType("uuid")
                         .HasColumnName("post_id");
 
-                    b.Property<Guid>("TagId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("tag_id");
+                    b.HasKey("Id");
 
-                    b.HasKey("PostId", "TagId");
+                    b.HasIndex("PostId");
+
+                    b.ToTable("post_images");
+                });
+
+            modelBuilder.Entity("ShareSpace.Server.Entities.PostTag", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("post_id");
+
+                    b.Property<Guid>("TagName")
+                        .HasColumnType("uuid")
+                        .HasColumnName("tag_name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
 
                     b.ToTable("post_tags");
                 });
@@ -322,6 +348,25 @@ namespace ShareSpace.Server.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("refresh_token");
+                });
+
+            modelBuilder.Entity("ShareSpace.Server.Entities.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("role_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RoleId"));
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("role_name");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("role");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.User", b =>
@@ -392,6 +437,23 @@ namespace ShareSpace.Server.Migrations
                     b.HasIndex("InterestId");
 
                     b.ToTable("user_interests");
+                });
+
+            modelBuilder.Entity("ShareSpace.Server.Entities.UserRole", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer")
+                        .HasColumnName("role_id");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("user_role");
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.ViewedPost", b =>
@@ -525,6 +587,17 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ShareSpace.Server.Entities.PostImage", b =>
+                {
+                    b.HasOne("ShareSpace.Server.Entities.Post", "Post")
+                        .WithMany("PostImages")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+                });
+
             modelBuilder.Entity("ShareSpace.Server.Entities.PostTag", b =>
                 {
                     b.HasOne("ShareSpace.Server.Entities.Post", "Post")
@@ -556,12 +629,31 @@ namespace ShareSpace.Server.Migrations
                         .IsRequired();
 
                     b.HasOne("ShareSpace.Server.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("UserInterests")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Interest");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ShareSpace.Server.Entities.UserRole", b =>
+                {
+                    b.HasOne("ShareSpace.Server.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShareSpace.Server.Entities.User", "User")
+                        .WithMany("Roles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
 
                     b.Navigation("User");
                 });
@@ -589,6 +681,8 @@ namespace ShareSpace.Server.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("PostImages");
+
                     b.Navigation("ViewedPosts");
                 });
 
@@ -607,6 +701,10 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("Posts");
 
                     b.Navigation("RefreshTokens");
+
+                    b.Navigation("Roles");
+
+                    b.Navigation("UserInterests");
 
                     b.Navigation("ViewedPosts");
                 });

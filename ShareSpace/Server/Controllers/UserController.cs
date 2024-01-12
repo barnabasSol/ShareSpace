@@ -7,6 +7,7 @@ using ShareSpace.Shared.ResponseTypes;
 namespace ShareSpace.Server.Controllers;
 
 [ApiController]
+[Authorize(Roles = "user")]
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
@@ -17,8 +18,7 @@ public class UserController : ControllerBase
         this.userRepository = userRepository;
     }
 
-    [Authorize]
-    [HttpGet("get-interests")]
+    [HttpGet("interests")]
     public async Task<ActionResult<ApiResponse<IEnumerable<InterestsDto>>>> GetInterests()
     {
         try
@@ -37,7 +37,6 @@ public class UserController : ControllerBase
         }
     }
 
-    [Authorize]
     [HttpPost("store-interests")]
     public async Task<ActionResult<ApiResponse<string>>> StoreInterests(
         IEnumerable<InterestsDto> interests
@@ -62,7 +61,6 @@ public class UserController : ControllerBase
         }
     }
 
-    [Authorize]
     [HttpGet("extra-info/{userid}")]
     public async Task<ActionResult<ApiResponse<ExtraUserInfoDto>>> GetExtraInfo(Guid userid)
     {
@@ -81,7 +79,6 @@ public class UserController : ControllerBase
         }
     }
 
-    [Authorize]
     [HttpGet("suggested-users")]
     public async Task<ActionResult<ApiResponse<ExtraUserInfoDto>>> GetSuggestedUsers()
     {

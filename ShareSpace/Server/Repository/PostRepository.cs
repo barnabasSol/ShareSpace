@@ -54,7 +54,7 @@ namespace ShareSpace.Server.Repository
                     await transaction.CommitAsync();
                 }
 
-                return new ApiResponse<string>()
+                return new ApiResponse<string>
                 {
                     IsSuccess = true,
                     Message = "",
@@ -91,6 +91,11 @@ namespace ShareSpace.Server.Repository
             }
         }
 
+        public Task<ApiResponse<IEnumerable<PostDto>>> GetPost(Guid current_user)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<ApiResponse<IEnumerable<PostDto>>> GetPosts(Guid current_user)
         {
             try
@@ -98,6 +103,7 @@ namespace ShareSpace.Server.Repository
                 var posts = await shareSpaceDb.Posts
                     .Include(i => i.User)
                     .Include(i => i.PostImages)
+                    .Include(i => i.Comments)
                     .ToListAsync();
 
                 return new ApiResponse<IEnumerable<PostDto>>
@@ -164,12 +170,12 @@ namespace ShareSpace.Server.Repository
                     .ExecuteUpdateAsync(s => s.SetProperty(p => p.Likes, postLikeCount));
 
                 await transaction.CommitAsync();
-                return new ApiResponse<string>() { IsSuccess = true };
+                return new ApiResponse<string> { IsSuccess = true };
             }
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                return new ApiResponse<string>() { IsSuccess = false, Message = ex.Message };
+                return new ApiResponse<string> { IsSuccess = false, Message = ex.Message };
             }
         }
     }

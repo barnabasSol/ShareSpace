@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ShareSpace.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Latest : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,6 +36,19 @@ namespace ShareSpace.Server.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_notification_types", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "role",
+                columns: table => new
+                {
+                    role_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    role_name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_role", x => x.role_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -149,7 +162,6 @@ namespace ShareSpace.Server.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
                     content = table.Column<string>(type: "text", nullable: true),
-                    image_url = table.Column<string>(type: "text", nullable: true),
                     likes = table.Column<int>(type: "integer", nullable: false, defaultValue: 0),
                     views = table.Column<int>(type: "integer", nullable: false, defaultValue: 0),
                     created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "Now()"),
@@ -211,6 +223,30 @@ namespace ShareSpace.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "user_role",
+                columns: table => new
+                {
+                    user_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    role_id = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user_role", x => new { x.user_id, x.role_id });
+                    table.ForeignKey(
+                        name: "FK_user_role_role_role_id",
+                        column: x => x.role_id,
+                        principalTable: "role",
+                        principalColumn: "role_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_user_role_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "users",
+                        principalColumn: "user_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "comments",
                 columns: table => new
                 {
@@ -264,21 +300,41 @@ namespace ShareSpace.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tags",
+                name: "post_images",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    PostId = table.Column<Guid>(type: "uuid", nullable: true)
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    post_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    image_url = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tags", x => x.id);
+                    table.PrimaryKey("PK_post_images", x => x.id);
                     table.ForeignKey(
-                        name: "FK_tags_posts_PostId",
-                        column: x => x.PostId,
+                        name: "FK_post_images_posts_post_id",
+                        column: x => x.post_id,
                         principalTable: "posts",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "post_tags",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    tag_name = table.Column<Guid>(type: "uuid", nullable: false),
+                    post_id = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_post_tags", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_post_tags_posts_post_id",
+                        column: x => x.post_id,
+                        principalTable: "posts",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -302,30 +358,6 @@ namespace ShareSpace.Server.Migrations
                         column: x => x.user_id,
                         principalTable: "users",
                         principalColumn: "user_id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "post_tags",
-                columns: table => new
-                {
-                    tag_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    post_id = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_post_tags", x => new { x.post_id, x.tag_id });
-                    table.ForeignKey(
-                        name: "FK_post_tags_posts_post_id",
-                        column: x => x.post_id,
-                        principalTable: "posts",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_post_tags_tags_tag_id",
-                        column: x => x.tag_id,
-                        principalTable: "tags",
-                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -375,9 +407,14 @@ namespace ShareSpace.Server.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_post_tags_tag_id",
+                name: "IX_post_images_post_id",
+                table: "post_images",
+                column: "post_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_post_tags_post_id",
                 table: "post_tags",
-                column: "tag_id");
+                column: "post_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_posts_user_id",
@@ -390,14 +427,14 @@ namespace ShareSpace.Server.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tags_PostId",
-                table: "tags",
-                column: "PostId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_user_interests_interest_id",
                 table: "user_interests",
                 column: "interest_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_user_role_role_id",
+                table: "user_role",
+                column: "role_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_users_email",
@@ -436,6 +473,9 @@ namespace ShareSpace.Server.Migrations
                 name: "notifications");
 
             migrationBuilder.DropTable(
+                name: "post_images");
+
+            migrationBuilder.DropTable(
                 name: "post_tags");
 
             migrationBuilder.DropTable(
@@ -445,16 +485,19 @@ namespace ShareSpace.Server.Migrations
                 name: "user_interests");
 
             migrationBuilder.DropTable(
+                name: "user_role");
+
+            migrationBuilder.DropTable(
                 name: "viewed_posts");
 
             migrationBuilder.DropTable(
                 name: "notification_types");
 
             migrationBuilder.DropTable(
-                name: "tags");
+                name: "interests");
 
             migrationBuilder.DropTable(
-                name: "interests");
+                name: "role");
 
             migrationBuilder.DropTable(
                 name: "posts");

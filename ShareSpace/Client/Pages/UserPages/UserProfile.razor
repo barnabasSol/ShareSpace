@@ -24,7 +24,7 @@
                         @if (context.User.Claims.FirstOrDefault(c => c.Type == "Name")!.Value.Length >= 9)
                         {
                             <h3 style="color:white;">
-                                @context.User.Claims.FirstOrDefault(c => c.Type == "Name")!.Value.Substring(0, 9)...
+                                @context.User.Claims.FirstOrDefault(c => c.Type == "Name")!.Value.Substring(0, 9)
                             </h3>
                         }
                         else
@@ -60,8 +60,8 @@
                     </div>
                     @if (Extras is not null)
                     {
-                        <MudText Typo="Typo.body1" Class="mt-2">joined @(GetDuration())</MudText>
-                        <MudText Typo="Typo.body2" Class="mt-2">@Extras.Bio</MudText>
+                        <MudText Typo="Typo.body1" Class="mt-2">@Extras.Bio</MudText>
+                        <MudText Typo="Typo.body1" Color="Color.Primary" Class="mt-2">joined @(GetDuration())</MudText>
                     }
 
                 </MudCardContent>
