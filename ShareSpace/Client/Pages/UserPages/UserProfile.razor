@@ -1,6 +1,7 @@
 ﻿@page "/profile"
 @layout UserLayout
 @inject ISnackbar SnackBar
+@attribute [Authorize(Roles = "user")]
 
 <div class="w-100 d-flex flex-column align-items-center pl-2 noscrollbar">
 

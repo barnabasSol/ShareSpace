@@ -13,5 +13,5 @@ public interface IUserRepository
     Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId);
     Task<ApiResponse<IEnumerable<SuggestedUserDto>>> GetSuggestedUsers(Guid current_user);
     Task<ApiResponse<string>> UpdateProfilePhoto();
-
+    public Task<ApiResponse<string>> UpdateProfile();
 }

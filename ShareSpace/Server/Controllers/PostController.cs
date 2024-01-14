@@ -104,4 +104,10 @@ public class PostController : ControllerBase
             );
         }
     }
+
+    [HttpGet("details/{post_id}")]
+    public Task<ActionResult<ApiResponse<PostDetailDto>>> GetPostDetails(Guid post_id)
+    {
+        throw new NotImplementedException();
+    }
 }

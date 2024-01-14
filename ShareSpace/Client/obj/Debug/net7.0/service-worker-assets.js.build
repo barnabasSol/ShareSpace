@@ -1021,23 +1021,23 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-Q9PhXtvhavpMUSMuqlsKiLMoFx4+2vyJIobueig6aNQ=",
+      "hash": "sha256-xcKL7zAoWUpeT2bDMHm2gdiNE5tfmaGwb68N8YMPU9c=",
       "url": "_framework\/ShareSpace.Shared.dll"
     },
     {
-      "hash": "sha256-LvWQq8JlfTtF62quGf6kkjiRo+BVNvovDaPynzUE8X4=",
+      "hash": "sha256-2eBIO48EUsb7DyYqf8K4F7lziiMKvzqpzOFbzdhQA4U=",
       "url": "_framework\/ShareSpace.Shared.pdb"
     },
     {
-      "hash": "sha256-hxLVk7PGmSGxZDtGw0PIA+Jrsbmnd4THG+mve6ePHCU=",
+      "hash": "sha256-Rd8m5hRifntzJ096s7YbiEuYNDAxbsmDHDUKj1CUdKQ=",
       "url": "_framework\/ShareSpace.Client.dll"
     },
     {
-      "hash": "sha256-h7H6XZMhP1PtNylg4F4ufejptNRx09y7euCfg2ULqUs=",
+      "hash": "sha256-tupIDqT+Js9AvYg2sk5k7Wm\/TuMLpNf0GoxcHel5f4w=",
       "url": "_framework\/ShareSpace.Client.pdb"
     },
     {
-      "hash": "sha256-QDCW2Slkly1nHXnRhDlpBw5k9ah2Vrs8OxoeBfCqs18=",
+      "hash": "sha256-mf6Y7JK15vdEoNf2Uu1YLQ6ufsq5XMOroQ3PzoWJdq8=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1049,5 +1049,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "\/hDU84dE"
+  "version": "DCiY2Qg4"
 };

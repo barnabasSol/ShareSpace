@@ -14,12 +14,5 @@ namespace ShareSpace.Client.Services
             this.httpClient = httpClient;
         }
 
-        public async Task<ApiResponse<IEnumerable<SuggestedUserDto>>> GetSuggestedUsers(Guid current_user)
-        {
-            var http = httpClient.CreateClient("ShareSpaceApi");
-            var response = await http.GetAsync("/User/suggested-users");
-            var result = await response.Content.ReadFromJsonAsync<ApiResponse<IEnumerable<SuggestedUserDto>>>();
-            return result!;
-        }
     }
 }

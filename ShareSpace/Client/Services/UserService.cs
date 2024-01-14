@@ -33,6 +33,16 @@ namespace ShareSpace.Client.Services
             return result!;
         }
 
+        public async Task<ApiResponse<List<SuggestedUserDto>>> GetSuggestedUsers()
+        {
+            var http = http_client.CreateClient("ShareSpaceApi");
+            var response = await http.GetAsync("/User/suggested-users");
+            var result = await response.Content.ReadFromJsonAsync<
+                ApiResponse<List<SuggestedUserDto>>
+            >();
+            return result!;
+        }
+
         public async Task<ApiResponse<string>> SendInterests(IEnumerable<InterestsDto> interests)
         {
             var http = http_client.CreateClient("ShareSpaceApi");

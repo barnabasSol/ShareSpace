@@ -1,0 +1,59 @@
+@page "/postdetails/{post_id:guid}"
+@layout UserLayout
+@inject IPostService PostService
+
+
+<div class="col mb-1 p-1">
+    <MudCard>
+        <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
+            <CardHeaderAvatar>
+                <MudAvatar Size="Size.Large" Color="Color.Tertiary">A</MudAvatar>
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.body1">Alice</MudText>
+                <MudText Typo="Typo.body2">alice123</MudText>
+            </CardHeaderContent>
+            <CardHeaderActions>
+                <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true">
+                    <MudMenuItem>Share</MudMenuItem>
+                    <MudMenuItem>Not Interested</MudMenuItem>
+                    <MudMenuItem>Mute User</MudMenuItem>
+                </MudMenu>
+            </CardHeaderActions>
+        </MudCardHeader>
+        <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
+            <MudText Typo="Typo.body2">This is a default post content. You can replace this with your own content.
+            </MudText>
+        </MudCardContent>
+        <MudCardActions Style="background: rgb(27, 27, 27);" Class="d-flex justify-content-between gap-5">
+            <div>
+                <MudToggleIconButton Icon="@Icons.Material.Filled.Favorite" Title="Like"
+                    ToggledColor="@Color.Primary" />
+                <span style="color: white;">100</span>
+            </div>
+            <div>
+                <MudIconButton Icon="@Icons.Material.Filled.AddComment" Color="Color.Default" />
+                <span style="color: white;">50</span>
+            </div>
+            <div>
+                <span style="color: white;">1000</span>
+                <MudIconButton Icon="@Icons.Material.Filled.RemoveRedEye" Color="Color.Default" />
+            </div>
+        </MudCardActions>
+    </MudCard>
+</div>
+
+
+@code {
+    [Parameter]
+    public Guid post_id { get; set; }
+
+
+
+    [Parameter]
+    public EventCallback<PostDto> OnDelete { get; set; }
+
+
+    TimeSpan rate = TimeSpan.FromSeconds(3);
+
+}

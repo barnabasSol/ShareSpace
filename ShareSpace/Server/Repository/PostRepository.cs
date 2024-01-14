@@ -5,178 +5,173 @@ using ShareSpace.Server.Repository.Contracts;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
 
-namespace ShareSpace.Server.Repository
+namespace ShareSpace.Server.Repository;
+
+public class PostRepository : IPostRepository
 {
-    public class PostRepository : IPostRepository
+    private readonly ShareSpaceDbContext shareSpaceDb;
+    private readonly IWebHostEnvironment webHost;
+
+    public PostRepository(ShareSpaceDbContext shareSpaceDb, IWebHostEnvironment webHost)
     {
-        private readonly ShareSpaceDbContext shareSpaceDb;
-        private readonly IWebHostEnvironment webHost;
+        this.shareSpaceDb = shareSpaceDb;
+        this.webHost = webHost;
+    }
 
-        public PostRepository(ShareSpaceDbContext shareSpaceDb, IWebHostEnvironment webHost)
+    public async Task<ApiResponse<string>> CreatePost(CreatePostDto post)
+    {
+        using var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
+        try
         {
-            this.shareSpaceDb = shareSpaceDb;
-            this.webHost = webHost;
-        }
-
-        public async Task<ApiResponse<string>> CreatePost(CreatePostDto post)
-        {
-            using var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
-            try
+            if (post.PostFiles is not null)
             {
-                if (post.PostFiles is not null)
+                Post NewPost = new() { Content = post.TextContent, UserId = post.PostedUserId };
+
+                shareSpaceDb.Posts.Add(NewPost);
+
+                foreach (var file in post.PostFiles)
                 {
-                    Post NewPost = new() { Content = post.TextContent, UserId = post.PostedUserId };
-
-                    shareSpaceDb.Posts.Add(NewPost);
-
-                    foreach (var file in post.PostFiles)
+                    string FileExtension = file.Type.ToLower() switch
                     {
-                        string FileExtension = file.Type.ToLower() switch
-                        {
-                            string type when type.Contains("png") => "png",
-                            string type when type.Contains("jpeg") => "jpeg",
-                            string type when type.Contains("webp") => "webp",
-                            _ => throw new Exception("Invalid file format!")
-                        };
-                        string image_url = $"Uploads/PostPictures/{Guid.NewGuid()}.{FileExtension}";
-                        string webRootPath = webHost.WebRootPath;
-                        string FileName = Path.Combine(webRootPath, image_url);
+                        string type when type.Contains("png") => "png",
+                        string type when type.Contains("jpeg") => "jpeg",
+                        string type when type.Contains("webp") => "webp",
+                        _ => throw new Exception("Invalid file format!")
+                    };
+                    string image_url = $"Uploads/PostPictures/{Guid.NewGuid()}.{FileExtension}";
+                    string webRootPath = webHost.WebRootPath;
+                    string FileName = Path.Combine(webRootPath, image_url);
 
-                        var newPostImage = new PostImage { ImageUrl = image_url, Post = NewPost };
+                    var newPostImage = new PostImage { ImageUrl = image_url, Post = NewPost };
 
-                        shareSpaceDb.PostImages.Add(newPostImage);
+                    shareSpaceDb.PostImages.Add(newPostImage);
 
-                        using var FileStream = System.IO.File.Create(FileName);
-                        await FileStream.WriteAsync(file.ImageBytes);
-                    }
-
-                    await shareSpaceDb.SaveChangesAsync();
-                    await transaction.CommitAsync();
-                }
-
-                return new ApiResponse<string>
-                {
-                    IsSuccess = true,
-                    Message = "",
-                    Data = ""
-                };
-            }
-            catch (Exception ex)
-            {
-                await transaction.RollbackAsync();
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<ApiResponse<string>> DeletePost(Guid post_id)
-        {
-            try
-            {
-                var post = await shareSpaceDb.Posts.FindAsync(post_id);
-                if (post is not null)
-                {
-                    shareSpaceDb.Posts.Remove(post);
-                    await shareSpaceDb.SaveChangesAsync();
-                    return new ApiResponse<string>() { IsSuccess = true, Message = "", };
-                }
-                return new ApiResponse<string>()
-                {
-                    IsSuccess = false,
-                    Message = "item doesn't exist",
-                };
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public Task<ApiResponse<IEnumerable<PostDto>>> GetPost(Guid current_user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<ApiResponse<IEnumerable<PostDto>>> GetPosts(Guid current_user)
-        {
-            try
-            {
-                var posts = await shareSpaceDb.Posts
-                    .Include(i => i.User)
-                    .Include(i => i.PostImages)
-                    .Include(i => i.Comments)
-                    .ToListAsync();
-
-                return new ApiResponse<IEnumerable<PostDto>>
-                {
-                    IsSuccess = true,
-                    Message = "",
-                    Data = posts
-                        .Select(
-                            s =>
-                                new PostDto
-                                {
-                                    TextContent = s.Content,
-                                    PostUserProfilePicUrl = s.User?.ProfilePicUrl,
-                                    PostedName = s.User!.Name,
-                                    PostedUsername = s.User!.UserName,
-                                    PostedUserId = s.UserId,
-                                    PostId = s.Id,
-                                    PostPictureUrls = s.PostImages?.Select(i => i.ImageUrl),
-                                    LikesCount = s.Likes,
-                                    ViewsCount = s.Views,
-                                    CommentsCount = s.Comments?.Count ?? 0,
-                                    PostedDateTime = s.CreatedAt,
-                                    IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
-                                        a => a.PostId == s.Id && a.UserId == current_user
-                                    )
-                                }
-                        )
-                        .OrderByDescending(o => o.PostedDateTime)
-                };
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<ApiResponse<string>> UpdateLike(Guid post_id, Guid user_id)
-        {
-            using var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
-            try
-            {
-                var liked_post = await shareSpaceDb.LikedPosts.FirstOrDefaultAsync(
-                    f => f.UserId == user_id && f.PostId == post_id
-                );
-
-                if (liked_post is not null)
-                {
-                    shareSpaceDb.LikedPosts.Remove(liked_post);
-                }
-                else
-                {
-                    await shareSpaceDb.LikedPosts.AddAsync(
-                        new LikedPost { UserId = user_id, PostId = post_id, }
-                    );
+                    using var FileStream = System.IO.File.Create(FileName);
+                    await FileStream.WriteAsync(file.ImageBytes);
                 }
 
                 await shareSpaceDb.SaveChangesAsync();
-
-                var postLikeCount = await shareSpaceDb.LikedPosts.CountAsync(
-                    lp => lp.PostId == post_id
-                );
-                await shareSpaceDb.Posts
-                    .Where(p => p.Id == post_id)
-                    .ExecuteUpdateAsync(s => s.SetProperty(p => p.Likes, postLikeCount));
-
                 await transaction.CommitAsync();
-                return new ApiResponse<string> { IsSuccess = true };
             }
-            catch (Exception ex)
+
+            return new ApiResponse<string>
             {
-                await transaction.RollbackAsync();
-                return new ApiResponse<string> { IsSuccess = false, Message = ex.Message };
+                IsSuccess = true,
+                Message = "",
+                Data = ""
+            };
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public async Task<ApiResponse<string>> DeletePost(Guid post_id)
+    {
+        try
+        {
+            var post = await shareSpaceDb.Posts.FindAsync(post_id);
+            if (post is not null)
+            {
+                shareSpaceDb.Posts.Remove(post);
+                await shareSpaceDb.SaveChangesAsync();
+                return new ApiResponse<string>() { IsSuccess = true, Message = "", };
             }
+            return new ApiResponse<string>() { IsSuccess = false, Message = "item doesn't exist", };
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public Task<ApiResponse<PostDetailDto>> GetPost(Guid post_id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<ApiResponse<IEnumerable<PostDto>>> GetPosts(Guid current_user)
+    {
+        try
+        {
+            var posts = await shareSpaceDb.Posts
+                .Include(i => i.User)
+                .Include(i => i.PostImages)
+                .Include(i => i.Comments)
+                .ToListAsync();
+
+            return new ApiResponse<IEnumerable<PostDto>>
+            {
+                IsSuccess = true,
+                Message = "",
+                Data = posts
+                    .Select(
+                        s =>
+                            new PostDto
+                            {
+                                TextContent = s.Content,
+                                PostUserProfilePicUrl = s.User?.ProfilePicUrl,
+                                PostedName = s.User!.Name,
+                                PostedUsername = s.User!.UserName,
+                                PostedUserId = s.UserId,
+                                PostId = s.Id,
+                                PostPictureUrls = s.PostImages?.Select(i => i.ImageUrl),
+                                LikesCount = s.Likes,
+                                ViewsCount = s.Views,
+                                CommentsCount = s.Comments?.Count ?? 0,
+                                PostedDateTime = s.CreatedAt,
+                                IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
+                                    a => a.PostId == s.Id && a.UserId == current_user
+                                )
+                            }
+                    )
+                    .OrderByDescending(o => o.PostedDateTime)
+            };
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public async Task<ApiResponse<string>> UpdateLike(Guid post_id, Guid user_id)
+    {
+        using var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
+        try
+        {
+            var liked_post = await shareSpaceDb.LikedPosts.FirstOrDefaultAsync(
+                f => f.UserId == user_id && f.PostId == post_id
+            );
+
+            if (liked_post is not null)
+            {
+                shareSpaceDb.LikedPosts.Remove(liked_post);
+            }
+            else
+            {
+                await shareSpaceDb.LikedPosts.AddAsync(
+                    new LikedPost { UserId = user_id, PostId = post_id, }
+                );
+            }
+
+            await shareSpaceDb.SaveChangesAsync();
+
+            var postLikeCount = await shareSpaceDb.LikedPosts.CountAsync(
+                lp => lp.PostId == post_id
+            );
+            await shareSpaceDb.Posts
+                .Where(p => p.Id == post_id)
+                .ExecuteUpdateAsync(s => s.SetProperty(p => p.Likes, postLikeCount));
+
+            await transaction.CommitAsync();
+            return new ApiResponse<string> { IsSuccess = true };
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            return new ApiResponse<string> { IsSuccess = false, Message = ex.Message };
         }
     }
 }

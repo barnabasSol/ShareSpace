@@ -1,8 +1,9 @@
 ﻿@inject IPostService PostService
+@inject NavigationManager NavManager
 
 
 <div class="col mb-1 p-1">
-    <MudCard>
+    <MudCard @onclick="NavigateToPostDetail">
         <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
             <CardHeaderAvatar>
                 @if (post.PostUserProfilePicUrl == "")
@@ -85,13 +86,14 @@
 
     [Parameter]
     public EventCallback<PostDto> OnDelete { get; set; }
-
-    TimeSpan rate = TimeSpan.FromSeconds(3);
-
+    
     void DeletePost()
     {
         OnDelete.InvokeAsync(post);
     }
+
+    TimeSpan rate = TimeSpan.FromSeconds(3);
+
 
     public async void OnToggledChanged(bool toggled)
     {
@@ -114,5 +116,10 @@
             }
         }
         StateHasChanged();
+    }
+    
+
+    void NavigateToPostDetail(){
+        NavManager.NavigateTo($"/postdetails/{post.PostId}");        
     }
 }

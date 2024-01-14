@@ -7,6 +7,7 @@ namespace ShareSpace.Client.Services.Contracts
     {
         Task<ApiResponse<string>> CreatePost(CreatePostDto post);
         Task<ApiResponse<List<PostDto>>> GetPosts();
+        Task<ApiResponse<PostDetailDto>> GetPostDetails(Guid post_id);
         Task<ApiResponse<string>> DeletePost(Guid post_id);
         Task<ApiResponse<string>> UpdateLike(LikedPostDto likedPost);
     }

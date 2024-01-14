@@ -20,7 +20,10 @@ public class PostDto : PostBase
     public bool IsLikedByCurrentUser { get; set; }
 }
 
-public class PostDtoDetailsDto : PostDto { }
+public class PostDetailDto : PostDto
+{
+    public List<CommentDto>? Comments { get; set; }
+}
 
 public class CreatePostDto
 {

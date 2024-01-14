@@ -8,3 +8,9 @@ public class CommentDto
     public string? UserProfilePicUrl { get; set; }
     public required string Content { get; set; }
 }
+
+public class CommentAddDto{
+    
+    public Guid PostId { get; set; }
+    public required string Content { get; set; }
+}

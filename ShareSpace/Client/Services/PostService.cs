@@ -31,6 +31,11 @@ namespace ShareSpace.Client.Services
             return result!;
         }
 
+        public Task<ApiResponse<PostDetailDto>> GetPostDetails(Guid post_id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<ApiResponse<List<PostDto>>> GetPosts()
         {
             var http = http_client.CreateClient("ShareSpaceApi");

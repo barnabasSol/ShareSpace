@@ -1,10 +1,12 @@
+@inject NavigationManager NavManager
 @if (User is null)
 {
     <span>loading</span>
 }
 else
 {
-    <div class="card effect" style="width: 13rem; flex-shrink: 0;  background: rgb(27, 27, 27);">
+    <div @onclick="NavigateToUserPage" class="card effect"
+        style="width: 13rem; flex-shrink: 0;  background: rgb(27, 27, 27);">
         <div class="d-flex justify-content-center align-items-center pt-1">
             @if (@User.ProfilePicUrl == null)
             {
@@ -26,15 +28,28 @@ else
             <span class="card-text">
                 @User.Name
             </span>
-            <MudButton Class="mt-2" Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">Follow</MudButton>
+            <MudButton OnClick="FollowUser" Class="mt-2" Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">
+                Follow</MudButton>
         </div>
     </div>
 }
-
 
 
 @code {
 
     [Parameter]
     public SuggestedUserDto? User { get; set; }
+
+    [Parameter]
+    public EventCallback<SuggestedUserDto> OnFollow { get; set; }
+
+    void FollowUser()
+    {
+        OnFollow.InvokeAsync(User);
+    }
+    void NavigateToUserPage()
+    {
+        NavManager.NavigateTo($"profile/{User!.UserName}");
+    }
+
 }

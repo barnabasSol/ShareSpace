@@ -132,6 +132,8 @@ namespace ShareSpace.Server.Repository
                             {
                                 Name = s.Name,
                                 ProfilePicUrl = s.ProfilePicUrl,
+                                UserName = s.UserName,
+                                UserId = s.UserId
                             }
                     )
                 };
@@ -143,6 +145,10 @@ namespace ShareSpace.Server.Repository
         }
 
         public Task<ApiResponse<string>> UpdateProfilePhoto()
+        {
+            throw new NotImplementedException();
+        }
+        public Task<ApiResponse<string>> UpdateProfile()
         {
             throw new NotImplementedException();
         }

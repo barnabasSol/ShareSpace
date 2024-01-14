@@ -6,6 +6,7 @@ using MudBlazor.Services;
 using ShareSpace.Client;
 using ShareSpace.Client.Services;
 using ShareSpace.Client.Services.Contracts;
+using ShareSpace.Shared.DTOs;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");

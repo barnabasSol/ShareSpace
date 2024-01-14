@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows,browser
 build_property.RootNamespace = ShareSpace.Shared
-build_property.ProjectDir = c:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\
+build_property.ProjectDir = C:\Users\Barnabas Solomon\OneDrive\Desktop\web\ASPNET projects\ShareSpaceSolution\ShareSpace\Shared\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
