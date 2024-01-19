@@ -1,7 +1,7 @@
 {
   "entryAssembly": "ShareSpace.Client",
   "resources": {
-    "hash": "sha256-XwD0ez7hD8XxDvAUTYStkb4/glwUEXn28BuZZ9PgsF8=",
+    "hash": "sha256-vB6G8qqi/U6NNVLQopKH+QUPNMa5ZRv2FMzySqwQ8LA=",
     "runtime": {
       "dotnet.7.0.14.a35zhkwnav.js": "sha256-YWGUknGRzP/fgO6YjvCJKPVQNZAPEd6ll+rHfQEIW+I=",
       "dotnet.timezones.blat": "sha256-t5xviiOQTfAsF0UDhmcyalKiaehUmf/sqJl97tmPM0M=",
@@ -217,12 +217,12 @@
       "mscorlib.dll": "sha256-YcsJInaT/kw3Vrm+SESegPxvT/Lr9RE6rE/KnxWIIc0=",
       "netstandard.dll": "sha256-TztlSRjADgiEABbiAMdWZpHrUVd8wnRtQRAvlwmRP/4=",
       "System.Private.CoreLib.dll": "sha256-BAhrZ8Zg3cJKQipxdzqQo+9jtPkOkRx1ou3oIhDohtk=",
-      "ShareSpace.Shared.dll": "sha256-Fi9XjpHAP7rGeXmpPZom2i0pCkSSH/vJXyzNVCM7KK8=",
-      "ShareSpace.Client.dll": "sha256-v3t5c6NSa1AMYkF5iqjtgMs3F0aaKvtpEiGmtkZaRvc="
+      "ShareSpace.Shared.dll": "sha256-yqeJvIQUE64voJylMJNHxGsj3/yWY2HPJ1w6F+Ry52g=",
+      "ShareSpace.Client.dll": "sha256-RMGhPMTYj8D/r7XUsy+2MC8tx5RjSLJKUEveJ7vtvMg="
     },
     "pdb": {
-      "ShareSpace.Shared.pdb": "sha256-64CZaNWEr4bKr3ezv7nirboohMffvFLDrMAV6G/q9RM=",
-      "ShareSpace.Client.pdb": "sha256-eEOAiJcyNxRlKmZZ23G6W/10sHaWIjdbNb9fAwH0v+A="
+      "ShareSpace.Shared.pdb": "sha256-X0mrY13eklczG8OdH5SLtZIHDaHsxlpSwRyWKWHFgv0=",
+      "ShareSpace.Client.pdb": "sha256-GJUGOWvyBftU149mD5f9u6syavF93MeGQkl8VDmHltE="
     },
     "runtimeAssets": {
       "dotnet.wasm": {

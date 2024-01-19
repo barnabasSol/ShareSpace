@@ -6,5 +6,5 @@ namespace ShareSpace.Server.Repository.Contracts;
 public interface ICommentRepository
 {
     Task<ApiResponse<string>> DeleteComment(Guid comment_id);
-    Task<ApiResponse<string>> AddComment(CommentAddDto comment);
+    Task<ApiResponse<Guid>> AddComment(CommentAddDto comment, Guid user_id);
 }

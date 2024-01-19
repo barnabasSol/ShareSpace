@@ -21,6 +21,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ISuggestedUsersService, SuggestedUsersService>();
 builder.Services.AddScoped<IMessageService, MessageServices>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 
 builder.Services
     .AddHttpClient(

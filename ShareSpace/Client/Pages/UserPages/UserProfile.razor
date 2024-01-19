@@ -1,9 +1,73 @@
-﻿@page "/profile"
+﻿@page "/current_user"
 @layout UserLayout
+@inject IUserService UserService
 @inject ISnackbar SnackBar
-@attribute [Authorize(Roles = "user")]
+@inject IJSRuntime JS
+
+<style>
+    .astyle {
+        color: gray;
+        text-decoration: none;
+        transition: color, text-decoration, 0.2s;
+        font-size: 1.5em;
+        margin: 0;
+    }
+
+    .astyle:hover {
+        color: white;
+        cursor: pointer;
+    }
+
+    .astyle:focus {
+        color: white;
+    }
+</style>
 
 <div class="w-100 d-flex flex-column align-items-center pl-2 noscrollbar">
+    <MudOverlay @bind-Visible="FollowersVisible" DarkBackground="true" ZIndex="9999" AutoClose="true">
+        @if (Followers is null)
+        {
+            <h5>loading</h5>
+        }
+        else
+        {
+            if (!Followers.Any())
+            {
+
+                <h2 class="mb-2" style="color: white;">You Have No Followers</h2>
+            }
+            else
+            {
+                <h2 class="mb-2" style="color: white;">Followers</h2>
+                @foreach (var item in Followers)
+                {
+                    <FollowerUserItem user="item" OnFollow="FollowUser" OnUnfollow="UnfollowUser" />
+                }
+            }
+        }
+    </MudOverlay>
+
+    <MudOverlay @bind-Visible="FollowingVisible" DarkBackground="true" ZIndex="9999" AutoClose="true">
+        @if (Following is null)
+        {
+            <h5>loading</h5>
+        }
+        else
+        {
+            if (!Following.Any())
+            {
+                <h2 class="mb-2" style="color: white;">You Don't Follow Anyone</h2>
+            }
+            else
+            {
+                <h2 class="mb-2" style="color: white;">Followers</h2>
+                @foreach (var item in Following)
+                {
+                    <FollowerUserItem user="item" OnFollow="FollowFollowingUser" OnUnfollow="UnfollowFollowingUser" />
+                }
+            }
+        }
+    </MudOverlay>
 
     <MudCard Class="w-100">
         <AuthorizeView>
@@ -52,11 +116,14 @@
                     <div class="d-flex justify-content-between">
                         <div class="d-flex flex-column align-items-center">
                             <h5 style="color: white">@Extras.FollowersCount</h5>
-                            <h5 style="color: rgb(185, 183, 183);">Followers</h5>
+                            <span class="astyle" @onclick="DisplayFollowers">
+                                Followers</span>
+
                         </div>
                         <div class="d-flex flex-column align-items-center">
-                            <h5 style="color: white;">@Extras.FollowingCount</h5>
-                            <h5 style="color: rgb(185, 183, 183);">Following</h5>
+                            <h5 id="followingCount" style="color: white;">@Extras.FollowingCount</h5>
+                            <a class="astyle" @onclick="DisplayFollowing">
+                                Following</a>
                         </div>
                     </div>
                     @if (Extras is not null)
@@ -100,9 +167,48 @@
 
     private Color[] colors = new[]
     {
-Color.Success, Color.Warning, Color.Error, Color.Dark
+Color.Success,
+Color.Warning,
+Color.Error,
+Color.Dark
 };
 
+    private async Task HandleFollowAction(FollowerUserDto user, List<FollowerUserDto> userList, Func<Guid,
+    Task<ShareSpace.Shared.ResponseTypes.ApiResponse<string>>> action, string jsFunction)
+    {
+        var result = await action(user.UserId);
+        if (result.IsSuccess)
+        {
+            var module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/site.js");
+            await module.InvokeVoidAsync(jsFunction);
+            var User = userList.FirstOrDefault(f => f.UserId == user.UserId);
+            if (User is not null)
+            {
+                User.IsBeingFollowed = jsFunction == "incrementFollowingCount";
+            }
+        }
+        StateHasChanged();
+    }
+
+    public async void FollowUser(FollowerUserDto user)
+    {
+        await HandleFollowAction(user, Followers!, UserService.FollowUser, "incrementFollowingCount");
+    }
+
+    public async void UnfollowUser(FollowerUserDto user)
+    {
+        await HandleFollowAction(user, Followers!, UserService.FollowUser, "decrementFollowingCount");
+    }
+
+    public async void FollowFollowingUser(FollowerUserDto user)
+    {
+        await HandleFollowAction(user, Following!, UserService.FollowUser, "incrementFollowingCount");
+    }
+
+    public async void UnfollowFollowingUser(FollowerUserDto user)
+    {
+        await HandleFollowAction(user, Following!, UserService.FollowUser, "decrementFollowingCount");
+    }
 
     void ShowSnackBarWithOptions(Variant variant, Severity severity)
     {
@@ -130,5 +236,38 @@ Color.Success, Color.Warning, Color.Error, Color.Dark
                 }
             }
         };
+    }
+    private bool FollowersVisible;
+    private bool FollowingVisible;
+
+    private List<FollowerUserDto>? Followers;
+    private List<FollowerUserDto>? Following;
+
+
+    void CloseOverlay()
+    {
+        FollowersVisible = false;
+        FollowingVisible = false;
+    }
+
+    async void DisplayFollowers()
+    {
+        var result = await UserService.GetFollowers();
+        if (result.IsSuccess)
+        {
+            Followers = result.Data!;
+            FollowersVisible = true;
+        }
+        StateHasChanged();
+    }
+    async void DisplayFollowing()
+    {
+        var result = await UserService.GetFollowing();
+        if (result.IsSuccess)
+        {
+            Following = result.Data!;
+            FollowingVisible = true;
+        }
+        StateHasChanged();
     }
 }

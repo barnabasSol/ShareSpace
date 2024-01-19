@@ -14,4 +14,7 @@ public interface IUserRepository
     Task<ApiResponse<IEnumerable<SuggestedUserDto>>> GetSuggestedUsers(Guid current_user);
     Task<ApiResponse<string>> UpdateProfilePhoto();
     public Task<ApiResponse<string>> UpdateProfile();
+    public Task<ApiResponse<string>> FollowUser(Guid followed_id, Guid follower_id);
+    public Task<ApiResponse<IEnumerable<FollowerUserDto>>> GetFollowers(Guid current_user);
+    public Task<ApiResponse<IEnumerable<FollowerUserDto>>> GetFollowing(Guid current_user);
 }

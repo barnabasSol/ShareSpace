@@ -3,7 +3,7 @@
 
 
 <div class="col mb-1 p-1">
-    <MudCard @onclick="NavigateToPostDetail">
+    <MudCard @onclick="NavigateToPostDetail" style="border-radius: 20px;">
         <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
             <CardHeaderAvatar>
                 @if (post.PostUserProfilePicUrl == "")
@@ -58,7 +58,7 @@
         <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
             <MudText Typo="Typo.body2">@post.TextContent</MudText>
         </MudCardContent>
-        <MudCardActions Style="background: rgb(27, 27, 27);" Class="d-flex justify-content-between gap-5">
+        <MudCardActions Style="background: rgb(27, 27, 27); background: rgb(27, 27, 27); border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;"Class="d-flex justify-content-between gap-5">
             <div>
                 <MudToggleIconButton Toggled="@post.IsLikedByCurrentUser" ToggledChanged="OnToggledChanged"
                     Icon="@Icons.Material.Filled.Favorite" Title="Like" ToggledIcon="@Icons.Material.Filled.Favorite"
@@ -82,8 +82,6 @@
     [Parameter]
     public required PostDto post { get; set; }
 
-
-
     [Parameter]
     public EventCallback<PostDto> OnDelete { get; set; }
     
@@ -93,7 +91,6 @@
     }
 
     TimeSpan rate = TimeSpan.FromSeconds(3);
-
 
     public async void OnToggledChanged(bool toggled)
     {

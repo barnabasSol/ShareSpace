@@ -6,7 +6,6 @@ using ShareSpace.Shared.ResponseTypes;
 
 namespace ShareSpace.Server.Controllers;
 
-[Authorize(Roles = "user")]
 [Route("[controller]")]
 [ApiController]
 public class PostController : ControllerBase
@@ -19,6 +18,7 @@ public class PostController : ControllerBase
     }
 
     [HttpPost("create")]
+    [Authorize(Roles = "user")]
     public async Task<ActionResult<ApiResponse<string>>> CreatePost(CreatePostDto post)
     {
         try
@@ -41,6 +41,7 @@ public class PostController : ControllerBase
     }
 
     [HttpGet("posts")]
+    [Authorize(Roles = "user")]
     public async Task<ActionResult<ApiResponse<IEnumerable<PostDto>>>> GetPosts()
     {
         try
@@ -63,6 +64,7 @@ public class PostController : ControllerBase
     }
 
     [HttpDelete("delete/{post_id}")]
+    [Authorize(Roles = "user")]
     public async Task<ActionResult<ApiResponse<string>>> DeletePost(Guid post_id)
     {
         try
@@ -84,6 +86,7 @@ public class PostController : ControllerBase
     }
 
     [HttpPut("like")]
+    [Authorize(Roles = "user")]
     public async Task<ActionResult<ApiResponse<string>>> Like(LikedPostDto likedPost)
     {
         try
@@ -106,8 +109,24 @@ public class PostController : ControllerBase
     }
 
     [HttpGet("details/{post_id}")]
-    public Task<ActionResult<ApiResponse<PostDetailDto>>> GetPostDetails(Guid post_id)
+    public async Task<ActionResult<ApiResponse<PostDetailDto>>> GetPostDetails(Guid post_id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            Guid user_id = Guid.Parse(User.FindFirst("Sub")!.Value);
+            var result = await postRepository.GetPost(post_id, user_id);
+            return result.IsSuccess ? Ok(result) : BadRequest(result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
+        }
     }
 }

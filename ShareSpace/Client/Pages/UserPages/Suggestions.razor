@@ -1,6 +1,8 @@
 @page "/suggestions"
 @layout UserLayout
 @inject IUserService UserService
+@inject IJSRuntime JS
+
 
 
 <div class="w-100 p1 main_sugg">
@@ -29,9 +31,16 @@
 @code {
     List<SuggestedUserDto>? SuggestedUsers;
 
-    void FollowUser(SuggestedUserDto user)
+    async void FollowUser(SuggestedUserDto user)
     {
-        SuggestedUsers!.Remove(user);
+        var result = await UserService.FollowUser(user.UserId);
+        if (result.IsSuccess)
+        {
+            var module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/site.js");
+            await module.InvokeVoidAsync("incrementFollowingCount");
+            SuggestedUsers!.Remove(user);
+        }
+        StateHasChanged();
     }
 
     protected override async Task OnInitializedAsync()

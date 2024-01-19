@@ -1,3 +1,5 @@
+using System.Dynamic;
+
 namespace ShareSpace.Shared.DTOs;
 
 public class CreateUserDTO
@@ -22,4 +24,13 @@ public class UserLoginDTO
 {
     public required string UserName { get; set; }
     public required string Password { get; set; }
+}
+
+public class FollowerUserDto
+{
+    public Guid UserId { get; set; }
+    public string? ProfilePicUrl { get; set; }
+    public required string Name { get; set; }
+    public required string UserName { get; set; }
+    public bool IsBeingFollowed { get; set; }
 }

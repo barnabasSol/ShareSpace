@@ -1,0 +1,52 @@
+<MudCard Class="mb-2 p-0" style="border-radius: 20px;">
+    <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
+        <CardHeaderAvatar>
+            @if (comment!.UserProfilePicUrl == "")
+            {
+                <MudAvatar Size="Size.Large" Color="Color.Tertiary">@comment.Name[0]</MudAvatar>
+            }
+            else
+            {
+                <MudAvatar Size="Size.Medium">
+                    <MudImage Style="border-radius: 10%; border: 0;" Src="@comment.UserProfilePicUrl"
+                        Alt="Card image cap" />
+                </MudAvatar>
+            }
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body1">@comment!.Name</MudText>
+            <MudText Typo="Typo.body2">@comment!.UserName</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true">
+                <AuthorizeView>
+                    <Authorized>
+                        @if (comment!.UserId == Guid.Parse(context.User.Claims.FirstOrDefault(c => c.Type ==
+                        "Sub")!.Value))
+                        {
+                            <MudMenuItem OnTouch="DeletePost" OnClick="DeletePost">Delete</MudMenuItem>
+                        }
+                    </Authorized>
+                </AuthorizeView>
+
+            </MudMenu>
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent
+        style="background: rgb(27, 27, 27); color: white; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;">
+        <MudText Typo="Typo.body2">@comment!.Content</MudText>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter]
+    public CommentDto? comment { get; set; }
+
+    [Parameter]
+    public EventCallback<CommentDto> OnDelete { get; set; }
+
+    void DeletePost()
+    {
+        OnDelete.InvokeAsync(comment);
+    }
+}

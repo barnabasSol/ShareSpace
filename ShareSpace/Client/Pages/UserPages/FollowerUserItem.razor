@@ -1,0 +1,80 @@
+@inject NavigationManager NavManager
+
+<style>
+    .astyle {
+        color: gray;
+        text-decoration: none;
+        transition: color, text-decoration, 0.2s;
+        font-size: 1.3em;
+        margin: 0;
+    }
+
+    .astyle:hover {
+        color: white;
+        cursor: pointer;
+    }
+
+    .astyle:focus {
+        color: white;
+    }
+</style>
+
+<div class="mycolor astyle" @onclick="NavigateToProfile">
+    <div class="message mb-2 effect d-flex justify-content-between align-items-center" style="width: 500px;">
+        <div class="d-flex align-items-start">
+            @if (user!.ProfilePicUrl == null)
+            {
+                <MudAvatar Class="mr-2" Size="Size.Large" Color="Color.Tertiary">
+                    @user.Name![0].ToString().ToUpper()
+                </MudAvatar>
+            }
+            else
+            {
+                <MudAvatar Class="mr-2" Size="Size.Large" Color="Color.Tertiary">
+                    <MudImage Src=@user.ProfilePicUrl Alt="Card image cap" />
+                </MudAvatar>
+            }
+            <div class="bg-transparent">
+                <p class="mb-1">@user.Name</p>
+                <p style="color: yellow;">@user.UserName</p>
+            </div>
+        </div>
+        @if (user.IsBeingFollowed)
+        {
+            <MudButton Color="Color.Error" OnClick="UnFollowUser" Variant="Variant.Filled">Unfollow
+            </MudButton>
+        }
+        else
+        {
+
+            <MudButton Color="Color.Success" OnClick="FollowUser" Variant="Variant.Filled">Follow</MudButton>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public FollowerUserDto? user { get; set; }
+
+    [Parameter]
+    public EventCallback<FollowerUserDto> OnFollow { get; set; }
+
+    [Parameter]
+    public EventCallback<FollowerUserDto> OnUnfollow { get; set; }
+
+    void NavigateToProfile()
+    {
+        NavManager.NavigateTo($"profile/{user!.UserName}");
+    }
+
+    void FollowUser()
+    {
+        OnFollow.InvokeAsync(user);
+    }
+    void UnFollowUser()
+    {
+        OnUnfollow.InvokeAsync(user);
+    }
+
+
+}

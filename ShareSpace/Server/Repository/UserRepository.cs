@@ -24,7 +24,7 @@ namespace ShareSpace.Server.Repository
                     .Where(w => w.UserId.Equals(UserId))
                     .Select(
                         x =>
-                            new ExtraUserInfoDto()
+                            new ExtraUserInfoDto
                             {
                                 ProfilePicUrl = x.ProfilePicUrl,
                                 FollowersCount = shareSpaceDb.Followers
@@ -74,7 +74,7 @@ namespace ShareSpace.Server.Repository
                 {
                     IsSuccess = true,
                     Data = interests.Select(
-                        s => new InterestsDto() { Id = s.Id, Value = s.InterestName }
+                        s => new InterestsDto { Id = s.Id, Value = s.InterestName }
                     )
                 };
             }
@@ -97,7 +97,7 @@ namespace ShareSpace.Server.Repository
                     foreach (var interest in interests)
                     {
                         await shareSpaceDb.UserInterests.AddAsync(
-                            new UserInterest() { InterestId = interest.Id, UserId = current_user }
+                            new UserInterest { InterestId = interest.Id, UserId = current_user }
                         );
                     }
                     await shareSpaceDb.SaveChangesAsync();
@@ -120,7 +120,13 @@ namespace ShareSpace.Server.Repository
             try
             {
                 var suggested_users = await shareSpaceDb.Users
-                    .Where(w => w.UserId != current_user)
+                    .Where(
+                        w =>
+                            w.UserId != current_user
+                            && !shareSpaceDb.Followers.Any(
+                                a => a.FollowerId == current_user && a.FollowedId == w.UserId
+                            )
+                    )
                     .ToListAsync();
                 return new ApiResponse<IEnumerable<SuggestedUserDto>>
                 {
@@ -128,7 +134,7 @@ namespace ShareSpace.Server.Repository
                     Message = "",
                     Data = suggested_users.Select(
                         s =>
-                            new SuggestedUserDto()
+                            new SuggestedUserDto
                             {
                                 Name = s.Name,
                                 ProfilePicUrl = s.ProfilePicUrl,
@@ -148,9 +154,125 @@ namespace ShareSpace.Server.Repository
         {
             throw new NotImplementedException();
         }
+
         public Task<ApiResponse<string>> UpdateProfile()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<ApiResponse<string>> FollowUser(Guid followed_id, Guid follower_id)
+        {
+            try
+            {
+                var user = await shareSpaceDb.Followers.FirstOrDefaultAsync(
+                    f => f.FollowedId == followed_id && f.FollowerId == follower_id
+                );
+
+                if (user is null)
+                {
+                    await shareSpaceDb.Followers.AddAsync(
+                        new Follower { FollowedId = followed_id, FollowerId = follower_id }
+                    );
+                }
+                else
+                {
+                    shareSpaceDb.Followers.Remove(user);
+                }
+                await shareSpaceDb.SaveChangesAsync();
+                return new ApiResponse<string> { IsSuccess = true, };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"operation failed, try again {ex.Message}");
+            }
+        }
+
+        public async Task<ApiResponse<IEnumerable<FollowerUserDto>>> GetFollowers(Guid current_user)
+        {
+            try
+            {
+                var followerIds = await shareSpaceDb.Followers
+                    .Where(f => f.FollowedId == current_user)
+                    .Select(f => f.FollowerId)
+                    .ToListAsync();
+
+                var followerUsers = await shareSpaceDb.Users
+                    .Where(u => followerIds.Contains(u.UserId))
+                    .ToListAsync();
+                if (!followerUsers.Any())
+                {
+                    return new ApiResponse<IEnumerable<FollowerUserDto>>
+                    {
+                        IsSuccess = true,
+                        Data = Enumerable.Empty<FollowerUserDto>(),
+                        Message = "you don't have any followers"
+                    };
+                }
+                return new ApiResponse<IEnumerable<FollowerUserDto>>
+                {
+                    IsSuccess = true,
+                    Data = followerUsers.Select(
+                        s =>
+                            new FollowerUserDto
+                            {
+                                UserId = s.UserId,
+                                UserName = s.UserName,
+                                Name = s.Name,
+                                ProfilePicUrl = s.ProfilePicUrl,
+                                IsBeingFollowed = shareSpaceDb.Followers.Any(
+                                    a => a.FollowedId == s.UserId && a.FollowerId == current_user
+                                )
+                            }
+                    ),
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<ApiResponse<IEnumerable<FollowerUserDto>>> GetFollowing(Guid current_user)
+        {
+            try
+            {
+                var followingIds = await shareSpaceDb.Followers
+                    .Where(f => f.FollowerId == current_user)
+                    .Select(f => f.FollowedId)
+                    .ToListAsync();
+
+                var followingUsers = await shareSpaceDb.Users
+                    .Where(u => followingIds.Contains(u.UserId))
+                    .ToListAsync();
+                if (!followingUsers.Any())
+                {
+                    return new ApiResponse<IEnumerable<FollowerUserDto>>
+                    {
+                        IsSuccess = true,
+                        Data = Enumerable.Empty<FollowerUserDto>(),
+                        Message = "you don't have any followers"
+                    };
+                }
+                return new ApiResponse<IEnumerable<FollowerUserDto>>
+                {
+                    IsSuccess = true,
+                    Data = followingUsers.Select(
+                        s =>
+                            new FollowerUserDto
+                            {
+                                UserId = s.UserId,
+                                UserName = s.UserName,
+                                Name = s.Name,
+                                ProfilePicUrl = s.ProfilePicUrl,
+                                IsBeingFollowed = true
+                            }
+                    ),
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

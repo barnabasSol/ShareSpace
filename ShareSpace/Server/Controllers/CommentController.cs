@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShareSpace.Server.Repository.Contracts;
+using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
 
 namespace ShareSpace.Server.Controllers;
@@ -16,14 +17,45 @@ public class CommentController : ControllerBase
     }
 
     [HttpPost("add")]
-    public Task<ActionResult<AuthResponse>> Add()
+    public async Task<ActionResult<AuthResponse>> Add(CommentAddDto comment)
     {
-        throw new NotImplementedException();
+        try
+        {
+            Guid UserId = Guid.Parse(User.FindFirst("Sub")!.Value);
+            var response = await commentRepository.AddComment(comment, UserId);
+            return response.IsSuccess ? Ok(response) : BadRequest(response);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
+        }
     }
 
-    [HttpDelete("delete")]
-    public Task<ActionResult<AuthResponse>> Delete()
+    [HttpDelete("delete/{post_id}")]
+    public async Task<ActionResult<AuthResponse>> Delete(Guid post_id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var response = await commentRepository.DeleteComment(post_id);
+            return response.IsSuccess ? Ok(response) : BadRequest(response);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
+        }
     }
 }

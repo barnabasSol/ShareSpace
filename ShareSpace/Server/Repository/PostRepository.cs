@@ -70,26 +70,106 @@ public class PostRepository : IPostRepository
 
     public async Task<ApiResponse<string>> DeletePost(Guid post_id)
     {
+        using var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
         try
         {
             var post = await shareSpaceDb.Posts.FindAsync(post_id);
+            string webRootPath = webHost.WebRootPath;
             if (post is not null)
             {
+                var postImages = await shareSpaceDb.PostImages
+                    .Where(pi => pi.PostId == post_id)
+                    .ToListAsync();
+
+                //deletes files from the damn directory
+                foreach (var postImage in postImages)
+                {
+                    var imagePath = Path.Combine(webRootPath, postImage.ImageUrl.TrimStart('/'));
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                }
                 shareSpaceDb.Posts.Remove(post);
+
                 await shareSpaceDb.SaveChangesAsync();
+                await transaction.CommitAsync();
+
                 return new ApiResponse<string>() { IsSuccess = true, Message = "", };
             }
             return new ApiResponse<string>() { IsSuccess = false, Message = "item doesn't exist", };
         }
         catch (Exception ex)
         {
+            await transaction.RollbackAsync();
             throw new Exception(ex.Message);
         }
     }
 
-    public Task<ApiResponse<PostDetailDto>> GetPost(Guid post_id)
+    public async Task<ApiResponse<PostDetailDto>> GetPost(Guid post_id, Guid current_user)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var post = await shareSpaceDb.Posts
+                .Include(i => i.User)
+                .Include(i => i.Comments!)
+                .ThenInclude(c => c.User)
+                .Include(i => i.PostImages)
+                .FirstOrDefaultAsync(f => f.Id == post_id);
+
+            if (post is null)
+            {
+                return new ApiResponse<PostDetailDto>
+                {
+                    IsSuccess = false,
+                    Message = "post doesn't exist",
+                };
+            }
+
+            var commentDtos =
+                post.Comments
+                    ?.Select(
+                        s =>
+                            new CommentDto
+                            {
+                                CommentId = s.Id,
+                                UserId = s.User!.UserId,
+                                UserName = s.User?.UserName!,
+                                Name = s.User?.Name!,
+                                Content = s.Content,
+                                UserProfilePicUrl = s.User?.ProfilePicUrl,
+                                CommentedAt = s.CreatedAt
+                            }
+                    )
+                    .ToList() ?? new List<CommentDto>();
+
+            return new ApiResponse<PostDetailDto>
+            {
+                IsSuccess = true,
+                Data = new PostDetailDto
+                {
+                    TextContent = post.Content,
+                    PostUserProfilePicUrl = post.User?.ProfilePicUrl,
+                    PostedName = post.User?.Name!,
+                    PostedUsername = post.User?.UserName!,
+                    PostedUserId = post.UserId,
+                    PostId = post.Id,
+                    PostPictureUrls = post.PostImages?.Select(i => i.ImageUrl),
+                    LikesCount = post.Likes,
+                    ViewsCount = post.Views,
+                    CommentsCount = post.Comments?.Count ?? 0,
+                    PostedDateTime = post.CreatedAt,
+                    IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
+                        a => a.PostId == post.Id && a.UserId == current_user
+                    ),
+                    Comments = commentDtos
+                }
+            };
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public async Task<ApiResponse<IEnumerable<PostDto>>> GetPosts(Guid current_user)

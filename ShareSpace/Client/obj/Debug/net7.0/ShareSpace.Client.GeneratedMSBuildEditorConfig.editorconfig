@@ -38,6 +38,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvYmxlbVBhZ2VzXFJlZGlyZWN0VG9Mb2dpbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/ProgressPages/PostDetailsLoading.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZ3Jlc3NQYWdlc1xQb3N0RGV0YWlsc0xvYWRpbmcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/ProgressPages/PostLoading.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZ3Jlc3NQYWdlc1xQb3N0TG9hZGluZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -50,8 +54,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhcnRpbmdQYWdlc1xDcmVhdGVVc2VyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/Comment.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2VzXENvbW1lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/CreatePost.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2VzXENyZWF0ZVBvc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/FollowerUserItem.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclBhZ2VzXEZvbGxvd2VyVXNlckl0ZW0ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Barnabas Solomon/OneDrive/Desktop/web/ASPNET projects/ShareSpaceSolution/ShareSpace/Client/Pages/UserPages/History.razor]

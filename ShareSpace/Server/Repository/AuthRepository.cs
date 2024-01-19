@@ -61,11 +61,11 @@ public class AuthRepository : IAuthRepository
                 };
 
             await shareSpaceDb.Users.AddAsync(NewUser);
-            await shareSpaceDb.SaveChangesAsync(); // Save changes so that NewUser.Id gets updated
+            await shareSpaceDb.SaveChangesAsync();
 
             UserRole newUserRole = new() { UserId = NewUser.UserId, RoleId = (int)Role.User };
             await shareSpaceDb.UserRoles.AddAsync(newUserRole);
-            await shareSpaceDb.SaveChangesAsync(); // Save changes to insert the new UserRole
+            await shareSpaceDb.SaveChangesAsync();
 
             await transaction.CommitAsync();
 
@@ -136,6 +136,7 @@ public class AuthRepository : IAuthRepository
     {
         DateTime TokenExpiration = DateTime.Now.AddHours(15);
         SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
+        DateTimeOffset dateTimeOffset = new(TokenExpiration);
         SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha256);
         List<Claim> claims =
             new()
@@ -146,10 +147,7 @@ public class AuthRepository : IAuthRepository
                 new Claim("Name", authorized_user.Name),
                 new Claim("Email", authorized_user.Email),
                 new Claim(ClaimTypes.Role, role == Role.User ? "user" : "admin"),
-                new Claim(
-                    JwtRegisteredClaimNames.Exp,
-                    new DateTimeOffset(TokenExpiration).ToUnixTimeSeconds().ToString()
-                ),
+                new Claim("exp", dateTimeOffset.ToUnixTimeSeconds().ToString()),
             };
         JwtSecurityToken securityToken =
             new(
@@ -165,10 +163,8 @@ public class AuthRepository : IAuthRepository
     private async Task<string> GenerateRefershToken(Guid authorized_user_id)
     {
         var TokenBytes = new byte[32];
-        using (var range = RandomNumberGenerator.Create())
-        {
-            range.GetBytes(TokenBytes);
-        }
+        using var range = RandomNumberGenerator.Create();
+        range.GetBytes(TokenBytes);
         var token = Convert.ToBase64String(TokenBytes);
         RefreshToken refreshToken =
             new()
