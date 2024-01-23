@@ -1,0 +1,15 @@
+﻿@if (NotifUser is not null)
+{
+    <MudCard Style="background: rgb(27, 27, 27); border-radius: 20px;">
+        <MudCardMedia Image="@NotifUser.ProfilePicUrl" Height="150" />
+        <MudCardContent>
+            <MudText Style="text-align: center;" Typo="Typo.h5">@NotifUser.Name</MudText>
+            <MudText Style="text-align: center;" Typo="Typo.body2">&#64;@NotifUser.UserName</MudText>
+        </MudCardContent>
+    </MudCard>
+}
+
+@code {
+    [Parameter]
+    public NotificationsDto? NotifUser { get; set; }
+}

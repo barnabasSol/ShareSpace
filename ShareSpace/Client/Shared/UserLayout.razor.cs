@@ -10,6 +10,7 @@ namespace ShareSpace.Client.Shared
         private HubConnection? hubConnection;
         private string? MessageCount;
         private List<string> notifications = new();
+        private int NotificationsCount;
         public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
 
         public ExtraUserInfoDto extraUserInfo = new();
@@ -31,7 +32,14 @@ namespace ShareSpace.Client.Shared
                         extraUserInfo = response.Data;
                 }
             }
+
+            var notif_result = await NotificationService.GetNotificationsCount();
+            if (notif_result.IsSuccess)
+            {
+                NotificationsCount = notif_result.Data;
+            }
         }
+
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

@@ -6,7 +6,6 @@ using MudBlazor.Services;
 using ShareSpace.Client;
 using ShareSpace.Client.Services;
 using ShareSpace.Client.Services.Contracts;
-using ShareSpace.Shared.DTOs;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -16,12 +15,13 @@ builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
-builder.Services.AddScoped<IAuthService, MessageService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ISuggestedUsersService, SuggestedUsersService>();
 builder.Services.AddScoped<IMessageService, MessageServices>();
 builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 
 builder.Services
     .AddHttpClient(

@@ -32,18 +32,18 @@ public class CommentController : ControllerBase
                 new ApiResponse<string>
                 {
                     IsSuccess = false,
-                    Message = $"server error happened, {ex.Message}. try again later"
+                    Message = $"server error happened, {ex.Message}. try again later",
                 }
             );
         }
     }
 
-    [HttpDelete("delete/{post_id}")]
-    public async Task<ActionResult<AuthResponse>> Delete(Guid post_id)
+    [HttpDelete("delete/{comment_id}")]
+    public async Task<ActionResult<AuthResponse>> Delete(Guid comment_id)
     {
         try
         {
-            var response = await commentRepository.DeleteComment(post_id);
+            var response = await commentRepository.DeleteComment(comment_id);
             return response.IsSuccess ? Ok(response) : BadRequest(response);
         }
         catch (Exception ex)
@@ -53,7 +53,7 @@ public class CommentController : ControllerBase
                 new ApiResponse<string>
                 {
                     IsSuccess = false,
-                    Message = $"server error happened, {ex.Message}. try again later"
+                    Message = $"server error happened, {ex.Message}. try again later",
                 }
             );
         }

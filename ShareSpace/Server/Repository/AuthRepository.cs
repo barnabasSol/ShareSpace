@@ -127,9 +127,9 @@ public class AuthRepository : IAuthRepository
         }
     }
 
-    public Task<AuthResponse> UpdateToken()
+    public void UpdateToken()
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"Updated Token");
     }
 
     private string GenerateAccessToken(User authorized_user, Role role)

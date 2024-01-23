@@ -63,6 +63,29 @@ public class PostController : ControllerBase
         }
     }
 
+    [HttpGet("trending")]
+    [Authorize(Roles = "user")]
+    public async Task<ActionResult<ApiResponse<IEnumerable<PostDto>>>> GetTrendingPosts()
+    {
+        try
+        {
+            Guid UserId = Guid.Parse(User.FindFirst("Sub")!.Value);
+            var response = await postRepository.GetTrendingPosts(UserId);
+            return response.IsSuccess ? Ok(response) : BadRequest(response);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
+        }
+    }
+
     [HttpDelete("delete/{post_id}")]
     [Authorize(Roles = "user")]
     public async Task<ActionResult<ApiResponse<string>>> DeletePost(Guid post_id)

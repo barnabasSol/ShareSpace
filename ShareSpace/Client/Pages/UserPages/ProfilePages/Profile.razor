@@ -1,0 +1,9 @@
+@layout ProfileLayout
+@page "/profile/{username}"
+
+<h1>@username</h1>
+
+@code {
+    [Parameter]
+    public string? username { get; set; }
+}

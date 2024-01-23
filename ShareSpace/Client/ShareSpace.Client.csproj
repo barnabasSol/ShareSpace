@@ -28,8 +28,8 @@
 
   <ItemGroup>
     <Folder Include="Pages\UserPages\Chat\" />
+    <Folder Include="Pages\UserPages\SettingsPages\" />
     <Folder Include="Pages\UserPages\PostPages\" />
-    <Folder Include="Pages\UserPages\ProfilePages\" />
   </ItemGroup>
 
 </Project>

@@ -216,6 +216,51 @@ public class PostRepository : IPostRepository
         }
     }
 
+    public async Task<ApiResponse<IEnumerable<PostDto>>> GetTrendingPosts(Guid current_user)
+    {
+        try
+        {
+            var posts = await shareSpaceDb.Posts
+                .Include(i => i.User)
+                .Include(i => i.PostImages)
+                .Include(i => i.Comments)
+                .ToListAsync();
+
+            return new ApiResponse<IEnumerable<PostDto>>
+            {
+                IsSuccess = true,
+                Message = "",
+                Data = posts
+                    .Select(
+                        s =>
+                            new PostDto
+                            {
+                                TextContent = s.Content,
+                                PostUserProfilePicUrl = s.User?.ProfilePicUrl,
+                                PostedName = s.User!.Name,
+                                PostedUsername = s.User!.UserName,
+                                PostedUserId = s.UserId,
+                                PostId = s.Id,
+                                PostPictureUrls = s.PostImages?.Select(i => i.ImageUrl),
+                                LikesCount = s.Likes,
+                                ViewsCount = s.Views,
+                                CommentsCount = s.Comments?.Count ?? 0,
+                                PostedDateTime = s.CreatedAt,
+                                IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
+                                    a => a.PostId == s.Id && a.UserId == current_user
+                                )
+                            }
+                    )
+                    .OrderByDescending(o => o.LikesCount)
+                    .ThenByDescending(o => o.PostedDateTime)
+            };
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public async Task<ApiResponse<string>> UpdateLike(Guid post_id, Guid user_id)
     {
         using var transaction = await shareSpaceDb.Database.BeginTransactionAsync();

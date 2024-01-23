@@ -10,10 +10,15 @@ namespace ShareSpace.Server.Repository
     public class UserRepository : IUserRepository
     {
         private readonly ShareSpaceDbContext shareSpaceDb;
+        private readonly INotificationRepostiory notificationRepostiory;
 
-        public UserRepository(ShareSpaceDbContext shareSpaceDb)
+        public UserRepository(
+            ShareSpaceDbContext shareSpaceDb,
+            INotificationRepostiory notificationRepostiory
+        )
         {
             this.shareSpaceDb = shareSpaceDb;
+            this.notificationRepostiory = notificationRepostiory;
         }
 
         public async Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId)
@@ -101,7 +106,7 @@ namespace ShareSpace.Server.Repository
                         );
                     }
                     await shareSpaceDb.SaveChangesAsync();
-                    transaction.Commit();
+                    await transaction.CommitAsync();
                     return new ApiResponse<string> { IsSuccess = true };
                 }
                 throw new Exception($"the received content is not valid");
@@ -150,18 +155,9 @@ namespace ShareSpace.Server.Repository
             }
         }
 
-        public Task<ApiResponse<string>> UpdateProfilePhoto()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ApiResponse<string>> UpdateProfile()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<ApiResponse<string>> FollowUser(Guid followed_id, Guid follower_id)
         {
+            var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
             try
             {
                 var user = await shareSpaceDb.Followers.FirstOrDefaultAsync(
@@ -173,16 +169,28 @@ namespace ShareSpace.Server.Repository
                     await shareSpaceDb.Followers.AddAsync(
                         new Follower { FollowedId = followed_id, FollowerId = follower_id }
                     );
+                    notificationRepostiory.AddNotification(
+                        source_id: follower_id,
+                        user_id: followed_id,
+                        status: Status.Followed
+                    );
                 }
                 else
                 {
+                    notificationRepostiory.AddNotification(
+                        source_id: follower_id,
+                        user_id: followed_id,
+                        status: Status.Unfollowed
+                    );
                     shareSpaceDb.Followers.Remove(user);
                 }
+                await transaction.CommitAsync();
                 await shareSpaceDb.SaveChangesAsync();
                 return new ApiResponse<string> { IsSuccess = true, };
             }
             catch (Exception ex)
             {
+                await transaction.RollbackAsync();
                 throw new Exception($"operation failed, try again {ex.Message}");
             }
         }

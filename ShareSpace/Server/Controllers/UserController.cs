@@ -28,7 +28,7 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<IEnumerable<InterestsDto>>()
+            return new ApiResponse<IEnumerable<InterestsDto>>
             {
                 IsSuccess = false,
                 Message = $"a server error occured {ex.Message}",
@@ -109,7 +109,7 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<ExtraUserInfoDto>()
+            return new ApiResponse<ExtraUserInfoDto>
             {
                 IsSuccess = false,
                 Message = $"a server error occured {ex.Message}",
@@ -128,7 +128,7 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<IEnumerable<FollowerUserDto>>()
+            return new ApiResponse<IEnumerable<FollowerUserDto>>
             {
                 IsSuccess = false,
                 Message = $"a server error occured, {ex.Message}",
@@ -148,7 +148,7 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<IEnumerable<FollowerUserDto>>()
+            return new ApiResponse<IEnumerable<FollowerUserDto>>
             {
                 IsSuccess = false,
                 Message = $"a server error occured {ex.Message}",

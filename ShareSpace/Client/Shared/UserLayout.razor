@@ -1,11 +1,11 @@
 ﻿@inherits LayoutComponentBase
 @inject ISnackbar SnackBar
 @inject IUserService UserService
+@inject INotificationService NotificationService
 @inject NavigationManager NavigationManager
 @inject ILocalStorageService localStorage
 @inject AuthenticationStateProvider authstate
 @attribute [Authorize(Roles = "user")]
-@implements IAsyncDisposable
 
 
 <PageTitle>Home</PageTitle>
@@ -50,13 +50,9 @@
                 </MudStack>
             </MudStack>
             <MudDivider Class="my-2" />
-            <MudNavLink Style="color: white; text-decoration: none;" Href="/chat"
-                Icon="@Icons.Material.Filled.Dashboard">Dashboard
-            </MudNavLink>
-            <MudNavLink Style="color: white;" Href="/servers" Icon="@Icons.Material.Filled.Storage">Servers</MudNavLink>
             <MudNavGroup Style="color: white;" Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="true">
-                <MudNavLink Style="color: white;" Href="/users" Icon="@Icons.Material.Filled.People"
-                    IconColor="Color.Success"> Users
+                <MudNavLink Style="color: white;" Href="/settings" Icon="@Icons.Material.Filled.Person"
+                    IconColor="Color.Success"> Profile
                 </MudNavLink>
                 <MudNavLink Style="color: white;" Href="/security" Icon="@Icons.Material.Filled.Security"
                     IconColor="Color.Info">
@@ -110,8 +106,8 @@
                             Color="Color.Inherit" />
                     </MudBadge>
                     <MudIconButton Href="/create-post" Icon="@Icons.Material.Rounded.PostAdd" Color="Color.Inherit" />
-                    <MudBadge Overlap="true" Color="Color.Tertiary">
-                        <MudIconButton Class="py-0 px-0 ml-3" Href="/history"
+                    <MudBadge Overlap="true" Color="Color.Tertiary" Content="@NotificationsCount">
+                        <MudIconButton Class="py-0 px-0 ml-3" OnClick="NavigateToHistoryPage"
                             Icon="@Icons.Material.Rounded.Notifications" Color="Color.Inherit" />
                     </MudBadge>
                     <MudIconButton Icon="@Icons.Material.Filled.Search" Color="Color.Inherit" Class="mr-2" />
@@ -169,7 +165,6 @@
 
 
 @code {
-    //object selectedValue = 1;
     bool open;
     Anchor anchor;
 
@@ -179,6 +174,16 @@
         open = true;
     }
 
+    async void NavigateToHistoryPage()
+    {
+        var notif_result = await NotificationService.GetNotificationsCount();
+        if (notif_result.IsSuccess)
+        {
+            NotificationsCount = notif_result.Data;
+        }
+        NavigationManager.NavigateTo("/history");
+        StateHasChanged();
+    }
     MudTheme MyCustomTheme = new()
         {
             Palette = new PaletteLight
