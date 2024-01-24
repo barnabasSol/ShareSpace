@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15.4
+    environment:
+      POSTGRES_DB: sharespace_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postybarnabas
+    ports:
+      - "5432:5432"
+    network_mode: host
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
