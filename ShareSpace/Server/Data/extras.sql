@@ -1,4 +1,4 @@
--- \i /Users/'Barnabas Solomon'/OneDrive/Desktop/web/'ASPNET projects'/ShareSpaceSolution/ShareSpace/Server/Data/extras.sql
+ \i /Users/'Barnabas Solomon'/OneDrive/Desktop/web/'ASPNET projects'/ShareSpaceSolution/ShareSpace/Server/Data/extras.sql
 
 ALTER TABLE interests ALTER COLUMN interest_id RESTART WITH 1;
 

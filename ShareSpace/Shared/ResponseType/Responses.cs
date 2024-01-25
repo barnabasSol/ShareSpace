@@ -8,9 +8,9 @@ public class AuthResponse
     public string Message { get; set; } = string.Empty;
 }
 
-public class ApiResponse<T>
+public class ApiResponse<X>
 {
     public bool IsSuccess { get; set; }
     public string Message { get; set; } = string.Empty;
-    public T? Data { get; set; }
+    public X? Data { get; set; }
 }

@@ -1,0 +1,130 @@
+﻿@page "/settings"
+@layout ProfileLayout
+@inject ISnackbar SnackBar
+@inject ISettingsService SettingsService
+@inject IUserService UserService
+@inject ILocalStorageService localstorage
+@inject AuthenticationStateProvider authstate
+@inject NavigationManager NavigationManager
+
+<PageTitle>Update Profile</PageTitle>
+
+@if (extraUserInfo is null)
+{
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <MudText Color="Color.Primary" Typo="Typo.h5">Loading...</MudText>
+    </div>
+}
+else
+{
+    <AuthorizeView>
+        <Authorized>
+            <div style="background-color: rgb(20, 20, 20); height: 100%;"
+                 class="container-fluid full-height d-flex flex-column justify-content-center align-items-center">
+  
+                <div style="height: 130px; width: 130px; border-radius: 50%; display: flex; overflow: hidden; position: relative;" class="mb-3"
+                     @onmouseover="ShowOverlay" @onmouseout="HideOverlay">
+                    <MudAvatar Style="height: 100%; width: 100%; object-fit: cover;" Color="Color.Primary" Variant="Variant.Text">
+                        <MudImage Style="border-radius: 10%; border: 0;" Src="@ProfilePic" Alt="Card image cap" />
+                    </MudAvatar>
+                    <div style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: rgba(0,0,0,0.3);
+                display: flex; justify-content: center; align-items: center; transition: opacity 0.3s ease;"
+                         class="@overlayClass">
+                        <InputFile id="post_file" OnChange="InitializePic" hidden single accept="image/*" />
+                        <MudFab Class="mt-1" Size="Size.Medium" HtmlTag="label" Color="Color.Default"
+                                StartIcon="@Icons.Material.Filled.Camera" for="post_file" />
+                    </div>
+                </div>
+
+                <MudGrid Style="display: flex; justify-content: center !important; align-items: center !important; ">
+                    <MudItem xs="12" sm="6">
+                        <MudCard Style="background-color: rgb(23, 24, 24); border-radius: 20px;">
+                            <MudForm @ref="form" Model="UpdateUserModel" Validation="Validations.ValidateValue">
+                                <MudCardContent>
+                                    <MudTextField id="username" OnlyValidateIfDirty="true" Label="Username"
+                                                  Placeholder=@context.User.Claims.FirstOrDefault(c => c.Type == "UserName")!.Value
+                                                  HelperText="Max. 20 characters" @bind-Value="UpdateUserModel.Username"
+                                                  For="@(() => UpdateUserModel.Username)" />
+                                    <MudTextField id="name" OnlyValidateIfDirty="true" Label="Name"
+                                                  Placeholder=@context.User.Claims.FirstOrDefault(c => c.Type == "Name")!.Value
+                                                  HelperText="Enter your full name" @bind-Value="UpdateUserModel.FullName"
+                                                  For="@(() => UpdateUserModel.FullName)" />
+                                    <MudTextField id="email" OnlyValidateIfDirty="true" Label="Email" Class="mt-3"
+                                                  Placeholder=@context.User.Claims.FirstOrDefault(c => c.Type == "Email")!.Value
+                                                  @bind-Value="UpdateUserModel.Email" For="@(() => UpdateUserModel.Email)" />
+                                    <MudTextField id="email" MaxLines="4" T="string" Label="Bio" Variant="Variant.Text" Placeholder="@extraUserInfo.Bio" AutoGrow HelperText="a little about you" @bind-Value="UpdateUserModel.Bio"
+                                    For="@(() => UpdateUserModel.Bio)" 
+                                    />
+
+                                </MudCardContent>
+                                <MudCardActions>
+                                    <MudButton Disabled="@processing" OnClick="Submit" Variant="Variant.Filled"
+                                               Color="Color.Success" Class="ml-auto">
+                                        @if (processing)
+                                        {
+                                            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                                            <MudText Class="ms-2">please wait</MudText>
+                                        }
+                                        else
+                                        {
+                                            <MudText>Update</MudText>
+                                        }
+                                    </MudButton>
+                                </MudCardActions>
+                            </MudForm>
+                        </MudCard>
+                    </MudItem>
+                    <MudItem Class="d-flex justify-content-center align-items-center" xs="12">
+                        <MudText Typo="Typo.body2" Align="Align.Center">
+                            Enter The Required Fields Properly.
+                        </MudText>
+                    </MudItem>
+                </MudGrid>
+            </div>
+
+        </Authorized>
+    </AuthorizeView>
+   
+}
+
+
+@code{
+
+
+    string overlayClass = "overlay-hidden";
+
+    void ShowOverlay()
+    {
+        overlayClass = "overlay-visible";
+    }
+
+    void HideOverlay()
+    {
+        overlayClass = "overlay-hidden";
+    }
+
+    private async void InitializePic(InputFileChangeEventArgs ev)
+    {
+        var file = ev.File;
+        int maxFileSize = 1024 * 1024 * 1024;
+        using var stream = file.OpenReadStream(maxAllowedSize: maxFileSize);
+        var buffer = new byte[1024];
+        int bytesRead;
+        using var memoryStream = new MemoryStream();
+        while ((bytesRead = await stream.ReadAsync(buffer)) != 0)
+        {
+            await memoryStream.WriteAsync(buffer.AsMemory(0, bytesRead));
+        }
+        UpdateUserProfileDto.ProfilePic = new File
+            {
+                Name = file.Name,
+                Size = file.Size,
+                Type = file.ContentType,
+                ImageBytes = memoryStream.ToArray()
+            };
+        await Console.Out.WriteAsync(Convert.ToBase64String(UpdateUserProfileDto.ProfilePic.ImageBytes));
+        ProfilePic = $"data:{UpdateUserProfileDto.ProfilePic.Type};base64,{Convert.ToBase64String(UpdateUserProfileDto.ProfilePic.ImageBytes)}";
+        StateHasChanged();
+        //TODO upload the files to the server
+    }
+}

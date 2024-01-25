@@ -1,3 +1,4 @@
+using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
 
 namespace ShareSpace.Server.Repository.Contracts;
@@ -5,5 +6,5 @@ namespace ShareSpace.Server.Repository.Contracts;
 public interface ISettingsRepository
 {
     Task<ApiResponse<string>> UpdateProfilePhoto();
-    Task<ApiResponse<string>> UpdateProfile();
+    Task<ApiResponse<AuthResponse>> UpdateProfile(UpdateUserProfileDto update_dto, Guid user_id);
 }

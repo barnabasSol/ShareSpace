@@ -40,3 +40,13 @@ public class SuggestedUserDto
     public string UserName { get; set; } = string.Empty;
     public Guid UserId { get; set; }
 }
+
+public class UpdateUserProfileDto
+{
+    public string Name { get; set; } = string.Empty;
+    public string UserName { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Bio { get; set; } = string.Empty;
+    public File? ProfilePic { get; set; }
+    public string? OldProfilePicUrl { get; set; }
+}

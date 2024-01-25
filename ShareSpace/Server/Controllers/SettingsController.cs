@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShareSpace.Server.Repository.Contracts;
+using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
 
 namespace ShareSpace.Server.Controllers;
@@ -8,19 +9,22 @@ namespace ShareSpace.Server.Controllers;
 [ApiController]
 public class SettingsController : ControllerBase
 {
-    private readonly ICommentRepository commentRepository;
+    private readonly ISettingsRepository settingsRepository;
 
-    public SettingsController(ICommentRepository commentRepository)
+    public SettingsController(ISettingsRepository settingsRepository)
     {
-        this.commentRepository = commentRepository;
+        this.settingsRepository = settingsRepository;
     }
 
     [HttpPut("update-profile")]
-    public async Task<ActionResult<AuthResponse>> GetNotifications(Guid post_id)
+    public async Task<ActionResult<AuthResponse>> GetNotifications(
+        UpdateUserProfileDto updateUserProfileDto
+    )
     {
         try
         {
-            var response = await commentRepository.DeleteComment(post_id);
+            Guid UserId = Guid.Parse(User.FindFirst("Sub")!.Value);
+            var response = await settingsRepository.UpdateProfile(updateUserProfileDto, UserId);
             return response.IsSuccess ? Ok(response) : BadRequest(response);
         }
         catch (Exception ex)

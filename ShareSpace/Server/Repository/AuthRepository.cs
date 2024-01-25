@@ -132,7 +132,7 @@ public class AuthRepository : IAuthRepository
         Console.WriteLine($"Updated Token");
     }
 
-    private string GenerateAccessToken(User authorized_user, Role role)
+    public string GenerateAccessToken(User authorized_user, Role role)
     {
         DateTime TokenExpiration = DateTime.Now.AddHours(15);
         SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
@@ -160,7 +160,7 @@ public class AuthRepository : IAuthRepository
         return new JwtSecurityTokenHandler().WriteToken(securityToken);
     }
 
-    private async Task<string> GenerateRefershToken(Guid authorized_user_id)
+    public async Task<string> GenerateRefershToken(Guid authorized_user_id)
     {
         var TokenBytes = new byte[32];
         using var range = RandomNumberGenerator.Create();

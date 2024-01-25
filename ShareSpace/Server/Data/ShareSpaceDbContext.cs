@@ -22,7 +22,8 @@ namespace ShareSpace.Server.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
 
-        public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options) : base(options)
+        public ShareSpaceDbContext(DbContextOptions<ShareSpaceDbContext> options)
+            : base(options)
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }

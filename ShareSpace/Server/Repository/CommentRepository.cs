@@ -42,7 +42,6 @@ public class CommentRepository : ICommentRepository
     {
         try
         {
-            Console.WriteLine($"{comment_id}");
             await shareSpaceDb.Comments.Where(w => w.Id == comment_id).ExecuteDeleteAsync();
             return new ApiResponse<string> { IsSuccess = true };
         }

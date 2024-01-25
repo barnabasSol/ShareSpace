@@ -1,0 +1,11 @@
+
+
+.overlay-hidden {
+    opacity: 0;
+}
+
+.overlay-visible {
+    opacity: 1;
+    cursor: pointer;
+}
+
