@@ -50,3 +50,9 @@ public class UpdateUserProfileDto
     public File? ProfilePic { get; set; }
     public string? OldProfilePicUrl { get; set; }
 }
+
+public class UpdatePasswordDto
+{
+    public string OldPassword { get; set; } = string.Empty;
+    public string NewPassword { get; set; } = string.Empty;
+}

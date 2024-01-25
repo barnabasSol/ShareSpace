@@ -17,7 +17,7 @@ public class SettingsController : ControllerBase
     }
 
     [HttpPut("update-profile")]
-    public async Task<ActionResult<AuthResponse>> GetNotifications(
+    public async Task<ActionResult<AuthResponse>> UpdateProfile(
         UpdateUserProfileDto updateUserProfileDto
     )
     {
@@ -25,6 +25,30 @@ public class SettingsController : ControllerBase
         {
             Guid UserId = Guid.Parse(User.FindFirst("Sub")!.Value);
             var response = await settingsRepository.UpdateProfile(updateUserProfileDto, UserId);
+            return response.IsSuccess ? Ok(response) : BadRequest(response);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
+        }
+    }
+
+    [HttpPut("password")]
+    public async Task<ActionResult<string>> UpdatePassword(
+        UpdatePasswordDto updatePasswordDto
+    )
+    {
+        try
+        {
+            Guid UserId = Guid.Parse(User.FindFirst("Sub")!.Value);
+            var response = await settingsRepository.UpdatePassword(updatePasswordDto, UserId);
             return response.IsSuccess ? Ok(response) : BadRequest(response);
         }
         catch (Exception ex)

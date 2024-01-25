@@ -14,6 +14,14 @@ namespace ShareSpace.Client.Services
             http_client = http;
         }
 
+        public async Task<ApiResponse<string>> UpdatePassword(UpdatePasswordDto passwordDto)
+        {
+            var http = http_client.CreateClient("ShareSpaceApi");
+            var url = $"/Settings/password";
+            var response = await http.PutAsJsonAsync(url, passwordDto);
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<string>>();
+            return result!;
+        }
 
         public async Task<ApiResponse<AuthResponse>> UpdateProfile(UpdateUserProfileDto profileDto)
         {

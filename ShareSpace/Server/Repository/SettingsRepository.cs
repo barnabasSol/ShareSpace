@@ -3,6 +3,7 @@ using ShareSpace.Server.Data;
 using ShareSpace.Server.Repository.Contracts;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ShareSpace.Server.Repository;
 
@@ -21,6 +22,53 @@ public class SettingsRepository : ISettingsRepository
         this.shareSpaceDb = shareSpaceDb;
         this.authRepository = authRepository;
         this.webHost = webHost;
+    }
+
+    public async Task<ApiResponse<string>> UpdatePassword(
+        UpdatePasswordDto updatePasswordDto,
+        Guid user_id
+    )
+    {
+        var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
+        try
+        {
+            var user = await shareSpaceDb.Users.FindAsync(user_id);
+            if (user is null)
+            {
+                return new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = "user doesn't exist"
+                };
+            }
+            if (
+                string.IsNullOrEmpty(updatePasswordDto.OldPassword)
+                || string.IsNullOrEmpty(updatePasswordDto.OldPassword)
+            )
+            {
+                return new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = "proper input isn't given"
+                };
+            }
+            if (!BC.Verify(updatePasswordDto.OldPassword, user.PasswordHash))
+            {
+                return new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = "old password is incorrect"
+                };
+            }
+            user.PasswordHash = BC.HashPassword(updatePasswordDto.NewPassword);
+            await shareSpaceDb.SaveChangesAsync();
+            await transaction.CommitAsync();
+            return new ApiResponse<string> { IsSuccess = true };
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public async Task<ApiResponse<AuthResponse>> UpdateProfile(
@@ -81,7 +129,7 @@ public class SettingsRepository : ISettingsRepository
                 {
                     var oldImagePath = Path.Combine(
                         webRootPath,
-                        update_dto.OldProfilePicUrl!.TrimStart('/')
+                        update_dto.OldProfilePicUrl.TrimStart('/')
                     );
                     if (System.IO.File.Exists(oldImagePath))
                         System.IO.File.Delete(oldImagePath);
@@ -91,22 +139,10 @@ public class SettingsRepository : ISettingsRepository
                 await FileStream.WriteAsync(update_dto.ProfilePic.ImageBytes);
             }
 
-            if (!string.IsNullOrEmpty(update_dto.UserName))
-            {
-                user.UserName = update_dto.UserName;
-            }
-            if (!string.IsNullOrEmpty(update_dto.Email))
-            {
-                user.Email = update_dto.Email;
-            }
-            if (!string.IsNullOrEmpty(update_dto.Bio))
-            {
-                user.Bio = update_dto.Bio;
-            }
-            if (!string.IsNullOrEmpty(update_dto.Name))
-            {
-                user.Name = update_dto.Name;
-            }
+            user.Bio = update_dto.Bio;
+            user.UserName = update_dto.UserName;
+            user.Email = update_dto.Email;
+            user.Name = update_dto.Name;
 
             await shareSpaceDb.SaveChangesAsync();
             await transaction.CommitAsync();
@@ -131,10 +167,5 @@ public class SettingsRepository : ISettingsRepository
             await transaction.RollbackAsync();
             throw new Exception(ex.Message);
         }
-    }
-
-    public Task<ApiResponse<string>> UpdateProfilePhoto()
-    {
-        throw new NotImplementedException();
     }
 }

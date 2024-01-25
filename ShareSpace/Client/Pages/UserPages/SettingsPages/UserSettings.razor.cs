@@ -1,7 +1,6 @@
 using FluentValidation;
 using MudBlazor;
 using ShareSpace.Shared.DTOs;
-using System.Xml.Linq;
 
 namespace ShareSpace.Client.Pages.UserPages.SettingsPages;
 
@@ -46,6 +45,10 @@ public partial class UserSettings
             if (string.IsNullOrEmpty(UpdateUserModel.Email))
             {
                 UpdateUserModel.Email = email;
+            }
+            if (string.IsNullOrEmpty(UpdateUserModel.Bio))
+            {
+                UpdateUserModel.Bio = extraUserInfo!.Bio!;
             }
             processing = true;
             UpdateUserProfileDto.UserName = UpdateUserModel.Username.Trim();

@@ -6,4 +6,5 @@ namespace ShareSpace.Client.Services.Contracts;
 public interface ISettingsService
 {
     Task<ApiResponse<AuthResponse>> UpdateProfile(UpdateUserProfileDto profileDto);
+    Task<ApiResponse<string>> UpdatePassword(UpdatePasswordDto passwordDto);
 }
