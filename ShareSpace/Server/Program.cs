@@ -30,6 +30,7 @@ builder.Services.AddScoped<INotificationRepostiory, NotificationRepository>();
 builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ISettingsRepository, SettingsRepository>();
+builder.Services.AddScoped<ISearchRepository, SearchRepository>();
 
 builder.Services.AddDbContext<ShareSpaceDbContext>(options =>
 {

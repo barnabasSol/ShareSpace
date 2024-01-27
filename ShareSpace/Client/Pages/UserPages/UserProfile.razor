@@ -2,6 +2,7 @@
 @layout UserLayout
 @inject IUserService UserService
 @inject ISnackbar SnackBar
+@inject NavigationManager NavManager
 @inject IJSRuntime JS
 
 <style>
@@ -136,7 +137,8 @@
             </Authorized>
         </AuthorizeView>
         <MudCardActions Class="d-flex justify-content-center" Style="background: rgb(27, 27, 27);">
-            <MudButton Variant="Variant.Outlined" Color="Color.Secondary">Check My Profile</MudButton>
+            <MudButton OnClick="NavigateToUserProfile" Variant="Variant.Outlined" Color="Color.Secondary">Check My
+                Profile</MudButton>
         </MudCardActions>
     </MudCard>
 
@@ -259,6 +261,11 @@ Color.Dark
             FollowersVisible = true;
         }
         StateHasChanged();
+    }
+
+    void NavigateToUserProfile()
+    {
+        NavManager.NavigateTo("/chat/beni");
     }
     async void DisplayFollowing()
     {

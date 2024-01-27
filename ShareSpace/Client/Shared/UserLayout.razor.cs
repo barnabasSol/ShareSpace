@@ -9,7 +9,6 @@ namespace ShareSpace.Client.Shared
     {
         private HubConnection? hubConnection;
         private string? MessageCount;
-        private List<string> notifications = new();
         private int NotificationsCount;
         public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
 
@@ -40,7 +39,6 @@ namespace ShareSpace.Client.Shared
             }
         }
 
-
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
@@ -55,12 +53,12 @@ namespace ShareSpace.Client.Shared
                 .WithAutomaticReconnect()
                 .Build();
 
-            hubConnection.On<string, string, Guid>(
+            hubConnection.On<string, string, Guid, string>(
                 "ReceiveMessageFromUser",
-                (user, message, current_user) =>
+                (user, message, current_user, prof_pic) =>
                 {
                     string incoming_message = $"@{user}  {message}";
-                    ShowSnackBarWithOptions(incoming_message, Variant.Filled);
+                    ShowSnackBarWithOptions(user, message, prof_pic, Variant.Filled);
                 }
             );
 
@@ -99,12 +97,42 @@ namespace ShareSpace.Client.Shared
             };
         }
 
-        void ShowSnackBarWithOptions(string message, Variant variant)
+        void ShowSnackBarWithOptions(
+            string user,
+            string message,
+            string profile_pic,
+            Variant variant
+        )
         {
             SnackBar.Configuration.SnackbarVariant = variant;
+            SnackBar.Configuration.VisibleStateDuration = 3000;
+            SnackBar.Configuration.HideTransitionDuration = 500;
             SnackBar.Configuration.PositionClass = Defaults.Classes.Position.BottomRight;
-            SnackBar.Configuration.VisibleStateDuration = 1000;
-            SnackBar.Add($"{message}", Severity.Normal);
+            string display = $"""
+<div>
+    <div style='display: flex; align-items: center;'>
+        <img src='{profile_pic}' alt='Profile Picture' style='width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover;'/>
+        <h6>@{user}</h6>
+    </div>
+    <ul>
+        <li>{message}</li>
+    </ul>
+</div>
+""";
+
+            SnackBar.Add(
+                display,
+                Severity.Normal,
+                config =>
+                {
+                    config.HideIcon = true;
+                    config.Onclick = snackbar =>
+                    {
+                        NavigationManager.NavigateTo($"/chat/{user}");
+                        return Task.CompletedTask;
+                    };
+                }
+            );
         }
 
         public async ValueTask DisposeAsync()

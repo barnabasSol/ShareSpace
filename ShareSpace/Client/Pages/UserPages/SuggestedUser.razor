@@ -6,7 +6,7 @@
 else
 {
     <div @onclick="NavigateToUserPage" class="card effect"
-        style="width: 13rem; flex-shrink: 0;  background: rgb(27, 27, 27);">
+        style="width: 13rem; flex-shrink: 0;  background: rgb(27, 27, 27); margin-right: 5px;">
         <div class="d-flex justify-content-center align-items-center pt-1">
             @if (@User.ProfilePicUrl == null)
             {
@@ -28,7 +28,7 @@ else
             <span class="card-text">
                 @User.Name
             </span>
-            <MudButton OnClick="FollowUser" Class="mt-2" Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">
+            <MudButton OnClick="FollowUser" Class="mt-1" Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">
                 Follow</MudButton>
         </div>
     </div>

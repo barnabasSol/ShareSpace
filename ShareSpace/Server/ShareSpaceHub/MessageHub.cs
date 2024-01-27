@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using ShareSpace.Server.Data;
 using ShareSpace.Server.Repository.Contracts;
 using ShareSpace.Shared.DTOs;
 
@@ -9,10 +10,12 @@ namespace ShareSpace.Server.ShareSpaceHub;
 public class MessageHub : Hub
 {
     private readonly IMessageRepository messageRepository;
+    private readonly ShareSpaceDbContext shareSpaceDb;
 
-    public MessageHub(IMessageRepository messageRepository)
+    public MessageHub(IMessageRepository messageRepository, ShareSpaceDbContext shareSpaceDb)
     {
         this.messageRepository = messageRepository;
+        this.shareSpaceDb = shareSpaceDb;
     }
 
     public override Task OnDisconnectedAsync(Exception? exception)
@@ -56,6 +59,11 @@ public class MessageHub : Hub
             .Where(_ => _.Type == "Sub")
             .Select(_ => _.Value)
             .FirstOrDefault();
+        var cur_user_obj = await shareSpaceDb.Users.FindAsync(Guid.Parse(current_user!));
+        if (cur_user_obj is null)
+        {
+            return;
+        }
         if (Context.UserIdentifier != username)
         {
             var response = await messageRepository.StoreMessage(
@@ -75,13 +83,15 @@ public class MessageHub : Hub
                         "ReceiveMessageFromUser",
                         Context.UserIdentifier,
                         message,
-                        Guid.Parse(current_user!)
+                        Guid.Parse(current_user!),
+                        cur_user_obj.ProfilePicUrl
                     );
                 await Clients.Caller.SendAsync(
                     "ReceiveMessageFromUser",
                     Context.UserIdentifier,
                     message,
-                    Guid.Parse(current_user!)
+                    Guid.Parse(current_user!),
+                    cur_user_obj.ProfilePicUrl
                 );
             }
         }

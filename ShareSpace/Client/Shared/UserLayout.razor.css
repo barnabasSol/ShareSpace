@@ -28,11 +28,15 @@ section {
   grid-area: section;
   background: rgb(23, 24, 24);
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 article {
   grid-area: profcon;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .phone_header {

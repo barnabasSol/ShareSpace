@@ -1,0 +1,123 @@
+@inject IPostService PostService
+@inject NavigationManager NavManager
+
+<div class="col mb-1 p-1">
+    <MudCard @onclick="NavigateToPostDetail" style="border-radius: 20px;">
+        <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
+            <CardHeaderAvatar>
+                @if (post.PostUserProfilePicUrl == "")
+                {
+                    <MudAvatar Size="Size.Large" Color="Color.Tertiary">@post.PostedName[0]</MudAvatar>
+                }
+                else
+                {
+                    <MudAvatar Size="Size.Medium">
+                        <MudImage Style="border-radius: 10%; border: 0;" Src="@post.PostUserProfilePicUrl"
+                            Alt="Card image cap" />
+                    </MudAvatar>
+                }
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.body1">@post.PostedName</MudText>
+                <MudText Typo="Typo.body2">@post.PostedUsername</MudText>
+            </CardHeaderContent>
+            <CardHeaderActions>
+                <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true">
+                    <MudMenuItem>Share</MudMenuItem>
+                    <MudMenuItem>Not Interested</MudMenuItem>
+                    <MudMenuItem>Mute User</MudMenuItem>
+
+                    <AuthorizeView>
+                        <Authorized>
+                            @if (post.PostedUserId == Guid.Parse(context.User.Claims.FirstOrDefault(c => c.Type ==
+                            "Sub")!.Value))
+                            {
+                                <MudMenuItem OnTouch="DeletePost" OnClick="DeletePost">Delete Post</MudMenuItem>
+                            }
+                        </Authorized>
+                    </AuthorizeView>
+
+                </MudMenu>
+            </CardHeaderActions>
+        </MudCardHeader>
+
+        @if (post.PostPictureUrls!.Any())
+        {
+            <MudCarousel Style="background-color: rgb(27, 27, 27); height:320px;" ShowBullets="false"
+                EnableSwipeGesture="true" AutoCycle="false" TData="object"
+                ShowArrows="@(post.PostPictureUrls!.Count() > 1)">
+                @foreach (var image in post.PostPictureUrls!)
+                {
+                    <MudCarouselItem Style="background-color: rgb(27, 27, 27);" Transition="Transition.Slide">
+                        <MudCardMedia loading="lazy" Class="w-100" Image="@image" Height="320" />
+                    </MudCarouselItem>
+                }
+            </MudCarousel>
+
+        }
+        <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
+            <MudText Typo="Typo.body2">@post.TextContent</MudText>
+        </MudCardContent>
+        <MudCardActions
+            Style="background: rgb(27, 27, 27); background: rgb(27, 27, 27); border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;"
+            Class="d-flex justify-content-between gap-5">
+            <div>
+                <MudToggleIconButton Toggled="@post.IsLikedByCurrentUser" ToggledChanged="OnToggledChanged"
+                    Icon="@Icons.Material.Filled.Favorite" Title="Like" ToggledIcon="@Icons.Material.Filled.Favorite"
+                    ToggledColor="@Color.Primary" />
+                <span style="color: white;">@post.LikesCount</span>
+            </div>
+            <div>
+                <MudIconButton Icon="@Icons.Material.Filled.AddComment" Color="Color.Default" />
+                <span style="color: white;">@post.CommentsCount</span>
+            </div>
+            <div>
+                <span style="color: white;">@post.ViewsCount</span>
+                <MudIconButton Icon="@Icons.Material.Filled.RemoveRedEye" Color="Color.Default" />
+            </div>
+        </MudCardActions>
+    </MudCard>
+</div>
+
+
+
+
+
+@code {
+    [Parameter]
+    public PostSearchDto post { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<PostSearchDto> OnDelete { get; set; }
+
+    void DeletePost()
+    {
+        OnDelete.InvokeAsync(post);
+    }
+    public async void OnToggledChanged(bool toggled)
+    {
+        var result = await PostService.UpdateLike(new LikedPostDto
+            {
+                UserId = Guid.Empty,
+                PostId = post.PostId
+            });
+        if (result.IsSuccess)
+        {
+            post.IsLikedByCurrentUser = !post.IsLikedByCurrentUser;
+
+            if (post.IsLikedByCurrentUser)
+            {
+                post.LikesCount += 1;
+            }
+            else
+            {
+                post.LikesCount -= 1;
+            }
+        }
+        StateHasChanged();
+    }
+    void NavigateToPostDetail()
+    {
+        NavManager.NavigateTo($"/postdetails/{post.PostId}");
+    }
+}

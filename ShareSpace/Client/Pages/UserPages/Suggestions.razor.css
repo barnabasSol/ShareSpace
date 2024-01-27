@@ -4,6 +4,9 @@
 
 section {
   background: rgb(23, 24, 24);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  
 }
 
 .horiz-scroll {
@@ -12,6 +15,8 @@ section {
   overflow-x: scroll;
   height: 200px;
   background: rgb(23, 24, 24);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .horiz-scroll::-webkit-scrollbar {

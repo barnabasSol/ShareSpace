@@ -3,10 +3,14 @@
   height: calc(85vh - 60px);
   overflow-y: scroll;
   margin: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .chat-container {
   padding: 0;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .footer {

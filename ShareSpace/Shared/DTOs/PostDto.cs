@@ -3,8 +3,8 @@ namespace ShareSpace.Shared.DTOs;
 public class PostBase
 {
     public Guid PostId { get; set; }
-    public required Guid PostedUserId { get; set; }
-    public required string PostedUsername { get; set; }
+    public Guid PostedUserId { get; set; }
+    public string PostedUsername { get; set; } = string.Empty;
 }
 
 public class PostDto : PostBase

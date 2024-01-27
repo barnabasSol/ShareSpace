@@ -1,0 +1,66 @@
+@inject NavigationManager NavManager
+
+<div @onclick="NavigateToUserPage" class="card effect"
+    style="width: 13rem; flex-shrink: 0;  background: rgb(27, 27, 27); margin-right: 5px;">
+    <div class="d-flex justify-content-center align-items-center pt-1">
+        @if (@User.ProfilePic == null)
+        {
+            <MudAvatar Style="height: 100px; width: 100px; background: transparent;" Color="Color.Primary"
+                Variant="Variant.Text">
+                <MudAvatar Class="bg-transparent" Size="Size.Large" Color="Color.Tertiary">
+                    <span class="fs-1">@User.Name![0].ToString().ToUpper()</span>
+                </MudAvatar>
+            </MudAvatar>
+        }
+        else
+        {
+            <MudAvatar Style="height: 100px; width: 100px;" Color="Color.Primary" Variant="Variant.Text">
+                <MudImage Style="border-radius: 10%; border: 0;" Src="@User.ProfilePic" Alt="Card image cap" />
+            </MudAvatar>
+        }
+    </div>
+    <div style="height: fit-content;" class="card-body d-flex flex-column align-items-center">
+        <span class="card-text">
+            @User.Name
+        </span>
+        @if (User.IsBeingFollowed)
+        {
+            <MudButton Class="mt-1" Size="Size.Small" Color="Color.Error" OnClick="UnFollowUser" Variant="Variant.Outlined">
+                Unfollow
+            </MudButton>
+        }
+        else
+        {
+            <MudButton Class="mt-1" Size="Size.Small" Color="Color.Success" OnClick="FollowUser" Variant="Variant.Outlined">
+                Follow
+            </MudButton>
+        }
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public UserSearchDto User { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<UserSearchDto> OnSearchedFollow { get; set; }
+
+    [Parameter]
+    public EventCallback<UserSearchDto> OnSearchedUnfollow { get; set; }
+
+    void FollowUser()
+    {
+        OnSearchedFollow.InvokeAsync(User);
+    }
+
+    void UnFollowUser()
+    {
+        OnSearchedUnfollow.InvokeAsync(User);
+    }
+    void NavigateToUserPage()
+    {
+        NavManager.NavigateTo($"/profile/{User!.UserName}");
+    }
+
+}

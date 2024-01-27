@@ -1,0 +1,121 @@
+@page "/search"
+@layout SearchLayout
+@inject ISearchService SearchService
+@inject IUserService UserService
+@inject IPostService PostService
+
+<div id="main-srch">
+    <div id="left-space"> </div>
+    <div id="right-space"></div>
+    <div id="input-container" class="px-4">
+        <MudTextField Placeholder="Search" AutoFocus DebounceInterval="500"
+            OnDebounceIntervalElapsed="AfterEnteringString" @bind-Value="@query_string" HelperTextOnFocus=true
+            HelperText="you can search users and posts" Variant="Variant.Text" Adornment="Adornment.Start"
+            AdornmentIcon="@Icons.Material.Filled.Search" />
+    </div>
+    <div id="users-container" class="p-2">
+        @if (string.IsNullOrEmpty(query_string))
+        {
+            @if (SuggestedUsers is null)
+            {
+                <SuggestedUsersLoading />
+            }
+            else
+            {
+                foreach (var user in SuggestedUsers)
+                {
+                    <SuggestedUser User="@user" OnFollow="FollowUser" />
+                }
+            }
+        }
+        else
+        {
+            @if (@userSearchDtos is null || searching == true)
+            {
+                <SuggestedUsersLoading />
+            }
+            else if (!userSearchDtos.Any())
+            {
+                <div class="w-100" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                    <MudText Color="Color.Primary" Typo="Typo.h5">No Users</MudText>
+                </div>
+            }
+            else
+            {
+                @foreach (var user in userSearchDtos)
+                {
+                    <UsersResult User="user" OnSearchedFollow="SearchedFollow" OnSearchedUnfollow="SearchedUnfollow" />
+                }
+            }
+        }
+    </div>
+    <div id="posts-container">
+        @if (string.IsNullOrEmpty(query_string))
+        {
+            @if (isLoading)
+            {
+                <PostLoading />
+            }
+            else if (!Posts.Any())
+            {
+                <MudText Color="Color.Primary" Typo="Typo.h5">No Posts</MudText>
+            }
+            else
+            {
+                @foreach (var post in Posts)
+                {
+                    <Post post="post" OnDelete="DeletePost" />
+                }
+            }
+        }
+        else
+        {
+            @if (@postSearchDtos is null || searching == true)
+            {
+                <PostLoading />
+            }
+            else if (!postSearchDtos.Any())
+            {
+                <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                    <MudText Color="Color.Primary" Typo="Typo.h5">No Posts</MudText>
+                </div>
+            }
+            else
+            {
+                @foreach (var post in postSearchDtos)
+                {
+                    <PostsResult post="post" OnDelete="DeleteSearchedPost" />
+                }
+            }
+        }
+
+    </div>
+</div>
+
+@code {
+    string query_string = "";
+    private bool searching = false;
+    private List<UserSearchDto>? userSearchDtos;
+    private List<PostSearchDto>? postSearchDtos;
+
+    public async Task AfterEnteringString(string value)
+    {
+        if (!string.IsNullOrEmpty(value))
+        {
+            searching = true;
+            var users_result = await SearchService.SearchUsers(value);
+            var posts_result = await SearchService.SearchPosts(value);
+            if (users_result.IsSuccess)
+            {
+                userSearchDtos = users_result.Data;
+            }
+            if (posts_result.IsSuccess)
+            {
+                postSearchDtos = posts_result.Data;
+            }
+        }
+        searching = false;
+        StateHasChanged();
+    }
+
+}

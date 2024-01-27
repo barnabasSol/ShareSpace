@@ -1,0 +1,86 @@
+#input-container {
+  grid-area: input;
+  background: rgb(23, 24, 24);
+  display: flex;
+  align-items: flex-end;
+}
+
+#users-container {
+  background: rgb(23, 24, 24);
+  grid-area: users;
+  display: flex;
+  row-gap: 1;
+  overflow-x: scroll;
+  height: 200px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border-bottom: 1px solid white;
+}
+
+#users-container::-webkit-scrollbar {
+  display: none;
+}
+#posts-container {
+  background: rgb(23, 24, 24);
+  grid-area: posts;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+#right-space {
+  background: rgb(23, 24, 24);
+  grid-area: rspc;
+}
+
+#left-space {
+  background: rgb(23, 24, 24);
+  grid-area: lspc;
+}
+
+#main-srch {
+  height: 100vh;
+  background: rgb(23, 24, 24);
+  display: grid;
+  overflow-y: scroll;
+  grid-template-rows: 100px 1fr 2fr;
+  grid-template-columns: 2fr 4fr 2fr;
+  grid-template-areas:
+    "lspc input rspc"
+    "lspc users rspc"
+    "lspc posts rspc";
+}
+
+/* For mobile phones: */
+@media screen and (width <= 600px) {
+  #input-container {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  #main-srch {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100px 1fr 2fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "input"
+      "users"
+      "posts";
+  }
+}
+
+/* For tablets: */
+@media screen and (601px <= width <= 1024px) {
+  #main-srch {
+    height: 100vh;
+    background-color: black;
+    display: grid;
+    grid-template-rows: 100px 1fr 2fr;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-areas:
+      "lspc input rspc"
+      "lspc users rspc"
+      "lspc posts rspc";
+  }
+}

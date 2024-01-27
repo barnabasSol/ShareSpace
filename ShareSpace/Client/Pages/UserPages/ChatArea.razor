@@ -6,7 +6,7 @@
 @inject AuthenticationStateProvider authstate
 @inject IMessageService MessageService
 @implements IAsyncDisposable
-@attribute [Authorize]
+@attribute [Authorize(Roles = "user")]
 
 <div class="chat-container">
     <div id="mainchat" class="m-1">
@@ -16,9 +16,10 @@
         }
     </div>
     <div class="footer p-2">
-        <MudTextField Lines="1" @ref="singleLineReference" @bind-Text="MessageInput" T="string"
+        <MudTextField Immediate=true Lines="1" AutoFocus @bind-Text="MessageInput" T="string"
             Placeholder="@messageLabel" Variant="Variant.Outlined" Adornment="Adornment.End"
-            AdornmentIcon="@Icons.Material.Filled.Send" OnAdornmentClick="Send" />
+            AdornmentIcon="@Icons.Material.Filled.Send" OnAdornmentClick="Send" OnKeyDown="HandleOnEnter"
+            TextUpdateSuppression=false />
     </div>
 </div>
 
@@ -31,7 +32,6 @@
     private List<MessageDto> messages = new();
     private string? MessageInput;
     public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
-    private MudTextField<string>? singleLineReference;
     private string messageLabel = "";
 
 
@@ -46,45 +46,11 @@
         }
     }
 
-    protected override async Task OnInitializedAsync()
+
+    protected async override Task OnParametersSetAsync()
     {
-        messageLabel = $"chat with @{username}";
-        string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
-        hubConnection = new HubConnectionBuilder()
-        .WithUrl(NavigationManager
-        .ToAbsoluteUri("/messagehub"), opts =>
-        {
-            opts.AccessTokenProvider = () => Task.FromResult(token)!;
-        })
-        .WithAutomaticReconnect()
-        .Build();
-
-
-        hubConnection.On<string, string, Guid>("ReceiveMessageFromUser", (user, message, current_user) =>
-        {
-            messages.Add(new MessageDto
-                {
-                    Text = message!,
-                    To = user!,
-                    From = current_user,
-                    SentDateTime = DateTime.Now,
-                    ProfilePic = messages.FirstOrDefault(f => f.From.Equals(current_user))!.ProfilePic
-                });
-            StateHasChanged();
-        });
-
-        hubConnection.On<List<MessageDto>>("ShowMessages", (messages) =>
-        {
-            this.messages = messages;
-            StateHasChanged();
-        });
-
-        await hubConnection.StartAsync();
-        await hubConnection.InvokeAsync("FetchMessagesOfUser", username);
+        await StartChatSignalRConnectionAsync();
     }
-
-
-
 
     private async Task Send()
     {
@@ -97,5 +63,15 @@
                 MessageInput = "";
             }
         }
+        StateHasChanged();
     }
+
+    private async Task HandleOnEnter(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await Send();
+        }
+    }
+
 }
