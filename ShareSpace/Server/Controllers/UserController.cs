@@ -79,6 +79,28 @@ public class UserController : ControllerBase
         }
     }
 
+    [HttpGet("profile/{userid}")]
+    public async Task<ActionResult<ApiResponse<ProfileDto>>> GetProfile(Guid userid)
+    {
+        try
+        {
+            Guid UserId = Guid.Parse(User.FindFirst("Sub")!.Value);
+            var response = await userRepository.GetProfile(userid, UserId);
+            return response.IsSuccess ? Ok(response) : BadRequest(response);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
+        }
+    }
+
     [HttpPut("follow/{userid}")]
     public async Task<ActionResult<ApiResponse<string>>> FollowUser(Guid userid)
     {

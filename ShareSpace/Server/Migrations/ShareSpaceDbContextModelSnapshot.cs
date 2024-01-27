@@ -20,6 +20,7 @@ namespace ShareSpace.Server.Migrations
                 .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("ShareSpace.Server.Entities.Comment", b =>
@@ -104,6 +105,33 @@ namespace ShareSpace.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("interests");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            InterestName = "Sports"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            InterestName = "Photography"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            InterestName = "Travel"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            InterestName = "Cooking"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            InterestName = "Movies"
+                        });
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.LikedPost", b =>
@@ -231,6 +259,18 @@ namespace ShareSpace.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("notification_types");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            Name = "Unfollow"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Name = "Follow"
+                        });
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.Post", b =>
@@ -364,6 +404,18 @@ namespace ShareSpace.Server.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("role");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            RoleName = "user"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            RoleName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("ShareSpace.Server.Entities.User", b =>
@@ -511,7 +563,7 @@ namespace ShareSpace.Server.Migrations
             modelBuilder.Entity("ShareSpace.Server.Entities.LikedPost", b =>
                 {
                     b.HasOne("ShareSpace.Server.Entities.Post", "Post")
-                        .WithMany()
+                        .WithMany("LikedPosts")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -677,6 +729,8 @@ namespace ShareSpace.Server.Migrations
             modelBuilder.Entity("ShareSpace.Server.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("LikedPosts");
 
                     b.Navigation("PostImages");
 

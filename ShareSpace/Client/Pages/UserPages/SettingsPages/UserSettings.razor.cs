@@ -31,9 +31,6 @@ public partial class UserSettings
                 .Where(_ => _.Type == "Email")
                 .Select(_ => _.Value)
                 .FirstOrDefault()!;
-            await Console.Out.WriteLineAsync(username);
-            await Console.Out.WriteLineAsync(name);
-            await Console.Out.WriteLineAsync(email);
             if (string.IsNullOrEmpty(UpdateUserModel.Username))
             {
                 UpdateUserModel.Username = username;
@@ -45,10 +42,6 @@ public partial class UserSettings
             if (string.IsNullOrEmpty(UpdateUserModel.Email))
             {
                 UpdateUserModel.Email = email;
-            }
-            if (string.IsNullOrEmpty(UpdateUserModel.Bio))
-            {
-                UpdateUserModel.Bio = extraUserInfo!.Bio!;
             }
             processing = true;
             UpdateUserProfileDto.UserName = UpdateUserModel.Username.Trim();
@@ -89,6 +82,7 @@ public partial class UserSettings
         {
             ProfilePic = result.Data!.ProfilePicUrl!;
             extraUserInfo = result.Data!;
+            UpdateUserModel.Bio = extraUserInfo!.Bio ?? string.Empty;
         }
     }
 

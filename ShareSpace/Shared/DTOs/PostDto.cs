@@ -17,6 +17,7 @@ public class PostDto : PostBase
     public int ViewsCount { get; set; }
     public int CommentsCount { get; set; }
     public DateTime PostedDateTime { get; set; }
+    public DateTime LikedTimeStamp { get; set; }
     public bool IsLikedByCurrentUser { get; set; }
 }
 

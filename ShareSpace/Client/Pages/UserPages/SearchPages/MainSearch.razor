@@ -5,6 +5,7 @@
 @inject IPostService PostService
 
 <div id="main-srch">
+
     <div id="left-space"> </div>
     <div id="right-space"></div>
     <div id="input-container" class="px-4">
@@ -50,6 +51,9 @@
         }
     </div>
     <div id="posts-container">
+        <MudScrollToTop TopOffset="100" Selector="#main-srch" Style="z-index:2001;">
+            <MudFab Color="Color.Success" StartIcon="@Icons.Material.Outlined.ArrowCircleUp" />
+        </MudScrollToTop>
         @if (string.IsNullOrEmpty(query_string))
         {
             @if (isLoading)

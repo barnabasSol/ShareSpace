@@ -56,3 +56,11 @@ public class UpdatePasswordDto
     public string OldPassword { get; set; } = string.Empty;
     public string NewPassword { get; set; } = string.Empty;
 }
+
+public class ProfileDto
+{
+    public ExtraUserInfoDto? ExtraUserInfoDto { get; set; }
+    public Guid UserId { get; set; }
+    public string UserName { get; set; } = string.Empty;
+    public IEnumerable<PostDto>? Posts { get; set; }
+}

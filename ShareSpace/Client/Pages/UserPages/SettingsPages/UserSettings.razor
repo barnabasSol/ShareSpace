@@ -19,7 +19,7 @@ else
 {
     <AuthorizeView>
         <Authorized>
-            <div style="background-color: rgb(20, 20, 20); height: 100%;"
+            <div style="background-color: rgb(20, 20, 20); height: 100vh;"
                  class="container-fluid full-height d-flex flex-column justify-content-center align-items-center">
   
                 <div style="height: 130px; width: 130px; border-radius: 50%; display: flex; overflow: hidden; position: relative;" class="mb-3"
@@ -89,8 +89,6 @@ else
 
 
 @code{
-
-
     string overlayClass = "overlay-hidden";
 
     void ShowOverlay()
@@ -122,7 +120,6 @@ else
                 Type = file.ContentType,
                 ImageBytes = memoryStream.ToArray()
             };
-        await Console.Out.WriteAsync(Convert.ToBase64String(UpdateUserProfileDto.ProfilePic.ImageBytes));
         ProfilePic = $"data:{UpdateUserProfileDto.ProfilePic.Type};base64,{Convert.ToBase64String(UpdateUserProfileDto.ProfilePic.ImageBytes)}";
         StateHasChanged();
         //TODO upload the files to the server

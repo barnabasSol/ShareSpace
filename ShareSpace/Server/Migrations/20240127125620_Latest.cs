@@ -4,6 +4,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ShareSpace.Server.Migrations
 {
     /// <inheritdoc />
@@ -12,6 +14,9 @@ namespace ShareSpace.Server.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("Npgsql:PostgresExtension:uuid-ossp", ",,");
+
             migrationBuilder.CreateTable(
                 name: "interests",
                 columns: table => new
@@ -359,6 +364,36 @@ namespace ShareSpace.Server.Migrations
                         principalTable: "users",
                         principalColumn: "user_id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "interests",
+                columns: new[] { "interest_id", "interest_name" },
+                values: new object[,]
+                {
+                    { 1, "Sports" },
+                    { 2, "Photography" },
+                    { 3, "Travel" },
+                    { 4, "Cooking" },
+                    { 5, "Movies" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "notification_types",
+                columns: new[] { "id", "name" },
+                values: new object[,]
+                {
+                    { -1, "Unfollow" },
+                    { 1, "Follow" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "role",
+                columns: new[] { "role_id", "role_name" },
+                values: new object[,]
+                {
+                    { 1, "user" },
+                    { 2, "admin" }
                 });
 
             migrationBuilder.CreateIndex(

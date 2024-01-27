@@ -31,5 +31,6 @@ namespace ShareSpace.Server.Entities
         public virtual ICollection<Comment>? Comments { get; set; }
         public virtual ICollection<ViewedPost>? ViewedPosts { get; set; }
         public virtual ICollection<PostImage>? PostImages { get; set; }
+        public virtual ICollection<LikedPost>? LikedPosts { get; set; }
     }
 }

@@ -282,5 +282,53 @@ namespace ShareSpace.Server.Repository
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<ApiResponse<ProfileDto>> GetProfile(Guid userid, Guid current_user)
+        {
+            try
+            {
+                var user_posts = await shareSpaceDb.Posts
+                    .Where(w => w.UserId == userid)
+                    .Include(i => i.User)
+                    .ToListAsync();
+                var extra_info = await GetExtraUserInfo(userid);
+                return new ApiResponse<ProfileDto>
+                {
+                    IsSuccess = true,
+                    Data = new ProfileDto
+                    {
+                        ExtraUserInfoDto = extra_info.Data,
+                        UserName = user_posts.Select(s => s.User!.UserName).FirstOrDefault() ?? "",
+                        Posts = user_posts.Select(
+                            s =>
+                                new PostDto
+                                {
+                                    TextContent = s.Content,
+                                    PostUserProfilePicUrl = s.User?.ProfilePicUrl,
+                                    PostedName = s.User!.Name,
+                                    PostedUsername = s.User!.UserName,
+                                    PostedUserId = s.UserId,
+                                    PostId = s.Id,
+                                    PostPictureUrls =
+                                        s.PostImages?.Select(i => i.ImageUrl)
+                                        ?? Enumerable.Empty<string>(),
+                                    LikesCount = s.Likes,
+                                    ViewsCount = s.Views,
+                                    CommentsCount = s.Comments?.Count ?? 0,
+                                    PostedDateTime = s.CreatedAt,
+                                    IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
+                                        a => a.PostId == s.Id && a.UserId == current_user
+                                    )
+                                }
+                        ),
+                        UserId = userid
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

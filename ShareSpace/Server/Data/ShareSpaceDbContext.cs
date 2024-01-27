@@ -30,6 +30,8 @@ namespace ShareSpace.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasPostgresExtension("uuid-ossp");
+
             modelBuilder.Entity<UserInterest>().HasKey(lp => new { lp.UserId, lp.InterestId });
             modelBuilder.Entity<ViewedPost>().HasKey(lp => new { lp.UserId, lp.PostId });
 
@@ -109,6 +111,29 @@ namespace ShareSpace.Server.Data
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
             });
+
+            modelBuilder
+                .Entity<Interest>()
+                .HasData(
+                    new Interest { Id = 1, InterestName = "Sports" },
+                    new Interest { Id = 2, InterestName = "Photography" },
+                    new Interest { Id = 3, InterestName = "Travel" },
+                    new Interest { Id = 4, InterestName = "Cooking" },
+                    new Interest { Id = 5, InterestName = "Movies" }
+                );
+
+            modelBuilder
+                .Entity<NotificationType>()
+                .HasData(
+                    new NotificationType { Id = -1, Name = "Unfollow" },
+                    new NotificationType { Id = 1, Name = "Follow" }
+                );
+            modelBuilder
+                .Entity<Role>()
+                .HasData(
+                    new Role { RoleId = 1, RoleName = "user" },
+                    new Role { RoleId = 2, RoleName = "admin" }
+                );
         }
     }
 }

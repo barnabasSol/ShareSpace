@@ -3,7 +3,7 @@ namespace ShareSpace.Shared.DTOs;
 public enum Status
 {
     Followed = 1,
-    Unfollowed = 0
+    Unfollowed = -1
 }
 
 public class NotificationsDto

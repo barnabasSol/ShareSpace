@@ -11,6 +11,7 @@ public interface IUserRepository
         Guid current_user
     );
     Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid UserId);
+    Task<ApiResponse<ProfileDto>> GetProfile(Guid UserId, Guid current_user);
     Task<ApiResponse<IEnumerable<SuggestedUserDto>>> GetSuggestedUsers(Guid current_user);
     public Task<ApiResponse<string>> FollowUser(Guid followed_id, Guid follower_id);
     public Task<ApiResponse<IEnumerable<FollowerUserDto>>> GetFollowers(Guid current_user);

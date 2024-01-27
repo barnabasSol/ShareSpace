@@ -154,7 +154,8 @@ public class PostRepository : IPostRepository
                     PostedUsername = post.User?.UserName!,
                     PostedUserId = post.UserId,
                     PostId = post.Id,
-                    PostPictureUrls = post.PostImages?.Select(i => i.ImageUrl),
+                    PostPictureUrls =
+                        post.PostImages?.Select(i => i.ImageUrl) ?? Enumerable.Empty<string>(),
                     LikesCount = post.Likes,
                     ViewsCount = post.Views,
                     CommentsCount = post.Comments?.Count ?? 0,
@@ -220,10 +221,17 @@ public class PostRepository : IPostRepository
     {
         try
         {
+            var currentDate = DateTime.Now;
             var posts = await shareSpaceDb.Posts
                 .Include(i => i.User)
                 .Include(i => i.PostImages)
                 .Include(i => i.Comments)
+                .Include(i => i.LikedPosts)
+                .Where(p => (currentDate - p.CreatedAt).TotalDays <= 7)
+                .OrderByDescending(p => p.CreatedAt)
+                .ThenByDescending(p => p.LikedPosts!.Count)
+                .ThenByDescending(p => p.Comments!.Count)
+                .Take(3)
                 .ToListAsync();
 
             return new ApiResponse<IEnumerable<PostDto>>
@@ -241,14 +249,19 @@ public class PostRepository : IPostRepository
                                 PostedUsername = s.User!.UserName,
                                 PostedUserId = s.UserId,
                                 PostId = s.Id,
-                                PostPictureUrls = s.PostImages?.Select(i => i.ImageUrl),
+                                PostPictureUrls =
+                                    s.PostImages?.Select(i => i.ImageUrl)
+                                    ?? Enumerable.Empty<string>(),
                                 LikesCount = s.Likes,
                                 ViewsCount = s.Views,
                                 CommentsCount = s.Comments?.Count ?? 0,
                                 PostedDateTime = s.CreatedAt,
                                 IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
                                     a => a.PostId == s.Id && a.UserId == current_user
-                                )
+                                ),
+                                LikedTimeStamp = s.LikedPosts!
+                                    .Select(s => s.CreatedAt)
+                                    .FirstOrDefault()
                             }
                     )
                     .OrderByDescending(o => o.LikesCount)
