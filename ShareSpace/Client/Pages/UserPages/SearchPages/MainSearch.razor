@@ -10,7 +10,7 @@
     <div id="right-space"></div>
     <div id="input-container" class="px-4">
         <MudTextField Placeholder="Search" AutoFocus DebounceInterval="500"
-            OnDebounceIntervalElapsed="AfterEnteringString" @bind-Value="@query_string" HelperTextOnFocus=true
+            OnDebounceIntervalElapsed="OnDebounceElapsed" @bind-Value="@query_string" HelperTextOnFocus=true
             HelperText="you can search users and posts" Variant="Variant.Text" Adornment="Adornment.Start"
             AdornmentIcon="@Icons.Material.Filled.Search" />
     </div>
@@ -102,7 +102,7 @@
     private List<UserSearchDto>? userSearchDtos;
     private List<PostSearchDto>? postSearchDtos;
 
-    public async Task AfterEnteringString(string value)
+    public async Task OnDebounceElapsed(string value)
     {
         if (!string.IsNullOrEmpty(value))
         {

@@ -15,7 +15,6 @@
             {
                 context.Request.Headers.Append("Authorization", $"Bearer {token}");
             }
-
             await _next(context);
         }
     }

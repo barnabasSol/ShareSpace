@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShareSpace.Server.Repository.Contracts;
 using ShareSpace.Shared.DTOs;
@@ -7,6 +8,7 @@ namespace ShareSpace.Server.Controllers;
 
 [Route("[controller]")]
 [ApiController]
+[Authorize(Roles = "user")]
 public class SettingsController : ControllerBase
 {
     private readonly ISettingsRepository settingsRepository;
@@ -41,9 +43,7 @@ public class SettingsController : ControllerBase
     }
 
     [HttpPut("password")]
-    public async Task<ActionResult<string>> UpdatePassword(
-        UpdatePasswordDto updatePasswordDto
-    )
+    public async Task<ActionResult<string>> UpdatePassword(UpdatePasswordDto updatePasswordDto)
     {
         try
         {

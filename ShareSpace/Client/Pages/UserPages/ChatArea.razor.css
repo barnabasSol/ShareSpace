@@ -30,3 +30,10 @@
 .chat-container::-webkit-scrollbar {
   display: none;
 }
+
+/* For mobile phones: */
+@media screen and (width <= 600px) {
+  #mainchat {
+    height: 75vh;
+  }
+}

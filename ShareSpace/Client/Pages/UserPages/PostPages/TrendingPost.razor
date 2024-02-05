@@ -1,0 +1,61 @@
+@inject IPostService PostService
+@inject NavigationManager NavManager
+
+@if (trendingPosts is null)
+{
+    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+        <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true" />
+    </div>
+}
+else
+{
+    if (!trendingPosts.Any())
+    {
+        <div style="display: flex; justify-content: center;">
+            <MudText Color="Color.Primary" Typo="Typo.h5">Nothing Is Trending For Now</MudText>
+        </div>
+    }
+    else
+    {
+        @foreach (var post in trendingPosts)
+        {
+            @if (post.PostPictureUrls!.Any())
+            {
+                <div @onclick="() => OpenPost(post.PostId)" class="tr-item">
+                    <div class="img-cntr">
+                        <img src="@post.PostPictureUrls!.ElementAt(0)" alt="Post Image">
+                    </div>
+                    <div class="txt-cntr">@post.TextContent</div>
+                    <div class="act-cntr">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <MudIcon Icon="@Icons.Material.Rounded.Favorite" />
+                            @post.LikesCount
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <MudIcon Icon="@Icons.Material.Rounded.Comment" />
+                            @post.CommentsCount
+                        </div>
+                    </div>
+                </div>
+                <MudDivider Style="color: white;" DividerType="DividerType.Middle" Class="my-1" />
+            }
+            else
+            {
+                <div class="tr-no-img">
+                    <div class="txt-cntr">@post.TextContent</div>
+                    <div class="act-cntr">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <MudIcon Icon="@Icons.Material.Rounded.Favorite" />
+                            @post.LikesCount
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <MudIcon Icon="@Icons.Material.Rounded.Comment" />
+                            @post.CommentsCount
+                        </div>
+                    </div>
+                </div>
+                <MudDivider Style="color: white;" DividerType="DividerType.Middle" Class="my-1" />
+            }
+        }
+    }
+}

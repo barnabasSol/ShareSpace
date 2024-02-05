@@ -1,9 +1,165 @@
-@layout ProfileLayout
 @page "/profile/{username}"
+@layout ProfileLayout
+@inject IUserService UserService
+@inject IPostService PostService
+@inject AuthenticationStateProvider authstate
+@inject NavigationManager NavManager
 
-<h1>@username</h1>
+
+@if (ProfileData is null)
+{
+    <div class="w-100" style="display: flex; justify-content: center; align-items: center; height: 100vh;background: rgb(23, 24, 24);">
+        <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true" />
+    </div>
+}
+else
+{
+    <div id="prof-main">
+        <div id="prof-left-space"></div>
+        <div id="prof-right-space"></div>
+        <div id="prof-hedr">
+            <div class="img-cnt pl-3">
+                @if (string.IsNullOrEmpty(ProfileData.ExtraUserInfoDto!.ProfilePicUrl))
+                {
+                    <MudAvatar Style="height: 200px; width: 200px; background: transparent;" Color="Color.Primary"
+                        Variant="Variant.Text">
+                        <MudAvatar Class="bg-transparent" Size="Size.Large" Color="Color.Tertiary">
+                            <span class="fs-1">@ProfileData.Name![0].ToString().ToUpper()</span>
+                        </MudAvatar>
+                    </MudAvatar>
+                }
+                else
+                {
+                    <MudAvatar Class="mt-3" Style="height: 120px; width: 120px;" Size="Size.Large" Color="Color.Primary"
+                        Variant="Variant.Text">
+                        <MudImage Style="border-radius: 10%; border: 0;" Src="@ProfileData.ExtraUserInfoDto!.ProfilePicUrl"
+                            Alt="Card image cap" />
+                    </MudAvatar>
+                }
+
+            </div>
+                <AuthorizeView>
+                    <Authorized>
+            <div class="name-cnt">
+                        @if (ProfileData.UserId != Guid.Parse(context.User.Claims.FirstOrDefault(c => c.Type ==
+                       "Sub")!.Value))
+                        {
+                            <MudButton OnClick="ChatWithUser" Style="height: 30px" Class="mr-3" Color="Color.Primary" Size="Size.Medium"
+                                Variant="Variant.Outlined">
+                                Message
+                            </MudButton>
+                            @if (ProfileData.IsBeingFollowed)
+                            {
+                                <MudButton Style="height: 30px" Color="Color.Error" OnClick="() => UnFollowUser(ProfileData.UserId)"
+                                    Variant="Variant.Outlined">
+                                    Unfollow
+                                </MudButton>
+                            }
+                            else
+                            {
+                                <MudButton Style="height: 30px" Color="Color.Success"
+                                    OnClick="() => UnFollowUser(ProfileData.UserId)" Variant="Variant.Outlined">Follow</MudButton>
+                            }
+                        }
+
+            </div>
+                    </Authorized>
+                </AuthorizeView>
+            <div class="btn-cnt">
+                        <MudText Style="text-align: center;" Typo="Typo.body1" Class="mt-4">Bio:</MudText>
+                        <MudText Typo="Typo.body1" Style="text-align: center;" Class="mt-2">@ProfileData.ExtraUserInfoDto.Bio</MudText>
+            </div>
+            <div class="flw-cnt">
+                    <MudText Class="ml-3"></MudText>
+                    <h2 style="color: white;">@ProfileData.Name</h2>
+                    <MudText Typo="Typo.body1" Color="Color.Primary">&#64;@ProfileData.UserName</MudText>
+            </div>
+            <div class="bio-cnt">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-column align-items-center">
+                            <h5 style="color: white">@ProfileData.ExtraUserInfoDto.FollowersCount</h5>
+                            <span class="astyle">
+                                Followers</span>
+
+                        </div>
+                        <div class="d-flex flex-column align-items-center">
+                            <h5 id="followingCount" style="color: white;">@ProfileData.ExtraUserInfoDto.FollowingCount</h5>
+                            <a class="astyle">
+                                Following</a>
+                        </div>
+                    </div>
+            </div>
+            <div class="intr-cnt">
+                @if (ProfileData.ExtraUserInfoDto.Interests is null)
+                {
+                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                }
+                else
+                {
+                    @if (!ProfileData.ExtraUserInfoDto.Interests.Any())
+                    {
+                        <div style="display: flex; justify-content: center;">
+                            <MudText Color="Color.Primary" Typo="Typo.h5">You Have No Interests</MudText>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="w-60">
+                        @foreach (var item in ProfileData.ExtraUserInfoDto.Interests)
+                        {
+                            <MudChip Color="@(colors[new Random().Next(colors.Length)])">@item.Value</MudChip>
+                        }
+
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div id="prof-posts">
+
+            @foreach (var post in ProfileData.Posts!)
+            {
+                <Post post="post" OnDelete="DeletePost" />
+            }
+        </div>
+    </div>
+}
+
 
 @code {
     [Parameter]
     public string? username { get; set; }
+
+
+    private Color[] colors = new[]
+    {
+        Color.Success,
+        Color.Warning,
+        Color.Error,
+        Color.Dark
+    };
+    async void FollowUser(Guid user_id)
+    {
+        var result = await UserService.FollowUser(ProfileData!.UserId);
+        if (result.IsSuccess)
+        {
+            ProfileData.IsBeingFollowed = !ProfileData.IsBeingFollowed;
+        }
+        StateHasChanged();
+    }
+    async void UnFollowUser(Guid user_id)
+    {
+        var result = await UserService.FollowUser(ProfileData!.UserId);
+        if (result.IsSuccess)
+        {
+            ProfileData.IsBeingFollowed = !ProfileData.IsBeingFollowed;
+        }
+        StateHasChanged();
+    }
+    
+    void ChatWithUser(){
+        NavManager.NavigateTo($"/chat/{username}");
+    }
+
+
 }

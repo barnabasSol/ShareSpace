@@ -86,18 +86,16 @@ public class PostRepository : IPostRepository
                 {
                     var imagePath = Path.Combine(webRootPath, postImage.ImageUrl.TrimStart('/'));
                     if (System.IO.File.Exists(imagePath))
-                    {
                         System.IO.File.Delete(imagePath);
-                    }
                 }
                 shareSpaceDb.Posts.Remove(post);
 
                 await shareSpaceDb.SaveChangesAsync();
                 await transaction.CommitAsync();
 
-                return new ApiResponse<string>() { IsSuccess = true, Message = "", };
+                return new ApiResponse<string> { IsSuccess = true, Message = "", };
             }
-            return new ApiResponse<string>() { IsSuccess = false, Message = "item doesn't exist", };
+            return new ApiResponse<string> { IsSuccess = false, Message = "item doesn't exist", };
         }
         catch (Exception ex)
         {
@@ -177,10 +175,32 @@ public class PostRepository : IPostRepository
     {
         try
         {
+            var followings = await shareSpaceDb.Followers
+                .Where(w => w.FollowerId == current_user)
+                .Select(s => s.FollowedId)
+                .ToListAsync();
+
+            var currentUserInterests = await shareSpaceDb.UserInterests
+                .Where(w => w.UserId == current_user)
+                .Select(s => s.InterestId)
+                .ToListAsync();
+
+            var usersWithSameInterests = await shareSpaceDb.UserInterests
+                .Where(w => currentUserInterests.Contains(w.InterestId))
+                .Select(s => s.UserId)
+                .Distinct()
+                .ToListAsync();
+
             var posts = await shareSpaceDb.Posts
                 .Include(i => i.User)
                 .Include(i => i.PostImages)
                 .Include(i => i.Comments)
+                .Where(
+                    w =>
+                        followings.Contains(w.UserId)
+                        || w.UserId == current_user
+                        || usersWithSameInterests.Contains(w.UserId)
+                )
                 .ToListAsync();
 
             return new ApiResponse<IEnumerable<PostDto>>
@@ -228,8 +248,8 @@ public class PostRepository : IPostRepository
                 .Include(i => i.Comments)
                 .Include(i => i.LikedPosts)
                 .Where(p => (currentDate - p.CreatedAt).TotalDays <= 7)
-                .OrderByDescending(p => p.CreatedAt)
-                .ThenByDescending(p => p.LikedPosts!.Count)
+                .OrderByDescending(p => p.LikedPosts!.Count)
+                .ThenByDescending(p => p.CreatedAt)
                 .ThenByDescending(p => p.Comments!.Count)
                 .Take(3)
                 .ToListAsync();

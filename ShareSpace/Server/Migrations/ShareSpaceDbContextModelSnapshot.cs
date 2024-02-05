@@ -650,7 +650,7 @@ namespace ShareSpace.Server.Migrations
             modelBuilder.Entity("ShareSpace.Server.Entities.PostTag", b =>
                 {
                     b.HasOne("ShareSpace.Server.Entities.Post", "Post")
-                        .WithMany()
+                        .WithMany("PostTags")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -733,6 +733,8 @@ namespace ShareSpace.Server.Migrations
                     b.Navigation("LikedPosts");
 
                     b.Navigation("PostImages");
+
+                    b.Navigation("PostTags");
 
                     b.Navigation("ViewedPosts");
                 });

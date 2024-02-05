@@ -3,55 +3,54 @@ using ShareSpace.Client.Services.Contracts;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
 
-namespace ShareSpace.Client.Services
+namespace ShareSpace.Client.Services;
+
+public class AuthService : IAuthService
 {
-    public class AuthService : IAuthService
+    private readonly IHttpClientFactory http_client;
+
+    public AuthService(IHttpClientFactory http)
     {
-        private readonly IHttpClientFactory http_client;
+        http_client = http;
+    }
 
-        public AuthService(IHttpClientFactory http)
+    public async Task<AuthResponse> CreateUser(CreateUserDTO userDTO)
+    {
+        try
         {
-            http_client = http;
+            var http = http_client.CreateClient("ShareSpaceApi");
+            var response = await http.PostAsJsonAsync("Auth/create-user", userDTO);
+            var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
+            if (response is not null)
+                return result!;
+            throw new Exception($"{result!.Message}");
         }
-
-        public async Task<AuthResponse> CreateUser(CreateUserDTO userDTO)
+        catch (Exception ex)
         {
-            try
-            {
-                var http = http_client.CreateClient("ShareSpaceApi");
-                var response = await http.PostAsJsonAsync("Auth/create-user", userDTO);
-                var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
-                if (response is not null)
-                    return result!;
-                throw new Exception($"{result!.Message}");
-            }
-            catch (Exception ex)
-            {
-                return new AuthResponse() { IsSuccess = false, Message = ex.Message };
-            }
+            return new AuthResponse() { IsSuccess = false, Message = ex.Message };
         }
+    }
 
-        public async Task<AuthResponse> LoginUser(UserLoginDTO userDTO)
+    public async Task<AuthResponse> LoginUser(UserLoginDTO userDTO)
+    {
+        try
         {
-            try
-            {
-                var http = http_client.CreateClient("ShareSpaceApi");
+            var http = http_client.CreateClient("ShareSpaceApi");
 
-                var response =
-                    await http.PostAsJsonAsync("Auth/login-user", userDTO)
-                    ?? throw new Exception("Response was null");
+            var response =
+                await http.PostAsJsonAsync("Auth/login-user", userDTO)
+                ?? throw new Exception("Response was null");
 
-                var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
+            var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
 
-                if (!response.IsSuccessStatusCode)
-                    return result!;
+            if (!response.IsSuccessStatusCode)
+                return result!;
 
-                return result ?? throw new Exception("Result was null");
-            }
-            catch (Exception ex)
-            {
-                return new AuthResponse() { IsSuccess = false, Message = ex.Message };
-            }
+            return result ?? throw new Exception("Result was null");
+        }
+        catch (Exception ex)
+        {
+            return new AuthResponse() { IsSuccess = false, Message = ex.Message };
         }
     }
 }

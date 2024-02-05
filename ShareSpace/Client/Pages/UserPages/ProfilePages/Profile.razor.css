@@ -1,0 +1,94 @@
+#prof-hedr {
+  grid-area: hedr;
+  max-height: 260px;
+  display: grid;
+  grid-template-areas:
+    "img flw"
+    "img bio"
+    "nme bio"
+    "btn int";
+  grid-template-rows: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.img-cnt {
+  grid-area: img;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.flw-cnt {
+  grid-area: flw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.name-cnt {
+  grid-area: nme;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.btn-cnt {
+  grid-area: btn;
+  display: flex;
+  flex-direction: column;
+}
+
+.bio-cnt {
+  grid-area: bio;
+}
+
+.intr-cnt {
+  grid-area: int;
+}
+
+#prof-left-space {
+  grid-area: lspc;
+}
+
+#prof-right-space {
+  grid-area: rspc;
+}
+
+#prof-posts {
+  grid-area: posts;
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#prof-main {
+  height: 100vh;
+  background: rgb(23, 24, 24);
+  display: grid;
+  overflow-y: scroll;
+  grid-template-rows: 300px 2fr;
+  grid-template-columns: 2fr 4fr 2fr;
+  grid-template-areas:
+    "lspc hedr rspc"
+    "lspc posts rspc"
+    "lspc posts rspc";
+}
+
+.astyle {
+  color: gray;
+  text-decoration: none;
+  transition: color, text-decoration, 0.2s;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.astyle:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.astyle:focus {
+  color: white;
+}

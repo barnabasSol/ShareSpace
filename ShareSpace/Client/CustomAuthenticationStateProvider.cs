@@ -26,7 +26,11 @@ namespace ShareSpace.Client
             if (string.IsNullOrEmpty(token))
             {
                 navigationManager.NavigateTo("/");
-                return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+                var logout_state = new AuthenticationState(
+                    new ClaimsPrincipal(new ClaimsIdentity())
+                );
+                NotifyAuthenticationStateChanged(Task.FromResult(logout_state));
+                return logout_state;
             }
 
             var claims = ParseClaimsFromJwt(token);
@@ -47,7 +51,6 @@ namespace ShareSpace.Client
                 new(new ClaimsPrincipal(new ClaimsIdentity(claims, "ShareSpaceTokenAuth")));
 
             NotifyAuthenticationStateChanged(Task.FromResult(state));
-            //navigationManager.NavigateTo("/main");
             return await Task.FromResult(state);
         }
 

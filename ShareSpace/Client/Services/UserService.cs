@@ -46,9 +46,7 @@ namespace ShareSpace.Client.Services
         {
             var http = http_client.CreateClient("ShareSpaceApi");
             var response = await http.GetAsync("/User/following");
-            var result = await response.Content.ReadFromJsonAsync<
-                ApiResponse<List<FollowerUserDto>>
-            >();
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<List<FollowerUserDto>>>();
             return result!;
         }
 
@@ -59,6 +57,15 @@ namespace ShareSpace.Client.Services
             var result = await response.Content.ReadFromJsonAsync<
                 ApiResponse<IEnumerable<InterestsDto>>
             >();
+            return result!;
+        }
+
+        public async Task<ApiResponse<ProfileDto>> GetProfile(string username)
+        {
+            var http = http_client.CreateClient("ShareSpaceApi");
+            var url = $"/User/profile/{username}";
+            var response = await http.GetAsync(url);
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<ProfileDto>>();
             return result!;
         }
 

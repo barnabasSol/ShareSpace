@@ -43,7 +43,7 @@ public class SettingsRepository : ISettingsRepository
             }
             if (
                 string.IsNullOrEmpty(updatePasswordDto.OldPassword)
-                || string.IsNullOrEmpty(updatePasswordDto.OldPassword)
+                || string.IsNullOrEmpty(updatePasswordDto.NewPassword)
             )
             {
                 return new ApiResponse<string>
@@ -67,6 +67,7 @@ public class SettingsRepository : ISettingsRepository
         }
         catch (Exception ex)
         {
+            await transaction.RollbackAsync();
             throw new Exception(ex.Message);
         }
     }

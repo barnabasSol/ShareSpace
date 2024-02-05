@@ -62,5 +62,9 @@ public class ProfileDto
     public ExtraUserInfoDto? ExtraUserInfoDto { get; set; }
     public Guid UserId { get; set; }
     public string UserName { get; set; } = string.Empty;
-    public IEnumerable<PostDto>? Posts { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public List<PostDto>? Posts { get; set; }
+    public bool IsBeingFollowed { get; set; }
+    
+    
 }

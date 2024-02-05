@@ -39,6 +39,15 @@ namespace ShareSpace.Client.Shared
             }
         }
 
+        async void Logout()
+        {
+            await localStorage.RemoveItemAsync("ShareSpaceAccessToken");
+            await localStorage.RemoveItemAsync("ShareSpaceRefreshToken");
+            if (hubConnection is not null)
+                await hubConnection.DisposeAsync();
+            await authstate.GetAuthenticationStateAsync();
+        }
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");

@@ -28,12 +28,14 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<IEnumerable<InterestsDto>>
-            {
-                IsSuccess = false,
-                Message = $"a server error occured {ex.Message}",
-                Data = Enumerable.Empty<InterestsDto>()
-            };
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
         }
     }
 
@@ -52,12 +54,14 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<string>
-            {
-                IsSuccess = false,
-                Message = $"a server error occured {ex.Message}",
-                Data = ""
-            };
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
         }
     }
 
@@ -71,21 +75,24 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<ExtraUserInfoDto>
-            {
-                IsSuccess = false,
-                Message = $"a server error occured {ex.Message}",
-            };
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
         }
     }
 
-    [HttpGet("profile/{userid}")]
-    public async Task<ActionResult<ApiResponse<ProfileDto>>> GetProfile(Guid userid)
+    [HttpGet("profile/{username}")]
+    public async Task<ActionResult<ApiResponse<ProfileDto>>> GetProfile(string username)
     {
         try
         {
             Guid UserId = Guid.Parse(User.FindFirst("Sub")!.Value);
-            var response = await userRepository.GetProfile(userid, UserId);
+            var response = await userRepository.GetProfile(username, UserId);
             return response.IsSuccess ? Ok(response) : BadRequest(response);
         }
         catch (Exception ex)
@@ -112,11 +119,14 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<string>
-            {
-                IsSuccess = false,
-                Message = $"a server error occured {ex.Message}",
-            };
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
         }
     }
 
@@ -131,11 +141,14 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<ExtraUserInfoDto>
-            {
-                IsSuccess = false,
-                Message = $"a server error occured {ex.Message}",
-            };
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
         }
     }
 
@@ -150,12 +163,14 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<IEnumerable<FollowerUserDto>>
-            {
-                IsSuccess = false,
-                Message = $"a server error occured, {ex.Message}",
-                Data = Enumerable.Empty<FollowerUserDto>()
-            };
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
         }
     }
 
@@ -170,12 +185,14 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new ApiResponse<IEnumerable<FollowerUserDto>>
-            {
-                IsSuccess = false,
-                Message = $"a server error occured {ex.Message}",
-                Data = Enumerable.Empty<FollowerUserDto>()
-            };
+            return StatusCode(
+                StatusCodes.Status500InternalServerError,
+                new ApiResponse<string>
+                {
+                    IsSuccess = false,
+                    Message = $"server error happened, {ex.Message}. try again later"
+                }
+            );
         }
     }
 }

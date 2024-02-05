@@ -9,6 +9,7 @@ public interface IUserService
     Task<ApiResponse<string>> SendInterests(IEnumerable<InterestsDto> interests);
     Task<ApiResponse<string>> FollowUser(Guid user_id);
     Task<ApiResponse<ExtraUserInfoDto>> GetExtraUserInfo(Guid user_id);
+    Task<ApiResponse<ProfileDto>> GetProfile(string username);
     Task<ApiResponse<List<SuggestedUserDto>>> GetSuggestedUsers();
     Task<ApiResponse<List<FollowerUserDto>>> GetFollowers();
     Task<ApiResponse<List<FollowerUserDto>>> GetFollowing();

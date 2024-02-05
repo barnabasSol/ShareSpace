@@ -124,6 +124,11 @@ namespace ShareSpace.Server.Repository
         {
             try
             {
+                var currentUserInterests = await shareSpaceDb.UserInterests
+                    .Where(w => w.UserId == current_user)
+                    .Select(s => s.InterestId)
+                    .ToListAsync();
+
                 var suggested_users = await shareSpaceDb.Users
                     .Where(
                         w =>
@@ -131,8 +136,14 @@ namespace ShareSpace.Server.Repository
                             && !shareSpaceDb.Followers.Any(
                                 a => a.FollowerId == current_user && a.FollowedId == w.UserId
                             )
+                            && shareSpaceDb.UserInterests.Any(
+                                a =>
+                                    a.UserId == w.UserId
+                                    && currentUserInterests.Contains(a.InterestId)
+                            )
                     )
                     .ToListAsync();
+
                 return new ApiResponse<IEnumerable<SuggestedUserDto>>
                 {
                     IsSuccess = true,
@@ -283,13 +294,26 @@ namespace ShareSpace.Server.Repository
             }
         }
 
-        public async Task<ApiResponse<ProfileDto>> GetProfile(Guid userid, Guid current_user)
+        public async Task<ApiResponse<ProfileDto>> GetProfile(string username, Guid current_user)
         {
             try
             {
+                var queried_user = await shareSpaceDb.Users.FirstOrDefaultAsync(
+                    f => f.UserName == username
+                );
+                if (queried_user is null)
+                {
+                    return new ApiResponse<ProfileDto>
+                    {
+                        IsSuccess = false,
+                        Message = "user doesn't exist"
+                    };
+                }
+                var userid = queried_user.UserId;
                 var user_posts = await shareSpaceDb.Posts
                     .Where(w => w.UserId == userid)
                     .Include(i => i.User)
+                    .Include(i => i.PostImages)
                     .ToListAsync();
                 var extra_info = await GetExtraUserInfo(userid);
                 return new ApiResponse<ProfileDto>
@@ -298,30 +322,37 @@ namespace ShareSpace.Server.Repository
                     Data = new ProfileDto
                     {
                         ExtraUserInfoDto = extra_info.Data,
+                        UserId = userid,
                         UserName = user_posts.Select(s => s.User!.UserName).FirstOrDefault() ?? "",
-                        Posts = user_posts.Select(
-                            s =>
-                                new PostDto
-                                {
-                                    TextContent = s.Content,
-                                    PostUserProfilePicUrl = s.User?.ProfilePicUrl,
-                                    PostedName = s.User!.Name,
-                                    PostedUsername = s.User!.UserName,
-                                    PostedUserId = s.UserId,
-                                    PostId = s.Id,
-                                    PostPictureUrls =
-                                        s.PostImages?.Select(i => i.ImageUrl)
-                                        ?? Enumerable.Empty<string>(),
-                                    LikesCount = s.Likes,
-                                    ViewsCount = s.Views,
-                                    CommentsCount = s.Comments?.Count ?? 0,
-                                    PostedDateTime = s.CreatedAt,
-                                    IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
-                                        a => a.PostId == s.Id && a.UserId == current_user
-                                    )
-                                }
+                        Name = user_posts.Select(s => s.User!.Name).FirstOrDefault() ?? "",
+                        IsBeingFollowed = await shareSpaceDb.Followers.AnyAsync(
+                            a => a.FollowedId == queried_user.UserId && a.FollowerId == current_user
                         ),
-                        UserId = userid
+                        Posts = user_posts
+                            .Select(
+                                s =>
+                                    new PostDto
+                                    {
+                                        TextContent = s.Content,
+                                        PostUserProfilePicUrl = s.User?.ProfilePicUrl,
+                                        PostedName = s.User!.Name,
+                                        PostedUsername = s.User!.UserName,
+                                        PostedUserId = s.UserId,
+                                        PostId = s.Id,
+                                        PostPictureUrls =
+                                            s.PostImages!.Select(i => i.ImageUrl)
+                                            ?? Enumerable.Empty<string>(),
+                                        LikesCount = s.Likes,
+                                        ViewsCount = s.Views,
+                                        CommentsCount = s.Comments?.Count ?? 0,
+                                        PostedDateTime = s.CreatedAt,
+                                        IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
+                                            a => a.PostId == s.Id && a.UserId == current_user
+                                        ),
+                                    }
+                            )
+                            .OrderByDescending(o => o.PostedDateTime)
+                            .ToList(),
                     }
                 };
             }

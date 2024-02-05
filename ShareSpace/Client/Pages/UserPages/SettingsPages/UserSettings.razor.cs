@@ -111,7 +111,7 @@ public partial class UserSettings
 
             RuleFor(x => x.FullName)
                 .MaximumLength(20)
-                .WithMessage("Full Name length can't be more than 8.");
+                .WithMessage("Full Name length can't be more than 20.");
 
             RuleFor(x => x.Bio).MaximumLength(150).WithMessage("Bio length can't be more than 50.");
 

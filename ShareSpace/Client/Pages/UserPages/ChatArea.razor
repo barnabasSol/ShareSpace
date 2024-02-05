@@ -1,11 +1,11 @@
 ﻿@page "/chat/{username}"
 @layout UserLayout
+@implements IAsyncDisposable
 @using System.Security.Claims
 @inject NavigationManager NavigationManager
 @inject ILocalStorageService localStorage
 @inject AuthenticationStateProvider authstate
 @inject IMessageService MessageService
-@implements IAsyncDisposable
 @attribute [Authorize(Roles = "user")]
 
 <div class="chat-container">

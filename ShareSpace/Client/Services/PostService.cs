@@ -48,6 +48,14 @@ namespace ShareSpace.Client.Services
             return result!;
         }
 
+        public async Task<ApiResponse<List<PostDto>>> GetTrendingPosts()
+        {
+            var http = http_client.CreateClient("ShareSpaceApi");
+            var response = await http.GetAsync("/Post/trending");
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<List<PostDto>>>();
+            return result!;
+        }
+
         public async Task<ApiResponse<string>> UpdateLike(LikedPostDto likedPost)
         {
             var http = http_client.CreateClient("ShareSpaceApi");

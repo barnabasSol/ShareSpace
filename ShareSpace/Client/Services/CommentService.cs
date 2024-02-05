@@ -1,5 +1,4 @@
-﻿using ShareSpace.Client.Pages.UserPages;
-using ShareSpace.Client.Services.Contracts;
+﻿using ShareSpace.Client.Services.Contracts;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
 using System.Net.Http.Json;

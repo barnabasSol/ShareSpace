@@ -39,7 +39,7 @@ public partial class CreateUser
                 ShowSnackBarWithOptions(message: result.Message, variant: Variant.Filled);
             }
         }
-        this.StateHasChanged();
+        StateHasChanged();
     }
 
     void ShowSnackBarWithOptions(string message, Variant variant)
