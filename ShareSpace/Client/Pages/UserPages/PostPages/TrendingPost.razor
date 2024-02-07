@@ -41,8 +41,9 @@ else
             }
             else
             {
-                <div class="tr-no-img">
-                    <div class="txt-cntr">@post.TextContent</div>
+                <div @onclick="() => OpenPost(post.PostId)" class="tr-no-img">
+                    <div class="txt-cntr">@(post.TextContent!.Length > 100 ? post.TextContent.Substring(0, 100) + "..." :
+          post.TextContent)</div>
                     <div class="act-cntr">
                         <div style="display: flex; flex-direction: column; align-items: center;">
                             <MudIcon Icon="@Icons.Material.Rounded.Favorite" />

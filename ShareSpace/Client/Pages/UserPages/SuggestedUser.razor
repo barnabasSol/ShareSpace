@@ -12,7 +12,7 @@ else
             {
                 <MudAvatar Style="height: 100px; width: 100px; background: transparent;" Color="Color.Primary"
                     Variant="Variant.Text">
-                    <MudAvatar  Class="bg-transparent" Size="Size.Large" Color="Color.Tertiary">
+                    <MudAvatar Class="bg-transparent" Size="Size.Large" Color="Color.Tertiary">
                         <span class="fs-1">@User.Name![0].ToString().ToUpper()</span>
                     </MudAvatar>
                 </MudAvatar>
@@ -24,11 +24,11 @@ else
                 </MudAvatar>
             }
         </div>
-        <div style="height: fit-content;" class="card-body d-flex flex-column align-items-center">
-            <span class="card-text">
+        <div style="height: fit-content;" class="card-body p-0 d-flex flex-column align-items-center">
+            <span class="card-text mt-3">
                 @User.Name
             </span>
-            <MudButton OnClick="FollowUser" Class="mt-1" Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">
+            <MudButton OnClick="FollowUser" Class="mt-3" Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">
                 Follow</MudButton>
         </div>
     </div>

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShareSpace.Server.Data;
 using ShareSpace.Server.Entities;
+using ShareSpace.Server.Extensions;
 using ShareSpace.Server.Repository.Contracts;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
@@ -28,16 +29,10 @@ public class PostRepository : IPostRepository
                 Post NewPost = new() { Content = post.TextContent, UserId = post.PostedUserId };
 
                 shareSpaceDb.Posts.Add(NewPost);
-
+                await shareSpaceDb.SaveChangesAsync();
                 foreach (var file in post.PostFiles)
                 {
-                    string FileExtension = file.Type.ToLower() switch
-                    {
-                        string type when type.Contains("png") => "png",
-                        string type when type.Contains("jpeg") => "jpeg",
-                        string type when type.Contains("webp") => "webp",
-                        _ => throw new Exception("Invalid file format!")
-                    };
+                    string FileExtension = file.Type.GetFileExtension();
                     string image_url = $"Uploads/PostPictures/{Guid.NewGuid()}.{FileExtension}";
                     string webRootPath = webHost.WebRootPath;
                     string FileName = Path.Combine(webRootPath, image_url);
@@ -48,6 +43,15 @@ public class PostRepository : IPostRepository
 
                     using var FileStream = System.IO.File.Create(FileName);
                     await FileStream.WriteAsync(file.ImageBytes);
+                }
+                if (post.ExtractTags().Any())
+                {
+                    foreach (var tag in post.ExtractTags())
+                    {
+                        await shareSpaceDb.PostTags.AddAsync(
+                            new PostTag { TagName = tag, PostId = NewPost.Id }
+                        );
+                    }
                 }
 
                 await shareSpaceDb.SaveChangesAsync();
@@ -191,15 +195,23 @@ public class PostRepository : IPostRepository
                 .Distinct()
                 .ToListAsync();
 
+            var likedTags = await shareSpaceDb.LikedPosts
+                .Where(lp => lp.UserId == current_user)
+                .SelectMany(lp => lp.Post!.PostTags!)
+                .Select(pt => pt.TagName)
+                .ToListAsync();
+
             var posts = await shareSpaceDb.Posts
                 .Include(i => i.User)
                 .Include(i => i.PostImages)
                 .Include(i => i.Comments)
+                .Include(i => i.PostTags)
                 .Where(
                     w =>
                         followings.Contains(w.UserId)
                         || w.UserId == current_user
                         || usersWithSameInterests.Contains(w.UserId)
+                        || w.PostTags!.Any(pt => likedTags.Contains(pt.TagName))
                 )
                 .ToListAsync();
 

@@ -327,8 +327,8 @@ namespace ShareSpace.Server.Migrations
                 name: "post_tags",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uuid", nullable: false),
-                    tag_name = table.Column<Guid>(type: "uuid", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
+                    tag_name = table.Column<string>(type: "text", nullable: false),
                     post_id = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>

@@ -12,7 +12,7 @@ using ShareSpace.Server.Data;
 namespace ShareSpace.Server.Migrations
 {
     [DbContext(typeof(ShareSpaceDbContext))]
-    [Migration("20240205075543_Latest")]
+    [Migration("20240206130226_Latest")]
     partial class Latest
     {
         /// <inheritdoc />
@@ -345,14 +345,16 @@ namespace ShareSpace.Server.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("uuid_generate_v4()");
 
                     b.Property<Guid>("PostId")
                         .HasColumnType("uuid")
                         .HasColumnName("post_id");
 
-                    b.Property<Guid>("TagName")
-                        .HasColumnType("uuid")
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("tag_name");
 
                     b.HasKey("Id");

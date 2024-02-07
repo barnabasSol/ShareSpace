@@ -31,7 +31,6 @@ public class CreatePostDto
     public string? TextContent { get; set; }
     public IEnumerable<File>? PostFiles { get; set; }
     public Guid PostedUserId { get; set; }
-    public IEnumerable<string>? Tags { get; set; }
 }
 
 public class File

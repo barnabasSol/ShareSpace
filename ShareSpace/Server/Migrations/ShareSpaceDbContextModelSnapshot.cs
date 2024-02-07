@@ -342,14 +342,16 @@ namespace ShareSpace.Server.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("uuid_generate_v4()");
 
                     b.Property<Guid>("PostId")
                         .HasColumnType("uuid")
                         .HasColumnName("post_id");
 
-                    b.Property<Guid>("TagName")
-                        .HasColumnType("uuid")
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("tag_name");
 
                     b.HasKey("Id");

@@ -38,7 +38,6 @@ else
                         <MudMenuItem>Share</MudMenuItem>
                         <MudMenuItem>Not Interested</MudMenuItem>
                         <MudMenuItem>Mute User</MudMenuItem>
-
                         <AuthorizeView>
                             <Authorized>
                                 @if (post.PostedUserId == Guid.Parse(context.User.Claims.FirstOrDefault(c => c.Type ==
@@ -48,27 +47,26 @@ else
                                 }
                             </Authorized>
                         </AuthorizeView>
-
                     </MudMenu>
                 </CardHeaderActions>
             </MudCardHeader>
 
             @if (post.PostPictureUrls!.Any())
             {
-                <MudCarousel Style="background-color: rgb(27, 27, 27); height:320px;" ShowBullets="false"
+                <MudCarousel Style="background-color: rgb(27, 27, 27); height:420px;" ShowBullets="false"
                     EnableSwipeGesture="true" AutoCycle="false" TData="object"
                     ShowArrows="@(post.PostPictureUrls!.Count() > 1)">
                     @foreach (var image in post.PostPictureUrls!)
                     {
                         <MudCarouselItem Style="background-color: rgb(27, 27, 27);" Transition="Transition.Slide">
-                            <MudCardMedia loading="lazy" Class="w-100" Image="@image" Height="320" />
+                            <MudCardMedia loading="lazy" Class="w-100" Image="@image" Height="460" />
                         </MudCarouselItem>
                     }
                 </MudCarousel>
 
             }
             <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
-                <MudText Typo="Typo.body2">@post.TextContent</MudText>
+                <MudText Typo="Typo.body2">@((MarkupString)post.TextContent!.Replace("\n", "<br>"))</MudText>
             </MudCardContent>
             <MudCardActions Style="background: rgb(27, 27, 27);" Class="d-flex justify-content-between gap-5">
                 <div>

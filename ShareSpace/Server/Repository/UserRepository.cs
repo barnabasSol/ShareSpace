@@ -309,22 +309,21 @@ namespace ShareSpace.Server.Repository
                         Message = "user doesn't exist"
                     };
                 }
-                var userid = queried_user.UserId;
                 var user_posts = await shareSpaceDb.Posts
-                    .Where(w => w.UserId == userid)
+                    .Where(w => w.UserId == queried_user.UserId)
                     .Include(i => i.User)
                     .Include(i => i.PostImages)
                     .ToListAsync();
-                var extra_info = await GetExtraUserInfo(userid);
+                var extra_info = await GetExtraUserInfo(queried_user.UserId);
                 return new ApiResponse<ProfileDto>
                 {
                     IsSuccess = true,
                     Data = new ProfileDto
                     {
                         ExtraUserInfoDto = extra_info.Data,
-                        UserId = userid,
-                        UserName = user_posts.Select(s => s.User!.UserName).FirstOrDefault() ?? "",
-                        Name = user_posts.Select(s => s.User!.Name).FirstOrDefault() ?? "",
+                        UserId = queried_user.UserId,
+                        UserName = queried_user.UserName,
+                        Name = queried_user.Name,
                         IsBeingFollowed = await shareSpaceDb.Followers.AnyAsync(
                             a => a.FollowedId == queried_user.UserId && a.FollowerId == current_user
                         ),

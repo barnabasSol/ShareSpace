@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShareSpace.Server.Data;
+using ShareSpace.Server.Extensions;
 using ShareSpace.Server.Repository.Contracts;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
@@ -115,13 +116,7 @@ public class SettingsRepository : ISettingsRepository
 
             if (update_dto.ProfilePic is not null)
             {
-                string FileExtension = update_dto.ProfilePic.Type.ToLower() switch
-                {
-                    string type when type.Contains("png") => "png",
-                    string type when type.Contains("jpeg") => "jpeg",
-                    string type when type.Contains("webp") => "webp",
-                    _ => throw new Exception("Invalid file format!")
-                };
+                string FileExtension = update_dto.ProfilePic.Type.GetFileExtension();
                 string img_url = $"Uploads/ProfilePictures/{Guid.NewGuid()}.{FileExtension}";
                 user.ProfilePicUrl = img_url;
                 string webRootPath = webHost.WebRootPath;

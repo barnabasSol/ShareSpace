@@ -82,6 +82,11 @@ namespace ShareSpace.Server.Data
                 c.Property(l => l.Likes).HasDefaultValue("0");
             });
 
+            modelBuilder.Entity<PostTag>(c =>
+            {
+                c.Property(c => c.Id).HasDefaultValueSql("uuid_generate_v4()");
+            });
+
             modelBuilder.Entity<Message>(m =>
             {
                 m.Property(c => c.CreatedAt).HasDefaultValueSql("Now()");

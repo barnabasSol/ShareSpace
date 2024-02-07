@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ShareSpace.Server.Data;
 using ShareSpace.Server.Entities;
+using ShareSpace.Server.Extensions;
 using ShareSpace.Server.JWT;
 using ShareSpace.Server.Repository.Contracts;
 using ShareSpace.Shared.DTOs;
@@ -32,17 +33,17 @@ public class AuthRepository : IAuthRepository
         token_Setting = token_setting.Value;
     }
 
-    private async Task<bool> UserOrEmailExists(string userName, string email)
-    {
-        return await shareSpaceDb.Users.AnyAsync(_ => _.UserName == userName || _.Email == email);
-    }
+    // private async Task<bool> UserOrEmailExists(string userName, string email)
+    // {
+    //     return await shareSpaceDb.Users.AnyAsync(_ => _.UserName == userName || _.Email == email);
+    // }
 
-    public async Task<AuthResponse> CreateUser(CreateUserDTO requesting_user)
+    public async Task<AuthResponse> CreateUser(CreateUserDTO new_user)
     {
         using var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
         try
         {
-            if (await UserOrEmailExists(requesting_user.UserName, requesting_user.Email))
+            if (await new_user.EmaiOrUsernameExists(shareSpaceDb.Users))
             {
                 return new AuthResponse()
                 {
@@ -54,10 +55,10 @@ public class AuthRepository : IAuthRepository
             User NewUser =
                 new()
                 {
-                    UserName = requesting_user.UserName,
-                    Name = requesting_user.Name,
-                    Email = requesting_user.Email,
-                    PasswordHash = BC.HashPassword(requesting_user.Password)
+                    UserName = new_user.UserName,
+                    Name = new_user.Name,
+                    Email = new_user.Email,
+                    PasswordHash = BC.HashPassword(new_user.Password)
                 };
 
             await shareSpaceDb.Users.AddAsync(NewUser);

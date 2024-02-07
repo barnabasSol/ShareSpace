@@ -49,14 +49,14 @@
                 @foreach (var image in post.PostPictureUrls!)
                 {
                     <MudCarouselItem Style="background-color: rgb(27, 27, 27);" Transition="Transition.Slide">
-                        <MudCardMedia loading="lazy" Class="w-100" Image="@image" Height="320" />
+                        <MudCardMedia Class="w-100" Image="@image" Height="320" />
                     </MudCarouselItem>
                 }
             </MudCarousel>
 
         }
         <MudCardContent Style="background: rgb(27, 27, 27); color: white;">
-            <MudText Typo="Typo.body2">@post.TextContent</MudText>
+                <MudText Typo="Typo.body2">@((MarkupString)post.TextContent!.Replace("\n", "<br>"))</MudText>
         </MudCardContent>
         <MudCardActions Style="background: rgb(27, 27, 27); background: rgb(27, 27, 27); border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;"Class="d-flex justify-content-between gap-5">
             <div>
@@ -85,11 +85,12 @@
     [Parameter]
     public EventCallback<PostDto> OnDelete { get; set; }
     
+
+    
     void DeletePost()
     {
         OnDelete.InvokeAsync(post);
     }
-
 
     public async void OnToggledChanged(bool toggled)
     {
