@@ -1,4 +1,5 @@
 .tr-item {
+  cursor: pointer;
   min-height: 100px;
   margin-bottom: 5px;
   display: grid;
@@ -15,6 +16,7 @@
 }
 
 .tr-no-img {
+  cursor: pointer;
   height: 100%;
   border-radius: 20px;
   margin-bottom: 5px;

@@ -20,7 +20,7 @@ public partial class PasswordSettings
         {
             processing = true;
             response = await SettingsService.UpdatePassword(
-                new UpdatePasswordDto()
+                new UpdatePasswordDto
                 {
                     OldPassword = passwordModel.OldPassword,
                     NewPassword = passwordModel.NewPassword

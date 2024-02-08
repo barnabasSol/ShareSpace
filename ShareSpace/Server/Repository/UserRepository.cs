@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShareSpace.Server.Data;
 using ShareSpace.Server.Entities;
+using ShareSpace.Server.Extensions;
 using ShareSpace.Server.Repository.Contracts;
 using ShareSpace.Shared.DTOs;
 using ShareSpace.Shared.ResponseTypes;
@@ -314,6 +315,7 @@ namespace ShareSpace.Server.Repository
                     .Include(i => i.User)
                     .Include(i => i.PostImages)
                     .ToListAsync();
+
                 var extra_info = await GetExtraUserInfo(queried_user.UserId);
                 return new ApiResponse<ProfileDto>
                 {
@@ -327,31 +329,7 @@ namespace ShareSpace.Server.Repository
                         IsBeingFollowed = await shareSpaceDb.Followers.AnyAsync(
                             a => a.FollowedId == queried_user.UserId && a.FollowerId == current_user
                         ),
-                        Posts = user_posts
-                            .Select(
-                                s =>
-                                    new PostDto
-                                    {
-                                        TextContent = s.Content,
-                                        PostUserProfilePicUrl = s.User?.ProfilePicUrl,
-                                        PostedName = s.User!.Name,
-                                        PostedUsername = s.User!.UserName,
-                                        PostedUserId = s.UserId,
-                                        PostId = s.Id,
-                                        PostPictureUrls =
-                                            s.PostImages!.Select(i => i.ImageUrl)
-                                            ?? Enumerable.Empty<string>(),
-                                        LikesCount = s.Likes,
-                                        ViewsCount = s.Views,
-                                        CommentsCount = s.Comments?.Count ?? 0,
-                                        PostedDateTime = s.CreatedAt,
-                                        IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
-                                            a => a.PostId == s.Id && a.UserId == current_user
-                                        ),
-                                    }
-                            )
-                            .OrderByDescending(o => o.PostedDateTime)
-                            .ToList(),
+                        Posts = user_posts.ToPostDto(shareSpaceDb.LikedPosts, current_user),
                     }
                 };
             }

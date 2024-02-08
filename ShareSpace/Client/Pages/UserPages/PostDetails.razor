@@ -36,7 +36,7 @@ else
                 <CardHeaderActions>
                     <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true">
                         <MudMenuItem>Share</MudMenuItem>
-                        <MudMenuItem>Not Interested</MudMenuItem>
+                        <MudMenuItem OnClick="ViewProfile">View Profile</MudMenuItem>
                         <MudMenuItem>Mute User</MudMenuItem>
                         <AuthorizeView>
                             <Authorized>
@@ -141,7 +141,7 @@ else
         SnackBar.Configuration.VisibleStateDuration = 1500;
         SnackBar.Add($"{message}", severity);
     }
-    protected override async Task OnInitializedAsync()
+    protected async override Task OnParametersSetAsync()
     {
         var result = await PostService.GetPostDetails(post_id);
         if (result.IsSuccess)
@@ -226,5 +226,8 @@ else
         }
         StateHasChanged();
     }
-
+    void ViewProfile()
+    {
+        NavManager.NavigateTo($"/profile/{post.PostedUsername}");
+    }
 }

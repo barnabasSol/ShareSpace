@@ -10,9 +10,18 @@
 
 <div class="chat-container">
     <div id="mainchat" class="m-1">
-        @foreach (var message in messages)
+        @if (!messages.Any())
         {
-            <Message message="message" />
+            <div style="display: flex; justify-content: center; align-items: center;" class="h-100 w-100">
+                <MudAlert Icon="@Icons.Material.Filled.Chat" Class="my-2" Severity="Severity.Normal" Variant="Variant.Outlined">Say Hi To @username</MudAlert>
+            </div>
+        }
+        else
+        {
+            @foreach (var message in messages)
+            {
+                <Message message="message" />
+            }
         }
     </div>
     <div class="footer p-2">

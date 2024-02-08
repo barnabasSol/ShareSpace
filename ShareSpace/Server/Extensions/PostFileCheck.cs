@@ -9,6 +9,7 @@ public static class PostFileCheck
             string ext when ext.Contains("png") => "png",
             string ext when ext.Contains("jpeg") => "jpeg",
             string ext when ext.Contains("webp") => "webp",
+            string ext when ext.Contains("gif") => "gif",
             _ => throw new Exception("Invalid file format!")
         };
     }

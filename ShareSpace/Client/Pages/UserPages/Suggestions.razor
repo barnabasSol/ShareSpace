@@ -13,17 +13,23 @@
         }
         else
         {
+            if (!SuggestedUsers.Any())
+            {
+                <div class="w-100" style="display: flex; justify-content: center; align-items: center;">
+                    <MudText Color="Color.Primary" Typo="Typo.h5">You Have No Suggested Users</MudText>
+                </div>
+            }
             foreach (var user in SuggestedUsers)
             {
                 <SuggestedUser User="@user" OnFollow="FollowUser" />
             }
         }
-
     </div>
 
     <section class="trending w-100">
         <MudDivider Style="color: white;" DividerType="DividerType.Middle" Class="my-1" />
         <h2 class="ml-2" style="color: white; position: sticky; top: 0;">Trending</h2>
+        <MudIcon Class="ml-2" Icon="@Icons.Material.Filled.TrendingUp" Title="Favorite" />
         <TrendingPost />
     </section>
 </div>

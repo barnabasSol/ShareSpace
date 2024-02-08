@@ -4,78 +4,73 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 using System.Text.Json;
 
-namespace ShareSpace.Client
+namespace ShareSpace.Client;
+
+public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 {
-    public class CustomAuthenticationStateProvider : AuthenticationStateProvider
+    private readonly ILocalStorageService localStorage;
+    private readonly NavigationManager navigationManager;
+
+    public CustomAuthenticationStateProvider(
+        ILocalStorageService localStorage,
+        NavigationManager navigationManager
+    )
     {
-        private readonly ILocalStorageService localStorage;
-        private readonly NavigationManager navigationManager;
+        this.localStorage = localStorage;
+        this.navigationManager = navigationManager;
+    }
 
-        public CustomAuthenticationStateProvider(
-            ILocalStorageService localStorage,
-            NavigationManager navigationManager
-        )
+    public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+    {
+        string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
+        if (string.IsNullOrEmpty(token))
         {
-            this.localStorage = localStorage;
-            this.navigationManager = navigationManager;
+            navigationManager.NavigateTo("/");
+            var logout_state = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+            NotifyAuthenticationStateChanged(Task.FromResult(logout_state));
+            return logout_state;
         }
 
-        public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+        var claims = ParseClaimsFromJwt(token);
+        var expClaim = claims.Where(_ => _.Type == "exp").Select(_ => _.Value).FirstOrDefault();
+
+        if (expClaim is not null)
         {
-            string token = await localStorage.GetItemAsync<string>("ShareSpaceAccessToken");
-            if (string.IsNullOrEmpty(token))
+            var expDate = DateTimeOffset.FromUnixTimeSeconds(long.Parse(expClaim));
+            if (expDate < DateTimeOffset.UtcNow)
             {
+                //await localStorage.RemoveItemAsync("ShareSpaceAccessToken");
                 navigationManager.NavigateTo("/");
-                var logout_state = new AuthenticationState(
-                    new ClaimsPrincipal(new ClaimsIdentity())
-                );
-                NotifyAuthenticationStateChanged(Task.FromResult(logout_state));
-                return logout_state;
+                return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
             }
-
-            var claims = ParseClaimsFromJwt(token);
-            var expClaim = claims.Where(_ => _.Type == "exp").Select(_ => _.Value).FirstOrDefault();
-
-            if (expClaim is not null)
-            {
-                var expDate = DateTimeOffset.FromUnixTimeSeconds(long.Parse(expClaim));
-                if (expDate < DateTimeOffset.UtcNow)
-                {
-                    //await localStorage.RemoveItemAsync("ShareSpaceAccessToken");
-                    navigationManager.NavigateTo("/");
-                    return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
-                }
-            }
-
-            AuthenticationState state =
-                new(new ClaimsPrincipal(new ClaimsIdentity(claims, "ShareSpaceTokenAuth")));
-
-            NotifyAuthenticationStateChanged(Task.FromResult(state));
-            return await Task.FromResult(state);
         }
 
-        private static IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
+        AuthenticationState state =
+            new(new ClaimsPrincipal(new ClaimsIdentity(claims, "ShareSpaceTokenAuth")));
+
+        NotifyAuthenticationStateChanged(Task.FromResult(state));
+        return await Task.FromResult(state);
+    }
+
+    private static IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
+    {
+        var payload = jwt.Split('.')[1];
+        var jsonBytes = ParseBase64WithoutPadding(payload);
+        var keyValuePairs = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonBytes);
+        return keyValuePairs!.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString()!));
+    }
+
+    private static byte[] ParseBase64WithoutPadding(string base64)
+    {
+        switch (base64.Length % 4)
         {
-            var payload = jwt.Split('.')[1];
-            var jsonBytes = ParseBase64WithoutPadding(payload);
-            var keyValuePairs = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonBytes);
-#pragma warning disable CS8604 // Possible null reference argument.
-            return keyValuePairs.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString()));
-#pragma warning restore CS8604 // Possible null reference argument.
+            case 2:
+                base64 += "==";
+                break;
+            case 3:
+                base64 += "=            ";
+                break;
         }
-
-        private static byte[] ParseBase64WithoutPadding(string base64)
-        {
-            switch (base64.Length % 4)
-            {
-                case 2:
-                    base64 += "==";
-                    break;
-                case 3:
-                    base64 += "=            ";
-                    break;
-            }
-            return Convert.FromBase64String(base64);
-        }
+        return Convert.FromBase64String(base64);
     }
 }

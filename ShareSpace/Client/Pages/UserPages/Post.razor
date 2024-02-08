@@ -1,8 +1,7 @@
 ﻿@inject IPostService PostService
 @inject NavigationManager NavManager
 
-
-<div class="col mb-1 p-1">
+<div class="col mb-1 p-1 postcardstyle">
     <MudCard @onclick="NavigateToPostDetail" style="border-radius: 20px;">
         <MudCardHeader Style="background: rgb(27, 27, 27); height: 60px">
             <CardHeaderAvatar>
@@ -25,7 +24,7 @@
             <CardHeaderActions>
                 <MudMenu Icon="@Icons.Material.Filled.MoreVert" Dense="true">
                     <MudMenuItem>Share</MudMenuItem>
-                    <MudMenuItem>Not Interested</MudMenuItem>
+                    <MudMenuItem OnClick="ViewProfile">View Profile</MudMenuItem>
                     <MudMenuItem>Mute User</MudMenuItem>
 
                     <AuthorizeView>
@@ -115,6 +114,10 @@
         StateHasChanged();
     }
     
+    void ViewProfile()
+    {
+        NavManager.NavigateTo($"/profile/{post.PostedUsername}");        
+    }
 
     void NavigateToPostDetail(){
         NavManager.NavigateTo($"/postdetails/{post.PostId}");        

@@ -23,7 +23,12 @@ public class SearchRepository : ISearchRepository
         try
         {
             var posts = await shareSpaceDb.Posts
-                .Where(w => w.Content!.ToLower().Contains(query))
+                .Where(
+                    w =>
+                        w.User!.UserName.ToLower().Contains(query)
+                        || w.Content!.ToLower().Contains(query)
+                        || w.User.Name.ToLower().Contains(query)
+                )
                 .Include(i => i.User)
                 .Include(i => i.PostImages)
                 .Include(i => i.Comments)

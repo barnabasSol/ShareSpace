@@ -52,10 +52,15 @@ section::-webkit-scrollbar {
   display: none;
 }
 
+nav::-webkit-scrollbar {
+  display: none;
+}
 nav {
   grid-area: nav;
   background: rgb(23, 24, 24);
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 nav::-webkit-scrollbar {

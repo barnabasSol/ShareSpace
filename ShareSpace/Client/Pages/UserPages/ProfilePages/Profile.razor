@@ -60,8 +60,13 @@ else
                                 <MudButton Style="height: 30px" Color="Color.Success"
                                     OnClick="() => UnFollowUser(ProfileData.UserId)" Variant="Variant.Outlined">Follow</MudButton>
                             }
+                        }else{
+                            
+                            <MudButton OnClick="OpenSettings" Style="height: 30px" Class="mr-3" Color="Color.Info" Size="Size.Medium"
+                                Variant="Variant.Outlined">
+                                Update Profile
+                            </MudButton>
                         }
-
             </div>
                     </Authorized>
                 </AuthorizeView>
@@ -146,6 +151,11 @@ else
             ProfileData.IsBeingFollowed = !ProfileData.IsBeingFollowed;
         }
         StateHasChanged();
+    }
+
+    void OpenSettings()
+    {
+        NavManager.NavigateTo($"/settings");
     }
     async void UnFollowUser(Guid user_id)
     {

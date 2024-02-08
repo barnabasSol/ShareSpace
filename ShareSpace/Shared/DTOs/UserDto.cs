@@ -41,6 +41,7 @@ public class SuggestedUserDto
     public Guid UserId { get; set; }
 }
 
+//profile update dto class
 public class UpdateUserProfileDto
 {
     public string Name { get; set; } = string.Empty;
@@ -51,6 +52,7 @@ public class UpdateUserProfileDto
     public string? OldProfilePicUrl { get; set; }
 }
 
+//password update dto class
 public class UpdatePasswordDto
 {
     public string OldPassword { get; set; } = string.Empty;

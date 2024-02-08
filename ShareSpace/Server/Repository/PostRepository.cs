@@ -219,28 +219,7 @@ public class PostRepository : IPostRepository
             {
                 IsSuccess = true,
                 Message = "",
-                Data = posts
-                    .Select(
-                        s =>
-                            new PostDto
-                            {
-                                TextContent = s.Content,
-                                PostUserProfilePicUrl = s.User?.ProfilePicUrl,
-                                PostedName = s.User!.Name,
-                                PostedUsername = s.User!.UserName,
-                                PostedUserId = s.UserId,
-                                PostId = s.Id,
-                                PostPictureUrls = s.PostImages?.Select(i => i.ImageUrl),
-                                LikesCount = s.Likes,
-                                ViewsCount = s.Views,
-                                CommentsCount = s.Comments?.Count ?? 0,
-                                PostedDateTime = s.CreatedAt,
-                                IsLikedByCurrentUser = shareSpaceDb.LikedPosts.Any(
-                                    a => a.PostId == s.Id && a.UserId == current_user
-                                )
-                            }
-                    )
-                    .OrderByDescending(o => o.PostedDateTime)
+                Data = posts.ToPostDto(shareSpaceDb.LikedPosts, current_user)
             };
         }
         catch (Exception ex)
