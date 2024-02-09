@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShareSpace.Server.Repository.Contracts;
 using ShareSpace.Shared.DTOs;
@@ -7,6 +8,7 @@ namespace ShareSpace.Server.Controllers;
 
 [Route("[controller]")]
 [ApiController]
+[Authorize(Roles = "user")]
 public class SearchController : ControllerBase
 {
     private readonly ISearchRepository searchRepository;
@@ -31,7 +33,7 @@ public class SearchController : ControllerBase
         {
             return StatusCode(
                 StatusCodes.Status500InternalServerError,
-                new  
+                new
                 {
                     IsSuccess = false,
                     Message = $"server error happened, {ex.Message}. try again later"
