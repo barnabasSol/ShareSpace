@@ -5,7 +5,6 @@ using System.Security.Claims;
 using System.Text.Json;
 
 namespace ShareSpace.Client;
-
 public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 {
     private readonly ILocalStorageService localStorage;

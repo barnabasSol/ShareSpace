@@ -26,7 +26,6 @@ public class CommentRepository : ICommentRepository
                 PostId = comment.PostId,
                 UserId = user_id
             };
-
             await shareSpaceDb.Comments.AddAsync(new_comment);
             await shareSpaceDb.SaveChangesAsync();
 

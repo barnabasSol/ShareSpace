@@ -5,6 +5,7 @@
 @inject NavigationManager NavManager
 @inject IJSRuntime JS
 @inject AuthenticationStateProvider authstate
+
 <style>
     .astyle {
         color: gray;
@@ -61,7 +62,7 @@
             }
             else
             {
-                <h2 class="mb-2" style="color: white;">Followers</h2>
+                <h2 class="mb-2" style="color: white;">Following</h2>
                 @foreach (var item in Following)
                 {
                     <FollowerUserItem user="item" OnFollow="FollowFollowingUser" OnUnfollow="UnfollowFollowingUser" />

@@ -33,11 +33,6 @@ public class AuthRepository : IAuthRepository
         token_Setting = token_setting.Value;
     }
 
-    // private async Task<bool> UserOrEmailExists(string userName, string email)
-    // {
-    //     return await shareSpaceDb.Users.AnyAsync(_ => _.UserName == userName || _.Email == email);
-    // }
-
     public async Task<AuthResponse> CreateUser(CreateUserDTO new_user)
     {
         using var transaction = await shareSpaceDb.Database.BeginTransactionAsync();
@@ -130,14 +125,14 @@ public class AuthRepository : IAuthRepository
 
     public void UpdateToken()
     {
-        Console.WriteLine($"Updated Token");
+        Console.WriteLine($"TOKEN UPDATE DOOOOOOOOOOOOo");
     }
 
     public string GenerateAccessToken(User authorized_user, Role role)
     {
         DateTime TokenExpiration = DateTime.Now.AddHours(15);
-        SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
         DateTimeOffset dateTimeOffset = new(TokenExpiration);
+        SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(token_Setting.SecretKey));
         SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha256);
         List<Claim> claims =
             new()

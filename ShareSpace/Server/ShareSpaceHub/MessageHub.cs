@@ -18,14 +18,32 @@ public class MessageHub : Hub
         this.shareSpaceDb = shareSpaceDb;
     }
 
-    public override Task OnDisconnectedAsync(Exception? exception)
+    public override async Task OnConnectedAsync()
     {
-        return base.OnDisconnectedAsync(exception);
+        Guid current_user = Guid.Parse(
+            Context.User!.Claims.FirstOrDefault(w => w.Type == "Sub")!.Value
+        );
+        var connected_user = await shareSpaceDb.Users.FindAsync(current_user);
+        if (connected_user is not null)
+        {
+            connected_user.OnlineStatus = true;
+            await shareSpaceDb.SaveChangesAsync();
+            await Clients.All.SendAsync("UserOnlineStatusChanged", current_user, true);
+        }
     }
 
-    public override Task OnConnectedAsync()
+    public override async Task OnDisconnectedAsync(Exception? exception)
     {
-        return base.OnConnectedAsync();
+        Guid current_user = Guid.Parse(
+            Context.User!.Claims.FirstOrDefault(w => w.Type == "Sub")!.Value
+        );
+        var connected_user = await shareSpaceDb.Users.FindAsync(current_user);
+        if (connected_user is not null)
+        {
+            connected_user.OnlineStatus = false;
+            await shareSpaceDb.SaveChangesAsync();
+            await Clients.All.SendAsync("UserOnlineStatusChanged", current_user, true);
+        }
     }
 
     public async Task FetchMessagesOfUser(string username)

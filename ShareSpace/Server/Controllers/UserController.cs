@@ -7,7 +7,7 @@ using ShareSpace.Shared.ResponseTypes;
 namespace ShareSpace.Server.Controllers;
 
 [ApiController]
-[Authorize(Roles = "user")]
+[Authorize(Roles = "user, admin")]
 [Route("[controller]")]
 public class UserController : ControllerBase
 {

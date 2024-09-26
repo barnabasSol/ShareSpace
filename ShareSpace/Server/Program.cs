@@ -52,7 +52,7 @@ builder.Services
             ValidIssuer = token_settings!.Issuer,
             ValidateAudience = true,
             ValidAudience = token_settings!.Audience,
-            ValidateIssuerSigningKey = true,
+            ValidateIssuerSigningKey = false,
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(token_settings.SecretKey)
             ),
@@ -94,13 +94,12 @@ else
 
 app.UseHttpsRedirection();
 
-app.UseBlazorFrameworkFiles();
-app.UseStaticFiles();
-
-app.UseRouting();
 app.UseAuthentication();
+app.UseRouting();
 app.UseAuthorization();
 
+app.UseBlazorFrameworkFiles();
+app.UseStaticFiles();
 app.UseResponseCompression();
 
 app.MapRazorPages();

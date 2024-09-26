@@ -38,7 +38,10 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login-user")]
-    public async Task<ActionResult<AuthResponse>> LoginUser(UserLoginDTO user)
+    public async Task<ActionResult<AuthResponse>> LoginUser(
+        UserLoginDTO user,
+        [FromServices] IAuthRepository authRepository
+    )
     {
         try
         {

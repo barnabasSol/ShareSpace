@@ -54,7 +54,7 @@
 @code {
     [Parameter] public required MessageDto message { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnInitializedAsync()
     {
         var module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/site.js");
         await module.InvokeVoidAsync("scrollToEnd");

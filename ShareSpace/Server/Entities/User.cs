@@ -31,6 +31,9 @@ public class User
     [Column("created_at")]
     public DateTime CreatedAt { get; set; }
 
+    [Column("online_status")]
+    public bool OnlineStatus { get; set; }
+
     public virtual ICollection<LikedPost>? LikedPosts { get; set; }
     public virtual ICollection<Post>? Posts { get; set; }
     public virtual ICollection<Comment>? Comments { get; set; }

@@ -36,7 +36,6 @@ public class AuthService : IAuthService
         try
         {
             var http = http_client.CreateClient("ShareSpaceApi");
-
             var response =
                 await http.PostAsJsonAsync("Auth/login-user", userDTO)
                 ?? throw new Exception("Response was null");
