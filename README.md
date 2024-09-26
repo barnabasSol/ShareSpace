@@ -1,4 +1,4 @@
-Project: Full-Stack Social Media Web Application
+# Project: Full-Stack Social Media Web Application
 
 - Developed a responsive social media platform using Blazor WebAssembly for the frontend and ASP.NET Core API for the backend
 - Implemented real-time features using SignalR for instant updates and notifications
