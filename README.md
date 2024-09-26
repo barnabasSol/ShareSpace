@@ -4,8 +4,6 @@ Project: Full-Stack Social Media Web Application
 - Implemented real-time features using SignalR for instant updates and notifications
 - Created a responsive UI using pure CSS, ensuring optimal display across devices
 - Designed and implemented secure JWT authentication with refresh token mechanism
-- Containerized the application using Docker for consistent deployment
-- Prepared for cloud deployment on Digital Ocean
 - Tech stack: Blazor WebAssembly, ASP.NET Core API, SignalR, Docker
 
 ![image](https://github.com/user-attachments/assets/054e411c-1fc3-4f76-9386-5f8c44b4d724)
